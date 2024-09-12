@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>무피픽</title>
+  <link rel="icon" href="./assets/image/titleIcon.png"/>
+
+  <style>
+    body {
+      background: #494949;
+      margin: 0;
+    }
+    
+    #main_img_div {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    #main_img {
+      width: 1278px;
+      height: 719px;
+    }
+
+    #gradient_overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%; /* 이미지와 동일한 너비 */
+      height: 50%; /* 이미지의 하단 절반에 그라데이션 적용 */
+      background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+      pointer-events: none; /* 이미지 클릭 방지 */
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main_img_div">
+    <img src="./assets/image/detaile/insideout.jpg" id="main_img">
+    <div id="gradient_overlay"></div>
+  </div>
+</body>
+</html>
