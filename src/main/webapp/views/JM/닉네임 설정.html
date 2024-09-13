@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style >
+    body{
+  background-color: #131313;
+  font-family: 'pretendard';
+}
+.ifound{
+    width: 577px;
+    height: 70px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 0px;
+    background-color: rgba(255, 255, 255, 0.116);
+    color: white;
+    padding: 0px;
+    margin-bottom: 32px;
+    
+}
+input::placeholder{padding-left: 20px;}
+.button-group{
+  width: 577px;
+    height: 70px;
+    font-size: 20px;
+}
+#buttons{
+  margin-top: 25px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+    width: 577px;
+    height: 70px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 0px;
+    margin-top: 15px;
+    padding: 0px;
+    font-weight: 900;
+}
+.container{
+  margin-top: 313px;
+  align-items: center;
+  display: flex;
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    text-align: left;
+
+}
+.idfo{
+  font-size: 40px;
+  color: white;
+  margin: auto;
+  margin-bottom: 9px;
+}
+#ifound{
+
+  color: white;
+  margin-top: 30px;
+  text-align: left;
+}
+input:focus {outline: none;}
+.font{
+  font-size: 15px;
+  color: white;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 31px;
+}
+#imgbt{
+  background-color: #131313;
+  border: none;
+  margin-bottom: 15px;
+}
+#imgbt:hover{
+  border: none;
+  cursor: pointer;
+}
+
+  </style>
+  
+</head>
+
+<body>
+<div class="container">
+          <button id="imgbt" ><img src="./assets/image/search.png" alt=""></button>
+        <div class="font">프로필 이미지 추가하기</div>
+          <div class="idfo">닉네임을 설정해주세요</div>
+        <div class="button-group">
+  <input type="text" class="ifound" placeholder="닉네임" >
+  <button type="submit"  id="buttons">확인</button>
+</div>
+</div>
+
+</body>
+</html>
