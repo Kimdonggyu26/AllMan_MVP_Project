@@ -1,0 +1,84 @@
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
+body{
+  font-family: pretendard;
+  color: white;
+  font-weight: bold;
+}
+#result-text{
+  color: white;
+  font-size: 40px;
+}
+#main{
+  background-color: #131313;
+  width: 1920px;
+  height: 2667px;
+  position: absolute;
+}
+#result-text{
+  border: 1px solid white;
+  width: 830px;
+  height: 144px;
+  margin: auto;
+  margin-top: 100px;
+}
+#compare-list{
+  border: 1px solid white;
+  width: 1060px;
+  height: 2226px;
+  margin: auto;
+  margin-top: 53px;
+  display: flex;
+  gap: 40px;
+}
+#compare-list-movie{
+  border: 1px solid white;
+  background-color: #323232;
+  width: 327px;
+  height: 2226px;
+}
+#movie-mainimage{
+  margin-left: 64px;
+  margin-top: 58px;
+}
+#movie-title{
+  font-size: 32px;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+#movie-content{
+  width: 209px;
+  height: 1455px;
+  margin: auto;
+}
+#movie-content p{
+  margin: 0%;
+}
+.p-title{
+  font-size: 22px;
+}
+.p-content{
+  font-size: 15px;
+}
+#movie-content-top{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 55px;
+}
+#rating{
+  width: 204px;
+  height: 80px;
+}
+#rating-list{
+  width: 204px;
+  height: 49px;
+  display: flex;
+  gap: 20px;
+}
+#rating-list p{
+  font-size: 13px;
+  text-align: center;
+}
+
+
