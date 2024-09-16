@@ -16,14 +16,12 @@ body{
   position: absolute;
 }
 #result-text{
-  border: 1px solid white;
   width: 830px;
   height: 144px;
   margin: auto;
   margin-top: 100px;
 }
 #compare-list{
-  border: 1px solid white;
   width: 1060px;
   height: 2226px;
   margin: auto;
@@ -32,10 +30,10 @@ body{
   gap: 40px;
 }
 #compare-list-movie{
-  border: 1px solid white;
   background-color: #323232;
   width: 327px;
   height: 2226px;
+  border-radius: 30px;
 }
 #movie-mainimage{
   margin-left: 64px;
@@ -79,6 +77,21 @@ body{
 #rating-list p{
   font-size: 13px;
   text-align: center;
+}
+#mvp-review{
+  margin-top: 52px;
+}
+#introduce{
+  margin-top: 52px;
+}
+#compare-list-empty{
+  background-color: #323232;
+  width: 327px;
+  height: 356px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
 }
 
 
