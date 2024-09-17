@@ -53,6 +53,7 @@
               전 세계를 공감으로 물들인 유쾌한 상상이 다시 시작된다!
             </p>
           </div>
+
           <div class="left_contents_line1">
             <h6 style="font-weight: bold;">출연진</h6>
             <p style="font-weight: bold; margin-top: 11px;">
@@ -84,36 +85,80 @@
                 </div>
               </div>
               
-
-                <div class="star-rating">
-                  <input type="radio" class="star" value="1">
-                  <input type="radio" class="star" value="2">
-                  <input type="radio" class="star" value="3">
-                  <input type="radio" class="star" value="4">
-                  <input type="radio" class="star" value="5">
-                </div>
-            </div>
               
+              <div class="star-rating">
+                <input type="radio" class="star" value="1">
+                <input type="radio" class="star" value="2">
+                <input type="radio" class="star" value="3">
+                <input type="radio" class="star" value="4">
+                <input type="radio" class="star" value="5">
+              </div>
+            </div>
+            <div id="searchInput" class="input-group">
+              <input type="text" id="form-control" class="form-control" placeholder="리뷰를 등록해두세요." autocomplete="off">
+              <div id="searchButton" class="input-group-append">
+                <button class="btn btn-danger p" type="button">등록</button>
+              </div>
+            </div>
           </div>
-          
         </div>
         
         <!--오른쪽 영화 정보-->
         <div id="right_contents" style="color: #ffffff;">
           <!--개봉일 비교하기 라인-->
-          <div id="right_content_line1">
+          <div id="right_content_line1" class="right_contents_margin">
             <div>
-              <p style="font-size: 15px; font-weight: bold;">개봉일</p>
-              <p style="font-size: 13px;">2024</p>
+              <p class="right_title">개봉일</p>
+              <p class="right_content">2024</p>
             </div>
             <button><img src="./assets/image/icon/downIcon.png">비교하기</button>
           </div>
-          <div id="right_content_line2">평점</div>
-          <div id="right_content_line3">장르</div>
-          <div id="right_content_line4">재생시간</div>
-          <div id="right_content_line5">연령 등급</div>
-          <div id="right_content_line6">제작국가</div>
-          <div id="right_content_line7">관객수</div>
+          <div id="right_content_line2" class="right_contents_margin">
+            <p class="right_title">평점</p>
+            <div style="display: flex; flex-direction: row;">
+              <div class="AVG_STAR">
+                <p>무비픽 평점</p>
+                <div class="AVG_STAR_img_p_tag">
+                  <img src="./assets/image/icon/Star 1.png" alt="">
+                  <p>4.48</p>
+                </div>
+              </div>
+              
+              <div style="margin-left: 20px;" class="AVG_STAR">
+                <p><span style="color: #33F833;">네이버</span>평점</p>
+                <div class="AVG_STAR_img_p_tag">
+                  <img src="./assets/image/icon/Star 1.png" alt="">
+                  <p>4.48</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="right_content_line3" class="right_contents_margin">
+            <p class="right_title">장르</p>
+            <div class="right_content">애니메이션</div>
+            <div class="right_line"></div>
+          </div>
+
+          <div id="right_content_line4" class="right_contents_margin">
+            <p class="right_title">재생시간</p>
+            <div class="right_content">102분</div>
+            <div class="right_line"></div>
+          </div>
+          <div id="right_content_line5" class="right_contents_margin">
+            <p class="right_title">연령 등급</p>
+            <div class="right_content">전체</div>
+            <div class="right_line"></div>
+          </div>
+          <div id="right_content_line6" class="right_contents_margin">
+            <p class="right_title">제작국가</p>
+            <div class="right_content">미국</div>
+            <div class="right_line"></div>
+          </div>
+          <div id="right_content_line7" class="right_contents_margin">
+            <p class="right_title">관객수</p>
+            <div class="right_content">82.6만명</div>
+            <div class="right_line"></div>
+          </div>
         </div>
       </div>
     </div>
