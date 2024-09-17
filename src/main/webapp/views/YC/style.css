@@ -1,147 +1,195 @@
-    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
-    
-    p, h1, h2, h3, h4, h5, h6, button{
-      font-family: "pretendard";
-      margin: 0;
-      padding: 0;
-    }
-    
-    body {
-      background: #131313;
-      margin: 0;
-      border: 1px solid blue;
-    }
-    
-    #main_img_div {
-      position: relative;
-      display: flex;
-      justify-content: center;
-    }
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css");
 
-    #main_img {
-      width: 1278px;
-      height: 719px;
-    }
+body {
+  font-family: "pretendard";
+  margin: 0;
+  padding: 0;
+}
 
-    /* 이미지 그라데이션 효과 */
-    #gradient_overlay {
-      position: absolute;
-      bottom: 0;
-      width: 1278px; 
-      height: 300px; 
-      background: linear-gradient(to top, #131313, rgba(0, 0, 0,0));
-      pointer-events: none; /* 이미지 클릭 방지 */
-    }
-    #detaileImgBtn{
-      background-color: #F33F3F;
-      color: #ffffff;
-      
-      border-radius: 10%;
-    }
-    h1{
-      color: #ffffff;
-      font-weight: bold;
-    }
-    p{
-      margin: 0;
-    }
-    #head_P_Tag{
-      color: #ffffff;
-      font-family: "pretendard";
-      margin-bottom: 35px;
-    }
-    
-    button{
-      padding: 0px;
-    }
-    /* 글씨 데코레이션 */
-    #img_text {
-      position: absolute;
-      bottom: 30px; /* 텍스트가 이미지 위에서 아래쪽에 위치하게 설정 */
-      left: 45%; /* 왼쪽 여백 설정 */
-      display: flex;
-      flex-direction: column;
-      
-    }
-    #img_btn_style > button{
-      height: 50px;
-      border-style: none;
-      border-radius: 6%;
-      background: #F33F3F;
-      color: #ffffff;
-      font-size: 17px;
-    }
-    #like{
-      width: 28px;
-      fill: #ffffff;
-    }
-    #like.active{
-      fill: #F33F3F;
-    }
+body {
+  background: #131313;
+  margin: 0;
+  border: 1px solid blue;
+}
 
-    #back{
-      position: absolute;
-      top: 5%;
-      right: 20%;
-      display: flex;
-      flex-direction: column;
-      color: #ffffff;
-    }
-    
-    #mian_content_1{
-      display: flex;
-      justify-content: center;
-    }
-    
+#main_img_div {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
 
-    #right_contents{
-      width: 422px;
-      height: 564px;
-      border-radius: 3%;
-      background-color: #262626;
-      border: 1px solid red;
-      
-    }
-    #right_content_line1{
-      display: flex;
-      flex-direction: row;
-      margin: 26px 38px;
-    }
-    #right_content_line1 > button{
-      border-style: none;
-      border-radius: 6%;
-      background: #F33F3F;
-      color: #ffffff;
-      margin-left: 200px;
-      padding: 10px 14px;
-      font-size: 12px;
-      font-weight: bold;
-      width: 92px;
-      height: 34px;
-      
-    }
-    #right_content_line1 > button > img{
-      width: 20px;
-      height: 14px;
-      margin-right: 2px;
-    }
-    #left_contents{
-      border: 1px solid red;
-      margin-right: 31px;
-      width: 822px;
-    }
-    
-    .left_contents_line1{
-      background-color: #262626;
-      width: 822px;
-      padding: 25px 35px;
-      margin-bottom: 10px;
-    }
-    .left_contents_line1 > p{
-      width: 754px;
-      color: #ffffff;
-    }.left_contents_line1 > h6{
-      width: 754px;
-      font-size: 18px;
-      color: #ADADAD;
-    }
+#main_img {
+  width: 1278px;
+  height: 719px;
+}
+
+/* 이미지 그라데이션 효과 */
+#gradient_overlay {
+  position: absolute;
+  bottom: 0;
+  width: 1278px;
+  height: 300px;
+  background: linear-gradient(to top, #131313, rgba(0, 0, 0, 0));
+  pointer-events: none; /* 이미지 클릭 방지 */
+}
+#detaileImgBtn {
+  background-color: #f33f3f;
+  color: #ffffff;
+
+  border-radius: 10%;
+}
+h1 {
+  color: #ffffff;
+  font-weight: bold;
+}
+p {
+  margin: 0;
+}
+#head_P_Tag {
+  color: #ffffff;
+  font-family: "pretendard";
+  margin-bottom: 35px;
+}
+
+button {
+  padding: 0px;
+}
+/* 글씨 데코레이션 */
+#img_text {
+  position: absolute;
+  bottom: 30px; /* 텍스트가 이미지 위에서 아래쪽에 위치하게 설정 */
+  left: 45%; /* 왼쪽 여백 설정 */
+  display: flex;
+  flex-direction: column;
+}
+#img_btn_style > button {
+  height: 50px;
+  border-style: none;
+  border-radius: 6%;
+  background: #f33f3f;
+  color: #ffffff;
+  font-size: 17px;
+}
+#like {
+  width: 28px;
+  fill: #ffffff;
+}
+#like.active {
+  fill: #f33f3f;
+}
+
+/*x표시 현재 absolute 상태 추후 Img div에 넣어 같이 움직임 필요*/
+#back {
+  position: absolute;
+  top: 5%;
+  right: 20%;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+}
+
+#mian_content_1 {
+  display: flex;
+  justify-content: center;
+}
+
+#right_contents {
+  width: 422px;
+  height: 564px;
+  border-radius: 3%;
+  background-color: #262626;
+  border: 1px solid red;
+}
+#right_content_line1 {
+  display: flex;
+  flex-direction: row;
+  margin: 26px 38px;
+}
+#right_content_line1 > button {
+  border-style: none;
+  border-radius: 6%;
+  background: #f33f3f;
+  color: #ffffff;
+  margin-left: 200px;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: bold;
+  width: 92px;
+  height: 34px;
+}
+#right_content_line1 > button > img {
+  width: 20px;
+  height: 14px;
+  margin-right: 2px;
+}
+#left_contents {
+  border: 1px solid red;
+  margin-right: 31px;
+  width: 822px;
+}
+
+.left_contents_line1 {
+  background-color: #262626;
+  width: 822px;
+  padding: 25px 35px;
+  margin-bottom: 30px;
+}
+.left_contents_line1 > p {
+  width: 754px;
+  color: #ffffff;
+}
+.left_contents_line1 > h6 {
+  width: 754px;
+  font-size: 18px;
+  color: #adadad;
+}
+
+#ott a > img {
+  margin-right: 10px;
+}
+
+#rating_title {
+  font-size: 11px;
+  font-weight: bold;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+#rating_chekc_star {
+  display: flex;
+  justify-content: flex-start;
+}
+#rating_chekc_star > p {
+  color: #ffffff;
+  margin-right: 5px;
+  font-size: 16px;
+}
+#rating_chekc_star > input {
+  width: 15px;
+}
+.star-rating {
+  margin-left: 206px;
+}
+
+.star {
+  appearance: none;
+  padding: 1px;
+}
+
+.star::after {
+  content: "☆";
+  color: hsl(60, 71%, 51%);
+  font-size: 30px;
+}
+
+.star:hover::after,
+.star:has(~ .star:hover)::after,
+.star:checked::after,
+.star:has(~ .star:checked)::after {
+  content: "★";
+}
+
+.star:hover ~ .star::after {
+  content: "☆";
+}
