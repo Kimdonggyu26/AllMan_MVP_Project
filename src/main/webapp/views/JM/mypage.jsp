@@ -1,16 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- Bootstrap 사용을 위한 CDN -->
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
- <!-- ------------------------- -->
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
+
 <style>
 body {
     background-color: #131313;
@@ -174,7 +170,9 @@ a:active {
   text-decoration: none;
 }
 </style>
+<!-- body 시작부 -->
 <body>
+		<form action="#" method="post">
     <div class="container">
         <div class="title">마이페이지</div>
         <hr>
@@ -213,13 +211,13 @@ a:active {
             <h3>나의 게시글</h3>
             <hr>
             <div class="list-container">
-                <div class="list-item"><a href="">게시글 1</a></div>
-                <div class="list-item"><a href="">게시글 1</a></div>
-                <div class="list-item"><a href="">게시글 1</a></div>
-                <div class="list-item"><a href="">게시글 1</a></div>
+                <div class="list-item"><a href="#">게시글 1</a></div>
+                <div class="list-item"><a href="#">게시글 1</a></div>
+                <div class="list-item"><a href="#">게시글 1</a></div>
+                <div class="list-item"><a href="#">게시글 1</a></div>
             </div>
             <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#"> < </a></li>
+                <li class="page-item"><a class="page-link" href="#"><</a></li>
                 <li class="page-item"><a class="page-link" href="#">1</a></li>
                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
@@ -233,10 +231,10 @@ a:active {
             <h3>문의내역</h3>
             <hr>
             <div class="list-container">
-                <div class="list-item"><a href="">문의 1</a></div>
-                <div class="list-item"><a href="">문의 1</a></div>
-                <div class="list-item"><a href="">문의 1</a></div>
-                <div class="list-item"><a href="">문의 1</a></div>
+                <div class="list-item"><a href="#">문의 1</a></div>
+                <div class="list-item"><a href="#">문의 1</a></div>
+                <div class="list-item"><a href="#">문의 1</a></div>
+                <div class="list-item"><a href="#">문의 1</a></div>
             </div>
             <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="#"><</a></li>
@@ -249,5 +247,7 @@ a:active {
               </ul>
         </div>
     </div>
+    </form>
 </body>
+<!-- body부 종료 -->
 </html>

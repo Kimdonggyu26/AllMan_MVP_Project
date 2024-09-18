@@ -1,24 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en" id="back">
+<html>
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Document</title>
- <!-- Bootstrap 사용을 위한 CDN -->
-   <!-- Bootstrap 사용을 위한 CDN -->
-   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <!-- jQuery library (slim은 쓰지 말것) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <!-- Popper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <!-- Latest compiled JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
- <!-- ------------------------- -->
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <style>
 body {
@@ -168,7 +154,12 @@ a:active {
 </style>
 
 <body>
-  
+      <!-- Header, Nav start -->
+    <%@ include file="/views/common/header.jsp" %>
+    <!-- Header, Nav end -->
+    
+    <!-- body 시작부 -->
+    
 <div class="modal" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -242,7 +233,9 @@ a:active {
 </div>
   <div> <hr style="background-color: gray;"> </div>
   <a href="" style="color:  gray; margin-left: 30px; text-decoration: none;"> 회원탈퇴 및 계정삭제</a>
-
-  
+<!-- body 종료 -->
+    <!-- Footer start -->
+      <!-- footer.jsp include 할 예정 -->
+    <!-- Footer end -->
 </body>
 </html>
