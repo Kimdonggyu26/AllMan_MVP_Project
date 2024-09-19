@@ -155,7 +155,7 @@ a:active {
 
 <body>
       <!-- Header, Nav start -->
-    <%@ include file="/views/common/header.jsp" %>
+    <%-- <%@ include file="/views/common/header.jsp" %> --%>
     <!-- Header, Nav end -->
     
     <!-- body 시작부 -->

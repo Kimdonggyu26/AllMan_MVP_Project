@@ -78,7 +78,7 @@ a{
     </style>
     
    	<!-- Header, Nav start -->
-    <%@ include file="/views/common/header.jsp" %>
+   <%--  <%@ include file="/views/common/header.jsp" %> --%>
     <!-- Header, Nav end -->
     
    <form action="" method="post">
@@ -88,11 +88,11 @@ a{
   <br>
 </div>
 <div class="login-form m-3">
-  <input type="text"  placeholder="아이디"  id="id" value="">
+  <input type="text"  placeholder="아이디"  id="id" name="userId" value="">
   <br>
-  <input type="password" placeholder="비밀번호" id="pass" value="">
+  <input type="password" placeholder="비밀번호" id="pass" name="userPwd" value="">
   <br>
-  <button type="button"  id="login-out" value="" >로그인하기</button>
+  <button type="button"  id="login-out" value="" ><a href="">로그인하기</a></button>
 </div>  
     <div >
      <table class="found">
@@ -107,8 +107,8 @@ a{
   </div>
   </form>
       <!-- Footer start -->
-    <%@ include file="/views/common/footer.jsp" %>
+   <%--  <%@ include file="/views/common/footer.jsp" %> --%>
     <!-- Footer end -->
     </body>
-
+	
 </html>
