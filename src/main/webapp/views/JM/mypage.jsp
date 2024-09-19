@@ -170,6 +170,12 @@ a:active {
   text-decoration: none;
 }
 </style>
+
+   	<!-- Header, Nav start -->
+   <%--  <%@ include file="/views/common/header.jsp" %> --%>
+    <!-- Header, Nav end -->
+
+
 <!-- body 시작부 -->
 <body>
 		<form action="#" method="post">
@@ -248,6 +254,16 @@ a:active {
         </div>
     </div>
     </form>
-</body>
 <!-- body부 종료 -->
+
+   	<!-- Header, Nav start -->
+   <%--  <%@ include file="/views/common/footer.jsp" %> --%>
+    <!-- Header, Nav end -->
+
+
+</body>
+
+
+
+
 </html>
