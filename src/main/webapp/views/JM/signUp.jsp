@@ -74,7 +74,7 @@ body{
         <div class="header">
        <h2 class="m-4">MOVIE PICK 회원가입</h2>
       </div>
-       <form action="" method="" class="">
+       <form action="<%= contextPath %>/insert.me" method="post" class="">
          
         <input type="text" class="input-line" placeholder="아이디" name="userId" required>
         <div class="font">영문 소문자 또는 영문 소문자, 숫자 조합 6~12 자리</div>
