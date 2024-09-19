@@ -1,0 +1,28 @@
+body{
+    font-family: pretendard;
+    font-weight: bold;
+}
+#main{
+    border: 1px solid red;
+    width: 1920px;
+    height: 1080px;
+}
+#head{
+    border: 1px solid blue;
+    width: 1920px;
+    height: 100px;
+    background-color: #82B9EB;
+    display: flex;
+    align-items: center;
+    gap: 844px;
+    color: white;
+    font-size: 25px;
+}
+#body-top{
+    border: 1px solid green;
+    width: 1920px;
+    height: 40px;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+}
