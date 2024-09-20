@@ -23,6 +23,15 @@ public class Notice {
 		this.status = status;
 		this.userNo = userNo;
 	}
+	
+	
+
+	public Notice(String noticeTitle, Date registDate, String userNo) {
+		super();
+		this.noticeTitle = noticeTitle;
+		this.registDate = registDate;
+		this.userNo = userNo;
+	}
 
 	public int getNoticeNO() {
 		return noticeNO;

@@ -77,6 +77,11 @@
   
 </style>
 
+<%
+	String contextPath = request.getContextPath();	// /mvp
+%>
+
+
 <div class="d-flex justify-content-center">
     <header>
       <div class="col-2">
@@ -99,10 +104,9 @@
         <div><a href="#"><img src="./assets/image/bell.png" alt="" id="bellIcon" class="mr-3"></a></div>
         <div><a href="#"><img src="./assets/image/titleIcon.png" id="myImg"></a></div>
       </div>
-      
+       </header>
     </div>
-  </header>
-</div>
+
 
 <nav id="navBar">
   <ul class="navbar-nav">
@@ -118,8 +122,15 @@
     <li class="nav-item">
       <a class="nav-link" href="#">취향게시판</a>
     </li>
-    <li class="nav-item"></li>
-      <a class="nav-link" href="#">고객지원</a>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        고객지원
+      </a>
+      <div class="dropdown-menu" style="background-color: #131313; color: white;">
+        <a class="dropdown-item" style="color: white;" href="list.no">공지사항</a>
+        <a class="dropdown-item" style="color: white;" href="#">FAQ</a>
+        <a class="dropdown-item" style="color: white;" href="#">1대1문의</a>
+      </div>
     </li>
   </ul>
 </nav>
