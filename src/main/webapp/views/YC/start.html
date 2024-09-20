@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      margin: 0;
+      background-color: rgb(0, 0, 0);
+    }
+    img{
+      opacity: 0.5
+        
+    }
+    .btn{
+      font-family: 'pretandard';
+      color: #ffffff;
+      background: #F33F3F;
+      border-radius: 5%;
+      font-size: 32px;
+      font-weight: bold;
+      width: 223px;
+      height: 88px;
+      border: none; /* 테두리 제거 */
+      cursor: pointer;
+    }
+    button:hover{
+      color: #2b2b2b; /* 마우스 호버 시 글자 색상 변경 */
+    }
+    .vertical-line {
+            width: 2px; /* 선의 너비 */
+            height: 50%; /* 선의 높이 */
+            background-color: #525252; /* 선의 색상 */
+            position: absolute; left: 50%; bottom: 20%;
+    }
+
+
+  </style>
+</head>
+
+<body>
+  <div>
+    <img id="back_img" src="./assets/image/start/시작페이지_img.png" style="width: 100%;">
+  </div>
+  <div style="display: flex; flex-direction: row; justify-content: center;align-items: center;">
+    <button class="btn" style="position: absolute; left: 20%; bottom: 45%;">비회원</button>
+    <div class="vertical-line"></div>
+    <button class="btn" style="position: absolute; right: 20%; bottom: 45%;">회원 로그인</button>
+  </div>
+</body>
+</html>
