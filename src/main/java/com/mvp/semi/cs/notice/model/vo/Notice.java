@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Notice {
 	
-	private int noticeNO;				// 공지사항글번호
+	private int noticeNo;				// 공지사항글번호
 	private String noticeTitle;			// 공지사항제목
  	private String noticeContent;		// 공지사항내용
 	private Date registDate;			// 작성일
@@ -13,23 +13,32 @@ public class Notice {
 	
 	public Notice() {}
 
-	public Notice(int noticeNO, String noticeTitle, String noticeContent, Date registDate, String status,
+	public Notice(int noticeNo, String noticeTitle, String noticeContent, Date registDate, String status,
 			String userNo) {
 		super();
-		this.noticeNO = noticeNO;
+		this.noticeNo = noticeNo;
 		this.noticeTitle = noticeTitle;
 		this.noticeContent = noticeContent;
 		this.registDate = registDate;
 		this.status = status;
 		this.userNo = userNo;
 	}
-
-	public int getNoticeNO() {
-		return noticeNO;
+	
+	public Notice(int noticeNo, String noticeTitle, String noticeContent, Date registDate, String userNo) {
+		super();
+		this.noticeNo = noticeNo;
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+		this.registDate = registDate;
+		this.userNo = userNo;
 	}
 
-	public void setNoticeNO(int noticeNO) {
-		this.noticeNO = noticeNO;
+	public int getNoticeNo() {
+		return noticeNo;
+	}
+
+	public void setNoticeNo(int noticeNo) {
+		this.noticeNo = noticeNo;
 	}
 
 	public String getNoticeTitle() {
@@ -74,7 +83,7 @@ public class Notice {
 
 	@Override
 	public String toString() {
-		return "Notice [noticeNO=" + noticeNO + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
+		return "Notice [noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
 				+ ", registDate=" + registDate + ", status=" + status + ", userNo=" + userNo + "]";
 	}
 	
