@@ -7,112 +7,15 @@
 <%
 	List<Notice> list = (List<Notice>)request.getAttribute("list");
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- Bootstrap 사용을 위한 CDN -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- ------------------------- -->
-  
-  <!--폰트-->
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
 
-<style>
-  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
 
-  html{
-    display: flex;
-    justify-content: center;
-  }
 
-  #main {
-    background-color: #131313;
-    width: 1920px; min-height: 1080px;
-    font-family: 'pretendard';
-  }
-
-  #head{
-    width: 1276px; margin-left: 322px; margin-top: 61px;
-  }
-
-  #head h3{
-    color: rgb(255, 255, 255)
-  }
-
-  #qna-h{
-    width: 1276px; margin-left: 322px; margin-top: 82px;
-  }
-  #qna-b{
-    margin-top: 44px;
-  }
-
-  #page{
-    margin-top: 35px;
-  }
-
-  #select-bar{
-    margin-left: 488px;
-    width: 164px;
-    height: 45px;
-    background-color: #45454b; color: white;  border: none;
-  }
-
-  #search-bar{
-    height: 45px;
-    width: 657px;
-    background-color: #666; color: white;  border: none;
-  }
-
-  #search-btn{
-    height: 45px;
-    width: 132px;
-    background-color: #F33F3F; color: white;
-  }
-
-  thead {
-    background-color: #666765;
-    color: rgb(255, 255, 255);
-  }
-  tbody {
-    color: rgb(255, 255, 255);
-  }
-  .page-link {
-    color: #ffffff; 
-    background-color: #131313;
-    border-color: #131313;;
-  }
-
-  .page-item.active .page-link {
-    z-index: 1;
-    color: #ffffff;
-    font-weight:bold;
-    background-color: #131313;
-    border-color: #131313;;
-    text-decoration : underline;
-  }
-
-  .page-item.disabled .page-link {
-    z-index: 1;
-    color: #ffffff;
-    font-weight:bold;
-    background-color: #131313;
-    border-color: #131313;
-}
-
-  .page-link:focus, .page-link:hover {
-    color: #ffffff;
-    background-color: #131313; 
-    border-color: #131313;
-}
-
-  input[type="text"]::placeholder {color: #c2b9b9;}
-
-</style>
 </head>
 
 <body id="main">
@@ -208,4 +111,96 @@
   <!-- Footer end -->
 
 </body>
+
+<style>
+  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
+
+  html{
+    display: flex;
+    justify-content: center;
+  }
+
+  #main {
+    background-color: #131313;
+    width: 1920px; min-height: 1080px;
+    font-family: 'pretendard';
+  }
+
+  #head{
+    width: 1276px; margin-left: 322px; margin-top: 61px;
+  }
+
+  #head h3{
+    color: rgb(255, 255, 255)
+  }
+
+  #qna-h{
+    width: 1276px; margin-left: 322px; margin-top: 82px;
+  }
+  #qna-b{
+    margin-top: 44px;
+  }
+
+  #page{
+    margin-top: 35px;
+  }
+
+  #select-bar{
+    margin-left: 488px;
+    width: 164px;
+    height: 45px;
+    background-color: #45454b; color: white;  border: none;
+  }
+
+  #search-bar{
+    height: 45px;
+    width: 657px;
+    background-color: #666; color: white;  border: none;
+  }
+
+  #search-btn{
+    height: 45px;
+    width: 132px;
+    background-color: #F33F3F; color: white;
+  }
+
+  thead {
+    background-color: #666765;
+    color: rgb(255, 255, 255);
+  }
+  tbody {
+    color: rgb(255, 255, 255);
+  }
+  .page-link {
+    color: #ffffff; 
+    background-color: #131313;
+    border-color: #131313;;
+  }
+
+  .page-item.active .page-link {
+    z-index: 1;
+    color: #ffffff;
+    font-weight:bold;
+    background-color: #131313;
+    border-color: #131313;;
+    text-decoration : underline;
+  }
+
+  .page-item.disabled .page-link {
+    z-index: 1;
+    color: #ffffff;
+    font-weight:bold;
+    background-color: #131313;
+    border-color: #131313;
+}
+
+  .page-link:focus, .page-link:hover {
+    color: #ffffff;
+    background-color: #131313; 
+    border-color: #131313;
+}
+
+  input[type="text"]::placeholder {color: #c2b9b9;}
+
+</style>
 </html>

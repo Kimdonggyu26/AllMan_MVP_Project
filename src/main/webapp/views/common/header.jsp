@@ -115,9 +115,10 @@
         <div><a href="#"><img src="<%= contextPath%>####//해당 유저 프로필 이미지" id="myImg"></a></div>
       </div>
       
+     </header>
+      
     </div>
-  </header>
-</div>
+
 
 <nav id="navBar">
   <ul class="navbar-nav">
@@ -128,13 +129,20 @@
       <a class="nav-link" href="#">OTT영화</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">자유게시판</a>
+      <a class="nav-link" href="list.bo1">자유게시판</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">취향게시판</a>
+      <a class="nav-link" href="list.bo2">취향게시판</a>
     </li>
-    <li class="nav-item"></li>
-      <a class="nav-link" href="#">고객지원</a>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        고객지원
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="list.no">공지사항</a>
+        <a class="dropdown-item" href="list.fa">FAQ</a>
+        <a class="dropdown-item" href="list.in">1대1문의</a>
+      </div>
     </li>
   </ul>
 </nav>
