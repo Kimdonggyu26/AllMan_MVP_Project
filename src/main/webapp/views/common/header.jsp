@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <link rel="icon" href="/assets/image/titleIcon.png"/>
 
 <!-- Bootstrap 사용을 위한 CDN -->
@@ -77,10 +78,24 @@
   
 </style>
 
+<%
+	String contextPath = request.getContextPath(); // "/web"
+	
+	//Member loginUser = (Member)session.getAttribute("loginUser");
+	// 해당 구문이 실행되는 시점 
+	// 로그인 요청 전 페이지 로드시 : null
+	// 로그인 성공 후 페이지 로드시 : 조회된 데이터가 담겨있는 Member객체
+	
+	String alertMsg = (String)session.getAttribute("alertMsg");
+	// 해당 구문이 실행되는 시점
+	// 특정 서비스 요청 전 페이지 로드시 : null
+	// 특정 서비스 요청 성공 후 페이지 로드시 : alert로 띄워줄 메세지 
+%>
+
 <div class="d-flex justify-content-center">
     <header>
       <div class="col-2">
-        <a href="#"><img src="./assets/image/MOVIE PICK.png"></a>
+        <a href="<%=contextPath%>"><img src="<%= contextPath%>/assets/image/header/MOVIE_PICK.png"></a>
       </div>
       
       <!--검색창-->
@@ -96,8 +111,8 @@
       </div>
       
       <div id="headerIcon" class="col-2 d-flex align-items-center">
-        <div><a href="#"><img src="./assets/image/bell.png" alt="" id="bellIcon" class="mr-3"></a></div>
-        <div><a href="#"><img src="./assets/image/titleIcon.png" id="myImg"></a></div>
+        <div><a href="#"><img src="<%= contextPath%>/assets/image/header/bell.png" alt="" id="bellIcon" class="mr-3"></a></div>
+        <div><a href="#"><img src="<%= contextPath%>####//해당 유저 프로필 이미지" id="myImg"></a></div>
       </div>
       
     </div>
