@@ -68,7 +68,9 @@ input:focus {outline: none;}
 </head>
 
 <body>
-
+<%
+	String contextPath = request.getContextPath();
+%>
 	  <!-- Header, Nav start -->
    <%--  <%@ include file="/views/common/header.jsp" %> --%>
     <!-- Header, Nav end -->

@@ -7,9 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-   	<!-- Header, Nav start -->
-   <%--  <%@ include file="/views/common/header.jsp" %> --%>
-    <!-- Header, Nav end -->
+
     
     <!-- body부 시작 -->
     <style>
@@ -208,6 +206,11 @@
       height: 182px;
     }
   </style>
+  
+    <!-- Header, Nav start -->
+   <%--  <%@ include file="/views/common/header.jsp" %> --%>
+    <!-- Header, Nav end -->
+  
 		
   <div id="main">
     <div id="genre">
@@ -825,5 +828,7 @@
     <!-- Footer start -->
    <%--  <%@ include file="/views/common/footer.jsp" %> --%>
     <!-- Footer end -->
+    
+    
 </body>
 </html>

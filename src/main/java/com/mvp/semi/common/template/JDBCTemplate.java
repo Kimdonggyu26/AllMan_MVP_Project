@@ -20,7 +20,7 @@ public class JDBCTemplate {
 		//							해당 파일의 물리적인 경로
 		String filePath = JDBCTemplate.class.getResource("/db/config/driver.properties").getPath();
 		// "C:\workspaces\05_jspServlet-workspace\webApp\src\main\webapp\WEB-INF\classes\db\config\driver.properties
-		
+		System.out.println(filePath);
 		try {
 			prop.load(new FileInputStream(filePath));
 		}catch(IOException e) {

@@ -1,3 +1,4 @@
+<%@ page import="com.mvp.semi.user.model.vo.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,6 +9,9 @@
 </head>
  <body>
 
+   	<!-- Header, Nav start -->
+     <%@ include file="/views/common/header.jsp" %> 
+    <!-- Header, Nav end -->
   
 
 <style>
@@ -76,24 +80,22 @@ a{
 }
 
     </style>
+
     
-   	<!-- Header, Nav start -->
-   <%--  <%@ include file="/views/common/header.jsp" %> --%>
-    <!-- Header, Nav end -->
-    
-   <form action="" method="post">
+<form action="<%= contextPath %>/login.us" method="post">
     <div class="container p-3">
-<div class="header ">
-  <h1 id="login-put">MOVIE PICK 로그인</h1>
-  <br>
-</div>
-<div class="login-form m-3">
-  <input type="text"  placeholder="아이디"  id="id" name="userId" value="">
-  <br>
-  <input type="password" placeholder="비밀번호" id="pass" name="userPwd" value="">
-  <br>
-  <button type="button"  id="login-out" value="" ><a href="">로그인하기</a></button>
-</div>  
+		<div class="header ">
+		  <h1 id="login-put">MOVIE PICK 로그인</h1>
+		  <br>
+		</div>
+		<div class="login-form m-3">
+		  <input type="text"  placeholder="아이디"  id="id" name="userId" value="" required>
+		  <br>
+		  <input type="password" placeholder="비밀번호" id="pass" name="userPwd" value="" required>
+		  <br>
+		  <button type="submit"  id="login-out" value="" >로그인하기</button>
+		</div>  
+</form>
     <div >
      <table class="found">
       <tr>
@@ -103,9 +105,8 @@ a{
       </tr>
      </table>
 
-    </div>
-  </div>
-  </form>
+    	</div>
+ 		 </div>
       <!-- Footer start -->
    <%--  <%@ include file="/views/common/footer.jsp" %> --%>
     <!-- Footer end -->
