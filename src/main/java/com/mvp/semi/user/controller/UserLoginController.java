@@ -31,16 +31,19 @@ public class UserLoginController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		
 		request.setCharacterEncoding("UTF-8");
-		
+
+
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		System.out.println(userId + userPwd);
 		int loginUser = new UserService().loginUser(userId,userPwd);
 		
-			System.out.println(loginUser);
-		if(loginUser > 0) {
+		System.out.println(loginUser);
+		
+		if(loginUser == 0) {
 			request.setAttribute("msg", "로그인실패");
 			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 		}else {

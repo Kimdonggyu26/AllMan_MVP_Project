@@ -18,8 +18,10 @@ public class UserService {
 
 	public int loginUser(String userId, String userPwd) {
 		Connection conn = getConnection();
+
 		System.out.println("service=" + userId +userPwd);
 		 int result = uDao.loginUser(conn, userId, userPwd);
+
 		close(conn);
 		return result;
 	}
@@ -34,6 +36,23 @@ public class UserService {
  	return result;
 
  	}
+
+
+
+
+	
+	/*
+	 * public int insertUser(User u) { Connection conn = getConnection(); int result
+	 * = uDao.insertUser(conn, u);
+	 * 
+	 * if(result > 0) { commit(conn); }else { rollback(conn); }
+	 * 
+	 * close(conn);
+	 * 
+	 * return result;
+	 * 
+	 * }
+	 */
 
 	/*
 	 * public Member updateMember(Member m) {
