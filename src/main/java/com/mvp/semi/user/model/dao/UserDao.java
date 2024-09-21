@@ -163,11 +163,7 @@ public class UserDao {
 	 * 
 	 */
 
-	public boolean isUserIdDuplicate(String userId) {
-		return false;
-	}
-	
-	
+
 	
 
 }

@@ -82,8 +82,8 @@ a{
     </style>
 
     
-<form action="<%= contextPath %>/login.us" method="post">
     <div class="container p-3">
+		<form action="<%= contextPath %>/login.us" method="post">
 		<div class="header ">
 		  <h1 id="login-put">MOVIE PICK 로그인</h1>
 		  <br>
@@ -95,18 +95,19 @@ a{
 		  <br>
 		  <button type="submit"  id="login-out" value="" >로그인하기</button>
 		</div>  
-</form>
-    <div >
-     <table class="found">
-      <tr>
-        <td class="p-3"><a href="" >아이디 찾기</a></td>
-        <td class="p-3"><a href="" >비밀번호 찾기</a></td>
-        <td class="p-3"><a href="" >회원가입</a></td>
-      </tr>
-     </table>
-
-    	</div>
+		</form>
+			    <div>
+					     <table class="found">
+					      <tr>
+					        <td class="p-3"><a href="" >아이디 찾기</a></td>
+					        <td class="p-3"><a href="" >비밀번호 찾기</a></td>
+					        <td class="p-3"><a href="" >회원가입</a></td>
+					      </tr>
+					     </table>
+			
+			   </div>
  		 </div>
+
       <!-- Footer start -->
    <%--  <%@ include file="/views/common/footer.jsp" %> --%>
     <!-- Footer end -->

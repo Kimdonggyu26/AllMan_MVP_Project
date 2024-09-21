@@ -23,21 +23,18 @@ public class UserService {
 		return loginUser;
 	}
 	
-	public int insertUser(User u) {
-		Connection conn = getConnection();
-		int result = uDao.insertUser(conn, u);
-		
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		
-		close(conn);
-		
-		return result;
-		
-	}
+	/*
+	 * public int insertUser(User u) { Connection conn = getConnection(); int result
+	 * = uDao.insertUser(conn, u);
+	 * 
+	 * if(result > 0) { commit(conn); }else { rollback(conn); }
+	 * 
+	 * close(conn);
+	 * 
+	 * return result;
+	 * 
+	 * }
+	 */
 	/*
 	 * public Member updateMember(Member m) {
 	 * 

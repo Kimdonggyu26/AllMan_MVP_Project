@@ -16,6 +16,30 @@
 		 WHERE
 		 			 USER_ID = ?
 		 	 AND USER_PWD = ?
-			 AND STATUS IN ('A', 'U')
+			 AND STATUS IN ('U')
 			 	</entry>
+			 <entry key="insertUser">
+			 INSERT 
+			 		INTO USERS
+			 		( 
+			 			USER_NO
+			 			,USER_ID
+			 			,USER_PWD
+			 			,PHONE
+			 			,EMAIL
+			 		)
+			 		VALUES
+			 		(
+			 		SEQ_UNO.NEXTVAL
+			 		,?
+			 		,?
+			 		,?
+			 		,?
+			 		)
+			 		
+			 		
+			 
+			 </entry>
+			 	
+			 	
 </properties>
