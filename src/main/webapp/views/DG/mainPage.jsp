@@ -7,18 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<!-- Header, Nav start -->
+		<%@ include file="/views/common/header.jsp" %>
+    <!-- Header, Nav end -->
     
     <!-- body부 시작 -->
     <style>
     @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
     #main{
-      border: 1px solid white;
       width: 1920px;
       height: 2500px;
       background-color: #131313;
       margin: auto;
-      margin-top: 203px;
       font-family: pretendard;
     }
     #genre{
@@ -206,10 +206,6 @@
       height: 182px;
     }
   </style>
-  
-    <!-- Header, Nav start -->
-   <%--  <%@ include file="/views/common/header.jsp" %> --%>
-    <!-- Header, Nav end -->
   
 		
   <div id="main">
@@ -825,10 +821,10 @@
     
     <!-- body부 종료 -->
     
-    <!-- Footer start -->
-   <%--  <%@ include file="/views/common/footer.jsp" %> --%>
-    <!-- Footer end -->
     
     
 </body>
+    <!-- Footer start -->
+	<%@ include file="/views/common/footer.jsp" %>
+    <!-- Footer end -->
 </html>
