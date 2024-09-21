@@ -1,10 +1,12 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.mvp.semi.cs.notice.model.vo.Notice" %>
+<%@ page import="com.mvp.semi.common.model.vo.PageInfo" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	List<Notice> list = (List<Notice>)request.getAttribute("list");
 %>
 
@@ -60,12 +62,14 @@
               <td colspan="3">
                 <p class="border rounded p-3 w-75 mx-auto" style="min-height: 150px;"><%= n.getNoticeContent() %></p>
                 
-                <!-- 로그인한 회원이 관리자 권한일 경우 보여지는 요소 
-                <div align="center">
-                  <button type="button" class="btn btn-secondary btn-sm">수정하기</button>
-                  <button type="button" class="btn btn-danger btn-sm">삭제하기</button>
-                </div>
-                -->
+              <!-- <(% if(loginUser != null && loginUser.getUserId().equals(n.getNoticeWriter())) { %>-->
+	              <!-- 로그인한 회원이 관리자 권한일 경우 보여지는 요소 -->
+	              <div align="center">
+	                <a href="<%= contextPath %>/modify.no?no=<%= n.getNoticeNo() %>" type="button" class="btn btn-secondary btn-sm">수정하기</a>
+	                <a href="<%= contextPath %>/delete.no?no=<%= n.getNoticeNo() %>" type="button" class="btn btn-danger btn-sm">삭제하기</a>
+	              </div>
+	              <!--<(% } %>-->
+                
             </td>
           </tr>
           	<% } %>
@@ -90,14 +94,25 @@
             </form>
           </div>
 
+
         <ul class="pagination d-flex justify-content-center text-dark" id="page">
-          <li class="page-item disabled"><a class="page-link" href="">&lt;</a></li>
-          <li class="page-item active"><a class="page-link" href="">1</a></li>
-          <li class="page-item"><a class="page-link" href="">2</a></li>
-          <li class="page-item"><a class="page-link" href="">3</a></li>
-          <li class="page-item"><a class="page-link" href="">4</a></li>
-          <li class="page-item"><a class="page-link" href="">5</a></li>
-          <li class="page-item"><a class="page-link" href="">&gt;</a></li>
+        
+          <li class='page-item <%= pi.getCurrentPage() == 1 ? "disabled" : "" %>'>
+          	<a class="page-link" href="<%= contextPath%>/list.no?page=<%= pi.getCurrentPage() -1 %>">&lt;</a>
+          </li>
+          
+          <% for(int p=pi.getStartPage(); p<=pi.getEndPage(); p++) { %>
+         	 <li class='page-item <%= p == pi.getCurrentPage() ? "active" : "" %>'>
+         	 	<a class="page-link" style="color: #ffffff;" href="<%= contextPath%>/list.no?page=<%= p %>"><%= p %>
+         	 	</a>
+         	 </li>
+          <% } %>
+                   
+          <li class='page-item <%= pi.getCurrentPage() == pi.getMaxPage() ? "disabled" : "" %>'>
+          	<a class="page-link" href="<%=contextPath%>/list.no?page=<%= pi.getCurrentPage()+1 %>">&gt;
+          	</a>
+          </li>
+          
         </ul>
 
     </section>

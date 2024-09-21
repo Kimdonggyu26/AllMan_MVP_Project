@@ -1,7 +1,6 @@
 package com.mvp.semi.cs.notice.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,21 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mvp.semi.common.model.vo.PageInfo;
 import com.mvp.semi.cs.notice.model.service.NoticeService;
 import com.mvp.semi.cs.notice.model.vo.Notice;
 
 /**
- * Servlet implementation class NoticeListController
+ * Servlet implementation class NoticeUpdateController
  */
-@WebServlet("/list.no")
-public class NoticeListController extends HttpServlet {
+@WebServlet("/update.no")
+public class NoticeUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeListController() {
+    public NoticeUpdateController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,37 +31,26 @@ public class NoticeListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 페이징
-		int listCount = new NoticeService().selectNoticeListCount();
-	
-		int currentPage = 1;
-		if(request.getParameter("page") != null) {
-			currentPage = Integer.parseInt(request.getParameter("page"));
+		request.setCharacterEncoding("utf-8");
+		
+		Notice n = new Notice();
+		n.setNoticeTitle(request.getParameter("title"));
+		n.setNoticeContent(request.getParameter("content"));
+		n.setNoticeNo(Integer.parseInt(request.getParameter("no")));
+		
+		int result = new NoticeService().updateNotice(n);
+		
+		
+		if(result > 0) {
+			request.getSession().setAttribute("alertMsg", "성공적으로 공지사항이 수정되었습니다.");
+			response.sendRedirect(request.getContextPath() + "/list.no");
+			
+			
+		}else {
+			request.setAttribute("msg", "공지사항 변경 실패");
+			request.getRequestDispatcher("/view.common/errorPage.jsp").forward(request, response);
+			
 		}
-
-		int pageLimit = 10;
-		int boardLimit = 10;
-		
-		int maxPage = (int)Math.ceil((double)listCount / boardLimit);
-		
-		int startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
-		
-		int endPage = startPage + pageLimit -1;
-		
-		if(endPage > maxPage) {
-			endPage = maxPage;
-		}
-		
-		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-		
-		//게시글 데이터
-		List<Notice> list = new NoticeService().selectNoticeList(pi);
-		
-		request.setAttribute("pi", pi);
-		request.setAttribute("list", list);
-		
-		request.getRequestDispatcher("/views/GW/cs/notice/noticeList.jsp").forward(request, response);
-	
 	}
 
 	/**
