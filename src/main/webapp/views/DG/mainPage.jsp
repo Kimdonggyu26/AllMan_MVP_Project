@@ -205,30 +205,42 @@
       width: 127px;
       height: 182px;
     }
+    #heart{
+    	cursor: pointer;
+    }
   </style>
   
 		
   <div id="main">
     <div id="genre">
       <div class="genre-top">
-        <button type="button" class="btn btn-secondary">액션</button>
-        <button type="button" class="btn btn-secondary">범죄</button>
-        <button type="button" class="btn btn-secondary">SF</button>
-        <button type="button" class="btn btn-secondary">코미디</button>
-        <button type="button" class="btn btn-secondary">슬랩스틱</button>
-        <button type="button" class="btn btn-secondary">로맨스</button>
-        <button type="button" class="btn btn-secondary">뮤지컬</button>
+        <button type="button" class="btn btn-secondary main-hashtag" value="action">액션</button>
+        <button type="button" class="btn btn-secondary main-hashtag" value="crime">범죄</button>
+        <button type="button" class="btn btn-secondary main-hashtag" value="sf">SF</button>
+        <button type="button" class="btn btn-secondary main-hashtag" value="comedy">코미디</button>
+        <button type="button" class="btn btn-secondary main-hashtag" value="slapstick">슬랩스틱</button>
+        <button type="button" class="btn btn-secondary main-hashtag" value="romance">로맨스</button>
+        <button type="button" class="btn btn-secondary main-hashtag" value="musical">뮤지컬</button>
       </div>
       <div class="genre-bottom">
-        <button type="button" class="btn btn-secondary">스릴러</button>
-        <button type="button" class="btn btn-secondary">공포</button>
-        <button type="button" class="btn btn-secondary">전쟁</button>
-        <button type="button" class="btn btn-secondary">스포츠</button>
-        <button type="button" class="btn btn-secondary">판타지</button>
-        <button type="button" class="btn btn-secondary">음악</button>
-        <button type="button" class="btn btn-secondary">멜로</button>
+        <button type="button" class="btn btn-secondary main-hashtag" value="thriller">스릴러</button>
+        <button type="button" class="btn btn-secondary main-hashtag" value="horror">공포</button>
+        <button type="button" class="btn btn-secondary main-hashtag" value="war">전쟁</button>
+        <button type="button" class="btn btn-secondary main-hashtag" value="sports">스포츠</button>
+        <button type="button" class="btn btn-secondary main-hashtag" value="fantasy">판타지</button>
+        <button type="button" class="btn btn-secondary main-hashtag" value="music">음악</button>
+        <button type="button" class="btn btn-secondary main-hashtag" value="melo">멜로</button>
       </div>
     </div> <!-- genre div 끝 -->
+  
+	<script>
+		document.querySelectorAll('.main-hashtag').forEach(button => {
+		    button.addEventListener('click', function() {
+		      const result = this.value;
+		      console.log(result);  // 클릭한 버튼의 value 값 출력
+		    });
+		  });
+	</script>
   
   <div style="width: 310px; height: 2361px; float: left;">
     <div id="sidebar">
