@@ -31,20 +31,26 @@ public class UserLoginController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		
+		request.setCharacterEncoding("UTF-8");
+
+
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		System.out.println(userId + userPwd);
-		User loginUser = new UserService().loginUser(userId,userPwd);
+		int loginUser = new UserService().loginUser(userId,userPwd);
 		
+		System.out.println(loginUser);
 		
-		if(loginUser == null) {
+		if(loginUser == 0) {
 			request.setAttribute("msg", "로그인실패");
 			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 		}else {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
 			
-			response.sendRedirect(request.getContextPath());
+			request.getRequestDispatcher("/views/DG/mainPage.jsp").forward(request, response); // 페이지 이동
 		}
 	}
 
@@ -52,7 +58,7 @@ public class UserLoginController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		doGet(request, response);
 	}
 

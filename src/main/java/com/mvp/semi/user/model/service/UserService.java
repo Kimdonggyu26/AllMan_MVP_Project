@@ -13,31 +13,47 @@ import com.mvp.semi.user.model.dao.UserDao;
 import com.mvp.semi.user.model.vo.User;
 
 public class UserService {
-	
+
 	private UserDao uDao = new UserDao();
-	
-	public User loginUser(String userId, String userPwd) {
+
+	public int loginUser(String userId, String userPwd) {
 		Connection conn = getConnection();
-		User loginUser = uDao.loginUser(conn, userId, userPwd);
+
+		System.out.println("service=" + userId +userPwd);
+		 int result = uDao.loginUser(conn, userId, userPwd);
+
 		close(conn);
-		return loginUser;
-	}
-	
-	public int insertUser(User u) {
-		Connection conn = getConnection();
-		int result = uDao.insertUser(conn, u);
-		
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		
-		close(conn);
-		
 		return result;
-		
 	}
+
+		public int insertUser(User u) { Connection conn = getConnection(); 
+	 int result = uDao.insertUser(conn, u);
+ 
+	 	if(result > 0) { commit(conn); }else { rollback(conn); }
+ 
+ 	close(conn);
+
+ 	return result;
+
+ 	}
+
+
+
+
+	
+	/*
+	 * public int insertUser(User u) { Connection conn = getConnection(); int result
+	 * = uDao.insertUser(conn, u);
+	 * 
+	 * if(result > 0) { commit(conn); }else { rollback(conn); }
+	 * 
+	 * close(conn);
+	 * 
+	 * return result;
+	 * 
+	 * }
+	 */
+
 	/*
 	 * public Member updateMember(Member m) {
 	 * 
@@ -77,7 +93,5 @@ public class UserService {
 	 * count = mDao.idCheck(conn, checkId); close(conn); return count; }
 	 * 
 	 */
-	
-	
 
 }

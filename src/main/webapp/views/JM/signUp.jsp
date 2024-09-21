@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 
 </head>
-<body>
 <style>
 .m-4{
   text-align: center;
@@ -62,16 +61,16 @@ body{
 }
 </style>
 <body>
-<%-- <%
+<%--  <%
 	String contextPath = request.getContextPath();
 %> --%>
- <div class="container p-3">
 
    <!-- Header, Nav start -->
  <%@ include file="/views/common/header.jsp" %> 
    <!-- Header, Nav end -->
 
    <!-- Section start -->
+
    <section class="back" >
      <div class="container">
         <div class="header">
@@ -79,7 +78,7 @@ body{
       </div>
        	<form action="<%= contextPath %>/insert.us" method="post" class="signup-form">
          
-			        <input type="text" class="input-line" placeholder="아이디" name="userId" required onblur="checkId();">
+			        <input type="text" class="input-line" placeholder="아이디" name="userId" required >
 			        <div class="font">영문 소문자 또는 영문 소문자, 숫자 조합 6~12 자리</div>
 							           
 							<input type="password" class="input-line" placeholder="비밀번호" id="margin" name="userPwd" required>
@@ -96,53 +95,41 @@ body{
          <br>
 
        			 <div>
-           <button type="submit" class="btn  btn-sm " style=" color: gray; background-color: #ffffff29 ;" id="buttons" disabled >회원가입</button>
+           <button type="submit" class="btn  btn-sm " style=" color: gray; background-color: #ffffff29 ;" id="buttons"  >회원가입</button>
        		 </div>
 
      </form>
+     </div>
+
+   </section>
 				<script>
 				
-					function checkId() {
+		/* 			function checkId() {
 						var userId = document.getElementById("userId").value;
+						 var buttons = $('#buttons'); // 회원가입 버튼
 						
-						  if (userId === "") {
-						        document.getElementById("idCheckMessage").innerHTML = "";
-						        return;
-						    }
-						
-						  var xhr = new XMLHttpRequest();
-						  const $idInput = $(".signup-form input[name=userId]");
 						  $.ajax({
-							 url : '<%= contextPath %>/idcheck.us',
-							 data : {checkId :$idInput.val()},
-							 success : function(res){
-								 console.log(res);
-								// 서버에서 중복 여부에 따라 메시지 처리
-						            if (res == "duplicate") {
-						            	alert('이미 존재하는 회원의 아이디입니다.');
-			        					$idInput.select(); // 다시 입력 유도
-						            } else if (res == "available") {
-						                document.getElementById("idCheckMessage").innerHTML = "사용 가능한 아이디입니다.";
-							 }
-						  })
-						  }
+						        url: '/check-user-id', // 중복 아이디 확인을 위한 서버 API 경로
+						        method: 'POST',
+						        data: { userId: userId },
+						        success: function(response) {
+						            if (response.isDuplicate) {
+						                $('#message').text('중복되는 아이디입니다.'); // 중복일 경우 메시지 출력
+						                submitBtn.prop('disabled', true); // 버튼 비활성화
+						            } else {
+						                $('#message').text('사용 가능한 아이디입니다.');
+						                submitBtn.prop('disabled', false); // 버튼 활성화
+						            }
+						        },
+						        error: function() {
+						            $('#message').text('서버 오류가 발생했습니다. 다시 시도해주세요.');
+						            submitBtn.prop('disabled', true); // 오류 발생 시 버튼 비활성화
+						        }
+						    });
 						  
-
-						    // 요청 헤더 설정 (POST 요청으로 데이터를 전송)
-						    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-						    // 서버로 보내는 데이터
-						    xhr.send("userId=" + encodeURIComponent(userId));
-
-						    // 서버로부터 응답을 받았을 때 실행되는 함수
-						    xhr.onreadystatechange = function () {
-						        if (xhr.readyState === 4 && xhr.status === 200) {
-						            var response = xhr.responseText;
-
-						
-						
-					}
-        	// 아이디 중복체크용 함수 
+	
+					} */
+        <%-- 	// 아이디 중복체크용 함수 
         	function fnIdCheck() {
         		const $idInput = $(".signup-form input[name=userId]");
         		
@@ -168,12 +155,9 @@ body{
         			}
         		})
         		
-        	}
+        	} --%>
         </script>
 
-     </div>
-
-   </section>
    <!-- Section end -->
 
 
@@ -181,7 +165,5 @@ body{
      <!-- footer.jsp include 할 예정 -->
    <!-- Footer end -->
 
- </div>
-</form>
 </body>
 </html>

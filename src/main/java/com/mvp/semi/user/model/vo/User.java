@@ -27,7 +27,7 @@ public User(int userNo, String userId, String userPwd, String phone, String emai
 	this.userId = userId;
 	this.userPwd = userPwd;
 	this.phone = phone;
-	this.email = email;
+	this.email = email;                            
 	this.userNick = userNick;
 	this.enrollDt = enrollDt;
 	this.modifyDt = modifyDt;
@@ -96,7 +96,7 @@ public String getUserPwd() {
 }
 
 
-public void setUserPwd(String userPwd) {
+public void setUserPwd(String  userPwd) {
 	this.userPwd = userPwd;
 }
 
