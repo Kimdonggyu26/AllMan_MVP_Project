@@ -1,0 +1,47 @@
+#myModal{
+    width: 760px;
+    height: 900px;
+    margin-left: 580px;
+    overflow: hidden;
+}
+#modal-body{
+    width: 708px;
+    height: 694px;
+}
+.checkbox-list{
+  width: 805px;
+  height: 30px;
+  font-size: 13px;
+  display: flex;
+  gap: 26px;
+  flex-direction: row;
+  margin-left: 60px;
+}
+.content-bottom{
+  width: 691px;
+  height: 434px;
+  display: flex;
+}
+.content-bottom-left{
+  width: 358px;
+  height: 184px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 14px;
+}
+.content-bottom-right{
+  width: 278px;
+  height: 184px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 14px;
+  margin-top: 20px;
+}
+.modal-content{
+  border: 2px solid #2F80ED;
+}
+.modal-footer{
+  margin-bottom: 30px;
+}
