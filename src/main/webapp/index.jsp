@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	ㅎㅇㅌ
+	초반 시작페이지
 </body>
 </html>
