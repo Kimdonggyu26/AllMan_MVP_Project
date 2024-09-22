@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="selectFaQListCount">
+			SELECT 
+						COUNT(*) as COUNT
+			FROM
+						FAQ
+			WHERE 
+						STATUS = 'Y'
+	</entry>
+	
+	<entry key="selectFaQList">
+		SELECT *
+		  FROM (
+				  	SELECT
+								   FAQ_NO
+								 , FAQ_TITLE
+								 , FAQ_CONTENT
+								 , REGIST_DATE
+								 , USER_ID
+								 , ROW_NUMBER() OVER(ORDER BY FAQ_NO DESC) as RNUM
+							 FROM 
+							 	   FAQ F
+							 JOIN 
+							 	   USERS U ON (F.USER_NO = U.USER_NO)
+							WHERE
+								   F.STATUS = 'Y'
+				   )
+		WHERE RNUM BETWEEN ? AND ? 
+	</entry>
+
+	<entry key="selectFaQByNo">
+		SELECT
+					FAQ_NO
+				, FAQ_TITLE
+				, FAQ_CONTENT
+	 	FROM 
+					FAQ
+		WHERE
+					FAQ_NO = ?
+	</entry>
+	
+	<entry key="updateFaQ">
+		UPDATE
+					FAQ
+			SET
+					FAQ_TITLE = ?
+				, FAQ_CONTENT = ?
+		WHERE
+					FAQ_NO = ?				
+	</entry>
+	
+	<entry key="deleteFaQ">
+		UPDATE
+					FAQ
+			SET
+					STATUS = 'N'
+		WHERE 
+					FAQ_NO = ?
+	</entry>
+
+</properties>

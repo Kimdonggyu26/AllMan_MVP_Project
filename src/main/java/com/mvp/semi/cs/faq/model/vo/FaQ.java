@@ -11,6 +11,8 @@ public class FaQ {
 	private String status;				// 글상태 Y(유효한글)/N(삭제한글)
 	private String userNo;				// 작성자
 	
+	public FaQ() {}
+	
 	public FaQ(int faqNo, String faqTitle, String faqContent, Date registDate, String status, String userNo) {
 		super();
 		this.faqNo = faqNo;
@@ -20,6 +22,19 @@ public class FaQ {
 		this.status = status;
 		this.userNo = userNo;
 	}
+	
+	
+
+	public FaQ(int faqNo, String faqTitle, String faqContent, Date registDate, String userNo) {
+		super();
+		this.faqNo = faqNo;
+		this.faqTitle = faqTitle;
+		this.faqContent = faqContent;
+		this.registDate = registDate;
+		this.userNo = userNo;
+	}
+
+
 
 	public int getFaqNo() {
 		return faqNo;

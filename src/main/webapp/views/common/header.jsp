@@ -140,7 +140,7 @@
       </a>
       <div class="dropdown-menu">
         <a class="dropdown-item" href="list.no">공지사항</a>
-        <a class="dropdown-item" href="list.fa">FAQ</a>
+        <a class="dropdown-item" href="list.faq">FAQ</a>
         <a class="dropdown-item" href="list.in">1대1문의</a>
       </div>
     </li>

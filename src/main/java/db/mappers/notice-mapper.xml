@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+
+		<entry key="selectNoticeListCount">
+			SELECT 
+						COUNT(*) as COUNT
+			FROM
+						NOTICE
+			WHERE 
+						STATUS = 'Y'
+	</entry>
+
 	<entry key="selectNoticeList">
 		SELECT *
 		  FROM (
@@ -49,15 +59,6 @@
 					STATUS = 'N'
 		WHERE 
 					NOTICE_NO = ?
-	</entry>
-	
-	<entry key="selectNoticeListCount">
-		SELECT 
-					COUNT(*) as COUNT
-		FROM
-					NOTICE
-		WHERE 
-					STATUS = 'Y'
 	</entry>
 
 </properties>

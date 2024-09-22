@@ -14,14 +14,14 @@ import com.mvp.semi.cs.notice.model.vo.Notice;
 
 public class NoticeService {
 	
+	private NoticeDao nDao = new NoticeDao();
+	
 	public int selectNoticeListCount() {
 		Connection conn = getConnection();
 		int listCount = nDao.selectNoticeListCount(conn);
 		close(conn);
 		return listCount;
 	}
-	
-	private NoticeDao nDao = new NoticeDao();
 
 	public List<Notice> selectNoticeList(PageInfo pi) {
 		Connection conn = getConnection();
