@@ -5,6 +5,7 @@ import static com.mvp.semi.common.template.JDBCTemplate.getConnection;
 import static com.mvp.semi.common.template.JDBCTemplate.commit;
 import static com.mvp.semi.common.template.JDBCTemplate.rollback;
 
+
 import java.lang.reflect.Member;
 import java.sql.Connection;
 import java.util.Map;
@@ -18,41 +19,42 @@ public class UserService {
 
 	public int loginUser(String userId, String userPwd) {
 		Connection conn = getConnection();
-
-		System.out.println("service=" + userId +userPwd);
 		 int result = uDao.loginUser(conn, userId, userPwd);
 
 		close(conn);
 		return result;
 	}
 
-		public int insertUser(User u) { Connection conn = getConnection(); 
-	 int result = uDao.insertUser(conn, u);
- 
-	 	if(result > 0) { commit(conn); }else { rollback(conn); }
- 
- 	close(conn);
+	public int insertUser(User u) {
+		Connection conn = getConnection();
+		int result = uDao.insertUser(conn, u);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
 
- 	return result;
-
- 	}
+	public int idCheck(String checkId) {
+		Connection conn = getConnection();
+		int count = uDao.idCheck(conn, checkId);
+		close(conn);
+		return count;
+	}
 
 
 
 
 	
-	/*
-	 * public int insertUser(User u) { Connection conn = getConnection(); int result
-	 * = uDao.insertUser(conn, u);
-	 * 
-	 * if(result > 0) { commit(conn); }else { rollback(conn); }
-	 * 
-	 * close(conn);
-	 * 
-	 * return result;
-	 * 
-	 * }
-	 */
+
+	
+
 
 	/*
 	 * public Member updateMember(Member m) {

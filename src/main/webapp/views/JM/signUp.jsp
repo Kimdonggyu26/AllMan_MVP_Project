@@ -59,6 +59,17 @@ body{
 #buttons{
   margin-top: 55px;
 }
+#id{
+    margin-left: 126px;
+}
+#idcheck{
+  background-color: white;
+  border: none;
+  width: 100px;
+  height: 70px;
+  border-radius: 5px;
+  margin-left: 20px;
+}
 </style>
 <body>
 <%--  <%
@@ -76,14 +87,15 @@ body{
         <div class="header">
     <h2 class="m-4">MOVIE PICK 회원가입</h2>
       </div>
-       	<form action="<%= contextPath %>/insert.us" method="post" class="signup-form">
+       	<form action="<%= contextPath %>/insert.us" method="post" id="signup-form">
          
-			        <input type="text" class="input-line" placeholder="아이디" name="userId" required >
+			        <input type="text" class="input-line" placeholder="아이디" name="userId" id="id" required >
+			        <button id="idcheck" onclick="fnIdCheck();"> 중복확인 </button>
 			        <div class="font">영문 소문자 또는 영문 소문자, 숫자 조합 6~12 자리</div>
 							           
 							<input type="password" class="input-line" placeholder="비밀번호" id="margin" name="userPwd" required>
 							
-							<input type="password" class="input-line" placeholder="비밀번호 확인" id="marginss" required>
+							<input type="password" class="input-line" placeholder="비밀번호 확인" id="marginss" name="confirmPwd" required>
 							
 							<input type="text" class="input-line" placeholder="이메일" id="margins" name="email">
 							
@@ -95,68 +107,14 @@ body{
          <br>
 
        			 <div>
-           <button type="submit" class="btn  btn-sm " style=" color: gray; background-color: #ffffff29 ;" id="buttons"  >회원가입</button>
+           <button type="submit" class="btn  btn-sm " style=" color: gray; background-color: #ffffff29 ;" id="buttons"  disabled>회원가입</button>
        		 </div>
 
      </form>
      </div>
 
    </section>
-				<script>
-				
-		/* 			function checkId() {
-						var userId = document.getElementById("userId").value;
-						 var buttons = $('#buttons'); // 회원가입 버튼
-						
-						  $.ajax({
-						        url: '/check-user-id', // 중복 아이디 확인을 위한 서버 API 경로
-						        method: 'POST',
-						        data: { userId: userId },
-						        success: function(response) {
-						            if (response.isDuplicate) {
-						                $('#message').text('중복되는 아이디입니다.'); // 중복일 경우 메시지 출력
-						                submitBtn.prop('disabled', true); // 버튼 비활성화
-						            } else {
-						                $('#message').text('사용 가능한 아이디입니다.');
-						                submitBtn.prop('disabled', false); // 버튼 활성화
-						            }
-						        },
-						        error: function() {
-						            $('#message').text('서버 오류가 발생했습니다. 다시 시도해주세요.');
-						            submitBtn.prop('disabled', true); // 오류 발생 시 버튼 비활성화
-						        }
-						    });
-						  
-	
-					} */
-        <%-- 	// 아이디 중복체크용 함수 
-        	function fnIdCheck() {
-        		const $idInput = $(".signup-form input[name=userId]");
-        		
-        		$.ajax({
-        			url: '<%= contextPath %>/idcheck.us',
-        			data: {checkId: $idInput.val()},
-        			success: function(res){
-        				console.log(res);
-        				if(res == 'NNNNN'){ // 사용불가능
-        					alert('이미 존재하는 회원의 아이디입니다.');
-        					$idInput.select(); // 다시 입력 유도
-        				}else{ // 사용가능
-        					if(confirm('사용가능한 아이디입니다. 사용하시겠습니까?')){
-        						$('.signup-form :submit').removeAttr('disabled'); // 회원가입 버튼 활성화
-        						$idInput.prop('readonly', true); // 더이상 아이디 수정 불가하도록
-        					}else{
-        						$idInput.select(); // 다시 입력 유도
-        					}
-        				}
-        			}, 
-        			error: function() {
-        				console.log('아이디 중복체크용 ajax 통신 실패');
-        			}
-        		})
-        		
-        	} --%>
-        </script>
+   
 
    <!-- Section end -->
 
@@ -164,6 +122,38 @@ body{
    <!-- Footer start -->
      <!-- footer.jsp include 할 예정 -->
    <!-- Footer end -->
+		  <script>
+		  function fnIdCheck() {
+		        
+		        // 사용자가 입력한 아이디값 전달하면서 ajax요청
+		        // NNNNN(사용불가) | NNNNY(사용가능) 응답데이터 돌려받기
+		        
+		        const $idInput = $("#signup-form input[name=userId]");
+		        
+		        $.ajax({
+		          url: '<%= contextPath %>/idcheck.us',
+		          data: {checkId: $idInput.val()},
+		          success: function(res){
+		            console.log(res);
+		            if(res == 'NNNNN'){ // 사용불가능
+		              alert('이미 존재하는 회원의 아이디입니다.');
+		              $idInput.select(); // 다시 입력 유도
+		            }else{ // 사용가능
+		              if(confirm('사용가능한 아이디입니다. 사용하시겠습니까?')){
+		                $('#signup-form :submit').removeAttr('disabled'); // 회원가입 버튼 활성화
+		                $idInput.prop('readonly', true); // 더이상 아이디 수정 불가하도록
+		              }else{
+		                $idInput.select(); // 다시 입력 유도
+		              }
+		            }
+		          }, 
+		          error: function() {
+		            console.log('아이디 중복체크용 ajax 통신 실패');
+		          }
+		        })
+		        
+		      }
+        </script>
 
 </body>
 </html>

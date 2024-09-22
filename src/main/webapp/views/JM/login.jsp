@@ -15,6 +15,7 @@
 
 
 <style>
+
 	body {
 		font-family: 'pretendard';
 		background-color: #131313;
@@ -91,9 +92,9 @@
 				<br>
 			</div>
 			<div class="login-form m-3">
-				<input type="text" placeholder="아이디" id="id" name="userId" value=""
-					required> <br> <input type="password"
-					placeholder="비밀번호" id="pass" name="userPwd" value="" required>
+				<input type="text" placeholder="아이디" id="id" name="userId" value=""required> 
+				<br> 
+				<input type="password" placeholder="비밀번호" id="pass" name="userPwd" value="" required>
 				<br>
 				<button type="submit" id="login-out" value="">로그인하기</button>
 			</div>

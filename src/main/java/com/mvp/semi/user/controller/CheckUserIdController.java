@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mvp.semi.user.model.dao.UserDao;
+import com.mvp.semi.user.model.service.UserService;
 
 /**
  * Servlet implementation class CheckUserIdController
@@ -30,23 +31,18 @@ public class CheckUserIdController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		String userId = request.getParameter("userId");
+		String checkId = request.getParameter("checkId");
 		
-        UserDao userDAO = new UserDao();
-        boolean isDuplicate = userDAO.isUserIdDuplicate(userId);
+		int count = new UserService().idCheck(checkId);
 		
-        // 응답 설정
-        response.setContentType("text/html; charset=UTF-8 " );
-        response.setCharacterEncoding("UTF-8");
-
-        if (isDuplicate) {
-            // 중복인 경우 'duplicate' 전송
-            response.getWriter().write("duplicate");
-        } else {
-            // 중복이 아닌 경우 'available' 전송
-        	response.getWriter().write("available");
-        	}
+		response.setContentType("text/html; charset=UTF-8");
+		if(count > 0) { // 이미 존재 == 사용불가(NNNNN)
+			response.getWriter().print("NNNNN");
+		}else { // 존재 x == 사용가능(NNNNY)
+			response.getWriter().print("NNNNY");
+		}
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

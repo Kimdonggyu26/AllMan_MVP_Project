@@ -34,15 +34,15 @@ public class UserInsertController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String userId = request.getParameter("userId"); // "user03"
 		String userPwd = request.getParameter("userPwd"); // "pass03"
-		String userPwdre = request.getParameter("userPwd"); // "pass03"
+		String confirmPwd = request.getParameter("confirmPwd"); // "pass03"
 		String phone = request.getParameter("phone"); // "010-1111-2222" | ""
 		String email = request.getParameter("email"); // "ssss@sss.com" | ""
 		
-		
 
+        if (userPwd.equals(confirmPwd)) {
+         
+        
 		
-		
-		if(userPwd.equals(userPwdre)){
 			User u = new User(userId, userPwd, phone,email);
 		
 		
@@ -57,7 +57,7 @@ public class UserInsertController extends HttpServlet {
 			 *   ㄴ 응답페이지 : 메인페이지
 			 *   ㄴ 응답데이터 : "성공적으로 회원가입 되었습니다." alert 메세지
 			 */
-			
+			System.out.println("121314123");
 			request.getSession().setAttribute("alertMsg", "성공적으로 회원가입 되었습니다.");
 			response.sendRedirect(request.getContextPath());
 		}else {
@@ -71,9 +71,11 @@ public class UserInsertController extends HttpServlet {
 			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 			
 		}	
-		}else {
-			System.out.println("비밀번호와 비밀번호 확인이 일치하지않습니다");
-		}
+		
+        }else {
+        	System.out.println("시발");
+        	request.setAttribute("msg", "비밀번호가 일치하지않습니다.");
+        }
 		
 	
 	}
