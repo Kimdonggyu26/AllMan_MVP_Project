@@ -16,6 +16,13 @@
       <img src="<%= basketContextPath%>/assets/image/mainPageImg/movie_image/movie_image_2.png" style="margin-top: 20px;" onclick="removeMovie(this)">
     </div>
     <hr style="border: 1px solid #4a4a4a; width: 127px;">
+    <div class="movie-basket-list">
+      <img src="<%= basketContextPath%>/assets/image/mainPageImg/movie_image/movie_image_1.png" onclick="removeMovie(this)">
+    </div>
+    <hr style="border: 1px solid #4a4a4a; width: 127px;">
+    <div class="movie-basket-list">
+      <img src="<%= basketContextPath%>/assets/image/mainPageImg/movie_image/movie_image_2.png" style="margin-bottom: 20px;" onclick="removeMovie(this)">
+    </div>
   </div> <!-- basket-movie div 끝 -->
 </div>
 
