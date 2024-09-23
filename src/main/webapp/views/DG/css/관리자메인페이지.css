@@ -26,7 +26,7 @@
   font-size: 20px;
   font-weight: 600;
 }
-#body-title{
+#body-right-title{
   width: 1059px;
   height: 38px;
   display: flex;
@@ -41,8 +41,9 @@
   text-align: center;
   font-size: 18px;
 }
-#body-main input{
-  width: 200px;
+.checkbox-list input{
+  width: 18px;
+  height: 18px;
 }
 #body-main  hr{
   width: 20px;

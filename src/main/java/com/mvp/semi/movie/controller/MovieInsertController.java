@@ -47,22 +47,24 @@ public class MovieInsertController extends HttpServlet {
 		String movieTitle = multiRequest.getParameter("movie-title");
 		String movieContent = multiRequest.getParameter("movie-content");
 		// 장르
-//		int playTime = Integer.parseInt(multiRequest.getParameter("playtime"));
+		int playTime = Integer.parseInt(multiRequest.getParameter("playtime"));
 		String country = multiRequest.getParameter("country");
 		String ageLv = multiRequest.getParameter("age-level");
 		String openDate = multiRequest.getParameter("open-date");
 		String director = multiRequest.getParameter("director");
-//		int audienceCount = Integer.parseInt(multiRequest.getParameter("audience"));
+		int audienceCount = Integer.parseInt(multiRequest.getParameter("audience"));
 		String actor = multiRequest.getParameter("actor");
 		String preview = multiRequest.getParameter("preview");
 		String status = multiRequest.getParameter("movie-status");
 		String titlePath = multiRequest.getFilesystemName("title-image");
 		String contentPath = multiRequest.getFilesystemName("content-image");
-//		int grade = Integer.parseInt(multiRequest.getParameter("grade"));
+		int grade = Integer.parseInt(multiRequest.getParameter("grade"));
 		String taste = multiRequest.getParameter("taste");
 		
 		
 		System.out.println(movieTitle + movieContent +  country + ageLv + openDate + director +  actor + preview + status + titlePath + contentPath + taste);
+		
+		
 		
 		}
 
