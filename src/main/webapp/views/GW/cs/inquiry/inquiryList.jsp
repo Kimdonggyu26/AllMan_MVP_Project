@@ -1,5 +1,15 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.mvp.semi.cs.inquiry.model.vo.Inquiry" %>
+<%@ page import="com.mvp.semi.common.model.vo.PageInfo" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	List<Inquiry> list = (List<Inquiry>)request.getAttribute("list");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +30,8 @@
         <div class="" id="head">
           <h3 >문의게시판</h3><hr color="white">
         </div>
-
+				
+				<!-- 로그인한 회원일 경우 보이는 -->
         <button type="button" class="btn btn-secondary btn-sm" id="regist">글쓰기</button>
 
         <div id="qna-h">
@@ -33,71 +44,50 @@
             </tr>
           </thead>
           <tbody>
-            <!-- case1. 조회된 Qna가 없을 경우 
+            <!-- case1. 조회된 Qna가 없을 경우 -->
+            <% if(list.isEmpty()) { %>
             <tr>
-              <td colspan="3" style="text-align:center">존재하는 QnA글이 없습니다.</td>
+              <td colspan="3" style="text-align:center">존재하는 1대1문의글이 없습니다.</td>
             </tr>
-            -->
+            <% }else { %>
 
-            <!-- case2. 본인 문의글이 아닐경우 -->
+            
+   					<!-- case2_1. 본인 문의글이 아닐경우 
             <tr class="board-title" data-toggle="collapse" data-target="">
               <td colspan="3"><i class="fa-solid fa-lock"></i> 본인의 문의글이 아닙니다.</td>
             </tr>
-
-            <tr class="board-title" data-toggle="collapse" data-target="#qna4">
-              <td>문의게시판입니다!!!!!!!!!!!!!!!!!!!!!</td>
-              <td>작성자입니다.</td>
-              <td>2024-08-21</td>
+            -->
+            
+            <!--  case2_2 본인 문의글일 경우-->
+					 <% for(Inquiry i : list){ %>
+					 
+            <tr class="board-title" data-no="<%=i.getInquiryNo()%>">
+              <td><%= i.getInquiryTitle() %></td>
+              <td><%= i.getUserNo() %></td>
+              <td><%= i.getRegistDate() %></td>
             </tr>
-            <tr class="board-title collapse" id="qna4">
-              <td colspan="3">
-                <p class="border rounded p-3 w-75 mx-auto" style="min-height: 150px;">문의글의 내용입니다.</p>
-                
-                <!-- 로그인한 회원이 관리자 권한일 경우 보여지는 요소 
-                <div align="center">
-                  <button type="button" class="btn btn-secondary btn-sm">수정하기</button>
-                  <button type="button" class="btn btn-danger btn-sm">삭제하기</button>
-                </div>
-                -->
-            </td>
-          </tr>
-
-            <tr class="board-title" data-toggle="collapse" data-target="#qna3">
-              <td>문의게시판입니다!!!!!!!!!!!!!!!!!!!!!</td>
-              <td>작성자입니다.</td>
-              <td>2024-08-21</td>
-            </tr>
-            <tr class="board-title collapse" id="qna3">
-              <td colspan="3">
-              <p class="border rounded p-3 w-75 mx-auto" style="min-height: 150px;">문의글의 내용입니다.</p>
-              </td>
-          </tr>
-
-            <tr class="board-title" data-toggle="collapse" data-target="#qna2">
-              <td>문의게시판입니다!!!!!!!!!!!!!!!!!!!!!</td>
-              <td>작성자입니다.</td>
-              <td>2024-08-21</td>
-            </tr>
-            <tr class="board-title collapse" id="qna2">
-              <td colspan="3">
-              <p class="border rounded p-3 w-75 mx-auto" style="min-height: 150px;">문의글의 내용입니다.</p>  
-              </td>
-          </tr>
-
-            <tr class="board-title" data-toggle="collapse" data-target="#qna1">
-              <td>문의게시판입니다!!!!!!!!!!!!!!!!!!!!!</td>
-              <td>작성자입니다.</td>
-              <td>2024-08-21</td>
-            </tr>
-            <tr class="board-title collapse" id="qna1">
-              <td colspan="3">
-              <p class="border rounded p-3 w-75 mx-auto" style="min-height: 150px;">문의글의 내용입니다.</p>
-              </td>
-          </tr>
-
+            
+            <% } %>
+             <% } %>
+            
           </tbody>
         </table>
         </div>
+        
+          <script>
+        	$(function(){
+        		$("#qna-list tbody>tr").on('click', function(){
+        			// 현재 클릭한 게시글 제목
+        			location.href = "<%= contextPath %>/detail.iq?no=" +  $(this).data('no');
+        			// 현재 로그인한 회원 아이디
+        		  //<// %let loginUserId = '<// %= loginUser == null ? "" : loginUser.getUserId() %>'
+        			
+        			
+        			
+   
+        		})
+        	})
+        </script>
 
         <div id="qna-b">
           <form method="post" name="search" action="">
@@ -115,13 +105,23 @@
           </div>
 
         <ul class="pagination d-flex justify-content-center text-dark" id="page">
-          <li class="page-item disabled"><a class="page-link" href="">&lt;</a></li>
-          <li class="page-item active"><a class="page-link" href="">1</a></li>
-          <li class="page-item"><a class="page-link" href="">2</a></li>
-          <li class="page-item"><a class="page-link" href="">3</a></li>
-          <li class="page-item"><a class="page-link" href="">4</a></li>
-          <li class="page-item"><a class="page-link" href="">5</a></li>
-          <li class="page-item"><a class="page-link" href="">&gt;</a></li>
+        
+          <li class='page-item <%= pi.getCurrentPage() == 1 ? "disabled" : "" %>'>
+          	<a class="page-link" href="<%= contextPath%>/list.in?page=<%= pi.getCurrentPage() -1 %>">&lt;</a>
+          </li>
+          
+          <% for(int p=pi.getStartPage(); p<=pi.getEndPage(); p++) { %>
+         	 <li class='page-item <%= p == pi.getCurrentPage() ? "active" : "" %>'>
+         	 	<a class="page-link" style="color: #ffffff;" href="<%= contextPath%>/list.in?page=<%= p %>"><%= p %>
+         	 	</a>
+         	 </li>
+          <% } %>
+                   
+          <li class='page-item <%= pi.getCurrentPage() == pi.getMaxPage() ? "disabled" : "" %>'>
+          	<a class="page-link" href="<%=contextPath%>/list.in?page=<%= pi.getCurrentPage()+1 %>">&gt;
+          	</a>
+          </li>
+          
         </ul>
 
     </section>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="selectInquiryListCount">
+		SELECT 
+					COUNT(*) as COUNT
+		FROM
+					INQUIRY_BOARD
+		WHERE 
+					STATUS = 'Y'
+	</entry>
+	
+	<entry key="selectInquiryList">
+		SELECT *
+		  FROM (
+				  	SELECT
+								   INQUIRY_NO
+								 , INQUIRY_TITLE
+								 , INQUIRY_CONTENT
+								 , REGIST_DATE
+								 , USER_ID
+								 , REPLY_CONTENT
+								 , U.USER_NICKNAME
+								 , REPLY_DATE
+								 , ROW_NUMBER() OVER(ORDER BY INQUIRY_NO DESC) as RNUM
+							 FROM 
+							 	   	INQUIRY_BOARD I
+							 JOIN 
+							 	   USERS U ON (I.USER_NO = U.USER_NO)
+							WHERE
+								   I.STATUS = 'Y'
+				   )
+		WHERE RNUM BETWEEN ? AND ? 
+	</entry>
+	
+	<entry key="selectInquiry">
+		SELECT
+						INQUIRY_NO
+					, INQUIRY_TITLE
+					, INQUIRY_CONTENT
+					, INQUIRY_TYPE
+					, USER_ID
+					, REPLY_CONTENT
+					, U.USER_NICKNAME
+					, REPLY_DATE
+			FROM
+					 INQUIRY I
+			LEFT
+			JOIN USER U ON (I.USER_NO = U.USER_NO)
+	 	WHERE 
+	 			 INQUIRY_NO = ?
+	   AND I.STATUS = 'Y'
+	</entry>
+	
+	<entry key="selectAttachment">
+		SELECT
+						FILE_NO
+					, ORIGIN_NAME
+					, CHANGE_NAME
+					, FILE_PATH
+			FROM
+						ATTACHMENT
+		WHERE
+					REF_NO = ?
+		ORDER
+			BY FILE_LEVEL ASC
+				
+	</entry>
+	
+	
+
+</properties>
