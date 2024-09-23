@@ -24,7 +24,7 @@ public class MovieService {
 		
 		close(conn);
 		
-		System.out.println("서비스 list: " + list);
+		System.out.println("서비스 작동");
 		
 		return list;
 	}

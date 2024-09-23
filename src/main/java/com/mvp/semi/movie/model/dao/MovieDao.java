@@ -68,7 +68,7 @@ public class MovieDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println("dao list : " + list);
+		System.out.println("dao 작동");
 		
 		return list;
 	}

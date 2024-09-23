@@ -295,7 +295,6 @@
 			<!-- sidebar div 시작 -->
 			<div style="width: 310px; height: 2361px; float: left;">
 			   <div id="sidebar">
-			     <a>영화비교(#/3)</a>
 				 <%@ include file="/views/common/basket.jsp"%>
 			   </div> <!-- sidebar div 끝 -->
 			</div>

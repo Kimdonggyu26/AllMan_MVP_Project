@@ -139,7 +139,7 @@ body{
 }
 #sidebar{
   width: 255px;
-  height: 670px;
+  height: 700px;
   margin-left: 33px;
   margin-top: 104px;
   position: sticky;
@@ -183,7 +183,6 @@ body{
   height: 563px;
   display: flex;
   flex-direction: column;
-  gap: 22px;
   margin-left: 64px;
   margin-right: 64px;
 }

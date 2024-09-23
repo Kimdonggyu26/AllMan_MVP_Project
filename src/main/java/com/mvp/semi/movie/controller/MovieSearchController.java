@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.mvp.semi.movie.model.service.MovieService;
 import com.mvp.semi.movie.model.vo.Movie;
 
+
 /**
  * Servlet implementation class MovieSearch
  */
