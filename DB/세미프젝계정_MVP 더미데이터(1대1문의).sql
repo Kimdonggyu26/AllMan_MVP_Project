@@ -50,4 +50,12 @@ INSERT INTO INQUIRY_BOARD (
     INQUIRY_NO, INQUIRY_TITLE, INQUIRY_CONTENT, INQUIRY_TYPE, REGIST_DATE, STATUS, USER_NO, REPLY_CONTENT, USER_NICKNAME, REPLY_DATE
 ) VALUES (SEQ_INQUIRYNO.NEXTVAL, '배송지 변경', '배송지를 변경하고 싶습니다.', '배송', SYSDATE, 'Y', 10003, '배송지 변경이 완료되었습니다.', 'admin01', SYSDATE);
 
+INSERT INTO INQUIRY_BOARD (
+    INQUIRY_NO, INQUIRY_TITLE, INQUIRY_CONTENT, INQUIRY_TYPE, REGIST_DATE, STATUS, USER_NO, REPLY_CONTENT, USER_NICKNAME, REPLY_DATE
+) VALUES (SEQ_INQUIRYNO.NEXTVAL, '제발 되라!@!@', '배송지를 변경하고 싶습니다.배송지를 변경하고 싶습니다.배송지를 변경하고 싶습니다.배송지를 변경하고 싶습니다.배송지를 변경하고 싶습니다.배송지를 변경하고 싶습니다.', '배송', SYSDATE, 'Y', 10003, '배송지 변경이 완료되었습니다.배송지 변경이 완료되었습니다.배송지 변경이 완료되었습니다.배송지 변경이 완료되었습니다.배송지 변경이 완료되었습니다.배송지 변경이 완료되었습니다.배송지 변경이 완료되었습니다.배송지 변경이 완료되었습니다.배송지 변경이 완료되었습니다.배송지 변경이 완료되었습니다.', 'admin01', SYSDATE);
+
+INSERT INTO INQUIRY_BOARD (
+    INQUIRY_NO, INQUIRY_TITLE, INQUIRY_CONTENT, INQUIRY_TYPE, REGIST_DATE, STATUS, USER_NO
+) VALUES (SEQ_INQUIRYNO.NEXTVAL, 'ㅈㄷㄱ', 'ㅈㄷㅂㄱㄱㅈㄷㅂㄷㅈㄱㅂ.', '배송', SYSDATE, 'Y', 10003);
+
 commit;

@@ -12,6 +12,8 @@ public class Attachment {
 	private String refType;			// 1:1("IB")/공지사항("NT")/게시글("BD") 등등
 	private int refNo;				// 1:1번호/공지사항번호/영화번호/게시글번호  등등
 	
+	public Attachment() {}
+	
 	public Attachment(int fileNo, String originName, String changeName, String filePath, Date uploadDate,
 			String refType, int refNo) {
 		super();
@@ -23,6 +25,16 @@ public class Attachment {
 		this.refType = refType;
 		this.refNo = refNo;
 	}
+
+	public Attachment(int fileNo, String originName, String changeName, String filePath) {
+		super();
+		this.fileNo = fileNo;
+		this.originName = originName;
+		this.changeName = changeName;
+		this.filePath = filePath;
+	}
+
+
 
 	public int getFileNo() {
 		return fileNo;

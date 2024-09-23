@@ -20,9 +20,6 @@
 								 , INQUIRY_CONTENT
 								 , REGIST_DATE
 								 , USER_ID
-								 , REPLY_CONTENT
-								 , U.USER_NICKNAME
-								 , REPLY_DATE
 								 , ROW_NUMBER() OVER(ORDER BY INQUIRY_NO DESC) as RNUM
 							 FROM 
 							 	   	INQUIRY_BOARD I
@@ -40,14 +37,15 @@
 					, INQUIRY_TITLE
 					, INQUIRY_CONTENT
 					, INQUIRY_TYPE
+					, REGIST_DATE
 					, USER_ID
 					, REPLY_CONTENT
-					, U.USER_NICKNAME
+					, I.USER_NICKNAME
 					, REPLY_DATE
 			FROM
-					 INQUIRY I
+					 INQUIRY_BOARD I
 			LEFT
-			JOIN USER U ON (I.USER_NO = U.USER_NO)
+			JOIN USERS U ON (I.USER_NO = U.USER_NO)
 	 	WHERE 
 	 			 INQUIRY_NO = ?
 	   AND I.STATUS = 'Y'
@@ -63,9 +61,114 @@
 						ATTACHMENT
 		WHERE
 					REF_NO = ?
-		ORDER
-			BY FILE_LEVEL ASC
 				
+	</entry>
+	
+	<entry key="deleteInquiry">
+		UPDATE
+					INQUIRY_BOARD
+			SET
+					STATUS = 'N'
+		WHERE 
+					INQUIRY_NO = ?
+	</entry>
+	
+	<entry key="updateInquiry">
+	<!-- 게시글 수정 요청시
+	 1. board로 부터 게시글 정보 수정 -->
+		UPDATE
+		        INQUIRY_BOARD
+		    SET
+		        INQUIRY_TYPE = ?
+		      , INQUIRY_TITLE = ?
+		      , INQUIRY_CONTENT = ?
+		 WHERE
+		        INQUIRY_NO = ?
+
+	</entry>
+
+	<entry key="updateAttachment">
+	
+		<!-- 새로운 첨부파일이 넘어올 경우 둘 중 하나 실행        
+		 2_1. 새로운 첨부파일이 있고 기존에 첨부파일이 있었을 경우 (수정) -->
+		UPDATE
+		        ATTACHMENT
+		    SET
+		        ORIGIN_NAME = ?
+		      , CHANGE_NAME = ?
+		      , FILE_PATH = ?
+		 WHERE
+		        FILE_NO = ? <!-- 기존의 첨부파일 번호 -->
+	
+	</entry>
+	
+	<entry key="insertNewAttachment">
+		<!-- 2_2. 새로운 첨부파일이 있고 기존에 첨부파일이 없었을 경우 -->
+		INSERT
+		    INTO ATTACHMENT
+		    (
+		        FILE_NO
+		      , REF_NO
+		      , REF_TYPE
+		      , ORIGIN_NAME
+		      , CHANGE_NAME
+		      , FILE_PATH
+		    )
+		    VALUES
+		    (
+		        SEQ_ATTACHMENTNO.NEXTVAL
+		      , ?       <!-- 수정하고 있는 게시글 번호 -->		
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		    )
+	</entry>
+	
+	<entry key="insertInquiry">
+		INSERT
+					INTO INQUIRY_BOARD
+					(
+							INQUIRY_NO
+						, INQUIRY_TYPE
+						, INQUIRY_TITLE
+						, INQUIRY_CONTENT
+						, REGIST_DATE
+						, USER_NO
+					)
+					VALUES
+					(
+							SEQ_INQUIRYNO.NEXTVAL
+						, ?
+						, ?
+						, ?
+						, ?
+						, ?
+					)
+
+	</entry>
+
+	<entry key="insertAttachment">
+		INSERT
+					INTO ATTACHMENT
+					(
+							FILE_NO
+						, REF_NO
+						, REF_TYPE
+						, ORIGIN_NAME
+						, CHANGE_NAME
+						, FILE_PATH
+					)
+					VALUES
+					(
+							SEQ_ATTACHMENTNO.NEXTVAL
+						, SEQ_INQUIRYNO.CURRVAL
+						, ?
+						, ?
+						, ?
+						, ?
+					)
+	
 	</entry>
 	
 	

@@ -1,27 +1,23 @@
 package com.mvp.semi.cs.inquiry.controller;
 
 import java.io.IOException;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mvp.semi.cs.inquiry.model.service.InquiryService;
-
 /**
- * Servlet implementation class InquiryDetailController
+ * Servlet implementation class InquiryWriterController
  */
-@WebServlet("/detail.iq")
-public class InquiryDetailController extends HttpServlet {
+@WebServlet("/write.iq")
+public class InquiryWriterController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InquiryDetailController() {
+    public InquiryWriterController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,23 +26,7 @@ public class InquiryDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int inquiryNo = Integer.parseInt(request.getParameter("no"));
-		
-		Map<String, Object> map =new InquiryService().selectInquiryByNo(inquiryNo);
-		
-		if(map.get("i") == null ) {
-			request.setAttribute("msg", "존재하지 않는 게시글이거나 삭제된게시글입니다.");
-			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
-		}else {
-			// 응답페이지 : 상세페이지 (/views/board/boardDetail.jsp)
-			// 응답데이터 : 조회할 게시글 데이터, 첨부파일 데이터 (db로 부터 조회)
-			request.setAttribute("map", map);
-			request.getRequestDispatcher("/views/GW/cs/inquiry/inquiryDetail.jsp").forward(request, response);
-			
-			
-			
-		}
-		
+		request.getRequestDispatcher("/views/GW/cs/inquiry/inquiryWriter.jsp").forward(request, response);
 	}
 
 	/**

@@ -7,7 +7,7 @@ public class Inquiry {
 	private int inquiryNo;				// 문의글번호
 	private String inquiryTitle;		// 문의제목
 	private String inquirycontent;				// 문의내용
-	private String inquirtType;			// 문의유형
+	private String inquiryType;			// 문의유형
 	private Date registDate;			// 작성일
 	private String status;				// 글상태 Y(유효한글)/N(삭제한글)
 	private String userNo;				// 문의글 작성자
@@ -17,13 +17,13 @@ public class Inquiry {
 	
 	public Inquiry() {}
 
-	public Inquiry(int inquiryNo, String inquiryTitle, String inquirycontent, String inquirtType, Date registDate,
+	public Inquiry(int inquiryNo, String inquiryTitle, String inquirycontent, String inquiryType, Date registDate,
 			String status, String userNo, String replyContent, String userNickname, Date replyDate) {
 		super();
 		this.inquiryNo = inquiryNo;
 		this.inquiryTitle = inquiryTitle;
 		this.inquirycontent = inquirycontent;
-		this.inquirtType = inquirtType;
+		this.inquiryType = inquiryType;
 		this.registDate = registDate;
 		this.status = status;
 		this.userNo = userNo;
@@ -32,17 +32,42 @@ public class Inquiry {
 		this.replyDate = replyDate;
 	}
 
-	public Inquiry(int inquiryNo, String inquiryTitle, String inquirycontent, Date registDate, String userNo,
-			String replyContent, String userNickname, Date replyDate) {
+
+
+	public Inquiry(int inquiryNo, String inquiryTitle, String inquirycontent, String inquiryType, Date registDate,
+			String userNo, String replyContent, String userNickname, Date replyDate) {
+		super();
+		this.inquiryNo = inquiryNo;
+		this.inquiryTitle = inquiryTitle;
+		this.inquirycontent = inquirycontent;
+		this.inquiryType = inquiryType;
+		this.registDate = registDate;
+		this.userNo = userNo;
+		this.replyContent = replyContent;
+		this.userNickname = userNickname;
+		this.replyDate = replyDate;
+	}
+	
+	
+
+	public Inquiry(int inquiryNo, String inquiryTitle, String inquirycontent, String inquiryType, Date registDate,
+			String userNo) {
+		super();
+		this.inquiryNo = inquiryNo;
+		this.inquiryTitle = inquiryTitle;
+		this.inquirycontent = inquirycontent;
+		this.inquiryType = inquiryType;
+		this.registDate = registDate;
+		this.userNo = userNo;
+	}
+
+	public Inquiry(int inquiryNo, String inquiryTitle, String inquirycontent, Date registDate, String userNo) {
 		super();
 		this.inquiryNo = inquiryNo;
 		this.inquiryTitle = inquiryTitle;
 		this.inquirycontent = inquirycontent;
 		this.registDate = registDate;
 		this.userNo = userNo;
-		this.replyContent = replyContent;
-		this.userNickname = userNickname;
-		this.replyDate = replyDate;
 	}
 
 	public int getInquiryNo() {
@@ -69,12 +94,12 @@ public class Inquiry {
 		this.inquirycontent = inquirycontent;
 	}
 
-	public String getInquirtType() {
-		return inquirtType;
+	public String getInquiryType() {
+		return inquiryType;
 	}
 
-	public void setInquirtType(String inquirtType) {
-		this.inquirtType = inquirtType;
+	public void setInquiryType(String inquiryType) {
+		this.inquiryType = inquiryType;
 	}
 
 	public Date getRegistDate() {
@@ -128,7 +153,7 @@ public class Inquiry {
 	@Override
 	public String toString() {
 		return "Inquiry [inquiryNo=" + inquiryNo + ", inquiryTitle=" + inquiryTitle + ", inquirycontent="
-				+ inquirycontent + ", inquirtType=" + inquirtType + ", registDate=" + registDate + ", status=" + status
+				+ inquirycontent + ", inquiryType=" + inquiryType + ", registDate=" + registDate + ", status=" + status
 				+ ", userNo=" + userNo + ", replyContent=" + replyContent + ", userNickname=" + userNickname
 				+ ", replyDate=" + replyDate + "]";
 	}

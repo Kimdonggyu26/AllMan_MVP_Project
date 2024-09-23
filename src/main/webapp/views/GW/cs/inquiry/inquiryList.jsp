@@ -32,8 +32,10 @@
         </div>
 				
 				<!-- 로그인한 회원일 경우 보이는 -->
-        <button type="button" class="btn btn-secondary btn-sm" id="regist">글쓰기</button>
-
+				<!-- % if(loginUser != null){ % -->
+        <a href="<%= contextPath %>/write.iq" type="button" class="btn btn-secondary btn-sm" id="regist" >글쓰기</a>
+				<!--  % } %-->
+				
         <div id="qna-h">
         <table id="qna-list" class="table">
           <thead>
@@ -82,11 +84,9 @@
         			// 현재 로그인한 회원 아이디
         		  //<// %let loginUserId = '<// %= loginUser == null ? "" : loginUser.getUserId() %>'
         			
-        			
-        			
-   
         		})
         	})
+        	
         </script>
 
         <div id="qna-b">
@@ -112,7 +112,7 @@
           
           <% for(int p=pi.getStartPage(); p<=pi.getEndPage(); p++) { %>
          	 <li class='page-item <%= p == pi.getCurrentPage() ? "active" : "" %>'>
-         	 	<a class="page-link" style="color: #ffffff;" href="<%= contextPath%>/list.in?page=<%= p %>"><%= p %>
+         	 	<a class="page-link" style="color: #ffffff;" href="<%= contextPath%>/list.iq?page=<%= p %>"><%= p %>
          	 	</a>
          	 </li>
           <% } %>

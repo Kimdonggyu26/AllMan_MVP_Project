@@ -1,7 +1,6 @@
 package com.mvp.semi.cs.inquiry.controller;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,17 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mvp.semi.cs.inquiry.model.service.InquiryService;
 
+
 /**
- * Servlet implementation class InquiryDetailController
+ * Servlet implementation class InquiryDeleteController
  */
-@WebServlet("/detail.iq")
-public class InquiryDetailController extends HttpServlet {
+@WebServlet("/delete.iq")
+public class InquiryDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InquiryDetailController() {
+    public InquiryDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,21 +30,17 @@ public class InquiryDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int inquiryNo = Integer.parseInt(request.getParameter("no"));
+		int iqNo = Integer.parseInt(request.getParameter("no"));
 		
-		Map<String, Object> map =new InquiryService().selectInquiryByNo(inquiryNo);
+		int result = new InquiryService().deleteInquiry(iqNo);
 		
-		if(map.get("i") == null ) {
-			request.setAttribute("msg", "존재하지 않는 게시글이거나 삭제된게시글입니다.");
-			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+		if(result > 0) {
+			request.getSession().setAttribute("alertMsg", "성공적으로 공지사항이 삭제되었습니다.");
+			response.sendRedirect(request.getContextPath() + "/list.iq");
+			
 		}else {
-			// 응답페이지 : 상세페이지 (/views/board/boardDetail.jsp)
-			// 응답데이터 : 조회할 게시글 데이터, 첨부파일 데이터 (db로 부터 조회)
-			request.setAttribute("map", map);
-			request.getRequestDispatcher("/views/GW/cs/inquiry/inquiryDetail.jsp").forward(request, response);
-			
-			
-			
+			request.setAttribute("msg", "공지사항 삭제 실패");
+			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 		}
 		
 	}
