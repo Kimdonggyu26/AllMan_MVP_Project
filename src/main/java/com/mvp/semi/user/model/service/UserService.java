@@ -27,7 +27,8 @@ public class UserService {
 
 	public int insertUser(User u) {
 		Connection conn = getConnection();
-		int result = uDao.insertUser(conn, u);
+		int result = uDao.insertUser(conn, u);//이름 변경해주시고 , 매개변수 conn, u_Id만 들어가는 쿼리문 (0 or 1)
+		
 		
 		if(result > 0) {
 			commit(conn);
@@ -46,6 +47,28 @@ public class UserService {
 		int count = uDao.idCheck(conn, checkId);
 		close(conn);
 		return count;
+	}
+
+	public int updatenick(User u) {
+		Connection conn = getConnection();
+		User updatenick = null;
+		int count = uDao.selectUserByNick(conn, u.getUserNick());
+		int result2 = 0;
+		
+		if(count == 0) {
+			result2 = uDao.updatenick(conn, u);
+			
+			if(result2 > 0 ) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+		}
+			
+		close(conn);
+		
+		return result2;
+		
 	}
 
 

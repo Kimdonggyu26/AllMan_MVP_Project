@@ -31,7 +31,7 @@
 			#buttons{
 			  margin-top: 25px;
 			  background-color: #ffffff;
-			  color: rgb(0, 0, 0);
+
 			    width: 577px;
 			    height: 70px;
 			    font-size: 20px;
@@ -40,9 +40,10 @@
 			    margin-top: 15px;
 			    padding: 0px;
 			    font-weight: 900;
+			   
 			}
 			.container{
-			  margin-top: 313px;
+			  margin-top: 13px;
 			  align-items: center;
 			  display: flex;
 			    flex-direction: column; /* 세로 방향으로 정렬 */
@@ -85,33 +86,36 @@
 			  border: none;
 			  cursor: pointer;
 			}
-
+	
   </style>
   
 </head>
 			<body>
 
-   	<!-- Header, Nav start -->
-   <%--  <%@ include file="/views/common/header.jsp" %> --%>
-    <!-- Header, Nav end -->
 
+	<%
+	String nickcontextPath = request.getContextPath(); // "/web"
+%>
+	
+	
 				<!-- body부 시작 -->
-
-			<div class="container">
-			          <a href="" id="imgbt"><img src="/AllMan_MVP_Project/src/main/webapp/resources/user_upfiles/스크린샷 2024-05-02 093857.png" alt=""></a>
-			        <div class="font">프로필 이미지 추가하기</div>
-			          <div class="idfo">닉네임을 설정해주세요</div>
-			        <div class="button-group">
-			  <input type="text" class="ifound" placeholder="닉네임" >
-			  <button type="submit"  id="buttons">확인</button>
-			</div>
-			</div>
-			
+			<form action="<%= nickcontextPath %>/modifynick.us">
+			<input type="hidden" name="userId" value="<%= request.getAttribute("userId")%>">
+				<div class="container">
+			 		 <a href="" id="imgbt"><img src="/AllMan_MVP_Project/src/main/webapp/assets/image/userImage/default image.jpg" alt="" ></a>
+					 <div class="font">프로필 이미지 추가하기</div>
+					 <div class="idfo">닉네임을 설정해주세요</div>
+					 <div class="button-group">
+						  <input type="text" class="ifound" name="usernick" placeholder="닉네임" >
+						  <button type="submit"  id="buttons">확인</button>
+					</div>
+				</div>
+			</form>
 			<!-- body부 종료 -->
 			
 			
    	<!-- Header, Nav start -->
-   <%--  <%@ include file="/views/common/footer.jsp" %> --%>
+
     <!-- Header, Nav end -->			
 			
 			

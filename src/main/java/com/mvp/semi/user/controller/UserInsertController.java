@@ -37,16 +37,15 @@ public class UserInsertController extends HttpServlet {
 		String confirmPwd = request.getParameter("confirmPwd"); // "pass03"
 		String phone = request.getParameter("phone"); // "010-1111-2222" | ""
 		String email = request.getParameter("email"); // "ssss@sss.com" | ""
+		String userNick = "user";
 		
-
         if (userPwd.equals(confirmPwd)) {
-         
         
 		
-			User u = new User(userId, userPwd, phone,email);
+		User u = new User(userId, userPwd, phone,email, userNick);
 		
 		
-		// 서비스 호출 (쿼리실행)
+		// 서비스 호출 (쿼리실행) //조회용 / inser X
 		int result = new UserService().insertUser(u);
 		
 		
@@ -57,9 +56,9 @@ public class UserInsertController extends HttpServlet {
 			 *   ㄴ 응답페이지 : 메인페이지
 			 *   ㄴ 응답데이터 : "성공적으로 회원가입 되었습니다." alert 메세지
 			 */
-			System.out.println("121314123");
 			request.getSession().setAttribute("alertMsg", "성공적으로 회원가입 되었습니다.");
-			response.sendRedirect(request.getContextPath());
+			request.setAttribute("userId",userId);
+			request.getRequestDispatcher("/views/JM/modifyNick.jsp").forward(request, response);
 		}else {
 			/*
 			 * * 회원가입 실패

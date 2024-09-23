@@ -10,8 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import javax.naming.spi.DirStateFactory.Result;
-
 import com.mvp.semi.user.model.vo.User;
 
 public class UserDao {
@@ -67,7 +65,7 @@ public class UserDao {
 			pstmt.setString(2, u.getUserPwd());
 			pstmt.setString(3, u.getPhone());
 			pstmt.setString(4, u.getEmail());
-
+			pstmt.setString(5, u.getUserNick());
 			
 			result = pstmt.executeUpdate();
 			
@@ -105,6 +103,58 @@ public class UserDao {
 		}
 		
 		return count;
+	}
+
+	public int updatenick(Connection conn, User u) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("usernick");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, u.getUserNick());
+			pstmt.setString(2, u.getUserId());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+
+	public int selectUserByNick(Connection conn, String userNick) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("confirmnick");
+		  try {
+		        // PreparedStatement 준비 및 파라미터 설정
+		        pstmt = conn.prepareStatement(sql);
+		        pstmt.setString(1, userNick); 
+		        rset = pstmt.executeQuery();
+
+		        if (rset.next()) {
+		            result = rset.getInt(1); // 결과가 0이면 중복 없음, 1이면 중복 있음
+		        }
+		        
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    } finally {
+
+		     
+		    	close(pstmt);
+		    	close(rset);
+		      
+		    }
+		    
+		    return result;
+
 	}
 
 

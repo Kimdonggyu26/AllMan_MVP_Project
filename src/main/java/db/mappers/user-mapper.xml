@@ -19,6 +19,7 @@
 	   AND USER_PWD = ?
  	   AND STATUS IN ('U')
  </entry>
+ 
  <entry key="insertUser">
 		INSERT
 		  INTO USERS
@@ -41,13 +42,15 @@
 		  , ?
 		  , ?
 		  , ?
-		  ,'user09'
+		  , ? || '_' || SEQ_USERNO.CURRVAL
 		  ,DEFAULT
 		  ,DEFAULT
 		  ,DEFAULT
 		  ,20
 		  )
 	</entry>
+	
+	
 	<entry key="idCheck">
 		SELECT
 				   COUNT(*) as COUNT
@@ -56,6 +59,22 @@
 		 WHERE
 		 			 USER_ID = ?
 	</entry>
-			 	
-			 	
+	
+		<entry key="usernick">
+		UPDATE 
+					 USERS
+			 SET 
+					 USER_NICKNAME = ?
+			
+		 WHERE
+					 USER_ID = ?
+		</entry>
+			 	<entry key="confirmnick">
+			 	SELECT 
+			 				COUNT(*) 
+			 FROM 	
+			 				users
+			 WHERE 
+			 				USER_NICKNAME = ?
+			 	</entry>
 </properties>

@@ -54,6 +54,12 @@ public User(int userNo, String userId, String userPwd, String phone, String emai
 }
 
 
+public User(String userNick) {
+	super();
+	this.userNick = userNick;
+}
+
+
 public User(int userNo, String userId, String userPwd, String phone, String email, Date enrollDt, Date modifyDt,
 		String status) {
 	super();
@@ -84,6 +90,19 @@ public User(String userId, String userPwd, String phone, String email) {
 	this.userPwd = userPwd;
 	this.phone = phone;
 	this.email = email;
+}
+
+
+
+
+
+public User(String userId, String userPwd, String phone, String email, String userNick) {
+	super();
+	this.userId = userId;
+	this.userPwd = userPwd;
+	this.phone = phone;
+	this.email = email;
+	this.userNick = userNick;
 }
 
 

@@ -112,7 +112,7 @@
 	</div>
 
 	<!-- Footer start -->
-	<%--  <%@ include file="/views/common/footer.jsp" %> --%>
+		 <%@ include file="/views/common/footer.jsp" %>
 	<!-- Footer end -->
 </body>
 

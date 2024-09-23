@@ -120,7 +120,7 @@ body{
 
 
    <!-- Footer start -->
-     <!-- footer.jsp include 할 예정 -->
+    		 <%@ include file="/views/common/footer.jsp" %>
    <!-- Footer end -->
 		  <script>
 		  function fnIdCheck() {
