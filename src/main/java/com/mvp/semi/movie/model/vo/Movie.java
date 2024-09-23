@@ -15,7 +15,8 @@ public class Movie {
 	private String preview;
 	private String status;
 	private int number;
-	private String mainPath;
+	private String titlePath;
+	private String contentPath;
 	private int tasteNo;
 
 	public Movie() {
@@ -23,7 +24,7 @@ public class Movie {
 
 	public Movie(int movie_no, String movieTitle, String movieContent, String genre, int playTime, String country,
 			String ageLv, String openDate, String director, int audienceCount, String actor, String preview,
-			String status, int number, String mainPath, int tasteNo) {
+			String status, int number, String titlePath, String contentPath, int tasteNo) {
 		super();
 		this.movie_no = movie_no;
 		this.movieTitle = movieTitle;
@@ -39,7 +40,8 @@ public class Movie {
 		this.preview = preview;
 		this.status = status;
 		this.number = number;
-		this.mainPath = mainPath;
+		this.titlePath = titlePath;
+		this.contentPath = contentPath;
 		this.tasteNo = tasteNo;
 	}
 
@@ -155,12 +157,20 @@ public class Movie {
 		this.number = number;
 	}
 
-	public String getMainPath() {
-		return mainPath;
+	public String getTitlePath() {
+		return titlePath;
 	}
 
-	public void setMainPath(String mainPath) {
-		this.mainPath = mainPath;
+	public void setTitlePath(String titlePath) {
+		this.titlePath = titlePath;
+	}
+	
+	public String getContentPath() {
+		return contentPath;
+	}
+
+	public void setContentPath(String contentPath) {
+		this.contentPath = contentPath;
 	}
 
 	public int getTasteNo() {
@@ -176,8 +186,8 @@ public class Movie {
 		return "Movie [movie_no=" + movie_no + ", movieTitle=" + movieTitle + ", movieContent=" + movieContent
 				+ ", genre=" + genre + ", playTime=" + playTime + ", country=" + country + ", ageLv=" + ageLv
 				+ ", openDate=" + openDate + ", director=" + director + ", audienceCount=" + audienceCount + ", actor="
-				+ actor + ", preview=" + preview + ", status=" + status + ", number=" + number + ", mainPath="
-				+ mainPath + ", tasteNo=" + tasteNo + "]";
+				+ actor + ", preview=" + preview + ", status=" + status + ", number=" + number + ", TitlePath="
+				+ titlePath + ", ContentPath=" + contentPath + ", tasteNo=" + tasteNo + "]";
 	}
 
 }
