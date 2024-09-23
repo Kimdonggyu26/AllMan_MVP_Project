@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="selectMovieList">
+	    SELECT
+	    	   MOVIE_NO
+	    	 , MOVIE_TITLE
+	    	 , MOVIE_CONTENT
+	    	 , GENRE
+	    	 , PLAYTIME
+	    	 , COUNTRY
+	    	 , AGE_LV
+	    	 , OPEN_DATE
+	    	 , DIRECTOR
+	    	 , AUDIENCE_COUNT
+	    	 , ACTOR
+	    	 , PREVIEW
+	    	 , STATUS
+	    	 , GRADE
+	    	 , MAIN_PATH
+	    	 , TASTE_NO
+	      FROM 
+	      	   MOVIE
+	     WHERE 
+	      	   MOVIE_TITLE LIKE '%' || ? || '%' 
+	       	OR GENRE LIKE '%' || ? || '%'
+	       	OR DIRECTOR LIKE '%' || ? || '%'
+	       	OR ACTOR LIKE '%' || ? || '%'
+	</entry>
+
+
+
+
+
+</properties>

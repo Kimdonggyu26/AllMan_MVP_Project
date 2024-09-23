@@ -9,7 +9,7 @@ public class Attachment {
 	private String changeName;		// 실제업로드파일명
 	private String filePath;		// 저장경로
 	private Date uploadDate;		// 업로드일
-	private String refType;			// 1:1("IB")/공지사항("NT")/영화("MV")/게시글("BD") 등등
+	private String refType;			// 1:1("IB")/공지사항("NT")/게시글("BD") 등등
 	private int refNo;				// 1:1번호/공지사항번호/영화번호/게시글번호  등등
 	
 	public Attachment(int fileNo, String originName, String changeName, String filePath, Date uploadDate,

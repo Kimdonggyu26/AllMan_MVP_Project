@@ -19,7 +19,7 @@
   </button>
 
   <!-- The Modal -->
-  <div class="modal" id="myModal">
+  <div class="modal" id="insert-movie">
     <div class="modal-dialog modal-xl" style="width: 760px; height: 900px;">
       <div class="modal-content">
       
@@ -152,6 +152,14 @@
                   <option value="ott">OTT영화</option>
                 </select>
               </div>
+              <div style="width: 270px; height: 169px;">
+                <p>메인이미지</p>
+                <input type="file" name="upfile1" onchange="loadImg(0);" required>
+              </div>
+              <div style="display: flex; gap: 30px;">
+                <div style="width: 42px; height: 17px;"><p>예고편</p></div>
+                <input type="text" class="form-control" style="width: 200px; height: 20px;" placeholder="링크입력">
+              </div>
             </div>
             <div class="content-bottom-right">
               <div style="display: flex; gap: 30px;">
@@ -165,6 +173,10 @@
               <div style="display: flex; gap: 30px;">
                 <div style="width: 60px; height: 17px;"><p>관객수</p></div>
                 <input type="text" class="form-control" style="width: 200px; height: 20px;" placeholder="관객수(만 단위)">
+              </div>
+              <div style="margin-top: 90px;">
+                <p>상세이미지</p>
+                <input type="file" name="upfile1" onchange="loadImg(1);" required>
               </div>
             </div>
           </div> <!-- content-bottom div 끝 -->
