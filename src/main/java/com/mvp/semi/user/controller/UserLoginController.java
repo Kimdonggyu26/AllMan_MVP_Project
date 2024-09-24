@@ -39,11 +39,11 @@ public class UserLoginController extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		System.out.println(userId + userPwd);
-		int loginUser = new UserService().loginUser(userId,userPwd);
+		User loginUser = new UserService().loginUser(userId,userPwd);
 		
-		System.out.println(loginUser);
+		System.out.println(loginUser.toString());
 		
-		if(loginUser == 0) {
+		if(loginUser == null) {
 			request.setAttribute("msg", "로그인실패");
 			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 		}else {

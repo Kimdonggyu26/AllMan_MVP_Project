@@ -17,9 +17,9 @@ public class UserService {
 
 	private UserDao uDao = new UserDao();
 
-	public int loginUser(String userId, String userPwd) {
+	public User loginUser(String userId, String userPwd) {
 		Connection conn = getConnection();
-		 int result = uDao.loginUser(conn, userId, userPwd);
+		 User result = uDao.loginUser(conn, userId, userPwd);
 
 		close(conn);
 		return result;

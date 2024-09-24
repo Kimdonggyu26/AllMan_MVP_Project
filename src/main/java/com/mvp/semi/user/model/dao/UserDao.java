@@ -27,9 +27,9 @@ public class UserDao {
 		
 	}
 	
-	public int loginUser(Connection conn, String userId, String userPwd) {
+	public User loginUser(Connection conn, String userId, String userPwd) {
 		// select문 => ResultSet (한 행, 한 회원) => Member객체
-		int result  = 0;
+		User result  = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("loginUser");
@@ -41,7 +41,14 @@ public class UserDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				result = 1;
+				result = new User(rset.getInt("USER_NO")
+								,rset.getString("user_id")
+								,rset.getString("user_pwd")
+								,rset.getString("phone")
+								,rset.getString("email")
+								,rset.getDate("enroll_date")
+								,rset.getDate("modify_date")
+								,rset.getString("status"));
 			}
 			
 		} catch (SQLException e) {
