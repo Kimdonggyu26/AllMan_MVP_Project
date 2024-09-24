@@ -32,9 +32,9 @@
         </div>
 				
 				<!-- 로그인한 회원일 경우 보이는 -->
-				<!-- % if(loginUser != null){ % -->
+				<% if(loginUser != null){ %>
         <a href="<%= contextPath %>/write.iq" type="button" class="btn btn-secondary btn-sm" id="regist" >글쓰기</a>
-				<!--  % } %-->
+				<% } %>
 				
         <div id="qna-h">
         <table id="qna-list" class="table">
@@ -52,25 +52,25 @@
               <td colspan="3" style="text-align:center">존재하는 1대1문의글이 없습니다.</td>
             </tr>
             <% }else { %>
-
             
-   					<!-- case2_1. 본인 문의글이 아닐경우 
-            <tr class="board-title" data-toggle="collapse" data-target="">
-              <td colspan="3"><i class="fa-solid fa-lock"></i> 본인의 문의글이 아닙니다.</td>
-            </tr>
-            -->
-            
-            <!--  case2_2 본인 문의글일 경우-->
-					 <% for(Inquiry i : list){ %>
-					 
-            <tr class="board-title" data-no="<%=i.getInquiryNo()%>">
+                     
+            <!--  case2_1 본인 문의글일 경우-->
+					  <% for(Inquiry i : list){ %>
+					  	<% if(loginUser != null && loginUser.getUserId().equals(i.getUserNo())) { %>
+					  <tr class="board-title" data-no="<%=i.getInquiryNo()%>">
               <td><%= i.getInquiryTitle() %></td>
               <td><%= i.getUserNo() %></td>
               <td><%= i.getRegistDate() %></td>
+            </tr>      
+             <%} else { %>
+            <!-- case2_2. 본인 문의글이 아닐경우--> 
+            <tr class="board-title" data-toggle="collapse" data-target="">
+              <td colspan="3"><i class="fa-solid fa-lock"></i> 본인의 문의글이 아닙니다.</td>
             </tr>
             
             <% } %>
-             <% } %>
+            <% } %>
+            <% } %>
             
           </tbody>
         </table>

@@ -59,13 +59,13 @@
               <td colspan="3">
                 <p class="border rounded p-3 w-75 mx-auto" style="min-height: 150px;"><%= n.getNoticeContent() %></p>
                 
-              <!-- <(% if(loginUser != null && loginUser.getUserId().equals(n.getNoticeWriter())) { %>-->
+              <% if(loginUser != null && loginUser.getStatus() == "A") { %>
 	              <!-- 로그인한 회원이 관리자 권한일 경우 보여지는 요소 -->
 	              <div align="center">
 	                <a href="<%= contextPath %>/modify.no?no=<%= n.getNoticeNo() %>" type="button" class="btn btn-secondary btn-sm">수정하기</a>
 	                <a href="<%= contextPath %>/delete.no?no=<%= n.getNoticeNo() %>" type="button" class="btn btn-danger btn-sm">삭제하기</a>
 	              </div>
-	              <!--<(% } %>-->
+	              <% } %>
                 
             </td>
           </tr>
@@ -147,7 +147,7 @@
   }
 
   #qna-h{
-    width: 1276px; margin-left: 322px; margin-top: 82px;
+    width: 1276px; margin-left: 322px; margin-top: 60px;
   }
   #qna-b{
     margin-top: 44px;

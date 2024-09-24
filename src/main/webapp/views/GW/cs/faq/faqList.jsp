@@ -59,12 +59,13 @@
               <td colspan="3">
                 <p class="border rounded p-3 w-75 mx-auto" style="min-height: 150px;"><%= f.getFaqContent() %></p>
                 
+                <% if(loginUser != null && loginUser.getStatus() == "A") { %>
                 <!-- 로그인한 회원이 관리자 권한일 경우 보여지는 요소-->
                 <div align="center">
                   <a href="<%= contextPath %>/modify.faq?no=<%= f.getFaqNo() %>" type="button" class="btn btn-secondary btn-sm">수정하기</a>
 	                <a href="<%= contextPath %>/delete.faq?no=<%= f.getFaqNo() %>" type="button" class="btn btn-danger btn-sm">삭제하기</a>
                 </div>
-                
+                <% } %>
                 
             </td>
           </tr>
@@ -136,7 +137,7 @@
     #head { width: 1276px; margin: 61px auto 0; }
     #head h3, thead { color: #fff; }
     #qna-h, #qna-b { width: 1276px; margin: 63px auto 0; }
-    #qna-h {margin-top: 82px;}
+    #qna-h { margin-top: 60px;}
     #qna-b { margin-top: 44px; }
     thead { background-color: #666765; }
     tbody { color: #fff; }

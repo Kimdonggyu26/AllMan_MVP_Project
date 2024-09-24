@@ -83,7 +83,6 @@ public class InquiryDao {
 			close(rset);
 			close(pstmt);
 		}
-
 		return list;
 	}
 

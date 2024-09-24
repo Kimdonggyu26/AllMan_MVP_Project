@@ -28,12 +28,12 @@
    
     <div class="d-flex justify-content-end">
       <!-- 현재 로그인되어있는 회원이 해당 게시글의 작성자 본인일 경우 보여지는 요소 -->
-      <!--  </% if(loginUser != null && loginUser.getUserId().equals(b.getBoardWriter())) { % -->
-      <% if(i.getReplyContent() == null) { %>
+      <% if(loginUser != null && loginUser.getUserId().equals(i.getUserNo())) { %>
+      	<% if(i.getReplyContent() == null) { %>
       <a href="<%= contextPath %>/modify.iq?no=<%= i.getInquiryNo() %>" type="button" class="btn btn-secondary btn-sm">수정</a> &nbsp;
-      <% } %>
+      	<% } %>
       <a href="<%= contextPath %>/delete.iq?no=<%= i.getInquiryNo() %>" type="button" class="btn btn-danger btn-sm">삭제</a> &nbsp;
-      <!--% } %-->
+      <% } %>
       <!-- ------------------------------------------------------------------------- -->
       <a href="<%= contextPath %>/list.iq" type="button" class="btn btn-warning btn-sm">목록가기</a>
     </div>
