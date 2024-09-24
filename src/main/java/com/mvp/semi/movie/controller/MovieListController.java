@@ -53,9 +53,8 @@ public class MovieListController extends HttpServlet {
 
 		System.out.println(searchData);
 		
-		Map<String, Object> map = new MovieService().searchMovieList(searchData);
+		List<Movie> map = new MovieService().searchMovieList(searchData);
 		
-		System.out.println(map.get("mv"));
 //		ajax
 		if(map.get("mv") == null) {
 			//응답페이지 : 에러페이지

@@ -4,11 +4,11 @@
 
 	<entry key="selectMovieList">
 	    SELECT
-	    	 		 MOVIE_NO
-	    	 	 , MOVIE_TITLE
-	    		 , GENRE
-	    	   , DIRECTOR
-	    	   , MAIN_PATH
+	    	   MOVIE_NO
+    	 	 , MOVIE_TITLE
+    		 , GENRE
+	    	 , DIRECTOR
+	    	 , MAIN_PATH
 	      FROM 
 	      	   MOVIE
 	     WHERE 

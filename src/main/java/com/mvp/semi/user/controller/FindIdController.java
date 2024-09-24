@@ -37,6 +37,7 @@ public class FindIdController extends HttpServlet {
 
 		User result = new UserService().finduserId(email);
 		HttpSession session = request.getSession();
+		
 		if (result.getUserId() == null) {
 			System.out.println("실패");
 			session.setAttribute("alertMsg", "검색결과가 없습니다.");

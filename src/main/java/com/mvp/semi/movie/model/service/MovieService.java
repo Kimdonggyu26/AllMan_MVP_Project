@@ -19,19 +19,13 @@ public class MovieService {
 
 	private MovieDao mvDao = new MovieDao();
 
-	public Map<String, Object> searchMovieList(String searchData) {
+	public List<Movie> searchMovieList(String searchData) {
 		Connection conn = getConnection();
 		
-		Movie mv = mvDao.searchMovieList(conn, searchData);
-		
-		Map<String, Object> map = new HashMap<>();
-		map.put("mv", mv);
-		
+		List<Movie> list = mvDao.searchMovieList(conn, searchData);
 		close(conn);
-		
-		System.out.println("서비스 작동");
-		
-		return map;
+		System.out.println(list.toString());
+		return list;
 	}
 	
 	public int insertMovie(Movie m) {

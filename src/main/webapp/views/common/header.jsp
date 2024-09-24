@@ -13,6 +13,8 @@
 <!--폰트-->
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 <style>
   body{
     margin-top: 30px;
@@ -93,38 +95,36 @@
 
 <div class="d-flex justify-content-center">
     <header>
-      <div class="col-2">
-        <a href="<%=contextPath%>"><img src="<%= contextPath%>/assets/image/header/MOVIE_PICK.png"></a>
-      </div>
-      
-      <!--검색창-->
-      <div class="col-8">
-        <form action="<%=contextPath%>/movieSearch.ms" id="searchFrom" class="d-flex justify-content-center">
-          <div id="searchInput" class="input-group">
-            <input type="text" name="movieSearchData" id="form-control" class="form-control" placeholder="검색" autocomplete="off">
-            <div id="searchButton" class="input-group-append">
-              <button class="btn btn-danger p" type="submit">SEARCH</button>
-            </div>
-          </div>
-        </form>
-      </div>
-      
-      <div id="headerIcon" class="col-2 d-flex align-items-center">
-        <div>
-        	<a href="#"><img src="<%= contextPath%>/assets/image/header/bell.png" alt="" id="bellIcon" class="mr-3"></a>
-        </div>
-        <div>
-        	<% if(false) { %> //로그인유저 == null
-        		<a href="#로그인 페이지 이동"><img src="<%= contextPath%>####//비회원" id="myImg"></a>
-        	<%} else{%>
-        		<a href="#마이페이지 이동"><img src="<%= contextPath%>####//회원" id="myImg"></a>
-        	<%} %>
-        </div>
-      </div>
-      
+	      <div class="col-2">
+	        <a href="<%=contextPath%>"><img src="<%= contextPath%>/assets/image/header/MOVIE_PICK.png"></a>
+	      </div>
+	      
+	      <!--검색창-->
+	      <div class="col-8">
+	        <form action="<%=contextPath%>/movieSearch.ms" id="searchFrom" class="d-flex justify-content-center">
+	          <div id="searchInput" class="input-group">
+	            <input type="text" name="movieSearchData" id="form-control" class="form-control" placeholder="검색" autocomplete="off">
+	            <div id="searchButton" class="input-group-append">
+	              <button class="btn btn-danger p" type="submit" onclick="fnAjaxSearch();">SEARCH</button>
+	            </div>
+	          </div>
+	        </form>
+	      </div>
+	      
+	      <div id="headerIcon" class="col-2 d-flex align-items-center">
+		        <div>
+		        	<a href="#"><img src="<%= contextPath%>/assets/image/header/bell.png" alt="" id="bellIcon" class="mr-3"></a>
+		        </div>
+		        <div>
+		        	<% if(false) { %> //로그인유저세션 == null
+		        		<a href="#로그인 페이지 이동"><img src="<%= contextPath%>####//비회원" id="myImg"></a>
+		        	<%} else{%>
+		        		<a href="#마이페이지 이동"><img src="<%= contextPath%>####//회원" id="myImg"></a>
+		        	<%} %>
+		        </div>
+	      </div>
      </header>
-      
-    </div>
+</div>
 
 
 <nav id="navBar">
@@ -153,3 +153,31 @@
     </li>
   </ul>
 </nav>
+
+<script>
+	$(function(){
+		fnAjaxSearch();
+	})
+
+	function fnAjaxSearch() {
+		
+		const $inputData = $("#searchInput[name=movieSearchData]")
+		
+		$.ajax({
+			url: '<%= contextPath%>/movieHeaderSearch.ms',
+			data: {search: $inputData.val()},
+			success: function(res){
+				console.log(res);
+			},
+			error: function(){
+				console.log('영화 검색 ajax 통신 실패');
+			}	
+		
+		})
+	}
+</script>
+
+<!-- $(function(){
+		fnAjaxSearch();
+	})강의 13번 1시간 27분 38초
+ -->
