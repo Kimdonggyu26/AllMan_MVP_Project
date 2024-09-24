@@ -32,9 +32,9 @@
    			<th id="nt1">문의유형</th>
    			<td>
 	   		 <select name="category" class="form-control" id="nc2">
-	         <option value="general">일반 문의</option>
-	         <option value="tech">기술 문의</option>
-	         <option value="billing">결제 문의</option>
+	         <option value="일반문의">일반 문의</option>
+	         <option value="기술문의">기술 문의</option>
+	         <option value="결제문의">결제 문의</option>
 	       </select>
 	      </td>
         </tr>

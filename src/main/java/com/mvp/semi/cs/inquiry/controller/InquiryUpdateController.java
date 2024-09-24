@@ -72,7 +72,9 @@ public class InquiryUpdateController extends HttpServlet {
 				// 기존에 첨부파일이 없었을 경우 => insert
 				at.setRefNo(inquiryNo);	
 				at.setRefType("IB");
+			}
 		}
+		
 		int result = new InquiryService().updateInquiry(i,at);
 		
 		if(result > 0) { // 성공
@@ -84,8 +86,6 @@ public class InquiryUpdateController extends HttpServlet {
 			// 에러메세지와 함께 에러페이지로 이동
 			request.setAttribute("msg", "게시글 수정 실패");
 			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
-		}
-			
 		}
 		
 	}

@@ -37,9 +37,9 @@
               *<label style=>문의 유형</label>
               <select>
                   <option>문의 유형</option>
-                  <option value="general">일반 문의</option>
-                  <option value="tech">기술 문의</option>
-                  <option value="billing">결제 문의</option>
+                  <option value="일반문의">일반 문의</option>
+                  <option value="기술문의">기술 문의</option>
+                  <option value="결제문의">결제 문의</option>
               </select>
           </div>
 
