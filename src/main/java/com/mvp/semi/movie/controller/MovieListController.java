@@ -50,7 +50,9 @@ public class MovieListController extends HttpServlet {
 		// 응답해야되는 데이터
 		// 1. 요청한 상영영화 페이지의 목록리스트, 상영영화용 PageInfo 객체
 		// 2. 요청한 ott영화 페이지의 목록리스트, ott영화용 PageInfo 객체
-		 
+
+		System.out.println(searchData);
+		
 		Map<String, Object> map = new MovieService().searchMovieList(searchData);
 		
 		System.out.println(map.get("mv"));

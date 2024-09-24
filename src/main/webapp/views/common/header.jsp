@@ -94,12 +94,12 @@
 <div class="d-flex justify-content-center">
     <header>
       <div class="col-2">
-        <a href="<%=contextPath%>/views/DG/mainPage.jsp"><img src="<%= contextPath%>/assets/image/header/MOVIE_PICK.png"></a>
+        <a href="<%=contextPath%>"><img src="<%= contextPath%>/assets/image/header/MOVIE_PICK.png"></a>
       </div>
       
       <!--검색창-->
       <div class="col-8">
-        <form action="<%= contextPath %>/movieSearch.ms" id="searchFrom" class="d-flex justify-content-center">
+        <form action="<%=contextPath%>/movieSearch.ms" id="searchFrom" class="d-flex justify-content-center">
           <div id="searchInput" class="input-group">
             <input type="text" name="movieSearchData" id="form-control" class="form-control" placeholder="검색" autocomplete="off">
             <div id="searchButton" class="input-group-append">
