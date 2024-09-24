@@ -183,6 +183,34 @@ public class UserDao {
 		
 		return result;
 	}
+
+	public User finduserId(Connection conn, String email) {
+		   PreparedStatement pstmt = null;
+		      String sql = prop.getProperty("finduserid");
+		      ResultSet rset = null;
+		      User u = new User();
+		      
+		      try {
+		         pstmt = conn.prepareStatement(sql);
+
+		         pstmt.setString(1, email);
+		         
+		         rset = pstmt.executeQuery();
+		         
+		         if(rset.next()) {
+		            u = new User(rset.getString("user_id"));
+		         }
+		         
+		      } catch (SQLException e) {
+		         e.printStackTrace();
+		      } finally {
+		         close(rset);
+		         close(pstmt);
+		      }
+		      
+		      return u;
+
+	}
 	
 	
 

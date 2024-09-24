@@ -83,6 +83,15 @@ public class UserService {
 		return result;
 	}
 
+	public User finduserId(String email) {
+	      Connection conn = getConnection();
+	      
+	      User result = new UserDao().finduserId(conn,email);
+	      close(conn);
+	      return result;
+	      
+	}
+
 
 
 
