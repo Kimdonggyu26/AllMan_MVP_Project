@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <style>
-    <style >
+   
     body{
   background-color: #131313;
   font-family: 'pretendard';
@@ -75,26 +75,24 @@ input:focus {outline: none;}
   
 
 <body>
-      <!-- Header, Nav start -->
-    <%-- <%@ include file="/views/common/header.jsp" %> --%>
-    <!-- Header, Nav end -->
-    
-    <!-- body 시작부 -->
 
+						 <%
+								String contextPath = request.getContextPath();
+							%> 			
+												
 				<div class="container">
+			<form action="<%=contextPath %>/findpwd.us">
           <div class="idfo">비밀번호 찾기</div>
           <div class="font">아이디 확인 후 등록된 이메일 주소로 비밀번호 재설정을 위한 인증 메일이 발송됩니다.<br> 
             이메일을 확인하여 비밀번호 재설정을 완료해주세요.</div>
         <div class="button-group">
-  <input type="text" class="ifound" placeholder="아이디" >
-  <button type="submit"  id="buttons"><a href="">확인</a></button>
-</div>
-</div>
-    
+			  <input type="text" class="ifound" placeholder="아이디"  name="userId">
+			  <button type="submit"  id="buttons">확인</button>
+			</div>
+			    </form>
+			</div>
 
 		<!-- body 종료 -->
-    <!-- Footer start -->
-      <!-- footer.jsp include 할 예정 -->
-    <!-- Footer end -->
+
 </body>
 </html>

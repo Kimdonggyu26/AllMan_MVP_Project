@@ -9,11 +9,9 @@
 </head>
 <body>
 
-<!-- Header, Nav start -->
 
-<!-- Header, Nav end -->
 <%
-	String contextPath = request.getContextPath(); // "/web"
+	String contextPath = request.getContextPath(); 
 %>
 
 <style>

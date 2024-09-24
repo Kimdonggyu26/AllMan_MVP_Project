@@ -60,15 +60,7 @@
 		 			 USER_ID = ?
 	</entry>
 	
-		<entry key="usernick">
-		UPDATE 
-					 USERS
-			 SET 
-					 USER_NICKNAME = ?
-			
-		 WHERE
-					 USER_ID = ?
-		</entry>
+
 			 	<entry key="confirmnick">
 			 	SELECT 
 			 				COUNT(*) 
@@ -95,4 +87,40 @@ SELECT USER_ID
  WHERE EMAIL = ?
    AND STATUS IN ('A','U')
     </entry>
+    	<entry key="finduserpwd">
+SELECT 
+				USERPWD
+  FROM 
+  			USERS
+ WHERE 
+ 				USER_ID = ?
+   AND STATUS IN ('A','U')
+    </entry>
+    <entry key="modifyuser">
+    UPDATE 
+   				USERS
+     SET 
+     			USER_NICKNAME = ?,
+     		 EMAIL = ?, 
+     		 PHONE = ? 
+    WHERE USER_ID = ?;
+    </entry>
+    <entry key="updateuserprofile">
+    UPDATE 
+    				USERS
+    SET 	
+    				USER_NICKNAME = ?,
+     				PROFILE_PATH = ? 
+     WHERE USER_ID = ?
+    
+    </entry>
+		<entry key="usernick">
+		UPDATE 
+					 USERS
+			 SET 
+					 USER_NICKNAME = ?
+			
+		 WHERE
+					 USER_ID = ?
+					 		</entry>
 </properties>

@@ -93,31 +93,50 @@
 			<body>
 
 
-	<%
-	String nickcontextPath = request.getContextPath(); // "/web"
-%>
-	
-	
-				<!-- body부 시작 -->
-			<form action="<%= nickcontextPath %>/modifynick.us">
-			<input type="hidden" name="userId" value="<%= request.getAttribute("userId")%>">
-				<div class="container">
-			 		 <a href="" id="imgbt" name="profile"><img src="/AllMan_MVP_Project/src/main/webapp/assets/image/userImage/default image.jpg" alt="" ></a>
-					 <div class="font">프로필 이미지 추가하기</div>
-					 <div class="idfo">닉네임을 설정해주세요</div>
-					 <div class="button-group">
-						  <input type="text" class="ifound" name="usernick" placeholder="닉네임" >
-						  <button type="submit"  id="buttons">확인</button>
-					</div>
-				</div>
-			</form>
-			<!-- body부 종료 -->
-			
-			
-   	<!-- Header, Nav start -->
-
-    <!-- Header, Nav end -->			
-			
+<%-- 
+			<%
+			   String contextPath = request.getContextPath();
+					%>
+		<% 
+		String alertMsg = (String) session.getAttribute("alertMsg");
+		if (alertMsg != null) { 
+		%>
+		    <div class="alert alert-success"><%= alertMsg %></div>
+		    <% session.removeAttribute("alertMsg"); // 메시지 표시 후 세션에서 제거 %>
+		<% 
+		} 
+		%>
+<!-- multipart/form-data를 추가하여 파일 업로드 가능하게 설정 -->
+<form action="<%= contextPath %>/modifynick.us" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="userId" value="<%= request.getAttribute("userId") %>">
+    <div class="container">
+        <div class="idfo">프로필 사진을 선택하세요</div>
+        <input type="file" name="profileImage" class="ifound" required> <!-- 파일 업로드 입력 -->
+        <div class="font">프로필 이미지 추가하기</div>
+        <div class="idfo">닉네임을 설정해주세요</div>
+        <div class="button-group">
+            <input type="text" class="ifound" name="usernick" placeholder="닉네임" required>
+            <button type="submit" id="buttons">확인</button>
+        </div>
+    </div>
+</form>
+ --%>
+ 					<%
+			   String contextPath = request.getContextPath();
+					%>
+				<form action="<%= contextPath %>/modifyProfile.us" method="post" enctype="multipart/form-data">
+				    <input type="hidden" name="userId" value="<%= session.getAttribute("userId") %>">
+				    <div class="container">
+				        <div class="idfo">프로필 사진을 선택하세요</div>
+				        <input type="file" name="profileImage" class="ifound" required> <!-- 파일 업로드 입력 -->
+				        <div class="font">프로필 이미지 추가하기</div>
+				        <div class="idfo">닉네임을 설정해주세요</div>
+				        <div class="button-group">
+				            <input type="text" class="ifound" name="usernick" placeholder="닉네임" required>
+				            <button type="submit" id="buttons">확인</button>
+				        </div>
+				    </div>
+				</form>
 			
 </body>
 </html>

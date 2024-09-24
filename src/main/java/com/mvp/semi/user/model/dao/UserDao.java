@@ -106,27 +106,6 @@ public class UserDao {
 		return count;
 	}
 
-	public int updatenick(Connection conn, User u) {
-		int result = 0;
-
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("usernick");
-
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, u.getUserNick());
-			pstmt.setString(2, u.getUserId());
-
-			result = pstmt.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		return result;
-
-	}
 
 	public int selectUserByNick(Connection conn, String userNick) {
 		int result = 0;
@@ -204,6 +183,107 @@ public class UserDao {
 
 		return u;
 
+	}
+
+	public User finduserPwd(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("finduserpwd");
+		ResultSet rset = null;
+		User u = new User();
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, userId);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				u.setUserId(rset.getString("user_pwd"));
+			
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return u;
+	}
+
+	public int modifyUser(Connection conn,String userId, String userNick, String email, String phone) {
+		int result = 0;
+        PreparedStatement pstmt = null;
+        String sql =prop.getProperty("modifyuser");
+       
+        
+        try {
+			pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1, userNick);
+	        			pstmt.setString(2, email);
+	        			pstmt.setString(3, phone);
+	        			pstmt.setString(4, userId);
+	        			
+	        			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+        
+        return result;
+        
+        
+	}
+
+	public int updateUserProfile(Connection conn, User u) {
+	    PreparedStatement pstmt = null;
+	    int result = 0;
+
+	    // SQL 쿼리 가져오기 (닉네임과 프로필 이미지 모두 업데이트)
+	    String sql = prop.getProperty("updateuserprofile");
+
+	    try {
+	        pstmt = conn.prepareStatement(sql);
+
+	        // 닉네임, 프로필 이미지 경로, 사용자 ID 설정
+	        pstmt.setString(1, u.getUserNick());
+	        pstmt.setString(2, u.getFilePath());
+	        pstmt.setString(3, u.getUserId());
+
+	        // SQL 실행
+	        result = pstmt.executeUpdate();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close(pstmt);
+	    }
+
+	    return result;
+	}
+	public int updatenick(Connection conn, User u) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("usernick");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, u.getUserNick());
+			pstmt.setString(2, u.getUserId());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
 	}
 
 }

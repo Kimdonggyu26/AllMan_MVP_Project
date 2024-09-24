@@ -47,27 +47,6 @@ public class UserService {
 		return count;
 	}
 
-	public int updatenick(User u) {
-		Connection conn = getConnection();
-		User updatenick = null;
-		int count = uDao.selectUserByNick(conn, u.getUserNick());
-		int result2 = 0;
-
-		if (count == 0) {
-			result2 = uDao.updatenick(conn, u);
-
-			if (result2 > 0) {
-				commit(conn);
-			} else {
-				rollback(conn);
-			}
-		}
-
-		close(conn);
-
-		return result2;
-
-	}
 
 	public int deleteUser(String userId, String userPwd) {
 		Connection conn = getConnection();
@@ -90,44 +69,77 @@ public class UserService {
 
 	}
 
-	/*
-	 * public Member updateMember(Member m) {
-	 * 
-	 * Connection conn = getConnection();
-	 * 
-	 * // 1. 회원정보 변경 (update) int result = mDao.updateMember(conn, m);
-	 * 
-	 * Member updateMem = null; if(result > 0) { commit(conn); // 2. 갱신된 회원 조회
-	 * (select) updateMem = mDao.selectMemberById(conn, m.getUserId());
-	 * 
-	 * }else { rollback(conn); }
-	 * 
-	 * close(conn);
-	 * 
-	 * return updateMem; // null(정보변경실패) | 갱신된회원객체(정보변경성공)
-	 * 
-	 * }
-	 * 
-	 * public Member updateMemberPwd(Map<String, String> map) { Connection conn =
-	 * getConnection(); // 1. 비밀번호 변경 (update) int result =
-	 * mDao.updateMemberPwd(conn, map);
-	 * 
-	 * Member updateMem = null; if(result > 0) { commit(conn); // 2. 갱신된 회원 조회
-	 * (select) updateMem = mDao.selectMemberById(conn, map.get("userId")); }else {
-	 * rollback(conn); }
-	 * 
-	 * close(conn);
-	 * 
-	 * return updateMem; }
-	 * 
-	 * public int deleteMember(String userId, String userPwd) { Connection conn =
-	 * getConnection(); int result = mDao.deleteMember(conn, userId, userPwd);
-	 * if(result > 0) { commit(conn); }else { rollback(conn); } close(conn); return
-	 * result; }
-	 * 
-	 * public int idCheck(String checkId) { Connection conn = getConnection(); int
-	 * count = mDao.idCheck(conn, checkId); close(conn); return count; }
-	 * 
-	 */
+	public User finduserPwd(String userId) {
+		Connection conn = getConnection();
 
-}
+		User uPwd = new UserDao().finduserPwd(conn, userId);
+		close(conn);
+		return uPwd;
+	}
+
+	public int modifyUser(String userId, String userNick, String email, String phone) {
+		Connection conn = getConnection();
+		
+		int result = uDao.modifyUser(conn,userId,userNick,email,phone);
+		close(conn);
+		return result;
+	}
+	
+	
+	public int updatenick(User u) {
+		Connection conn = getConnection();
+		User updatenick = null;
+		int count = uDao.selectUserByNick(conn, u.getUserNick());
+		int result2 = 0;
+		
+		if (count == 0) {
+			result2 = uDao.updatenick(conn, u);
+			
+			if (result2 > 0) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+		}
+		
+		close(conn);
+		
+		return result2;
+		
+	}
+	
+
+	public int updateUserProfile(User u) {
+		  Connection conn = getConnection();
+		    int result = 0;
+
+		    // 1. 닉네임 중복 체크
+		    int nickCount = uDao.selectUserByNick(conn, u.getUserNick());
+
+		    if (nickCount == 0) {
+		        // 2. 닉네임 중복이 없으면 닉네임 및 프로필 업데이트
+		        result = uDao.updateUserProfile(conn, u);
+
+		        if (result > 0) {
+		            // 3. 업데이트 성공 시 커밋
+		            commit(conn);
+		        } else {
+		            // 4. 업데이트 실패 시 롤백
+		            rollback(conn);
+		        }
+		    } else {
+		        // 닉네임 중복 시, result 값으로 실패 처리 (ex: -1)
+		        result = -1;
+		    }
+
+		    // 5. 연결 종료
+		    close(conn);
+
+		    return result;
+		
+	}
+	}
+
+	
+
+

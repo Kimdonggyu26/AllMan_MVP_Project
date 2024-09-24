@@ -35,6 +35,7 @@ public User(int userNo, String userId, String userPwd, String phone, String emai
 	this.tasteNo = tasteNo;
 	this.filePath = filePath;
 	this.teamNo = teamNo;
+	
 }
 
 
@@ -94,6 +95,14 @@ public User(String userId, String userPwd, String phone, String email) {
 
 
 
+
+
+public User(String userId, String userNick, String filePath) {
+	super();
+	this.userId = userId;
+	this.userNick = userNick;
+	this.filePath = filePath;
+}
 
 
 public User(String userId, String userPwd, String phone, String email, String userNick) {

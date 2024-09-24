@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+
 	<!-- Header, Nav start -->
 	<%@ include file="/views/common/header.jsp"%>
 	<!-- Header, Nav end -->

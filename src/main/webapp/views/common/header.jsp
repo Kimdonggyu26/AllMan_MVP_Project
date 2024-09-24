@@ -86,12 +86,7 @@
 	User loginUser = (User)session.getAttribute("loginUser");
 	String alertMsg = (String)session.getAttribute("alertMsg");
 %>
-
-<% if(alertMsg !=null) { %>
-<script>
- alert('<%= alertMsg %>');
-</script>
-<% session.removeAttribute("alertMsg"); } %>
+<!-- 테스트용 -->
 
 <div class="d-flex justify-content-center">
     <header>

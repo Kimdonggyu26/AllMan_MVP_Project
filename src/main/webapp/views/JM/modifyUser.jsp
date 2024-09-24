@@ -154,12 +154,13 @@ a:active {
 </style>
 
 <body>
-      <!-- Header, Nav start -->
-    <%-- <%@ include file="/views/common/header.jsp" %> --%>
-    <!-- Header, Nav end -->
-    
+ 	<!-- Header, Nav start -->
+	<%@ include file="/views/common/header.jsp"%>
+	<!-- Header, Nav end -->
+
     <!-- body 시작부 -->
-    
+   
+ <form action="modifyuser.us">
 <div class="modal" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -171,8 +172,8 @@ a:active {
 
 
       <div class="modal-body">
-        <a href=""><img src="/AllMan_MVP_Project/src/main/webapp/resources/user_upfiles/스크린샷 2024-05-02 093857.png" alt=""></a>
-        <div><input type="text" value="user01" id="changeid" name="userName"></div>
+        <a href=""><img src="" alt=""></a>
+        <div><input type="text" value="" id="changeid" name="userNick"><%= loginUser.getUserNick() %></div>
         <h6>*2자 이상 10자 이내의 한글 영문,숫자 입력 가능합니다.</h6>
       </div>
 
@@ -188,24 +189,24 @@ a:active {
 
 <div class="container">
   <div class="profile">
-      <img src="/AllMan_MVP_Project/src/main/webapp/resources/user_upfiles/스크린샷 2024-05-02 093857.png" alt="프로필 이미지" style="width: 50px; height: 50px;">
-      <span class="username">test01</span>
+      <img src="/AllMan_MVP_Project/src/main/webapp/resources/user_upfiles" alt="프로필 이미지" style="width: 50px; height: 50px;">
+      <span class="username" ><%= loginUser.getUserId() %></span>
       <button class="edit-button" data-toggle="modal" data-target="#myModal">프로필 수정</button>
   </div>
 
   <h2>회원정보 수정</h2>
   <div style="display: flex; flex-direction: row;">
   <div class="userid">아이디</div>
-  <input type="text" id="userid" name="userid" value="admin01@naver.com" disabled>
+  <input type="text" id="userid" name="userid" value="<%= loginUser.getUserId() %>" readonly>
   </div>
   <div style="display: flex; flex-direction: row;">
-  <div class="name">이름</div>
-  <input type="text" id="name" name="userName" value="관리자" disabled >
+  <div class="name">닉네임</div>
+  <input type="text" id="name" name="userNick" value="<%= loginUser.getUserNick() %>" readonly >
   </div>
   <div style="display: flex; flex-direction: row;">
   <div class="email">이메일</div>
   <div >
-      <input type="text" id="email" name="email" style="width: 200px;"  value="user01">
+      <input type="text" id="email" name="email" style="width: 200px;"  value="<%= loginUser.getEmail() %>">
       <span style="margin: 10px;">@</span>
       <select id="email-domain" style="width: 250px;">
           <option value="naver.com">naver.com</option>
@@ -232,10 +233,13 @@ a:active {
   </div>
 </div>
   <div> <hr style="background-color: gray;"> </div>
-  <a href="" style="color:  gray; margin-left: 30px; text-decoration: none;"> 회원탈퇴 및 계정삭제</a>
+  <a href="<%= contextPath %>/views/JM/deleteUser.jsp" style="color:  gray; margin-left: 30px; text-decoration: none;"> 회원탈퇴 및 계정삭제</a>
+</form>
+
 <!-- body 종료 -->
-    <!-- Footer start -->
-      <!-- footer.jsp include 할 예정 -->
-    <!-- Footer end -->
+   	<!-- Header, Nav start -->
+	<%@ include file="/views/common/footer.jsp"%>
+	<!-- Header, Nav end -->
+
 </body>
 </html>

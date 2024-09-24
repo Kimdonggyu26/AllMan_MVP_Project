@@ -183,7 +183,7 @@ a:active {
         <div class="title">마이페이지</div>
         <hr>
         <div class="mypage">
-            <img src="/AllMan_MVP_Project/src/main/webapp/resources/user_upfiles/스크린샷 2024-05-02 093857.png" alt="User Profile"> 
+            <img src="/AllMan_MVP_Project/src/main/webapp/resources/user_upfiles/" > 
             <div class="mypage-info">
                 <h2 id="like">NDHE</h2>
                 <div class="button"><a href="">취향 다시 분석하기</a></div>
@@ -223,13 +223,13 @@ a:active {
                 <div class="list-item"><a href="#">게시글 1</a></div>
             </div>
             <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#"><</a></li>
+                <li class="page-item"><a class="page-link" href="#"> < </a></li>
                 <li class="page-item"><a class="page-link" href="#">1</a></li>
                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item"><a class="page-link" href="#">4</a></li>
                 <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item"><a class="page-link" href="#">></a></li>
+                <li class="page-item"><a class="page-link" href="#"> > </a></li>
               </ul>
         </div>
     
@@ -243,13 +243,13 @@ a:active {
                 <div class="list-item"><a href="#">문의 1</a></div>
             </div>
             <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#"><</a></li>
+                <li class="page-item"><a class="page-link" href="#"> < </a></li>
                 <li class="page-item"><a class="page-link" href="#">1</a></li>
                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item"><a class="page-link" href="#">4</a></li>
                 <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item"><a class="page-link" href="#">></a></li>
+                <li class="page-item"><a class="page-link" href="#"> > </a></li>
               </ul>
         </div>
     </div>
