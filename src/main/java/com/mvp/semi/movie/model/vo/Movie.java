@@ -14,7 +14,7 @@ public class Movie {
 	private String actor;
 	private String preview;
 	private String status;
-	private int number;
+	private double grade;
 	private String titlePath;
 	private String contentPath;
 	private int tasteNo;
@@ -24,7 +24,7 @@ public class Movie {
 
 	public Movie(int movie_no, String movieTitle, String movieContent, String genre, int playTime, String country,
 			String ageLv, String openDate, String director, int audienceCount, String actor, String preview,
-			String status, int number, String titlePath, String contentPath, int tasteNo) {
+			String status, double grade, String titlePath, String contentPath, int tasteNo) {
 		super();
 		this.movie_no = movie_no;
 		this.movieTitle = movieTitle;
@@ -39,7 +39,7 @@ public class Movie {
 		this.actor = actor;
 		this.preview = preview;
 		this.status = status;
-		this.number = number;
+		this.grade = grade;
 		this.titlePath = titlePath;
 		this.contentPath = contentPath;
 		this.tasteNo = tasteNo;
@@ -66,7 +66,7 @@ public class Movie {
 	}
 
 	public void setMovieContent(String movieContent) {
-		this.movieContent = movieContent;
+		this.movieContent = movieContent; 
 	}
 
 	public String getGenre() {
@@ -149,12 +149,12 @@ public class Movie {
 		this.status = status;
 	}
 
-	public int getNumber() {
-		return number;
+	public double getGrade() {
+		return grade;
 	}
 
-	public void setNumber(int number) {
-		this.number = number;
+	public void setGrade(double grade) {
+		this.grade = grade;
 	}
 
 	public String getTitlePath() {
@@ -186,7 +186,7 @@ public class Movie {
 		return "Movie [movie_no=" + movie_no + ", movieTitle=" + movieTitle + ", movieContent=" + movieContent
 				+ ", genre=" + genre + ", playTime=" + playTime + ", country=" + country + ", ageLv=" + ageLv
 				+ ", openDate=" + openDate + ", director=" + director + ", audienceCount=" + audienceCount + ", actor="
-				+ actor + ", preview=" + preview + ", status=" + status + ", number=" + number + ", TitlePath="
+				+ actor + ", preview=" + preview + ", status=" + status + ", grade=" + grade + ", TitlePath="
 				+ titlePath + ", ContentPath=" + contentPath + ", tasteNo=" + tasteNo + "]";
 	}
 

@@ -28,6 +28,50 @@
 	       	OR DIRECTOR LIKE '%' || ? || '%'
 	       	OR ACTOR LIKE '%' || ? || '%'
 	</entry>
+	
+	<entry key="insertMovie">
+		INSERT
+		  INTO MOVIE
+		  (
+		  	MOVIE_NO
+		  , MOVIE_TITLE
+		  , MOVIE_CONTENT
+		  , GENRE
+		  , PLAYTIME
+		  , COUNTRY
+		  , AGE_LV
+		  , OPEN_DATE
+		  , DIRECTOR
+		  , AUDIENCE_COUNT
+		  , ACTOR
+		  , PREVIEW
+		  , STATUS
+		  , GRADE
+		  , TITLE_PATH
+		  , CONTENT_PATH
+		  , TASTE_NO
+		  )
+		  VALUES
+		  (
+		  	SEQ_MOVIENO.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  )
+	</entry>
 
 
 

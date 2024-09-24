@@ -29,4 +29,20 @@ public class MovieService {
 		return list;
 	}
 	
+	public int insertMovie(Movie m) {
+		Connection conn = getConnection();
+		
+		int result = mvDao.insertMovie(conn, m);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
 }

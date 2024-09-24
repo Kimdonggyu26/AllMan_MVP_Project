@@ -7,9 +7,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.mvp.semi.common.model.vo.Attachment;
 import com.mvp.semi.common.utils.MyFileRenamePolicy;
+import com.mvp.semi.movie.model.service.MovieService;
+import com.mvp.semi.movie.model.vo.Movie;
 import com.oreilly.servlet.MultipartRequest;
 
 /**
@@ -34,19 +37,21 @@ public class MovieInsertController extends HttpServlet {
 		
 		request.setCharacterEncoding("utf-8");
 		
-		String savePath = request.getServletContext().getRealPath("/resources/movie_upfiles/");
+		String savePath = request.getServletContext().getRealPath("/resources/movie_upfiles");
 		
 		int maxSize = 10 * 1024 * 1024;	
 		
 		MultipartRequest multiRequest 
 		= new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 		
-		
+		HttpSession session = request.getSession();	
 		
 		// 영화 번호 (시퀀스)
 		String movieTitle = multiRequest.getParameter("movie-title");
 		String movieContent = multiRequest.getParameter("movie-content");
-		// 장르
+		String[] genreArr = multiRequest.getParameterValues("genre"); // ["액션", "SF"]
+		String genre = String.join(",", genreArr); // "액션,SF"
+		
 		int playTime = Integer.parseInt(multiRequest.getParameter("playtime"));
 		String country = multiRequest.getParameter("country");
 		String ageLv = multiRequest.getParameter("age-level");
@@ -56,16 +61,46 @@ public class MovieInsertController extends HttpServlet {
 		String actor = multiRequest.getParameter("actor");
 		String preview = multiRequest.getParameter("preview");
 		String status = multiRequest.getParameter("movie-status");
-		String titlePath = multiRequest.getFilesystemName("title-image");
-		String contentPath = multiRequest.getFilesystemName("content-image");
-		int grade = Integer.parseInt(multiRequest.getParameter("grade"));
-		String taste = multiRequest.getParameter("taste");
+		String titlePath = "/resources/movie_upfiles/" + multiRequest.getFilesystemName("title-image");
+		String contentPath = "/resources/movie_upfiles/" +  multiRequest.getFilesystemName("content-image");
+		double grade = Double.parseDouble(multiRequest.getParameter("grade"));
+		int tasteNo = Integer.parseInt(multiRequest.getParameter("taste"));
 		
 		
-		System.out.println(movieTitle + movieContent +  country + ageLv + openDate + director +  actor + preview + status + titlePath + contentPath + taste);
+		Movie m = new Movie();
+		m.setMovieTitle(movieTitle);
+		m.setMovieContent(movieContent);
+		m.setGenre(genre);
+		m.setPlayTime(playTime);
+		m.setCountry(country);
+		m.setAgeLv(ageLv);
+		m.setOpenDate(openDate);
+		m.setDirector(director);
+		m.setAudienceCount(audienceCount);
+		m.setActor(actor);
+		m.setPreview(preview);
+		m.setStatus(status);
+		m.setTitlePath(titlePath);
+		m.setContentPath(contentPath);
+		m.setGrade(grade);
+		m.setTasteNo(tasteNo);
+		
+		
+
+		
+		int result = new MovieService().insertMovie(m);
+		
+		if(result > 0) {
+			session.setAttribute("alertMsg", "영화 등록이 완료되었습니다.");
+			response.sendRedirect(request.getContextPath() + "/views/DG/adminMainPage.jsp");
+		}
 		
 		
 		
+		
+	System.out.println(movieTitle + ", " + movieContent + ", " + genre + ", " +  country + ", " + ageLv + ", " + openDate + ", "
+					+ director + ", " +  actor + ", " + preview + ", " + status + ", " + titlePath + ", " + contentPath + ", " + tasteNo);
+			
 		}
 
 	/**

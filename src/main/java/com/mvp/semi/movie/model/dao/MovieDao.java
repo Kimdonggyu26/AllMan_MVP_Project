@@ -72,5 +72,40 @@ public class MovieDao {
 		
 		return list;
 	}
+	
+	public int insertMovie(Connection conn, Movie m) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertMovie");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getMovieTitle());
+			pstmt.setString(2, m.getMovieContent());
+			pstmt.setString(3, m.getGenre());
+			pstmt.setInt(4, m.getPlayTime());
+			pstmt.setString(5, m.getCountry());
+			pstmt.setString(6, m.getAgeLv());
+			pstmt.setString(7, m.getOpenDate());
+			pstmt.setString(8, m.getDirector());
+			pstmt.setInt(9, m.getAudienceCount());
+			pstmt.setString(10, m.getActor());
+			pstmt.setString(11, m.getPreview());
+			pstmt.setString(12, m.getStatus());
+			pstmt.setDouble(13, m.getGrade());
+			pstmt.setString(14, m.getTitlePath());
+			pstmt.setString(15, m.getContentPath());
+			pstmt.setInt(16, m.getTasteNo());
+			
+			result = pstmt.executeUpdate();
+			System.out.println(result);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 
 }
