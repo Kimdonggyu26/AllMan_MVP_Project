@@ -1,4 +1,4 @@
-<%@ page import="com.mvp.semi.user.model.vo.User"%>
+	<%@ page import="com.mvp.semi.user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,9 +10,11 @@
 <body>
 
 <!-- Header, Nav start -->
-<%@ include file="/views/common/header.jsp"%>
-<!-- Header, Nav end -->
 
+<!-- Header, Nav end -->
+<%
+	String contextPath = request.getContextPath(); // "/web"
+%>
 
 <style>
 
@@ -102,18 +104,35 @@
 		<div>
 			<table class="found">
 				<tr>
-					<td class="p-3"><a href="">아이디 찾기</a></td>
-					<td class="p-3"><a href="">비밀번호 찾기</a></td>
-					<td class="p-3"><a href="">회원가입</a></td>
+					<td class="p-3"><a href="<%= contextPath %>/views/JM/findId.jsp">아이디 찾기 &nbsp|&nbsp  </a></td>
+					<td class="p-3"><a href="<%= contextPath %>/views/JM/findPwd.jsp">비밀번호 찾기 &nbsp | &nbsp </a></td>
+					<td class="p-3"><a href="<%= contextPath%>/views/JM/signUp.jsp ">회원가입</a></td>
 				</tr>
 			</table>
 
 		</div>
 	</div>
-
-	<!-- Footer start -->
-		 <%@ include file="/views/common/footer.jsp" %>
-	<!-- Footer end -->
+		<script> 
+		/ 모든 필드 확인 함수
+		 function checkAllFields() {
+		     const userId = $("#signup-form input[name=userId]").val();
+		     const userPwd = $("#signup-form input[name=userPwd]").val();
+		     if (userId && userPwd && confirmPwd ) {
+		         // 비밀번호 일치 여부 확인
+		         if (userPwd === confirmPwd) {
+		             $("#signup-form :submit").css("background-color", "red"); // 배경색을 빨간색으로 변경
+		         } else {
+		             checkAllrt('비밀번호가 일치하지 않습니다.');
+		         }
+		     }
+		}
+		     
+		     
+		     
+			 $("#signup-form input").on("input", function() {
+			     checkAllFields(); // 각 필드가 입력될 때마다 필드 확인 함수 호출
+			 });  
+		</script>
 </body>
 
 </html>

@@ -40,6 +40,7 @@ public class InquiryInsertController extends HttpServlet {
 		
 		String savePath = request.getServletContext().getRealPath("/resources/cs_upfiles/inquiry_upfiles");
 		
+		
 		int maxSize = 10 * 1024 * 1024;
 		
 		MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "utf-8", new MyFileRenamePolicy());

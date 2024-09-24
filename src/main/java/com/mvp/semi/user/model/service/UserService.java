@@ -71,6 +71,18 @@ public class UserService {
 		
 	}
 
+	public int deleteUser(String userId, String userPwd) {
+		Connection conn = getConnection();
+		int result = uDao.deleteUser(conn, userId, userPwd);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
 
 
 

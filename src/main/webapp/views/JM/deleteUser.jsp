@@ -33,7 +33,7 @@
     }
     .font{
       color: white;
-      width:100px;
+      width:140px;
       font-size: 20px;
       padding-left: 30px;
       
@@ -77,12 +77,18 @@
 #agree-checkbox{
   transform: scale(2);
   border: none;
-  margin-right: -5px;
+  margin-right: 
+}
+.labelfont{
+	color : white;
+	margin-reft : 50px;
+	padding-left :  20px;
+	
 }
   </style>
   
     <!-- Header, Nav start -->
-    <%-- <%@ include file="/views/common/header.jsp" %> --%>
+  <%@ include file="/views/common/header.jsp" %> 
     <!-- Header, Nav end -->
   
   	<div class="container">
@@ -113,19 +119,20 @@
               
         </div>
         <div class="checkbox">
-          <input type="checkbox" id="agree-checkbox">
-          <label for="agree-checkbox" class="font">안내 사항을 모두 확인 하였으며, 이에 동의합니다.</label>
+          <input type="checkbox" id="agree-checkbox" onclick="fnIdCheck();">
+          <label for="agree-checkbox" class="labelfont">안내 사항을 모두 확인 하였으며, 이에 동의합니다.</label>
         </div>
         
-
+					<form action="<%= contextPath %>/delete.us">
         <input type="text" class="ifound" placeholder="비밀번호 확인" >
-
-          <button id="btn">확인</button>
+		
+    	</form>      
+          <button id="btn" bisabled>확인</button>
           
         </div>
 
 	 <!-- Header, Nav start -->
-    <%-- <%@ include file="/views/common/footer.jsp" %> --%>
+     <%@ include file="/views/common/footer.jsp" %>
     <!-- Header, Nav end -->
 
 
