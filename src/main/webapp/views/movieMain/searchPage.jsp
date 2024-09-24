@@ -1,17 +1,34 @@
+<%@page import="com.mvp.semi.movie.model.vo.Movie"%>
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%
+  Map<String, Object> map = (Map<String, Object>) request.getAttribute("map");
+  Movie mv = null;
+
+  if (map != null) {
+      mv = (Movie) map.get("mv");
+  }
+%>  
+
+
+
+	
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<link rel="stylesheet" href="css/메인페이지.css">
+
 <body>
+	
 	<!-- Header, Nav start -->
 	<%@ include file="/views/common/header.jsp"%>
 	<!-- Header, Nav end -->
 
+	<link rel="stylesheet" href="<%= contextPath %>/views/movieMain/css/mainPage.css">
 	<!-- body부 시작 -->
 
 	<div id="main">
@@ -67,8 +84,10 @@
 			   </div> <!-- sidebar div 끝 -->
 			</div>
 			<!-- sidebar div 끝 -->
-
-		<div style="width: 1561px; height: 2361px; float: right; margin-top: 34px;">
+			
+			
+  <%if (mv != null) {	%>
+  		<div style="width: 1561px; height: 2361px; float: right; margin-top: 34px;">
 			<div id="text">
 				<p>상영 영화</p>
 			</div>
@@ -76,7 +95,7 @@
 				<div id="movie1-top">
 					<div class="movie1-list">
 						<div class="movie-image">
-							<img src="<%= b.getBoardContent() %>">
+							<img src="<%=contextPath + mv.getTitlePath() %>">
 						</div>
 						<div class="movie-info">
 							<div style="display: flex; align-items: center;">
@@ -704,8 +723,16 @@
 			<!-- movie2 div 끝 -->
 		</div>
 
-	</div>
-	<!-- main div 끝-->
+			</div>
+			<!-- main div 끝-->
+	
+	 <% } else {
+	      
+	  }%>
+	
+			
+
+
 
 	<!-- body부 종료 -->
 

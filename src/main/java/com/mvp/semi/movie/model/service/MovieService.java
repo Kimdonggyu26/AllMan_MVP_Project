@@ -6,7 +6,9 @@ import static com.mvp.semi.common.template.JDBCTemplate.commit;
 import static com.mvp.semi.common.template.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.mvp.semi.movie.model.dao.MovieDao;
 import com.mvp.semi.movie.model.vo.Movie;
@@ -17,16 +19,19 @@ public class MovieService {
 
 	private MovieDao mvDao = new MovieDao();
 
-	public List<Movie> searchMovieList(String searchData) {
+	public Map<String, Object> searchMovieList(String searchData) {
 		Connection conn = getConnection();
 		
-		List<Movie> list = mvDao.searchMovieList(conn, searchData);
+		Movie mv = mvDao.searchMovieList(conn, searchData);
+			
+		Map<String, Object> map = new HashMap<>();
+		map.put("mv", mv);
 		
 		close(conn);
 		
 		System.out.println("서비스 작동");
 		
-		return list;
+		return map;
 	}
 	
 	public int insertMovie(Movie m) {

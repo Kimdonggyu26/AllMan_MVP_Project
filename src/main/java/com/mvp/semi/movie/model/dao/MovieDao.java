@@ -15,9 +15,9 @@ import java.util.Properties;
 import com.mvp.semi.movie.model.vo.Movie;
 
 public class MovieDao {
-	
+
 	private Properties prop = new Properties();
-	
+
 	public MovieDao() {
 		try {
 			prop.loadFromXML(new FileInputStream(MovieDao.class.getResource("/db/mappers/movie-mapper.xml").getPath()));
@@ -27,8 +27,8 @@ public class MovieDao {
 		}
 	}
 
-	public List<Movie> searchMovieList(Connection conn , String searchData) {
-		List<Movie> list = new ArrayList<>();
+	public Movie searchMovieList(Connection conn , String searchData) {
+		Movie mv = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectMovieList");
@@ -43,25 +43,16 @@ public class MovieDao {
 			
 			rset = pstmt.executeQuery();
 			
-			while(rset.next()) {
-				list.add(new Movie(rset.getInt("MOVIE_NO")
-								 , rset.getString("MOVIE_TITLE")
-								 , rset.getString("MOVIE_CONTENT")
-								 , rset.getString("GENRE")
-								 , rset.getInt("PLAYTIME")
-								 , rset.getString("COUNTRY")
-								 , rset.getString("AGE_LV")
-								 , rset.getString("OPEN_DATE")
-								 , rset.getString("DIRECTOR")
-								 , rset.getInt("AUDIENCE_COUNT")
-								 , rset.getString("ACTOR")
-								 , rset.getString("PREVIEW")
-								 , rset.getString("STATUS")
-								 , rset.getInt("GRADE")
-								 , rset.getString("MAIN_PATH")
-								 , rset.getInt("TASTE_NO")));
+			if(rset.next()) {
+				mv = new Movie();
+				mv.setMovie_no(rset.getInt("MOVIE_NO"));
+				mv.setMovieTitle(rset.getString("MOVIE_TITLE"));
+				mv.setGenre(rset.getString("GENRE")); 
+				mv.setDirector(rset.getString("DIRECTOR")); 
+				//상세페이지 이미지 경로 속성 추가로
+				//나중에 디비 재 설정시 MAIN_PATH -> titlePath로 vo 변경
+				mv.setTitlePath(rset.getString("MAIN_PATH"));
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -70,14 +61,14 @@ public class MovieDao {
 		}
 		System.out.println("dao 작동");
 		
-		return list;
+		return mv;
 	}
-	
+
 	public int insertMovie(Connection conn, Movie m) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertMovie");
-		
+
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, m.getMovieTitle());
@@ -96,7 +87,7 @@ public class MovieDao {
 			pstmt.setString(14, m.getTitlePath());
 			pstmt.setString(15, m.getContentPath());
 			pstmt.setInt(16, m.getTasteNo());
-			
+
 			result = pstmt.executeUpdate();
 			System.out.println(result);
 		} catch (SQLException e) {
@@ -104,7 +95,7 @@ public class MovieDao {
 		} finally {
 			close(pstmt);
 		}
-		
+
 		return result;
 	}
 

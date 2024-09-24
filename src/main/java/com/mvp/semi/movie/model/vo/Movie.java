@@ -45,6 +45,19 @@ public class Movie {
 		this.tasteNo = tasteNo;
 	}
 
+	
+	
+
+	public Movie(int movie_no, String movieTitle, String genre, String director, double grade, String titlePath) {
+		super();
+		this.movie_no = movie_no;
+		this.movieTitle = movieTitle;
+		this.genre = genre;
+		this.director = director;
+		this.grade = grade;
+		this.titlePath = titlePath;
+	}
+
 	public int getMovie_no() {
 		return movie_no;
 	}
