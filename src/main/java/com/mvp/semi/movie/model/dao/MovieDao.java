@@ -100,13 +100,89 @@ public class MovieDao {
 		return result;
 	}
 	
-//	public List<Movie> selectMovieList(Connection conn) {
-//		
-//		List<Movie> list = new ArrayList<>();
-//		PreparedStatement pstmt = null;
-//		ResultSet rset = null;
-//		String sql = prop.getProperty("selectMovieList");
-//	}
+	public List<Movie> selectShowingMovieList(Connection conn) {
+		
+		List<Movie> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectShowingMovieList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Movie(rset.getInt("movie_no")
+								 , rset.getString("movie_title")
+								 , rset.getString("movie_content")
+								 , rset.getString("genre")
+								 , rset.getInt("playtime")
+								 , rset.getString("country")
+								 , rset.getString("age_lv")
+								 , rset.getString("open_date")
+								 , rset.getString("director")
+								 , rset.getInt("audience_count")
+								 , rset.getString("actor")
+								 , rset.getString("preview")
+								 , rset.getString("status")
+								 , rset.getDouble("grade")
+								 , rset.getString("title_path")
+								 , rset.getString("content_path")
+								 , rset.getInt("taste_no")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
+	public List<Movie> selectOttMovieList(Connection conn) {
+		
+		List<Movie> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectOttMovieList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Movie(rset.getInt("movie_no")
+								 , rset.getString("movie_title")
+								 , rset.getString("movie_content")
+								 , rset.getString("genre")
+								 , rset.getInt("playtime")
+								 , rset.getString("country")
+								 , rset.getString("age_lv")
+								 , rset.getString("open_date")
+								 , rset.getString("director")
+								 , rset.getInt("audience_count")
+								 , rset.getString("actor")
+								 , rset.getString("preview")
+								 , rset.getString("status")
+								 , rset.getDouble("grade")
+								 , rset.getString("title_path")
+								 , rset.getString("content_path")
+								 , rset.getInt("taste_no")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
+	
 	
 	
 

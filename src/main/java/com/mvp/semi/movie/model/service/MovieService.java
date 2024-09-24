@@ -50,10 +50,23 @@ public class MovieService {
 		return result;
 	}
 	
-	public List<Movie> selectMovieList(){
+	public List<Movie> selectShowingMovieList(){
 		Connection conn = getConnection();
-		List<Movie> list = mvDao.selectMovieList(conn);
+		
+		List<Movie> list = mvDao.selectShowingMovieList(conn);
+		
 		close(conn);
+		
+		return list;
+	}
+	
+	public List<Movie> selectOttMovieList(){
+		Connection conn = getConnection();
+		
+		List<Movie> list = mvDao.selectOttMovieList(conn);
+		
+		close(conn);
+		
 		return list;
 	}
 	

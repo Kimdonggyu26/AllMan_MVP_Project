@@ -23,10 +23,10 @@
 #body-right{
   width: 1074px;
   height: 834px;
-  font-size: 20px;
   font-weight: 600;
 }
 #body-right-title{
+	font-size: 20px;
   width: 1059px;
   height: 38px;
   display: flex;
@@ -141,12 +141,15 @@
   height: 522px;
 }
 .list-head{
+	width: 1078px;
+  height: 40px;
   font-size: 14px;
   background-color: #F0F0F0;
   border: 1px solid #131313;
   border-left: 0px;
   border-right: 0px;
   display: flex;
+  align-items: center;
 }
 #list td{
   width: 1078px;
@@ -169,7 +172,7 @@
   height: 21px;
 }
 .list-ageLv{
-  width: 204px;
+  width: 170px;
   height: 21px;
 }
 .list-date{
@@ -186,4 +189,9 @@
 }
 .checkbox-list label{
   width: 120px;
+}
+#movie-list td{
+	width: 1078px;
+	height: 40px;
+	align-items: center;
 }
