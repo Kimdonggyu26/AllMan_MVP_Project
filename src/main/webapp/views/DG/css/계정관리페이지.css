@@ -1,0 +1,189 @@
+#body{
+  width: 1920px;
+  height: 980px;
+  font-family: pretendard;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+#main{
+  width: 1920px;
+  height: 1080px;
+}
+#head{
+  width: 1920px;
+  height: 100px;
+  background-color: #82B9EB;
+  display: flex;
+  align-items: center;
+  gap: 844px;
+  color: white;
+  font-size: 25px;
+}
+#body-right{
+  width: 1074px;
+  height: 834px;
+  font-size: 20px;
+  font-weight: 600;
+}
+#body-right-title{
+  width: 1059px;
+  height: 38px;
+  display: flex;
+  flex-direction: row;
+  gap: 690px;
+  justify-content: flex-end;
+}
+.table-title{
+  background-color: #EAF2FD;
+  width: 176px;
+  height: 58px;
+  text-align: center;
+  font-size: 18px;
+}
+.checkbox-list input{
+  width: 18px;
+  height: 18px;
+}
+#body-main  hr{
+  width: 20px;
+  margin: 0%;
+  margin-top: 18px;
+  border-color: #ABABAB;
+}
+.checkbox-list{
+  height: 30px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+  gap: 20px;
+}
+#search{
+  width: 134px;
+  height: 30px;
+  background-color: #2F80ED; 
+  border-radius: 14px;
+  color: #ffffff;
+  font-size: 14px;
+  border: 0px; 
+  font-weight: bold;
+  margin-left: 42px;
+}
+#reset{
+  width: 134px;
+  height: 30px;
+  background-color: #ABABAB; 
+  border-radius: 14px;
+  color: #ffffff;
+  font-size: 14px;
+  border: 0px; 
+  font-weight: bold;
+  margin-left: 20px;
+}
+#body-left{
+  width: 198px; 
+  height: 980px;
+}
+#sidebar{
+  width: 160px;
+  height: 457px;
+  margin-top: 62px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+}
+#sidebar div{
+  width: 160px;
+  height: 85px;
+  border-radius: 5px;
+  border: 1px solid #00000050;
+  border-left: 0px;
+  border-right: 0px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#body-main-list{
+  width: 1078px;
+  height: 567px;
+}
+#list-category{
+  width: 1078px;
+  height: 45px;
+  display: flex;
+
+}
+#list-category div{
+  width: 160.5px;
+  height: 45px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#list-category button{
+  width: 85px;
+  height: 32px;
+  border-radius: 14px;
+  font-size: 14px;
+  color: white;
+  border: 0px;
+  margin-top: 5px;
+}
+#list{
+  width: 1078px;
+  height: 522px;
+}
+.list-head{
+  font-size: 14px;
+  background-color: #F0F0F0;
+  border: 1px solid #131313;
+  border-left: 0px;
+  border-right: 0px;
+  display: flex;
+}
+#list td{
+  width: 1078px;
+  height: 40px;
+  align-items: center;
+  font-size: 14px;
+  padding: 0%;
+  cursor: pointer;
+}
+.list-content{
+  display: flex;
+}
+.list-num{
+  margin-left: 58px;
+  width: 104px;
+  height: 21px;
+}
+.list-title{
+  width: 551px;
+  height: 21px;
+}
+.list-admin{
+  width: 204px;
+  height: 21px;
+}
+.list-date{
+  width: 97px;
+  height: 21px;
+}
+.show-movie{
+  background-color: #569EFF;
+  cursor: pointer;
+}
+.ott-movie{
+  background-color: #EBEBEB;
+  cursor: pointer;
+}
+.checkbox-list label{
+  width: 120px;
+}

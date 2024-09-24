@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<% String contextPath = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,83 +20,11 @@
     
     <!-- 커스텀 CSS 로드 -->
     <link rel="stylesheet" href="css/관리자메인페이지.css">
-    
-    <style>
-				body{
-				    	font-family: pretendard;
-				    	font-weight: bold;
-				    	width: 1280px;
-				    }
-				#myModal{
-				    width: 760px;
-				    height: 900px;
-				    margin-left: 580px;
-				    overflow: hidden;
-				}
-				#modal-body{
-				    width: 708px;
-				    height: 694px;
-				}
-				.modal-checkbox-list{
-				  width: 805px;
-				  height: 30px;
-				  font-size: 13px;
-				  display: flex;
-				  gap: 26px;
-				  flex-direction: row;
-				  margin-left: 60px;
-				}
-				.modal-body-bottom{
-				  width: 691px;
-				  height: 434px;
-				  display: flex;
-				  margin-top: 20px;
-				}
-				.modal-body-bottom input{
-					width: 200px;
-					height: 20px;
-				}
-				.modal-body-bottom-left{
-				  width: 340px;
-				  height: 184px;
-				  display: flex;
-				  flex-direction: column;
-				  gap: 20px;
-				  font-size: 14px;
-				  margin-top: 20px;
-				}
-				#bottom-left-title{
-					
-				}
-				.modal-body-bottom-right{
-				  width: 278px;
-				  height: 184px;
-				  display: flex;
-				  flex-direction: column;
-				  gap: 20px;
-				  font-size: 14px;
-				  margin-top: 20px;
-				}
-				.modal-content{
-				  border: 2px solid #2F80ED;
-				}
-				.modal-footer{
-				  margin-bottom: 30px;
-				}
-				.img-preview {border: 1px solid lightgray}
-				.title-img {width: 150px; height:180px;}
-				.content-img {width: 300px; height: 150px;}
-    </style>
 </head>
-
 <body>
 
-	<%
-		// web
-    String contextPath = request.getContextPath();
-		// alertMsg
-		String alertMsg = (String)session.getAttribute("alertMsg");
-	 %>
+	<!-- alertMsg -->
+	<%String alertMsg = (String)session.getAttribute("alertMsg"); %>
 	<% if(alertMsg !=null) { %>
 		<script>
 		 alert('<%= alertMsg %>');
@@ -121,9 +49,9 @@
         <div id="body">
           <div id="body-left">  
             <div id="sidebar">
-              <div name="adminMainPage" style="background-color: #D2E5FF;"><img src="<%=contextPath%>/assets/image/adminPage/tv_logo.png">&nbsp;영화 관리</div> <!-- 기본 페이지이기 때문에 색 입혀놓음 -->
+              <div name="adminMainPage"><img src="<%=contextPath%>/assets/image/adminPage/tv_logo.png">&nbsp;영화 관리</div> <!-- 기본 페이지이기 때문에 색 입혀놓음 -->
               <div name="accountManage"><img src="<%=contextPath%>/assets/image/adminPage/people_logo.png">&nbsp;계정 관리</div>
-              <div name="boardManage"><img src="<%=contextPath%>/assets/image/adminPage/board_logo.png">&nbsp;게시판 관리</div>
+              <div name="boardManage" style="background-color: #D2E5FF;"><img src="<%=contextPath%>/assets/image/adminPage/board_logo.png">&nbsp;게시판 관리</div>
               <div name="reviewManage"><img src="<%=contextPath%>/assets/image/adminPage/reply_logo.png">&nbsp;리뷰 관리</div>
               <div name="customerManage"><img src="<%=contextPath%>/assets/image/adminPage/question_logo.png">&nbsp;고객 지원</div>
             </div>
@@ -131,7 +59,7 @@
 	
           <div id="body-right">
             <div id="body-right-title">
-              <span>영화관리</span>
+              <span>게시판관리</span>
               <div style="width: 280px; height: 32px;">
                 <img src="<%=contextPath%>/assets/image/adminPage/user_logo.png">
                 <span>000관리자님 환영합니다.</span>
@@ -595,7 +523,6 @@
 			        				// console.log(chooseSidebar);
 			        				
 			        				window.location.href = "<%=contextPath%>/views/DG/" + chooseSidebar + ".jsp";
-			        				this.style.backgroundColor ="#D2E5FF";
 			        			})
 			        		})
 			        	
