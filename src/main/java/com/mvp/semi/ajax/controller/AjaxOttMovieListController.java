@@ -9,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.mvp.semi.movie.model.service.MovieService;
 import com.mvp.semi.movie.model.vo.Movie;
 
 /**
  * Servlet implementation class AjaxMovieListController
  */
-@WebServlet("/AjaxMovieListController.do")
-public class AjaxMovieListController extends HttpServlet {
+@WebServlet("/ott.mv")
+public class AjaxOttMovieListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxMovieListController() {
+    public AjaxOttMovieListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,8 +33,12 @@ public class AjaxMovieListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Movie> list = new MovieService().selectMovieList();
+		List<Movie> list = new MovieService().selectShowingMovieList();
 		
+		
+		
+		response.setContentType("application/json; charset=UTF-8");
+		new Gson().toJson(list, response.getWriter());
 	}
 
 	/**
