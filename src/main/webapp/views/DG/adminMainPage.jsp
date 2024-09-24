@@ -96,6 +96,8 @@
     String contextPath = request.getContextPath();
 		// alertMsg
 		String alertMsg = (String)session.getAttribute("alertMsg");
+		
+		// User loginUser = (User)session.getAttribute("loginUser");
 	 %>
 	<% if(alertMsg !=null) { %>
 		<script>
@@ -211,7 +213,7 @@
 	            
               <div id="body-main-list">
                 <div id="list-category">
-                  <div class="show-movie">상영중인 영화</div>
+                  <div class="show-movie" onclick="movieList();">상영중인 영화</div>
                   <div class="ott-movie">OTT 영화</div>
                   <button type="button" style="background-color: #2F80ED; margin-left: 525px;"  data-toggle="modal" data-target="#insert-movie" >+ 등록</button>
                   <button type="button" style="background-color: #F25858; margin-left: 15px;">- 삭제</button>
@@ -220,7 +222,7 @@
                   <table>
                     <tr>
                       <td class="list-head">
-                        <input type="checkbox" style="width: 18px; height: 18px; margin-left: 45px;"></input>
+                        <input type="checkbox" style="width: 18px; height: 18px; margin-left: 45px;">
                         <div style="margin-left: 58px;">NO</div>
                         <div style="margin-left: 85px;">제목</div>
                         <div style="margin-left: 526px;">담당자</div>
@@ -229,135 +231,36 @@
                     <tr>
                       <td class="list-content">
                         <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
+                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;">
                         </div>
                         <div class="list-num">영화번호</div>
                         <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
+                        <div class="list-ageLv">등급</div>
+                        <div class="list-date">개봉일</div>
                       </td>
                     </tr>
-                    <tr>
-                      <td class="list-content" style="background-color: #F0F0F0a1;">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content" style="background-color: #F0F0F0a1;">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content" style="background-color: #F0F0F0a1;">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content" style="background-color: #F0F0F0a1;">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content" style="background-color: #F0F0F0a1;">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content" style="background-color: #f0f0f0a1;">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
+										<script>
+											function movieList(res) {
+												$.ajax({
+																url : 'AjaxMovieListController.do',
+																success: function(res){
+																	let divEl = '';
+																	for(let i = 0; i < res.length; i++){
+																		divEl += '<tr>'
+																								+ '<td class="list-content">'
+																									 + '<div><input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></div>'
+																									 + '<div class="list-num">' + res[i].movieNo + '</div>'
+																									 + '<div class="list-title">' + res[i].movieTitle + '</div>'
+																									 + '<div class="list-ageLv">' + res[i].ageLv + '</div>'
+																									 + '<div class="list-date">' + res[i].openDate + '</div>'
+																								+ '</td>'	 
+																					 + '</tr>';
+																	}
+																}
+												})
+											}
+										</script>
+
                   </table>
                 </div> <!-- list div 끝 -->
               </div> <!-- body-main-list 끝 -->

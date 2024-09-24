@@ -77,4 +77,15 @@
 			 WHERE 
 			 				USER_NICKNAME = ?
 			 	</entry>
+			 	
+		<entry key="deleteMember">
+		UPDATE
+					 USERS
+			 SET
+			 		 STATUS = 'U'
+			 	 , MODIFY_DATE = SYSDATE
+		 WHERE 
+		 			 USER_ID = ?
+		 	 AND USER_PWD = ?
+	</entry>
 </properties>
