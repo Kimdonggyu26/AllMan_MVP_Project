@@ -5,7 +5,6 @@ import static com.mvp.semi.common.template.JDBCTemplate.getConnection;
 import static com.mvp.semi.common.template.JDBCTemplate.commit;
 import static com.mvp.semi.common.template.JDBCTemplate.rollback;
 
-
 import java.lang.reflect.Member;
 import java.sql.Connection;
 import java.util.Map;
@@ -19,7 +18,7 @@ public class UserService {
 
 	public User loginUser(String userId, String userPwd) {
 		Connection conn = getConnection();
-		 User result = uDao.loginUser(conn, userId, userPwd);
+		User result = uDao.loginUser(conn, userId, userPwd);
 
 		close(conn);
 		return result;
@@ -27,19 +26,18 @@ public class UserService {
 
 	public int insertUser(User u) {
 		Connection conn = getConnection();
-		int result = uDao.insertUser(conn, u);//이름 변경해주시고 , 매개변수 conn, u_Id만 들어가는 쿼리문 (0 or 1)
-		
-		
-		if(result > 0) {
+		int result = uDao.insertUser(conn, u);// 이름 변경해주시고 , 매개변수 conn, u_Id만 들어가는 쿼리문 (0 or 1)
+
+		if (result > 0) {
 			commit(conn);
-		}else {
+		} else {
 			rollback(conn);
 		}
-		
+
 		close(conn);
-		
+
 		return result;
-		
+
 	}
 
 	public int idCheck(String checkId) {
@@ -54,29 +52,29 @@ public class UserService {
 		User updatenick = null;
 		int count = uDao.selectUserByNick(conn, u.getUserNick());
 		int result2 = 0;
-		
-		if(count == 0) {
+
+		if (count == 0) {
 			result2 = uDao.updatenick(conn, u);
-			
-			if(result2 > 0 ) {
+
+			if (result2 > 0) {
 				commit(conn);
-			}else {
+			} else {
 				rollback(conn);
 			}
 		}
-			
+
 		close(conn);
-		
+
 		return result2;
-		
+
 	}
 
 	public int deleteUser(String userId, String userPwd) {
 		Connection conn = getConnection();
 		int result = uDao.deleteUser(conn, userId, userPwd);
-		if(result > 0) {
+		if (result > 0) {
 			commit(conn);
-		}else {
+		} else {
 			rollback(conn);
 		}
 		close(conn);
@@ -84,21 +82,13 @@ public class UserService {
 	}
 
 	public User finduserId(String email) {
-	      Connection conn = getConnection();
-	      
-	      User result = new UserDao().finduserId(conn,email);
-	      close(conn);
-	      return result;
-	      
+		Connection conn = getConnection();
+
+		User uId = new UserDao().finduserId(conn, email);
+		close(conn);
+		return uId;
+
 	}
-
-
-
-
-	
-
-	
-
 
 	/*
 	 * public Member updateMember(Member m) {
