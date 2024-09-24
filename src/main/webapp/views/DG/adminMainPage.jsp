@@ -201,66 +201,91 @@
 	                </td>
 	              </tr>
 	              <tr>
-	                <td class="table-title">검색</td> 
+                	<td class="table-title">검색</td> 
 	                <td style="display: flex;">
 	                  <input type="text" class="form-control" placeholder="검색어를 입력하세요." style="width: 311px; height: 31px; font-size: 14px;">
 	                  <button id="search">검색</button>
 	                  <button id="reset">초기화</button>
 	                </td>
 	              </tr>
-	            	</tbody>
-	            </table>
+            	</tbody>
+            </table>
 	            
-              <div id="body-main-list">
-                <div id="list-category">
-                  <div class="show-movie" onclick="movieList();">상영중인 영화</div>
-                  <div class="ott-movie">OTT 영화</div>
-                  <button type="button" style="background-color: #2F80ED; margin-left: 525px;"  data-toggle="modal" data-target="#insert-movie" >+ 등록</button>
-                  <button type="button" style="background-color: #F25858; margin-left: 15px;">- 삭제</button>
-                </div>
-                <div id="list">
-                  <table>
-                    <tr>
-                      <td class="list-head">
-                        <input type="checkbox" style="width: 18px; height: 18px; margin-left: 45px;">
-                        <div style="margin-left: 58px;">NO</div>
-                        <div style="margin-left: 85px;">제목</div>
-                        <div style="margin-left: 526px;">담당자</div>
-                        <div style="margin-left: 167px;">등록일</div>
-                      </td>
-                    <tr>
-                      <td class="list-content">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;">
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-ageLv">등급</div>
-                        <div class="list-date">개봉일</div>
-                      </td>
-                    </tr>
-										<script>
-											function movieList(res) {
-												$.ajax({
-																url : 'AjaxMovieListController.do',
-																success: function(res){
-																	let divEl = '';
-																	for(let i = 0; i < res.length; i++){
-																		divEl += '<tr>'
-																								+ '<td class="list-content">'
-																									 + '<div><input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></div>'
-																									 + '<div class="list-num">' + res[i].movieNo + '</div>'
-																									 + '<div class="list-title">' + res[i].movieTitle + '</div>'
-																									 + '<div class="list-ageLv">' + res[i].ageLv + '</div>'
-																									 + '<div class="list-date">' + res[i].openDate + '</div>'
-																								+ '</td>'	 
-																					 + '</tr>';
-																	}
-																}
-												})
-											}
-										</script>
-
+            <div id="body-main-list">
+	            <div id="list-category">
+	              <div class="show-movie" onclick="showingMovieList();">상영중인 영화</div>
+	              <div class="ott-movie" onclick="ottMovieList();">OTT 영화</div>
+	              <button type="button" style="background-color: #2F80ED; margin-left: 525px;"  data-toggle="modal" data-target="#insert-movie" >+ 등록</button>
+	              <button type="button" style="background-color: #F25858; margin-left: 15px;">- 삭제</button>
+	            </div>
+                    
+              <div class="list-head">
+                <div style="width: 64px; height: 18px;"><input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></div>
+                <div style="margin-left: 58px;">NO</div>
+                <div style="margin-left: 85px;">제목</div>
+                <div style="margin-left: 526px;">등급</div>
+                <div style="margin-left: 167px;">개봉일</div>
+              </div>
+                    
+              <table id="movie-list">
+              
+								<script>
+								
+								// 클릭시 상영중인 영화 조회
+									function showingMovieList() {
+										$.ajax({
+														url : '<%=contextPath%>/showing.mv',
+														success: function(res){
+																		console.log(res);
+																		
+																		let divEl = '';
+																		for(let i = 0; i < res.length; i++){
+																			divEl += '<tr>'
+																									+ '<td class="list-content">'
+																										 + '<div><input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></div>'
+																										 + '<div class="list-num">' + res[i].movieNo + '</div>'
+																										 + '<div class="list-title">' + res[i].movieTitle + '</div>'
+																										 + '<div class="list-ageLv">' + res[i].ageLv + '</div>'
+																										 + '<div class="list-date">' + res[i].openDate + '</div>'
+																									+ '</td>'	 
+																						 + '</tr>';
+																		}
+															$('#movie-list').html(divEl);
+														},
+														error: function(){
+															console.log("실패");
+														}
+										})
+									}
+									
+									// 클릭 시 ott 영화 조회
+									function ottMovieList() {
+										$.ajax({
+														url : '<%=contextPath%>/ott.mv',
+														success: function(res){
+																		console.log(res);
+																		
+																		let divEl = '';
+																		for(let i = 0; i < res.length; i++){
+																			divEl += '<tr>'
+																									+ '<td class="list-content">'
+																										 + '<div><input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></div>'
+																										 + '<div class="list-num">' + res[i].movieNo + '</div>'
+																										 + '<div class="list-title">' + res[i].movieTitle + '</div>'
+																										 + '<div class="list-ageLv">' + res[i].ageLv + '</div>'
+																										 + '<div class="list-date">' + res[i].openDate + '</div>'
+																									+ '</td>'	 
+																						 + '</tr>';
+																		}
+															$('#movie-list').html(divEl);
+														},
+														error: function(){
+															console.log("실패");
+														}
+										})
+									}
+								</script>
+										
                   </table>
                 </div> <!-- list div 끝 -->
               </div> <!-- body-main-list 끝 -->
@@ -444,8 +469,8 @@
 			              <div style="display: flex; gap: 30px;">
 			              	<div style="width: 42px; height: 17px;"><p>상태</p></div>
 			                <select id="movie-status" class="form-select" name="movie-status">
-			                  <option value="showing">현재상영중인영화</option>
-			                  <option value="ott">OTT영화</option>
+			                  <option value="10">현재상영중인영화</option>
+			                  <option value="20">OTT영화</option>
 			                </select>
 			              </div>
 			              <div style="display: flex; gap: 30px;">
