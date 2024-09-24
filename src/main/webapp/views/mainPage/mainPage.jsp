@@ -76,11 +76,7 @@
 				<div id="movie1-top">
 					<div class="movie1-list">
 						<div class="movie-image">
-<<<<<<< Updated upstream
-							<img src="<%= b.getBoardContent() %>">
-=======
 							<img src="<%= contextPath %>">
->>>>>>> Stashed changes
 						</div>
 						<div class="movie-info">
 							<div style="display: flex; align-items: center;">

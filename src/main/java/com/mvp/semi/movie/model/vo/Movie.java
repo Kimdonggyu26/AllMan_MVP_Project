@@ -45,6 +45,7 @@ public class Movie {
 		this.tasteNo = tasteNo;
 	}
 
+<<<<<<< Updated upstream
 	
 	
 
@@ -56,6 +57,30 @@ public class Movie {
 		this.director = director;
 		this.grade = grade;
 		this.titlePath = titlePath;
+=======
+
+
+	public Movie(int movie_no, String movieTitle, String movieContent, String genre, int playTime, String country,
+			String ageLv, String openDate, String director, int audienceCount, String actor, String preview,
+			String status, int number, String titlePath, int tasteNo) {
+		super();
+		this.movie_no = movie_no;
+		this.movieTitle = movieTitle;
+		this.movieContent = movieContent;
+		this.genre = genre;
+		this.playTime = playTime;
+		this.country = country;
+		this.ageLv = ageLv;
+		this.openDate = openDate;
+		this.director = director;
+		this.audienceCount = audienceCount;
+		this.actor = actor;
+		this.preview = preview;
+		this.status = status;
+		this.number = number;
+		this.titlePath = titlePath;
+		this.tasteNo = tasteNo;
+>>>>>>> Stashed changes
 	}
 
 	public int getMovie_no() {

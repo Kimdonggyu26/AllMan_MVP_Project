@@ -18,13 +18,13 @@ import com.mvp.semi.movie.model.vo.Movie;
  * Servlet implementation class MovieSearch
  */
 @WebServlet("/movieSearch.ms")
-public class MovieSearchController extends HttpServlet {
+public class MovieListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MovieSearchController() {
+    public MovieListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,6 +35,7 @@ public class MovieSearchController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//검색에 영화, 감독, 배우, 장르
+		
 		
 		String searchData = request.getParameter("movieSearchData");
 		
@@ -63,6 +64,11 @@ public class MovieSearchController extends HttpServlet {
 			request.getRequestDispatcher("/views/movieMain/mainPage.jsp").forward(request, response);
 		}
 		
+<<<<<<< Updated upstream:src/main/java/com/mvp/semi/movie/controller/MovieSearchController.java
+=======
+		System.out.println(list);
+		new asdsadas().TasteAlorithm();
+>>>>>>> Stashed changes:src/main/java/com/mvp/semi/movie/controller/MovieListController.java
 	}
 
 	/**
