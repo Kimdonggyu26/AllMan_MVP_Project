@@ -307,7 +307,10 @@
 				<div id="movie1-top">
 					<div class="movie1-list">
 						<div class="movie-image">
-							<img src="./assets/image/movie_image/movie_image_1.png">
+
+
+							<img src="<%= contextPath %>">
+
 						</div>
 						<div class="movie-info">
 							<div style="display: flex; align-items: center;">

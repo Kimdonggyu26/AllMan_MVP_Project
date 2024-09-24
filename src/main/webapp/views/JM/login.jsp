@@ -98,7 +98,7 @@
 				<br> 
 				<input type="password" placeholder="비밀번호" id="pass" name="userPwd" value="" required>
 				<br>
-				<button type="submit" id="login-out" value="">로그인하기</button>
+				<button type="submit" id="login-out" value="" >로그인하기</button>
 			</div>
 		</form>
 		<div>
@@ -112,27 +112,8 @@
 
 		</div>
 	</div>
-		<script> 
-		/ 모든 필드 확인 함수
-		 function checkAllFields() {
-		     const userId = $("#signup-form input[name=userId]").val();
-		     const userPwd = $("#signup-form input[name=userPwd]").val();
-		     if (userId && userPwd && confirmPwd ) {
-		         // 비밀번호 일치 여부 확인
-		         if (userPwd === confirmPwd) {
-		             $("#signup-form :submit").css("background-color", "red"); // 배경색을 빨간색으로 변경
-		         } else {
-		             checkAllrt('비밀번호가 일치하지 않습니다.');
-		         }
-		     }
-		}
-		     
-		     
-		     
-			 $("#signup-form input").on("input", function() {
-			     checkAllFields(); // 각 필드가 입력될 때마다 필드 확인 함수 호출
-			 });  
-		</script>
+
+		
 </body>
 
 </html>

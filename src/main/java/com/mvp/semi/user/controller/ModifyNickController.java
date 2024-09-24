@@ -1,6 +1,7 @@
 package com.mvp.semi.user.controller;
 
 import java.io.IOException;
+import java.io.File;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mvp.semi.common.utils.MyFileRenamePolicy;
 import com.mvp.semi.user.model.service.UserService;
 import com.mvp.semi.user.model.vo.User;
+import com.oreilly.servlet.MultipartRequest;
 
 /**
  * Servlet implementation class ModifyNickController
@@ -37,6 +40,9 @@ public class ModifyNickController extends HttpServlet {
 		String userId = request.getParameter("userId");
 				
 		String userNick = request.getParameter("usernick");
+		HttpSession session = request.getSession();
+		
+		
 		
 		System.out.println(userNick);
 		
@@ -52,7 +58,6 @@ public class ModifyNickController extends HttpServlet {
 			request.setAttribute("msg","닉네임 변경 실패");
 			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
 		}else {
-			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", userNick);
 			
 			
@@ -60,6 +65,16 @@ public class ModifyNickController extends HttpServlet {
 		
 			response.sendRedirect(request.getContextPath() + "/views/DG/mainPage.jsp");
 		}
+		
+		String savePath = request.getServletContext().getRealPath("/resources/user_upfiles");
+		
+		
+		int maxSize = 10 * 1024 * 1024;
+		
+		MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "utf-8", new MyFileRenamePolicy());
+		
+		String userprofile = multiRequest.getParameter("profile");
+		u.setUserprofile(userprofile);
 		
 	}
 

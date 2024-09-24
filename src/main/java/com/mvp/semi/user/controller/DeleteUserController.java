@@ -35,7 +35,7 @@ public class DeleteUserController extends HttpServlet {
 		// 1. 요청
 		String userPwd = request.getParameter("userPwd");
 		HttpSession session = request.getSession();
-		String userId = ((User)session.getAttribute("loginUser")).getUserId();
+		String userId = ((User) session.getAttribute("loginUser")).getUserId();
 		
 		int result = new UserService().deleteUser(userId, userPwd);
 		

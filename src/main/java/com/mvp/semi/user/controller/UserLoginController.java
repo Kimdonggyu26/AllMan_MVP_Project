@@ -18,39 +18,43 @@ import com.mvp.semi.user.model.vo.User;
 @WebServlet("/login.us")
 public class UserLoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UserLoginController() {
-        super();
-
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public UserLoginController() {
+		super();
 
-		
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		request.setCharacterEncoding("UTF-8");
-
 
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		System.out.println(userId + userPwd);
-		User loginUser = new UserService().loginUser(userId,userPwd);
 		
-		System.out.println(loginUser.toString());
-		
-		if(loginUser == null) {
-			request.setAttribute("msg", "로그인실패");
-			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
-		}else {
+		User loginUser = new UserService().loginUser(userId, userPwd);
+		System.out.println(loginUser);
+
+		if (loginUser == null) {
+			request.setAttribute("alerMsg", "로그인실패");
+			request.getRequestDispatcher("views/JM/login.jsp");
+			
+			// 만약 로그인 페이지로 작동 x
+			// 다시 로그인 페이지 경로 잡아주기
+		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
-			
-			request.getRequestDispatcher("/views/DG/mainPage.jsp").forward(request, response); // 페이지 이동
+
+			/* response.sendRedirect(request.getContextPath()); */
+			request.getRequestDispatcher("/views/JM/deleteUser.jsp").forward(request, response);
 		}
 	}
 
@@ -61,5 +65,4 @@ public class UserLoginController extends HttpServlet {
 
 		doGet(request, response);
 	}
-
 }
