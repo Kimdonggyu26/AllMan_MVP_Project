@@ -93,13 +93,16 @@ public class MovieInsertController extends HttpServlet {
 		if(result > 0) {
 			session.setAttribute("alertMsg", "영화 등록이 완료되었습니다.");
 			response.sendRedirect(request.getContextPath() + "/views/DG/adminMainPage.jsp");
+		}else {
+			session.setAttribute("alertMsg", "영화 등록에 실패하였습니다. 다시 시도해주세요.");
+			response.sendRedirect(request.getContextPath() + "/views/DG/adminMainPage.jsp");
 		}
 		
 		
 		
 		
-	System.out.println(movieTitle + ", " + movieContent + ", " + genre + ", " +  country + ", " + ageLv + ", " + openDate + ", "
-					+ director + ", " +  actor + ", " + preview + ", " + status + ", " + titlePath + ", " + contentPath + ", " + tasteNo);
+//	System.out.println(movieTitle + ", " + movieContent + ", " + genre + ", " +  country + ", " + ageLv + ", " + openDate + ", "
+//					+ director + ", " +  actor + ", " + preview + ", " + status + ", " + titlePath + ", " + contentPath + ", " + tasteNo);
 			
 		}
 
