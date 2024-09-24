@@ -250,7 +250,6 @@ public class InquiryDao {
 			pstmt.setString(1, i.getInquiryType());
 			pstmt.setString(2, i.getInquiryTitle());
 			pstmt.setString(3, i.getInquirycontent());
-			pstmt.setDate(4, i.getRegistDate());
 			pstmt.setString(4, i.getUserNo());
 			
 			result = pstmt.executeUpdate();

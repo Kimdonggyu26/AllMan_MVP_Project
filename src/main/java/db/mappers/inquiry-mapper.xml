@@ -133,13 +133,11 @@
 						, INQUIRY_TYPE
 						, INQUIRY_TITLE
 						, INQUIRY_CONTENT
-						, REGIST_DATE
 						, USER_NO
 					)
 					VALUES
 					(
 							SEQ_INQUIRYNO.NEXTVAL
-						, ?
 						, ?
 						, ?
 						, ?

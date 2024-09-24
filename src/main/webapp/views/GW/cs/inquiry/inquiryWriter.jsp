@@ -29,13 +29,13 @@
           <!-- 아이디 -->
           <div class="form-group" id="id-bar">
               *<label>아이디</label>
-              <input type="text" value="user01"  readonly>
+              <input type="text" value="user01"  readonly>	<!-- value 값 context로 유저 아이디 들어가게 바꾸기 -->
           </div>
 
           <!-- 문의 유형 -->
           <div class="form-group" id="select-bar">
               *<label style=>문의 유형</label>
-              <select>
+              <select name="category">
                   <option>문의 유형</option>
                   <option value="일반문의">일반 문의</option>
                   <option value="기술문의">기술 문의</option>
@@ -46,7 +46,7 @@
           <!-- 문의 제목 -->
           <div class="form-group" id="iq-title">
               *<label>문의 제목</label>
-              <input type="text" name="title placeholder="문의 제목">
+              <input type="text" name="title"  placeholder="문의제목">
           </div>
 
           <!-- 문의 내용 -->

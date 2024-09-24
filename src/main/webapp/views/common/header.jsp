@@ -1,3 +1,4 @@
+<%@ page import="com.mvp.semi.user.model.vo.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -80,7 +81,15 @@
 
 <%
 	String contextPath = request.getContextPath(); // "/web"
+	User loginUser = (User)session.getAttribute("loginUser");
+	String alertMsg = (String)session.getAttribute("alertMsg");
 %>
+
+<% if(alertMsg !=null) { %>
+<script>
+ alert('<%= alertMsg %>');
+</script>
+<% session.removeAttribute("alertMsg"); } %>
 
 <div class="d-flex justify-content-center">
     <header>
@@ -127,10 +136,10 @@
       <a class="nav-link" href="#">OTT영화</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="list.bo1">자유게시판</a>
+      <a class="nav-link" href="list.fbo">자유게시판</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="list.bo2">취향게시판</a>
+      <a class="nav-link" href="list.tbo">취향게시판</a>
     </li>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
