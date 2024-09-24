@@ -64,11 +64,7 @@ public class MovieListController extends HttpServlet {
 			request.getRequestDispatcher("/views/movieMain/mainPage.jsp").forward(request, response);
 		}
 		
-<<<<<<< Updated upstream:src/main/java/com/mvp/semi/movie/controller/MovieSearchController.java
-=======
-		System.out.println(list);
-		new asdsadas().TasteAlorithm();
->>>>>>> Stashed changes:src/main/java/com/mvp/semi/movie/controller/MovieListController.java
+
 	}
 
 	/**

@@ -15,9 +15,9 @@ import java.util.Properties;
 import com.mvp.semi.movie.model.vo.Movie;
 
 public class MovieDao {
-
+	
 	private Properties prop = new Properties();
-
+	
 	public MovieDao() {
 		try {
 			prop.loadFromXML(new FileInputStream(MovieDao.class.getResource("/db/mappers/movie-mapper.xml").getPath()));
@@ -45,7 +45,7 @@ public class MovieDao {
 			
 			if(rset.next()) {
 				mv = new Movie();
-				mv.setMovie_no(rset.getInt("MOVIE_NO"));
+				mv.setMovieNo(rset.getInt("MOVIE_NO"));
 				mv.setMovieTitle(rset.getString("MOVIE_TITLE"));
 				mv.setGenre(rset.getString("GENRE")); 
 				mv.setDirector(rset.getString("DIRECTOR")); 
@@ -53,6 +53,7 @@ public class MovieDao {
 				//나중에 디비 재 설정시 MAIN_PATH -> titlePath로 vo 변경
 				mv.setTitlePath(rset.getString("MAIN_PATH"));
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -63,12 +64,12 @@ public class MovieDao {
 		
 		return mv;
 	}
-
+	
 	public int insertMovie(Connection conn, Movie m) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertMovie");
-
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, m.getMovieTitle());
@@ -87,7 +88,7 @@ public class MovieDao {
 			pstmt.setString(14, m.getTitlePath());
 			pstmt.setString(15, m.getContentPath());
 			pstmt.setInt(16, m.getTasteNo());
-
+			
 			result = pstmt.executeUpdate();
 			System.out.println(result);
 		} catch (SQLException e) {
@@ -95,8 +96,18 @@ public class MovieDao {
 		} finally {
 			close(pstmt);
 		}
-
+		
 		return result;
 	}
+	
+//	public List<Movie> selectMovieList(Connection conn) {
+//		
+//		List<Movie> list = new ArrayList<>();
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		String sql = prop.getProperty("selectMovieList");
+//	}
+	
+	
 
 }

@@ -50,13 +50,13 @@ public class InquiryInsertController extends HttpServlet {
 		String inquiryType = multiRequest.getParameter("category");
 		
 		HttpSession session = request.getSession();
-		int userNo = ((User)session.getAttribute("loginUser")).getUserNo();
+//		int userNo = ((User)session.getAttribute("loginUser")).getUserNo();
 		
 		Inquiry i = new Inquiry();
 		i.setInquiryTitle(inquiryTitle);
 		i.setInquirycontent(inquiryContent);
 		i.setInquiryType(inquiryType);
-		i.setUserNo(String.valueOf(userNo));
+		i.setUserNo(String.valueOf(10001));
 		
 		// 첨부파일 데이터 => Attechment담기
 		Attachment at = null; // 넘어온 첨부파일이 있을 경우 => 생성

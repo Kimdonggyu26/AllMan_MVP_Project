@@ -1,7 +1,7 @@
 package com.mvp.semi.movie.model.vo;
 
 public class Movie {
-	private int movie_no;
+	private int movieNo;
 	private String movieTitle;
 	private String movieContent;
 	private String genre;
@@ -22,11 +22,11 @@ public class Movie {
 	public Movie() {
 	}
 
-	public Movie(int movie_no, String movieTitle, String movieContent, String genre, int playTime, String country,
+	public Movie(int movieNo, String movieTitle, String movieContent, String genre, int playTime, String country,
 			String ageLv, String openDate, String director, int audienceCount, String actor, String preview,
 			String status, double grade, String titlePath, String contentPath, int tasteNo) {
 		super();
-		this.movie_no = movie_no;
+		this.movieNo = movieNo;
 		this.movieTitle = movieTitle;
 		this.movieContent = movieContent;
 		this.genre = genre;
@@ -45,50 +45,12 @@ public class Movie {
 		this.tasteNo = tasteNo;
 	}
 
-<<<<<<< Updated upstream
-	
-	
-
-	public Movie(int movie_no, String movieTitle, String genre, String director, double grade, String titlePath) {
-		super();
-		this.movie_no = movie_no;
-		this.movieTitle = movieTitle;
-		this.genre = genre;
-		this.director = director;
-		this.grade = grade;
-		this.titlePath = titlePath;
-=======
-
-
-	public Movie(int movie_no, String movieTitle, String movieContent, String genre, int playTime, String country,
-			String ageLv, String openDate, String director, int audienceCount, String actor, String preview,
-			String status, int number, String titlePath, int tasteNo) {
-		super();
-		this.movie_no = movie_no;
-		this.movieTitle = movieTitle;
-		this.movieContent = movieContent;
-		this.genre = genre;
-		this.playTime = playTime;
-		this.country = country;
-		this.ageLv = ageLv;
-		this.openDate = openDate;
-		this.director = director;
-		this.audienceCount = audienceCount;
-		this.actor = actor;
-		this.preview = preview;
-		this.status = status;
-		this.number = number;
-		this.titlePath = titlePath;
-		this.tasteNo = tasteNo;
->>>>>>> Stashed changes
+	public int getMovieNo() {
+		return movieNo;
 	}
 
-	public int getMovie_no() {
-		return movie_no;
-	}
-
-	public void setMovie_no(int movie_no) {
-		this.movie_no = movie_no;
+	public void setMovieNo(int movieNo) {
+		this.movieNo = movieNo;
 	}
 
 	public String getMovieTitle() {
@@ -221,7 +183,7 @@ public class Movie {
 
 	@Override
 	public String toString() {
-		return "Movie [movie_no=" + movie_no + ", movieTitle=" + movieTitle + ", movieContent=" + movieContent
+		return "Movie [movie_no=" + movieNo + ", movieTitle=" + movieTitle + ", movieContent=" + movieContent
 				+ ", genre=" + genre + ", playTime=" + playTime + ", country=" + country + ", ageLv=" + ageLv
 				+ ", openDate=" + openDate + ", director=" + director + ", audienceCount=" + audienceCount + ", actor="
 				+ actor + ", preview=" + preview + ", status=" + status + ", grade=" + grade + ", TitlePath="

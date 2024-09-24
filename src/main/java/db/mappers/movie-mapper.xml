@@ -6,9 +6,20 @@
 	    SELECT
 	    	   MOVIE_NO
 	    	 , MOVIE_TITLE
+	    	 , MOVIE_CONTENT
 	    	 , GENRE
+	    	 , PLAYTIME
+	    	 , COUNTRY
+	    	 , AGE_LV
+	    	 , OPEN_DATE
 	    	 , DIRECTOR
+	    	 , AUDIENCE_COUNT
+	    	 , ACTOR
+	    	 , PREVIEW
+	    	 , STATUS
+	    	 , GRADE
 	    	 , MAIN_PATH
+	    	 , TASTE_NO
 	      FROM 
 	      	   MOVIE
 	     WHERE 
@@ -60,6 +71,27 @@
 		  , ?
 		  , ?
 		  )
+	</entry>
+	
+	<entry key="selectMovieList">
+		SELECT
+						MOVIE_NO
+					,	MOVIE_TITLE
+					,	MOVIE_CONTENT
+					,	GENRE
+					,	PLAYTIME
+					,	COUNTRY
+					,	AGE_LV
+					,	OPEN_DATE
+					,	DIRECTOR
+					,	AUDIENCE_COUNT
+					,	ACTOR
+					,	PREVIEW
+					,	STATUS
+					,	GRADE
+					,	TITLE_PATH
+					,	CONTENT_PATH
+					,	TASTE_NO
 	</entry>
 
 

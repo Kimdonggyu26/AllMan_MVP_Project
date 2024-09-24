@@ -23,7 +23,7 @@ public class MovieService {
 		Connection conn = getConnection();
 		
 		Movie mv = mvDao.searchMovieList(conn, searchData);
-			
+		
 		Map<String, Object> map = new HashMap<>();
 		map.put("mv", mv);
 		
@@ -48,6 +48,13 @@ public class MovieService {
 		close(conn);
 		
 		return result;
+	}
+	
+	public List<Movie> selectMovieList(){
+		Connection conn = getConnection();
+		List<Movie> list = mvDao.selectMovieList(conn);
+		close(conn);
+		return list;
 	}
 	
 }

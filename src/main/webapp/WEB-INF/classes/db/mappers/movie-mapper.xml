@@ -92,8 +92,6 @@
 					,	TITLE_PATH
 					,	CONTENT_PATH
 					,	TASTE_NO
-		 FROM 
-		 			MOVIE
 	</entry>
 
 

@@ -1,5 +1,6 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
 #main{
+  border: 1px solid white;
   width: 1920px;
   height: 2500px;
   background-color: #131313;
@@ -24,10 +25,6 @@ p{
   width: 1187px; 
   height: 768px;
   margin-top: 6px;
-}
-#movie1 img{
-  width: 183px;
-  height: 261px;
 }
 #movie2{
   width: 1187px;
@@ -76,13 +73,13 @@ p{
 #movie1-top{
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: center;
   gap: 68.5px;
 }
 #movie1-bottom{
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: center;
   gap: 68.5px;
   margin-top: 50px;
 }
