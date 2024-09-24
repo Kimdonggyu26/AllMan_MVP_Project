@@ -390,87 +390,87 @@
 			              <div class="modal-checkbox-list" style="margin-top: 5px;">
 			                <div style="width: 55px; height: 17px;">
 			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" value="액션">액션
+			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="액션">액션
 			                  </label>
 			                </div>
 			                <div style="width: 55px; height: 17px;">
 			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" value="범죄">범죄
+			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="범죄">범죄
 			                  </label>
 			                </div>
 			                <div style="width: 55px; height: 17px;">
 			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" value="SF">SF
+			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="SF">SF
 			                  </label>
 			                </div>
 			                <div style="width: 55px; height: 17px;">
 			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" value="코미디">코미디
+			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="코미디">코미디
 			                  </label>
 			                </div>
 			                <div style="width: 55px; height: 17px;">
 			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" value="슬랩스틱">슬랩스틱
+			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="슬랩스틱">슬랩스틱
 			                  </label>
 			                </div>
 			                <div style="width: 55px; height: 17px;">  
 			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" value="로맨스">로맨스
+			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="로맨스">로맨스
 			                  </label>
 			                </div>
 			                <div style="width: 55px; height: 17px;">  
 			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" value="멜로">멜로
+			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="멜로">멜로
 			                  </label>
 			                </div>
 			                <div>
 			                	<div style="width: 42px; height: 17px; margin-bottom: 5px;"><p>취향</p></div>
 					                <select id="movie-level" class="form-select" name="taste">
-					                  <option value="NDHE">NDHE</option>
-					                  <option value="VDSE">VDSE</option>
-					                  <option value="SPTF">SPTF</option>
-					                  <option value="BOFA">BOFA</option>
-					                  <option value="ETRF">ETRF</option>
-					                  <option value="CCFE">CCFE</option>
-					                  <option value="CAES">CAES</option>
-					                  <option value="HHAL">HHAL</option>
+					                  <option value="10">NDHE</option>
+					                  <option value="20">VDSE</option>
+					                  <option value="30">SPTF</option>
+					                  <option value="40">BOFA</option>
+					                  <option value="50">ETRF</option>
+					                  <option value="60">CCFE</option>
+					                  <option value="70">CAES</option>
+					                  <option value="80">HHAL</option>
 					                </select>
 			                	</div>
 			              	</div>
 			              <div class="modal-checkbox-list" style="margin-top: 3px;">
 			                <div style="width: 55px; height: 17px;">
 			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" value="공포">공포
+			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="공포">공포
 			                  </label>
 			                </div>
 			                <div style="width: 55px; height: 17px;">
 			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" value="스릴러">스릴러
+			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="스릴러">스릴러
 			                  </label>
 			                </div>
 			                <div style="width: 55px; height: 17px;">  
 			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" value="전쟁">전쟁
+			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="전쟁">전쟁
 			                  </label>
 			                </div>
 			                <div style="width: 55px; height: 17px;">  
 			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" value="스포츠">스포츠
+			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="스포츠">스포츠
 			                  </label>
 			                </div>
 			                <div style="width: 55px; height: 17px;">  
 			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" value="판타지">판타지
+			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="판타지">판타지
 			                  </label>
 			                </div>
 			                <div style="width: 55px; height: 17px;">  
 			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" value="음악">음악
+			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="음악">음악
 			                  </label>
 			                </div>
 			                <div style="width: 55px; height: 17px;">  
 			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" value="뮤지컬">뮤지컬
+			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="뮤지컬">뮤지컬
 			                  </label>
 			                </div>  
 			              </div>
@@ -514,7 +514,7 @@
 			            <div class="modal-body-bottom-right">
 			              <div style="display: flex; gap: 20px;">
 			                <div style="width: 60px; height: 17px;"><p>재생시간</p></div>
-			                <input type="text" class="form-control" name="" style="width: 200px; height: 20px;" placeholder="재생시간(분 단위)">
+			                <input type="text" class="form-control" name="playtime" style="width: 200px; height: 20px;" placeholder="재생시간(분 단위)">
 			              </div>
 			              <div style="display: flex; gap: 20px;">
 			                <div style="width: 60px; height: 17px;"><p>제작국가</p></div>
@@ -533,7 +533,7 @@
 			              </div>
 			              <div style="display: flex; gap: 30px;">
 			              	<p style="margin: 0%">평점</p>
-			              	<input type="text" class="form-control" name="preview" style="width: 200px; height: 20px;" placeholder="네이버평점(0.0)">
+			              	<input type="text" class="form-control" name="grade" style="width: 200px; height: 20px;" placeholder="네이버평점(0.0)">
 			              </div>
 			              <div style="margin-bottom: 20px;">
 			                <p style="margin-bottom: 5px">상세이미지</p>
@@ -573,7 +573,7 @@
 			        <!-- Modal footer -->
 			        <div class="modal-footer">
 			          <div style="display: flex; gap: 196px; margin-right: 202px;">
-			            <button type="submit" class="btn btn-primary" style="width: 80px;">등록</button>
+			            <button type="submit" class="btn btn-primary" style="width: 80px;" onclick="getCheckedValues();">등록</button>
 			            <button type="button" class="btn btn-secondary" data-dismiss="modal">창 닫기</button>
 			          </div>
 			        </div>
