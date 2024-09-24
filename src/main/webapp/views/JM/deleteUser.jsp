@@ -1,3 +1,4 @@
+<%@ page import="com.mvp.semi.user.model.vo.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -77,7 +78,7 @@
 #agree-checkbox{
   transform: scale(2);
   border: none;
-  margin-right: 
+
 }
 .labelfont{
 	color : white;
@@ -86,11 +87,13 @@
 	
 }
   </style>
+<%
+	String contextPath = request.getContextPath();
+
+%>
   
-    <!-- Header, Nav start -->
-  <%@ include file="/views/common/header.jsp" %> 
-    <!-- Header, Nav end -->
-  
+
+					<form action="<%= contextPath %>/delete.us">
   	<div class="container">
         <div class="delete">
           <table>
@@ -119,22 +122,16 @@
               
         </div>
         <div class="checkbox">
-          <input type="checkbox" id="agree-checkbox" onclick="fnIdCheck();">
+          <input type="checkbox" id="agree-checkbox" >
           <label for="agree-checkbox" class="labelfont">안내 사항을 모두 확인 하였으며, 이에 동의합니다.</label>
         </div>
         
-					<form action="<%= contextPath %>/delete.us">
         <input type="text" class="ifound" placeholder="비밀번호 확인" >
 		
-    	</form>      
-          <button id="btn" bisabled>확인</button>
+          <button type="submit" id="btn" >확인</button>
           
         </div>
-
-	 <!-- Header, Nav start -->
-     <%@ include file="/views/common/footer.jsp" %>
-    <!-- Header, Nav end -->
-
+    	</form>      
 
 </body>
 </html>

@@ -102,7 +102,7 @@
 			<form action="<%= nickcontextPath %>/modifynick.us">
 			<input type="hidden" name="userId" value="<%= request.getAttribute("userId")%>">
 				<div class="container">
-			 		 <a href="" id="imgbt"><img src="/AllMan_MVP_Project/src/main/webapp/assets/image/userImage/default image.jpg" alt="" ></a>
+			 		 <a href="" id="imgbt" name="profile"><img src="/AllMan_MVP_Project/src/main/webapp/assets/image/userImage/default image.jpg" alt="" ></a>
 					 <div class="font">프로필 이미지 추가하기</div>
 					 <div class="idfo">닉네임을 설정해주세요</div>
 					 <div class="button-group">

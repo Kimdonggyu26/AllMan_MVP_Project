@@ -72,14 +72,13 @@
 					</head>
 					
 					<body>
-					
-						<!-- Header, Nav start -->
-				   <%--  <%@ include file="/views/common/header.jsp" %> --%>
-				    <!-- Header, Nav end -->
-									
-					
+
+						 <%
+								String contextPath = request.getContextPath();
+							%> 			
+												
 					<!-- body부 시작  -->
-					
+				  	<form action="<%= contextPath %>/findid.us" >
 					<div class="container">
 					          <div class="idfo">아이디 찾기</div>
 					          <div id="ifound">이메일찾기</div>
@@ -89,13 +88,8 @@
 					  <button type="submit"  id="buttons">확인</button>
 					</div>
 					</div>
-										<!-- body부 종료  -->
-										
-			   	<!-- Header, Nav start -->
-			   <%--  <%@ include file="/views/common/header.jsp" %> --%>
-			    <!-- Header, Nav end -->
-										
-										
+					</form>
+
 					
 </body>
 </html>
