@@ -2,4 +2,106 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
+	<entry key="selectTBoardListCount">
+		SELECT 
+					COUNT(*) as COUNT
+		FROM
+					BOARD
+		WHERE 
+					BOARD_TYPE = 1
+			AND TASTE_NO = ?		
+			AND	STATUS = 'Y'
+	</entry>
+	
+	<entry key="selectTBoardList">
+		SELECT *
+	  	FROM (
+						SELECT
+							    B.BOARD_NO,
+							    U.USER_ID,
+							    U.PROFILE_PATH,
+							    M.MOVIE_TITLE,
+							    M.MOVIE_CONTENT,
+							    M.OPEN_DATE,
+							    M.TITLE_PATH,
+							    T.TASTE_NO,
+							    T.TASTE_CODE,
+							    ROW_NUMBER() OVER(ORDER BY B.BOARD_NO DESC) as RNUM
+						FROM 
+						   	  BOARD B
+						JOIN  USERS U ON B.USER_NO = U.USER_NO
+						JOIN  TASTE T ON B.TASTE_NO = T.TASTE_NO
+						JOIN  MOVIE M ON B.MOVIE_NO = M.MOVIE_NO
+						WHERE
+						    	B.BOARD_TYPE = 1
+						AND 	T.TASTE_NO = ?
+						AND 	B.STATUS = 'Y'
+			   )
+	WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectBoardByNo">
+		SELECT
+						B.BOARD_NO
+					, B.BOARD_TITLE
+					, B.BOARD_CONTENT
+					, TO_CHAR(B.REGIST_DATE, 'YYYY/MM/DD') as REGIST_DATE
+					, U.USER_ID
+					, M.GENRE
+					, M.TITLE_PATH
+					, T.TASTE_NO
+					, T.TASTE_CODE
+			FROM
+					 BOARD B
+			JOIN  USERS U ON B.USER_NO = U.USER_NO
+			JOIN  MOVIE M ON B.MOVIE_NO = M.MOVIE_NO
+			JOIN  TASTE T ON B.TASTE_NO = T.TASTE_NO
+	 	WHERE 
+	 			B.BOARD_NO = ?
+	   AND B.STATUS = 'Y'
+	</entry>
+	
+	<entry key="selectReplyList">
+		SELECT
+					REPLY_NO
+				, REPLY_CONTENT
+				, USER_ID
+				, PROFILE_PATH
+		 FROM
+					REPLY R
+		 JOIN USERS U ON (R.USER_NO = U.USER_NO)
+	  WHERE
+	  			R.BOARD_NO = ?
+	  	AND R.STATUS = 'Y'
+	  ORDER
+	  	 BY REPLY_NO DESC
+	</entry>
+	
+	<entry key="insetReply">
+		INSERT
+		INTO REPLY
+		    (
+		    	REPLY_NO
+		    ,	USER_NO
+		    ,	REPLY_CONTENT
+		    ,	BOARD_NO
+		    )
+		    VALUES
+		    (
+		   	  SEQ_REPLYNO.NEXTVAL
+		    , ?
+		    , ?
+		    , ?
+	    )
+	</entry>
+	
+	<entry key="deleteReply">
+		UPDATE
+					REPLY
+			SET
+				  STATUS ='N'
+		WHERE
+					REPLY_NO = ? 
+	</entry>
+
 </properties>

@@ -14,16 +14,16 @@ import com.mvp.semi.board.model.vo.Board;
 import com.mvp.semi.common.model.vo.PageInfo;
 
 /**
- * Servlet implementation class TBoardListController
+ * Servlet implementation class TBoardHHALListController
  */
-@WebServlet("/list.tbo")
-public class TBoardListController extends HttpServlet {
+@WebServlet("/list.HHAL")
+public class TBoardHHALListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TBoardListController() {
+    public TBoardHHALListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +33,7 @@ public class TBoardListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int listCount = new TBoardService().selectTBoardListCount();
+		int listCount = new TBoardService().selectHHALListCount();
 		// * currentPage : 사용자가 요청한 페이지 번호 (요청시 전달됨 | 전달된게 없으면 1로 간주) 
 		int currentPage = 1;
 		if(request.getParameter("page") != null) {
@@ -56,12 +56,12 @@ public class TBoardListController extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);	
 		
-		List<Board> list = new TBoardService().selectTBoardList(pi);
+		List<Board> list = new TBoardService().selectHHALList(pi);
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		
-		request.getRequestDispatcher("/views/GW/board/ndheBoard.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/GW/board/hhalBoard.jsp").forward(request, response);
 	}
 
 	/**

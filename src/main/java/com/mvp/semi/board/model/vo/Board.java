@@ -6,29 +6,73 @@ public class Board {
 	private int boardNo; 
 	private int boardType; 
 	private String boardTitle; 
-	private String boardBoard; 
+	private String boardContent; 
 	private String boardCount; 
-	private Date registDate; 
+	private String registDate; // 게시글 등록일
 	private String status; 
-	private String userNo;
-	private String tasteNo;
-	private String movieNo;
+	private String userId;
+	private String profilePath;
+	private String movieTitle;
+	private String movieContent;
+	private Date movieOpenDate; // 영화개봉일
+	private String genre;
+	private String titlePath;
+	private int tasteNo;
+	private String tasteCode;
+	
 	
 	public Board() {}
 
-	public Board(int boardNo, int boardType, String boardTitle, String boardBoard, String boardCount, Date registDate,
-			String status, String userNo, String tasteNo, String movieNo) {
+	public Board(int boardNo, int boardType, String boardTitle, String boardContent, String boardCount, String registDate,
+			String status, String userId, String profilePath, String movieTitle, String movieContent,
+			Date movieOpenDate, String genre, String titlePath, int tasteNo, String tasteCode) {
 		super();
 		this.boardNo = boardNo;
 		this.boardType = boardType;
 		this.boardTitle = boardTitle;
-		this.boardBoard = boardBoard;
+		this.boardContent = boardContent;
 		this.boardCount = boardCount;
 		this.registDate = registDate;
 		this.status = status;
-		this.userNo = userNo;
+		this.userId = userId;
+		this.profilePath = profilePath;
+		this.movieTitle = movieTitle;
+		this.movieContent = movieContent;
+		this.movieOpenDate = movieOpenDate;
+		this.genre = genre;
+		this.titlePath = titlePath;
 		this.tasteNo = tasteNo;
-		this.movieNo = movieNo;
+		this.tasteCode = tasteCode;
+		
+	}
+
+	public Board(int boardNo, String userId, String profilePath, String movieTitle, String movieContent, Date movieOpenDate, String titlePath, int tasteNo,
+			String tasteCode) {
+		super();
+		this.boardNo = boardNo;
+		this.userId = userId;
+		this.profilePath = profilePath;
+		this.movieTitle = movieTitle;
+		this.movieContent = movieContent;
+		this.movieOpenDate = movieOpenDate;
+		this.titlePath = titlePath;
+		this.tasteNo = tasteNo;
+		this.tasteCode = tasteCode;
+	}
+	
+	
+
+	public Board(int boardNo, String boardTitle, String boardContent, String registDate, String userId, String genre,
+			int tasteNo, String tasteCode) {
+		super();
+		this.boardNo = boardNo;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.registDate = registDate;
+		this.userId = userId;
+		this.genre = genre;
+		this.tasteNo = tasteNo;
+		this.tasteCode = tasteCode;
 	}
 
 	public int getBoardNo() {
@@ -55,12 +99,12 @@ public class Board {
 		this.boardTitle = boardTitle;
 	}
 
-	public String getBoardBoard() {
-		return boardBoard;
+	public String getBoardContent() {
+		return boardContent;
 	}
 
-	public void setBoardBoard(String boardBoard) {
-		this.boardBoard = boardBoard;
+	public void setBoardContent(String boardContent) {
+		this.boardContent = boardContent;
 	}
 
 	public String getBoardCount() {
@@ -71,11 +115,11 @@ public class Board {
 		this.boardCount = boardCount;
 	}
 
-	public Date getRegistDate() {
+	public String getRegistDate() {
 		return registDate;
 	}
 
-	public void setRegistDate(Date registDate) {
+	public void setRegistDate(String registDate) {
 		this.registDate = registDate;
 	}
 
@@ -87,36 +131,91 @@ public class Board {
 		this.status = status;
 	}
 
-	public String getUserNo() {
-		return userNo;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setUserNo(String userNo) {
-		this.userNo = userNo;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
-	public String getTasteNo() {
+	public String getProfilePath() {
+		return profilePath;
+	}
+
+	public void setProfilePath(String profilePath) {
+		this.profilePath = profilePath;
+	}
+
+	public String getMovieTitle() {
+		return movieTitle;
+	}
+
+	public void setMovieTitle(String movieTitle) {
+		this.movieTitle = movieTitle;
+	}
+
+	public String getMovieContent() {
+		return movieContent;
+	}
+
+	public void setMovieContent(String movieContent) {
+		this.movieContent = movieContent;
+	}
+
+	public Date getMovieOpenDate() {
+		return movieOpenDate;
+	}
+
+	public void setMovieOpenDate(Date movieOpenDate) {
+		this.movieOpenDate = movieOpenDate;
+	}
+	
+	public String getTitlePath() {
+		return titlePath;
+	}
+
+	public void setTitlePath(String titlePath) {
+		this.titlePath = titlePath;
+	}
+
+	public int getTasteNo() {
 		return tasteNo;
 	}
 
-	public void setTasteNo(String tasteNo) {
+	public void setTasteNo(int tasteNo) {
 		this.tasteNo = tasteNo;
 	}
 
-	public String getMovieNo() {
-		return movieNo;
+	public String getTasteCode() {
+		return tasteCode;
 	}
 
-	public void setMovieNo(String movieNo) {
-		this.movieNo = movieNo;
+	public void setTasteCode(String tasteCode) {
+		this.tasteCode = tasteCode;
+	}
+	
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 
 	@Override
 	public String toString() {
-		return "Board [boardNo=" + boardNo + ", boardType=" + boardType + ", boardTitle=" + boardTitle + ", boardBoard="
-				+ boardBoard + ", boardCount=" + boardCount + ", registDate=" + registDate + ", status=" + status
-				+ ", userNo=" + userNo + ", tasteNo=" + tasteNo + ", movieNo=" + movieNo + "]";
+		return "Board [boardNo=" + boardNo + ", boardType=" + boardType + ", boardTitle=" + boardTitle + ", boardContent="
+				+ boardContent + ", boardCount=" + boardCount + ", registDate=" + registDate + ", status=" + status
+				+ ", userId=" + userId + ", profilePath=" + profilePath + ", movieTitle=" + movieTitle
+				+ ", movieContent=" + movieContent + ", movieOpenDate=" + movieOpenDate + ", , titlePath=" + titlePath + ", tasteNo=" + tasteNo
+				+ ", tasteCode=" + tasteCode + ", genre=" + genre +"]";
 	}
+
+
 	
+
+	
+
 	
 }

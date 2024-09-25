@@ -27,23 +27,23 @@
     <section>
       <div class="btn-taste">
         <div class="row justify-content-center mt-5 mb-3">
-          <a href="<%= contextPath %>/list.NDHE" class="mx-2 btn btn-sm" id="ndhe" >NDHE 게시판</a>
-          <a href="<%= contextPath %>/list.VDSE" class="mx-2 btn btn-sm" id="taste"  >VDSE 게시판</a>
-          <a href="<%= contextPath %>/list.SPTF" class="mx-2 btn btn-sm" id="taste"  >SPTF 게시판</a>
-          <a href="<%= contextPath %>/list.BOFA" class="mx-2 btn btn-sm" id="taste"  >BOFA 게시판</a>
+          <a href="<%= contextPath %>/list.NDHE" class="mx-2 btn btn-sm" id="taste">NDHE 게시판</a>
+          <a href="<%= contextPath %>/list.VDSE" class="mx-2 btn btn-sm" id="taste">VDSE 게시판</a>
+          <a href="<%= contextPath %>/list.SPTF" class="mx-2 btn btn-sm" id="taste">SPTF 게시판</a>
+          <a href="<%= contextPath %>/list.BOFA" class="mx-2 btn btn-sm" id="taste">BOFA 게시판</a>
         </div>
         <div class="row justify-content-center mb-3">
-          <a href="<%= contextPath %>/list.ETRF" class="mx-2 btn btn-sm" id="taste"  >ETRF 게시판</a>
-          <a href="<%= contextPath %>/list.CCFE" class="mx-2 btn btn-sm" id="taste"  >CCFE 게시판</a>
-          <a href="<%= contextPath %>/list.CASE" class="mx-2 btn btn-sm" id="taste"  >CASE 게시판</a>
-          <a href="<%= contextPath %>/list.HHAL" class="mx-2 btn btn-sm" id="taste"  >HHAL 게시판</a>
+          <a href="<%= contextPath %>/list.ETRF" class="mx-2 btn btn-sm" id="taste">ETRF 게시판</a>
+          <a href="<%= contextPath %>/list.CCFE" class="mx-2 btn btn-sm" id="taste">CCFE 게시판</a>
+          <a href="<%= contextPath %>/list.CASE" class="mx-2 btn btn-sm" id="taste">CASE 게시판</a>
+          <a href="<%= contextPath %>/list.HHAL" class="mx-2 btn btn-sm" id="hhal">HHAL 게시판</a>
         </div>
       </div>
 
 
       <div class="container" id="bt1">
       
-				<%-- if(loginUser != null && loginUser.getTasteNo() == 10){ --%>
+				<%-- if(loginUser != null && loginUser.getTasteNo() == 80){ --%>
         <div class="d-flex justify-content-end mb-3">
            <a href="<%= contextPath %>/write.tbo" class="btn btn-secondary btn-sm">등록하기</a>
         </div>
@@ -62,7 +62,7 @@
           <% for(Board b : list){ %>
           <div class="col-4 mb-4">
             <div class="card" data-no="<%=b.getBoardNo()%>">
-              <img class="card-img-top" src="<%=contextPath + b.getTitlePath() %>" alt="영화 이미지" width="300px" height="230px">
+               <img class="card-img-top" src="<%=contextPath + b.getTitlePath() %>" alt="영화 이미지" width="300px" height="230px">
               <div class="card-body">
 
                     <div><%=b.getMovieTitle()%></div>
@@ -82,12 +82,11 @@
               </div>
             </div>
           </div>
-            <% } %>
+				<% } %>
         </div>
-
+            
             <% } %>
         
-      </div>
  
    <script>
    	$(function() {
@@ -267,8 +266,8 @@
 	  background-color: #3C3C3C;
 	}
 	
-	#ndhe{
-	  background-color: red;
+	#hhal{
+	  background-color: pink;
 	  width: 150px;
 	  height: 30px;
 	  border-radius: 20px;

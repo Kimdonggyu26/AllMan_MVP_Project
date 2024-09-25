@@ -76,6 +76,7 @@
         </table>
         </div>
         
+        
           <script>
         	$(function(){
         		$("#qna-list tbody>tr").on('click', function(){
@@ -86,8 +87,8 @@
         			
         		})
         	})
-        	
         </script>
+
 
         <div id="qna-b">
           <form method="post" name="search" action="">
