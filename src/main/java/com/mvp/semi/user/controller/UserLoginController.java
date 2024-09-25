@@ -55,7 +55,7 @@ public class UserLoginController extends HttpServlet {
 			session.setAttribute("loginUser", loginUser);
 
 			/* response.sendRedirect(request.getContextPath()); */
-			request.getRequestDispatcher("").forward(request, response);
+			request.getRequestDispatcher("views/JM/modifyUser.jsp").forward(request, response);
 		}
 	}
 
