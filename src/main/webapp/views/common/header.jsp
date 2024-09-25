@@ -16,6 +16,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <style>
+  main{
+	width: 1920px;
+  }
   body{
     margin-top: 30px;
     background: #131313;
@@ -25,7 +28,6 @@
     align-items: center; /* Align items vertically in the center */
     justify-content: center;
     background: #131313;
-    display: flex;
   }
   nav{
     background: #131313;

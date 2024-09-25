@@ -35,7 +35,7 @@ public class AjaxMovieListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//담당 - 천예찬
+		//천예찬
 		//AJAX용     *주의*
 		//응답 페이지 X, 
 		//응답 데이터만 넘겨주세요

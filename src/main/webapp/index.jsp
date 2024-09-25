@@ -11,8 +11,8 @@
 	<a href="바로 메인페이지로">비회원</a>
 	<a href="로그인페이지로">회원</a>
 	<%
-	String contextPath = request.getContextPath(); 
-%>
+		String contextPath = request.getContextPath(); 
+	%>
 		<div>
 			<form action="<%=contextPath %>/views/movieMain/mainPage.jsp">
 				<button>d</button>

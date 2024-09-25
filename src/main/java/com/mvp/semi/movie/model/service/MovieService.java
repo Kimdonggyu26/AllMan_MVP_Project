@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.mvp.semi.common.model.vo.PageInfo;
 import com.mvp.semi.movie.model.dao.MovieDao;
 import com.mvp.semi.movie.model.vo.Movie;
 
@@ -44,20 +45,20 @@ public class MovieService {
 		return result;
 	}
 	
-	public List<Movie> selectShowingMovieList(){
+	public int selectShowingMovieList(){
 		Connection conn = getConnection();
 		
-		List<Movie> list = mvDao.selectShowingMovieList(conn);
+		int listCount = mvDao.selectShowingMovieList(conn);
 		
 		close(conn);
 		
-		return list;
+		return listCount;
 	}
 	
-	public List<Movie> selectOttMovieList(){
+	public List<Movie> selectMovieList(PageInfo pi, String searchData){
 		Connection conn = getConnection();
 		
-		List<Movie> list = mvDao.selectOttMovieList(conn);
+		List<Movie> list = mvDao.selectMovieList(conn, pi, searchData);
 		
 		close(conn);
 		

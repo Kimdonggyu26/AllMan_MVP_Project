@@ -24,11 +24,13 @@ public class SearchPageController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//천예찬
+		//header.jsp에 있는 검색 요청시 searchPage.jsp로 데이터 전송
+		
 		String searchData = request.getParameter("search");//타입: String
+		
+		System.out.println(searchData);
 		
 		request.setAttribute("searchData", searchData);
 		

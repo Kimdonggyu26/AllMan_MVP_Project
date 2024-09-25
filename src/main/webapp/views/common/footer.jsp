@@ -10,6 +10,7 @@
 footer {
 	color: #6c757d;
 	height: 200px;
+	    width: 1300px;
 	border-top: 1px solid gray;
     display: flex;
 	flex-direction: column;
@@ -33,7 +34,7 @@ footer a {
 	text-align: center
 }
 </style>
-<footer class="m-3">
+<footer>
 	<div id="ul_controller">
 		<ul class="footer-info">
 			<li>상호명 : GooDee Academy</li>
@@ -44,6 +45,5 @@ footer a {
 		</ul>
 	</div>
 
-	<div class="footer-copyright">Copyright ⓒ GooDee Academy. All
-		rights reserved.</div>
+	<div class="footer-copyright">Copyright ⓒ GooDee Academy. All rights reserved.</div>
 </footer>

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.mvp.semi.common.model.vo.PageInfo;
 import com.mvp.semi.movie.model.vo.Movie;
 
 public class MovieDao {
@@ -50,7 +51,7 @@ public class MovieDao {
 								 , rset.getString("DIRECTOR")
 				// 상세페이지 이미지 경로 속성 추가로
 				// 나중에 디비 재 설정시 MAIN_PATH -> titlePath로 vo 변경
-								 , rset.getString("MAIN_PATH")));
+								 , rset.getString("TITLE_PATH")));
 			}
 
 		} catch (SQLException e) {
@@ -98,25 +99,20 @@ public class MovieDao {
 		return result;
 	}
 
-	public List<Movie> selectShowingMovieList(Connection conn) {
-
-		List<Movie> list = new ArrayList<>();
+	public int selectShowingMovieList(Connection conn) {
+		int listCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectShowingMovieList");
+		String sql = prop.getProperty("selectMovieListCount");
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rset = pstmt.executeQuery();
-
-			while (rset.next()) {
-				list.add(new Movie(rset.getInt("movie_no"), rset.getString("movie_title"),
-						rset.getString("movie_content"), rset.getString("genre"), rset.getInt("playtime"),
-						rset.getString("country"), rset.getString("age_lv"), rset.getString("open_date"),
-						rset.getString("director"), rset.getInt("audience_count"), rset.getString("actor"),
-						rset.getString("preview"), rset.getString("status"), rset.getDouble("grade"),
-						rset.getString("title_path"), rset.getString("content_path"), rset.getInt("taste_no")));
+			
+			if(rset.next()){
+				listCount = rset.getInt("COUNT");
 			}
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -125,29 +121,37 @@ public class MovieDao {
 			close(pstmt);
 		}
 
-		return list;
+		return listCount;
 	}
 
-	public List<Movie> selectOttMovieList(Connection conn) {
-
+	public List<Movie> selectMovieList(Connection conn, PageInfo pi, String searchData) {
 		List<Movie> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectOttMovieList");
+		String sql = prop.getProperty("searchMovieList");
 
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() -1;
+			
+			pstmt.setString(1, searchData);
+			pstmt.setString(2, searchData);
+			pstmt.setString(3, searchData);
+			pstmt.setString(4, searchData);
+			pstmt.setInt(5, startRow);
+			pstmt.setInt(6, endRow);
+			
 			rset = pstmt.executeQuery();
-
-			while (rset.next()) {
-				list.add(new Movie(rset.getInt("movie_no"), rset.getString("movie_title"),
-						rset.getString("movie_content"), rset.getString("genre"), rset.getInt("playtime"),
-						rset.getString("country"), rset.getString("age_lv"), rset.getString("open_date"),
-						rset.getString("director"), rset.getInt("audience_count"), rset.getString("actor"),
-						rset.getString("preview"), rset.getString("status"), rset.getDouble("grade"),
-						rset.getString("title_path"), rset.getString("content_path"), rset.getInt("taste_no")));
+			
+			while(rset.next()) {
+				list.add(new Movie(rset.getInt("MOVIE_NO")
+								 , rset.getString("MOVIE_TITLE")
+								 , rset.getString("GENRE")
+								 , rset.getString("DIRECTOR")
+								 , rset.getString("TITLE_PATH")));
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
