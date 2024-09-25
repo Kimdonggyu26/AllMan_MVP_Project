@@ -561,48 +561,48 @@
 		}
 		
 		const movies = [
-		    { title: "안녕, 할부지", date: "2024.09.04", genre: "다큐멘터리, 애니메이션", director: "심형준", imgSrc: "movie1.jpg" },
-		    { title: "영화 2", date: "2024.09.05", genre: "드라마", director: "감독 2", imgSrc: "movie2.jpg" },
-		    { title: "영화 3", date: "2024.09.06", genre: "액션", director: "감독 3", imgSrc: "movie3.jpg" },
-		    { title: "영화 4", date: "2024.09.07", genre: "코미디", director: "감독 4", imgSrc: "movie4.jpg" },
-		    { title: "영화 5", date: "2024.09.08", genre: "공포", director: "감독 5", imgSrc: "movie5.jpg" },
-		    { title: "영화 6", date: "2024.09.09", genre: "액션", director: "감독 6", imgSrc: "movie6.jpg" },
+			{ title: "안녕, 할부지", date: "2024.09.04", genre: "다큐멘터리, 애니메이션", director: "심형준", imgSrc: "movie1.jpg" },
+			{ title: "영화 2", date: "2024.09.05", genre: "드라마", director: "감독 2", imgSrc: "movie2.jpg" },
+			{ title: "영화 3", date: "2024.09.06", genre: "액션", director: "감독 3", imgSrc: "movie3.jpg" },
+			{ title: "영화 4", date: "2024.09.07", genre: "코미디", director: "감독 4", imgSrc: "movie4.jpg" },
+			{ title: "영화 5", date: "2024.09.08", genre: "공포", director: "감독 5", imgSrc: "movie5.jpg" },
+			{ title: "영화 6", date: "2024.09.09", genre: "액션", director: "감독 6", imgSrc: "movie6.jpg" },
 		];
 
 		let currentIndex = 0; // 현재 표시된 영화의 시작 인덱스
 
 		function renderMovies() {
-		    const movieList = document.getElementById("movie1-list");
-		    movieList.innerHTML = ""; // 기존 영화 목록 제거
+			const movieList = document.getElementById("movie1-list");
+			movieList.innerHTML = ""; // 기존 영화 목록 제거
 
-		    for (let i = currentIndex; i < currentIndex + 5 && i < movies.length; i++) {
-		        const movie = movies[i];
-		        const movieItem = document.createElement("div");
-		        movieItem.className = "movie-item";
-		        movieItem.style.display = "flex"; // flexbox 사용
+			for (let i = currentIndex; i < currentIndex + 5 && i < movies.length; i++) {
+					const movie = movies[i];
+					const movieItem = document.createElement("div");
+					movieItem.className = "movie-item";
+					movieItem.style.display = "flex"; // flexbox 사용
 
-		        movieItem.innerHTML = `
-		            <div class="movie-image">
-		                <img src="${movie.imgSrc}" alt="${movie.title}">
-		            </div>
-		            <div class="movie-info" style="margin-left: 12px;">
-		                <table>
-		                    <tr><td style="color: white; font-weight: 900; font-size: 13px;">${movie.title}</td></tr>
-		                    <tr><td>${movie.date}</td></tr>
-		                    <tr><td>장르 : ${movie.genre}</td></tr>
-		                    <tr><td>감독 : ${movie.director}</td></tr>
-		                </table>
-		                <i class="fa-regular fa-heart" id="heart"></i>
-		                <div style="display: flex; margin-top: 10px;">
-		                    <button type="button" class="btn btn-secondary" id="info">영화정보</button>
-		                    <button type="button" class="btn btn-danger" id="compare">
-		                        <img src="../DG/assets/image/logo/download_logo.png" style="width: 14px; height: 14px; margin-right: 5px; margin-bottom: 4px;">비교하기
-		                    </button>
-		                </div>
-		            </div>
-		        `;
-		        movieList.appendChild(movieItem);
-		    }
+					movieItem.innerHTML = `
+							<div class="movie-image">
+									<img src="${movie.imgSrc}" alt="${movie.title}">
+							</div>
+							<div class="movie-info" style="margin-left: 12px;">
+									<table>
+											<tr><td style="color: white; font-weight: 900; font-size: 13px;">${movie.title}</td></tr>
+											<tr><td>${movie.date}</td></tr>
+											<tr><td>장르 : ${movie.genre}</td></tr>
+											<tr><td>감독 : ${movie.director}</td></tr>
+									</table>
+									<i class="fa-regular fa-heart" id="heart"></i>
+									<div style="display: flex; margin-top: 10px;">
+											<button type="button" class="btn btn-secondary" id="info">영화정보</button>
+											<button type="button" class="btn btn-danger" id="compare">
+													<img src="../DG/assets/image/logo/download_logo.png" style="width: 14px; height: 14px; margin-right: 5px; margin-bottom: 4px;">비교하기
+											</button>
+									</div>
+							</div>
+					`;
+					movieList.appendChild(movieItem);
+			}
 		}
 
 		// 왼쪽 화살표 클릭 시
