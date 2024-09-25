@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 
+
+
+<%@ include file="/views/common/header.jsp" %> 
 <style>
 body {
     background-color: #131313;
@@ -138,6 +141,7 @@ hr{
 }
 .title{
      font-size: 50px;
+     color : white;
 }
 #rechange{
     color: gray;
@@ -171,9 +175,6 @@ a:active {
 }
 </style>
 
-   	<!-- Header, Nav start -->
-   <%--  <%@ include file="/views/common/header.jsp" %> --%>
-    <!-- Header, Nav end -->
 
 
 <!-- body 시작부 -->
@@ -187,7 +188,7 @@ a:active {
             <div class="mypage-info">
                 <h2 id="like">NDHE</h2>
                 <div class="button"><a href="">취향 다시 분석하기</a></div>
-                <div><a href="#" id="rechange">회원정보 수정</a></div>
+                <div><a href="<%= contextPath %>/views/JM/modifyUser.jsp" id="rechange">회원정보 수정</a></div>
             </div>
         </div>
     
@@ -256,9 +257,7 @@ a:active {
     </form>
 <!-- body부 종료 -->
 
-   	<!-- Header, Nav start -->
-   <%--  <%@ include file="/views/common/footer.jsp" %> --%>
-    <!-- Header, Nav end -->
+		 <%@ include file="/views/common/footer.jsp" %>
 
 
 </body>
