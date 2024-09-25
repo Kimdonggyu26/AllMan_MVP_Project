@@ -26,12 +26,12 @@ public class MovieDao {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public List<Movie> searchMovieList(Connection conn, String searchData) {
 		List<Movie> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectMovieList");
+		String sql = prop.getProperty("searchMovieList");
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -157,5 +157,52 @@ public class MovieDao {
 
 		return list;
 	}
+	
+	public Movie selectMovie(Connection conn, int movieNo) {
+		Movie mv = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMovie");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, movieNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				mv = new Movie();
+				mv.setMovieNo(rset.getInt("movie_no"));
+				mv.setMovieTitle(rset.getString("movie_title"));
+				mv.setMovieContent(rset.getString("movie_content"));
+				mv.setGenre(rset.getString("genre"));
+				mv.setPlayTime(rset.getInt("playtime"));
+				mv.setCountry(rset.getString("country"));
+				mv.setAgeLv(rset.getString("age_lv"));
+				mv.setOpenDate(rset.getString("open_date"));
+				mv.setDirector(rset.getString("director"));
+				mv.setAudienceCount(rset.getInt("audience_count"));
+				mv.setActor(rset.getString("actor"));
+				mv.setPreview(rset.getString("preview"));
+				mv.setStatus(rset.getString("status"));
+				mv.setGrade(rset.getDouble("grade"));
+				mv.setTitlePath(rset.getString("title_path"));
+				mv.setContentPath(rset.getString("content_path"));
+				mv.setTasteNo(rset.getInt("taste_no"));
+				
+			}
+				
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return mv;
+		
+	}
+
 
 }

@@ -1,7 +1,7 @@
-package com.mvp.semi.ajax.controller;
+package com.mvp.semi.movie.controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,21 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.mvp.semi.movie.model.service.MovieService;
-import com.mvp.semi.movie.model.vo.Movie;
 
 /**
- * Servlet implementation class AjaxMovieListController
+ * Servlet implementation class MovieModify
  */
-@WebServlet("/showing.mv")
-public class AjaxShowingMovieListController extends HttpServlet {
+@WebServlet("/movieModify.mm")
+public class MovieModify extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxShowingMovieListController() {
+    public MovieModify() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,12 +31,18 @@ public class AjaxShowingMovieListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Movie> list = new MovieService().selectShowingMovieList();
+		int movieNo = Integer.parseInt(request.getParameter("movieNo"));
+		MovieService mvService = new MovieService();
 		
-		
-		
-		response.setContentType("application/json; charset=UTF-8");
-		new Gson().toJson(list, response.getWriter());
+//		Map <String, Object> map = mvService.selectMovieByNo(movieNo);
+//		
+//		if(map.get("mv") == null) {
+//			request.setAttribute("alertMsg", "실패");
+//			
+//		} else {
+//			request.setAttribute("map", map);
+//			request.getRequestDispatcher("/views/DG/adminMainPage.jsp");
+//		}
 	}
 
 	/**

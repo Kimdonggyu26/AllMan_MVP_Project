@@ -3,6 +3,8 @@ CREATE SEQUENCE  "SEQ_USERNO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 
 --  회원번호 시퀸스
 --------------------------------------------------------
 CREATE SEQUENCE  "SEQ_MOVIENO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 1 NOCACHE  NOORDER  NOCYCLE ;
+DROP SEQUENCE SEQ_MOVIENO;
+commit;
 --------------------------------------------------------
 --  영화번호 시퀸스
 --------------------------------------------------------

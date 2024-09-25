@@ -161,6 +161,7 @@
 }
 .list-content{
   display: flex;
+  cursor: pointer;
 }
 .list-num{
   margin-left: 58px;
@@ -179,8 +180,11 @@
   width: 97px;
   height: 21px;
 }
+.tabActive {
+  background-color: #569EFF !important;
+}
 .show-movie{
-  background-color: #569EFF;
+	background-color: #EBEBEB;
   cursor: pointer;
 }
 .ott-movie{
@@ -194,4 +198,8 @@
 	width: 1078px;
 	height: 40px;
 	align-items: center;
+}
+.container{
+	margin: 0%;
+	padding: 0%;
 }

@@ -1,7 +1,6 @@
 package com.mvp.semi.ajax.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,17 +12,20 @@ import com.google.gson.Gson;
 import com.mvp.semi.movie.model.service.MovieService;
 import com.mvp.semi.movie.model.vo.Movie;
 
+//	관리자 페이지의 영화 리스트에서 하나 클릭 시 해당 영화의 정보를 보여주는 컨트롤러
+
+
 /**
- * Servlet implementation class AjaxMovieListController
+ * Servlet implementation class AjaxMovieSelectController
  */
-@WebServlet("/showing.mv")
-public class AjaxShowingMovieListController extends HttpServlet {
+@WebServlet("/movieSelect.ms")
+public class AjaxMovieSelectController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxShowingMovieListController() {
+    public AjaxMovieSelectController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,12 +35,20 @@ public class AjaxShowingMovieListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Movie> list = new MovieService().selectShowingMovieList();
+		int movieNo = Integer.parseInt(request.getParameter("movieNo"));
 		
+		System.out.println(movieNo);
 		
+		MovieService mvService = new MovieService();
 		
+		Movie mv = mvService.selectMovieByNo(movieNo);
+		
+		System.out.println(mv);
+		System.out.println(mv.getMovieTitle());
 		response.setContentType("application/json; charset=UTF-8");
-		new Gson().toJson(list, response.getWriter());
+		new Gson().toJson(mv, response.getWriter());
+		
+		
 	}
 
 	/**

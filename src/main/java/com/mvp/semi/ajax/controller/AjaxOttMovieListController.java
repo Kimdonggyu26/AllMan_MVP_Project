@@ -33,7 +33,7 @@ public class AjaxOttMovieListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Movie> list = new MovieService().selectShowingMovieList();
+		List<Movie> list = new MovieService().selectOttMovieList();
 		
 		
 		

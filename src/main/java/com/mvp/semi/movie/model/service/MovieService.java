@@ -64,4 +64,17 @@ public class MovieService {
 		return list;
 	}
 	
+	public Movie selectMovieByNo(int movieNo){
+		Connection conn = getConnection();
+		
+		Movie mv = mvDao.selectMovie(conn, movieNo);
+		
+//		Map<String, Object> map = new HashMap<>();
+//		map.put("mv", mv);
+		
+		close(conn);
+		
+		return mv;
+	}
+	
 }

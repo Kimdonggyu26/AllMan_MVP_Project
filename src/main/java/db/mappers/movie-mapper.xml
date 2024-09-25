@@ -2,7 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-	<entry key="selectMovieList">
+	<entry key="searchMovieList">
 	    SELECT
 	    	   MOVIE_NO
     	 	 , MOVIE_TITLE
@@ -108,7 +108,33 @@
 					,	TASTE_NO
 		FROM 
 					MOVIE
-		WHERE STATUS = '20'
+		WHERE 
+					STATUS = '20'
+	</entry>
+	
+	<entry key="selectMovie">
+				SELECT
+						MOVIE_NO
+					,	MOVIE_TITLE
+					,	MOVIE_CONTENT
+					,	GENRE
+					,	PLAYTIME
+					,	COUNTRY
+					,	AGE_LV
+					,	OPEN_DATE
+					,	DIRECTOR
+					,	AUDIENCE_COUNT
+					,	ACTOR
+					,	PREVIEW
+					,	STATUS
+					,	GRADE
+					,	TITLE_PATH
+					,	CONTENT_PATH
+					,	TASTE_NO
+		FROM 
+					MOVIE
+		WHERE 
+					MOVIE_NO = ?
 	</entry>
 
 
