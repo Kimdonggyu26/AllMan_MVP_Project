@@ -93,14 +93,13 @@
 	      <div class="col-2">
 	        <a href="<%=contextPath%>"><img src="<%= contextPath%>/assets/image/header/MOVIE_PICK.png"></a>
 	      </div>
-	      
 	      <!--검색창-->
 	      <div class="col-8">
-	        <form action="<%=contextPath%>/movieSearch.ms" id="searchFrom" class="d-flex justify-content-center">
+	        <form action="<%=contextPath%>/searchPage.mv" id="searchFrom" class="d-flex justify-content-center">
 	          <div id="searchInput" class="input-group">
-	            <input type="text" name="movieSearchData" id="form-control" class="form-control" placeholder="검색" autocomplete="off">
+	            <input type="text" name="search" id="form-control" class="form-control" placeholder="검색" autocomplete="off">
 	            <div id="searchButton" class="input-group-append">
-	              <button class="btn btn-danger p" type="submit" onclick="fnAjaxSearch();">SEARCH</button>
+	              <button class="btn btn-danger p" type="submit">SEARCH</button>
 	            </div>
 	          </div>
 	        </form>
@@ -148,31 +147,3 @@
     </li>
   </ul>
 </nav>
-
-<script>
-	$(function(){
-		fnAjaxSearch();
-	})
-
-	function fnAjaxSearch() {
-		
-		const $inputData = $("#searchInput[name=movieSearchData]")
-		
-		$.ajax({
-			url: '<%= contextPath%>/movieHeaderSearch.ms',
-			data: {search: $inputData.val()},
-			success: function(res){
-				console.log(res);
-			},
-			error: function(){
-				console.log('영화 검색 ajax 통신 실패');
-			}	
-		
-		})
-	}
-</script>
-
-<!-- $(function(){
-		fnAjaxSearch();
-	})강의 13번 1시간 27분 38초
- -->

@@ -87,6 +87,16 @@
 		
 	</entry>
 	
+	<entry key="selectMovieListCount">
+		SELECT
+        	 COUNT(*)
+ 		  FROM
+       		 MOVIE
+		 WHERE
+       		 STATUS = ?
+	</entry>
+	
+	
 	<entry key="selectOttMovieList">
 		SELECT
 						MOVIE_NO

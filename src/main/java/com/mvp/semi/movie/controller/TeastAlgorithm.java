@@ -1,6 +1,6 @@
 package com.mvp.semi.movie.controller;
 
-public class asdsadas {
+public class TeastAlgorithm {
 		public void TasteAlorithm() {
 		      //사용자 취향 분석 알고리즘
 		      

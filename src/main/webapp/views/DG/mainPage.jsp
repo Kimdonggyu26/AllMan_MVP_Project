@@ -15,9 +15,7 @@
 
 	<!-- body부 시작 -->
 	<style>
-		@import
-			url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css')
-			;
+		@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
 		
 		#main {
 			width: 1920px;
