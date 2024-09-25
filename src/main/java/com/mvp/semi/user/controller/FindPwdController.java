@@ -35,7 +35,7 @@ public class FindPwdController extends HttpServlet {
 
 		User result = new UserService().finduserPwd(userId);
 		HttpSession session = request.getSession();
-		if (result.getUserId() == null) {
+		if (result.getUserPwd() == null) {
 			System.out.println("실패");
 			request.getRequestDispatcher("/views/JM/findPwdFail.jsp").forward(request, response);
 		} else {

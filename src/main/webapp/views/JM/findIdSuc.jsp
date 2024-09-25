@@ -67,17 +67,21 @@ input:focus {outline: none;}
   margin-top: 10px;
 }
 #check{
-  color: white;
+  color: #85E86A;
   font-size: 50px;
   margin-bottom: 20px;
 }
 </style>
 	<body>
 	
+						 <%
+								String contextPath = request.getContextPath();
+							%> 			
+									
 	  <!-- Header, Nav start -->
    <%--  <%@ include file="/views/common/header.jsp" %> --%>
     <!-- Header, Nav end -->
-	
+	<form action="<%= contextPath %>/views/JM/login.jsp" >
 	<div class="container">
 	            <i class="fa-regular fa-circle-check" id="check"></i>
 	          <div class="idfo">입력하신 정보와 일치하는 결과입니다.</div>
@@ -87,7 +91,7 @@ input:focus {outline: none;}
 	  <button type="submit"  id="buttons">로그인하러 가기</button>
 	</div>
 	</div>
-
+</form>
    	<!-- Header, Nav start -->
    <%--  <%@ include file="/views/common/footer.jsp" %> --%>
     <!-- Header, Nav end -->

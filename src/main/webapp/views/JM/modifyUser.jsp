@@ -6,6 +6,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+<body>
+ 	<!-- Header, Nav start -->
+	<%@ include file="/views/common/header.jsp"%>
+	<!-- Header, Nav end -->
+
+    <!-- body 시작부 -->
+   
 <style>
 body {
   background-color: #131313;
@@ -84,7 +92,7 @@ button {
   margin-right: 77px;
 }
 #name{
-  margin-left: 16px;
+  margin-left: 0px;
 }
 #phone{
   margin-right: 40px;
@@ -124,7 +132,7 @@ button {
   margin-bottom: 22px;
  
 }
-#changeid::placeholder{
+#changenick::placeholder{
   color: white;
   font-size: 25px;
 }
@@ -153,13 +161,7 @@ a:active {
 
 </style>
 
-<body>
- 	<!-- Header, Nav start -->
-	<%@ include file="/views/common/header.jsp"%>
-	<!-- Header, Nav end -->
 
-    <!-- body 시작부 -->
-   
  <form action="modifyuser.us">
 <div class="modal" id="myModal">
   <div class="modal-dialog">
@@ -172,8 +174,8 @@ a:active {
 
 
       <div class="modal-body">
-        <a href=""><img src="" alt=""></a>
-        <div><input type="text" value="" id="changeid" name="userNick"><%= loginUser.getUserNick() %></div>
+        <a href=""><img src="../" alt=""></a>
+        <div><input type="text" value="<%= loginUser.getUserNick() %>" id="changenick" name="userNick"></div>
         <h6>*2자 이상 10자 이내의 한글 영문,숫자 입력 가능합니다.</h6>
       </div>
 
@@ -189,9 +191,9 @@ a:active {
 
 <div class="container">
   <div class="profile">
-      <img src="/AllMan_MVP_Project/src/main/webapp/resources/user_upfiles" alt="프로필 이미지" style="width: 50px; height: 50px;">
+      <img src="" alt="프로필 이미지" style="width: 50px; height: 50px;">
       <span class="username" ><%= loginUser.getUserId() %></span>
-      <button class="edit-button" data-toggle="modal" data-target="#myModal">프로필 수정</button>
+      <button class="edit-button" data-toggle="modal" data-target="#myModal" type="button">프로필 수정</button>
   </div>
 
   <h2>회원정보 수정</h2>

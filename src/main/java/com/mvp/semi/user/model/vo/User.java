@@ -55,9 +55,38 @@ public User(int userNo, String userId, String userPwd, String phone, String emai
 }
 
 
+public User(int userNo, String userId, String userPwd, String phone, String email, String userNick, Date enrollDt,
+		Date modifyDt, String status) {
+	super();
+	this.userNo = userNo;
+	this.userId = userId;
+	this.userPwd = userPwd;
+	this.phone = phone;
+	this.email = email;
+	this.userNick = userNick;
+	this.enrollDt = enrollDt;
+	this.modifyDt = modifyDt;
+	this.status = status;
+}
+
+
 public User(String userNick) {
 	super();
 	this.userNick = userNick;
+}
+
+
+public User(int userNo, String userId, String userPwd, String phone, String email, String userNick, Date enrollDt,
+		Date modifyDt, String status, String filePath) {
+	super();
+	this.userNo = userNo;
+	this.userId = userId;
+	this.userPwd = userPwd;
+	this.phone = phone;
+	this.email = email;
+	this.enrollDt = enrollDt;
+	this.modifyDt = modifyDt;
+	this.status = status;
 }
 
 

@@ -41,16 +41,23 @@ public class UserDao {
 			rset = pstmt.executeQuery();
 
 			if (rset.next()) {
-				result = new User(rset.getInt("USER_NO"), rset.getString("user_id"), rset.getString("user_pwd"),
-						rset.getString("phone"), rset.getString("email"), rset.getDate("enroll_date"),
-						rset.getDate("modify_date"), rset.getString("status"));
+				result = new User(rset.getInt("USER_NO"),
+						rset.getString("USER_ID"), 
+						rset.getString("USER_PWD"),
+						rset.getString("PHONE"),
+						rset.getString("EMAIL"),
+						rset.getString("USER_NICKNAME"),
+						rset.getDate("ENROLL_DATE"),
+						rset.getDate("MODIFY_DATE"),
+						rset.getString("STATUS"));
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			e.printStackTrace();	
 		} finally {
 			close(rset);
 			close(pstmt);
+			          
 		}
 		return result;
 	}
@@ -197,9 +204,9 @@ public class UserDao {
 			pstmt.setString(1, userId);
 
 			rset = pstmt.executeQuery();
-
+ 
 			if (rset.next()) {
-				u.setUserId(rset.getString("user_pwd"));
+				u.setUserPwd(rset.getString("user_pwd"));
 			
 			}
 

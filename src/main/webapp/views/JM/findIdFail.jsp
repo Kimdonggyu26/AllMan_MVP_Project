@@ -71,23 +71,17 @@ input:focus {outline: none;}
 			 <%
 								String contextPath = request.getContextPath();
 							%> 			
-	  <!-- Header, Nav start -->
-   	<%--  <%@ include file="/views/common/header.jsp" %> --%>
-    <!-- Header, Nav end -->
-					<form action="<%= contextPath %>/views/JM/findPwd.jsp">
+
+					<form action="<%= contextPath %>/views/JM/findId.jsp">
 				<div class="container">
 				  <i class="fa-regular fa-circle-xmark" id="check"></i>
 				          <div class="idfo">일치하는 결과를 찾을 수 없습니다.</div>
-				          <div class="font">연속 10회 틀린 경우 비밀번호 찾기 기능이 일시적으로 제한됩니다.</div>
 				        <div class="button-group">
 				  					<button type="submit"  id="buttons">확인</button>
 								</div>
 				</div>
 				</form>
 
-		<!-- Header, Nav start -->
-   	<%--  <%@ include file="/views/common/footer.jsp" %> --%>
-    <!-- Header, Nav end -->
     
     
 </body>

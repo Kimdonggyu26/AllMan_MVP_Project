@@ -166,7 +166,8 @@ public class ModifyNickController extends HttpServlet {
         String fileName = multiRequest.getFilesystemName("profileImage");
 
         // 사용자 객체 생성 및 업데이트 처리
-        String userId = (String) session.getAttribute("userId");
+        //String userId = (String) session.getAttribute("userId"); 세션에 담지않고 request.에 담아서 request.getAttribute로 가져와야함
+        String userId =  multiRequest.getParameter("userId");
         User u = new User();
         u.setUserId(userId);
         u.setUserNick(userNick);
@@ -180,7 +181,7 @@ public class ModifyNickController extends HttpServlet {
 
         int result = new UserService().updateUserProfile(u); 
 // 결과 처리
-        if (result < 0) {
+        if (result > 0) { // result 값에 아이디값이 있으면 1로 바뀌어서 > 가 맞음
             // 회원 정보 변경 성공 시 성공 메시지를 세션에 저장하고 리다이렉트
             session.setAttribute("alertMsg", "성공적으로 회원정보가 변경되었습니다.");
             response.sendRedirect(request.getContextPath());

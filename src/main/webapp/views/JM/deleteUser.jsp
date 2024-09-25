@@ -88,7 +88,8 @@
 }
   </style>
 <%
-	String contextPath = request.getContextPath();
+	String contextPath = request.getContextPath(); // "/web"
+	User loginUser = (User)session.getAttribute("loginUser");
 
 %>
   
@@ -107,7 +108,7 @@
             </tr>
           </div>
             <tr id="tr3" rowspan="2">
-              <td colspan="2" class="font">사용하고 계신 아이디(user01)는 탈퇴할 경우 재사용 및 복구가 불가능합니다. <br>
+              <td colspan="2" class="font">사용하고 계신 아이디(<%= loginUser.getUserId() %>)는 탈퇴할 경우 재사용 및 복구가 불가능합니다. <br>
                                           탈퇴한 아이디는 본인과 타인 모두 재사용 및 복구가 불가하오니 신중하게 선택하시기 바랍니다. <br>
                                           탈퇴 후 회원정보 및 개인형 서비스 이용기록은 모두 삭제됩니다. </td>
                
@@ -115,7 +116,7 @@
               <div id="tr4" >
             <tr>
               <td class="font">탈퇴 후에는</td>
-              <td id="tdr">아이디(user_no)로 다시 가입할 수 없으며 아이디와 데이터는 복구할 수 없습니다.</td>
+              <td id="tdr"><%= loginUser.getUserId() %>로 다시 가입할 수 없으며 아이디와 데이터는 복구할 수 없습니다.</td>
             </tr>
           </div>
           </table>
@@ -126,7 +127,7 @@
           <label for="agree-checkbox" class="labelfont">안내 사항을 모두 확인 하였으며, 이에 동의합니다.</label>
         </div>
         
-        <input type="text" class="ifound" placeholder="비밀번호 확인" >
+        <input type="text" class="ifound" placeholder="비밀번호 확인"  name="userPwd">
 		
           <button type="submit" id="btn" >확인</button>
           

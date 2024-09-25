@@ -43,7 +43,7 @@
 			   
 			}
 			.container{
-			  margin-top: 13px;
+			  margin-top: 250px;
 			  align-items: center;
 			  display: flex;
 			    flex-direction: column; /* 세로 방향으로 정렬 */
@@ -86,7 +86,7 @@
 			  border: none;
 			  cursor: pointer;
 			}
-	
+
   </style>
   
 </head>
@@ -125,10 +125,14 @@
 			   String contextPath = request.getContextPath();
 					%>
 				<form action="<%= contextPath %>/modifyProfile.us" method="post" enctype="multipart/form-data">
-				    <input type="hidden" name="userId" value="<%= session.getAttribute("userId") %>">
+				    <input type="hidden" name="userId" value="<%= request.getAttribute("userId") %>">
 				    <div class="container">
 				        <div class="idfo">프로필 사진을 선택하세요</div>
-				        <input type="file" name="profileImage" class="ifound" required> <!-- 파일 업로드 입력 -->
+				         <label for="profileImage">
+								        <img id="imagePreview" src="https://via.placeholder.com/200" alt="Click to upload" style="cursor: pointer; width: 200px; height: 200px; border: 1px solid #ccc;">
+								    </label>
+								    <!-- 파일 입력 필드 숨기기 -->
+								    <input type="file" name="profileImage" id="profileImage" class="imagefile" style="display: none;" required>
 				        <div class="font">프로필 이미지 추가하기</div>
 				        <div class="idfo">닉네임을 설정해주세요</div>
 				        <div class="button-group">
@@ -137,6 +141,18 @@
 				        </div>
 				    </div>
 				</form>
-			
+			<script>
+				document.getElementById("profileImage").onchange = function(event) {
+		        const file = event.target.files[0];
+		        if (file) {
+		            const reader = new FileReader();
+		            reader.onload = function(e) {
+		                const img = document.getElementById("imagePreview");
+		                img.src = e.target.result; // 이미지 미리보기
+		            };
+		            reader.readAsDataURL(file); // 파일을 데이터 URL로 읽음
+		        }
+		    };
+</script>
 </body>
 </html>

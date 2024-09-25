@@ -74,16 +74,16 @@ input:focus {outline: none;}
 	  <!-- Header, Nav start -->
    <%--  <%@ include file="/views/common/header.jsp" %> --%>
     <!-- Header, Nav end -->
-
+			<form action="<%= contextPath %>/views/DG/mainPage.jsp" >
 		<div class="container">
       <i class="fa-regular fa-circle-check" id="check"></i>
-          <div class="idfo"><%=contextPath %><br>메일이 발송되었습니다.</div>
+          <div class="idfo"><br>메일이 발송되었습니다.</div>
           <div class="font">이메일을 확인하여 비밀번호 재설정을 완료해주세요.</div>
         	<div class="button-group">
   				<button type="submit"  id="buttons">확인</button>
 			</div>
 		</div>
-	
+		</form>
 		<!-- Header, Nav start -->
    	<%--  <%@ include file="/views/common/footer.jsp" %> --%>
     <!-- Header, Nav end -->
