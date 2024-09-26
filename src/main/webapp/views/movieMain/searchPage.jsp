@@ -18,8 +18,6 @@
 
 	<%
 		String searchData = (String) request.getAttribute("searchData"); //Ajax를 위한 데이터
-		PageInfo pi = (PageInfo) request.getAttribute("pi");
-		List<Movie> list = (List<Movie>)request.getAttribute("list");
 	%>
 
 	<link rel="stylesheet"href="<%=contextPath%>/views/movieMain/css/mainPage.css">
@@ -81,15 +79,17 @@
 		</div>
 		<!-- sidebar div 끝 -->
 
-
-		<% if (false) { %>
+			<div>
+			
+			</div>
+		
+		<!-- 검색결과 없음 출력 -->
 			<div style="display: flex; height: 500px; align-items: center; width: 1260px; justify-content: center;">
-				<h1 style="">검색결과를 찾지 못했어요. list.isEmpty()</h1>
+				<h1 id="noSearch"></h1>
 			</div>
 
-		<% } else { %>
-				<div
-					style="width: 1561px; height: 2361px; float: right; margin-top: 34px;">
+				
+				<div style="width: 1561px; height: 2361px; float: right; margin-top: 34px;">
 					<div id="text" style="display: flex; flex-direction: row;">
 						<p>상영 영화</p>
 						<div
@@ -102,87 +102,84 @@
 							</div>
 						</div>
 					</div>
+					
 					<div id="movie1" style="display: flex; flex-direction: row;">
-							<% for(Movie mv : list){ %>
-							<% int count = 0; %>
-								<% if(pi.getListCount() % 5 == 0){ %>
-								<div>
-									<div id="movie1-top">
-										<div class="movie1-list">
-											<div class="movie-image">
-												<img src="<%=contextPath + mv.getTitlePath()%>">
-											</div>
-											<div class="movie-info">
-												<div style="display: flex; align-items: center;">
-													<table
-														style="margin-left: 12px; margin-bottom: 7px; margin-top: 7px;">
-														<tr>
-															<td style="color: white; font-weight: 900; font-size: 13px;"><%=mv.getTitlePath() %></td>
-														</tr>
-														<tr>
-															<td>2024.09.04</td>
-														</tr>
-														<tr>
-															<td>장르 : 다큐멘터리, 애니메이션</td>
-														</tr>
-														<tr>
-															<td>감독 : 심형준</td>
-														</tr>
-													</table>
-													<i class="fa-regular fa-heart" id="heart"></i>
+								<% for(Movie mv : list){ %>
+								<% int count = 0; %>
+									<% if(pi.getListCount() % 5 == 0){ %>
+									<div>
+										<div id="movie1-top">
+											<div class="movie1-list">
+												<div class="movie-image">
+													<img src="<%=contextPath + mv.getTitlePath()%>">
 												</div>
-												<div style="display: flex;">
-													<button type="button" class="btn btn-secondary" id="info">영화정보</button>
-													<button type="button" class="btn btn-danger" id="compare">
-														<img src="../DG/assets/image/logo/download_logo.png"
-															style="width: 14px; height: 14px; margin-right: 5px; margin-bottom: 4px;">비교하기
-													</button>
+												<div class="movie-info">
+													<div style="display: flex; align-items: center;">
+														<table
+															style="margin-left: 12px; margin-bottom: 7px; margin-top: 7px;">
+															<tr>
+																<td style="color: white; font-weight: 900; font-size: 13px;"><%=mv.getTitlePath() %></td>
+															</tr>
+															<tr>
+																<td>2024.09.04</td>
+															</tr>
+															<tr>
+																<td>장르 : 다큐멘터리, 애니메이션</td>
+															</tr>
+															<tr>
+																<td>감독 : 심형준</td>
+															</tr>
+														</table>
+														<i class="fa-regular fa-heart" id="heart"></i>
+													</div>
+													<div style="display: flex;">
+														<button type="button" class="btn btn-secondary" id="info">영화정보</button>
+														<button type="button" class="btn btn-danger" id="compare">
+															<img src="../DG/assets/image/logo/download_logo.png"
+																style="width: 14px; height: 14px; margin-right: 5px; margin-bottom: 4px;">비교하기
+														</button>
+													</div>
 												</div>
 											</div>
 										</div>
+								<!-- movie1-top div 끝 -->
+
+										<div id="movie1-bottom">
+											<div class="movie1-list">
+					
+												<div class="movie-info">
+													<div style="display: flex; align-items: center;">
+														<table
+															style="margin-left: 12px; margin-bottom: 7px; margin-top: 7px;">
+															<tr>
+																<td style="color: white; font-weight: 900; font-size: 13px;">안녕,
+																	할부지</td>
+															</tr>
+															<tr>
+																<td>2024.09.04</td>
+															</tr>
+															<tr>
+																<td>장르 : 다큐멘터리, 애니메이션</td>
+															</tr>
+															<tr>
+																<td>감독 : 심형준</td>
+															</tr>
+														</table>
+														<i class="fa-regular fa-heart" id="heart"></i>
+													</div>
+													<div style="display: flex;">
+														<button type="button" class="btn btn-secondary" id="info">영화정보</button>
+														<button type="button" class="btn btn-danger" id="compare">
+															<img src="../DG/assets/image/logo/download_logo.png"
+																style="width: 14px; height: 14px; margin-right: 5px; margin-bottom: 4px;">비교하기
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>				
+										<!-- movie1-bottom div 끝 -->
 									</div>
-								<% count++; %>
-							<%} %>
-							<!-- movie1-top div 끝 -->
-							<% if (count % 5 ==0 || count == list.size()) { %>
-							<div id="movie1-bottom">
-								<div class="movie1-list">
-		
-									<div class="movie-info">
-										<div style="display: flex; align-items: center;">
-											<table
-												style="margin-left: 12px; margin-bottom: 7px; margin-top: 7px;">
-												<tr>
-													<td style="color: white; font-weight: 900; font-size: 13px;">안녕,
-														할부지</td>
-												</tr>
-												<tr>
-													<td>2024.09.04</td>
-												</tr>
-												<tr>
-													<td>장르 : 다큐멘터리, 애니메이션</td>
-												</tr>
-												<tr>
-													<td>감독 : 심형준</td>
-												</tr>
-											</table>
-											<i class="fa-regular fa-heart" id="heart"></i>
-										</div>
-										<div style="display: flex;">
-											<button type="button" class="btn btn-secondary" id="info">영화정보</button>
-											<button type="button" class="btn btn-danger" id="compare">
-												<img src="../DG/assets/image/logo/download_logo.png"
-													style="width: 14px; height: 14px; margin-right: 5px; margin-bottom: 4px;">비교하기
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<%} %><!-- count If문 끝 -->						
-							<!-- movie1-bottom div 끝 -->
-						</div>
 					</div>
-					<%} %>
 					<!-- movie1 div 끝 -->
 		
 					<div id="text">
@@ -281,7 +278,6 @@
 			</div>
 			<!-- main div 끝-->
 
-		<% } %>
 
 	<!-- body부 종료 -->
 </body>
@@ -289,20 +285,82 @@
 <script>
 
 $(function(){
-	fnAjaxSearch();
+	fnAjaxSearch(1,1);
 })
 
-	function fnAjaxSearch() { // 영화 리스트
+	function fnAjaxSearch(showPage, ottPage) { // 영화 리스트
 		const $searchData = "<%=searchData%>"; //검색
-		const $showMove = "<%=pi%>"; // 상영영화 요청페이지 번호, 그냥 페이징 처리 번호만 가지고 오면 됨
-		const $ottMove = "<%=pi%>"; // ott 영화 요청페이지 번호
 		$.ajax({
 			url: '<%=request.getContextPath()%>/movieSearch.ms',
 			data: {
-				search: $searchData
-				//pi
+				search: $searchData,
+				showPage: showPage,
+				ottPage: ottPage
 			},
 			success: function(res){
+				// {showList:[{},{}], showPi:{}, ottList:[{}, {}], ottPi:{}}  
+				// 응답받아야되는 정보 : 상영영화list, 상영영화pi, ott영화list, ott영화pi
+				// res.showList => 상영영화list
+				// res.ottList => ott영화list
+				
+				
+				
+				if(res.showList.length == 0 && res.ottList.length == 0){
+						// 검색결과 없음보여지는 요소작업  - id값 noSearch
+						$('#noSearch').html("검색결과를 찾지 못했어요.");
+				}else {
+					
+				 if(res.showList.length != 0){
+					 // 상영영화 목록 요소 작업
+					 for(let i=0; let<배열전체){
+						 
+						 if(i == 0 || i == 5) {
+							 <div id='movie1-top | movie1-bottom'>
+							 
+							 
+							 
+						 }
+						 
+						 <div id='movie-list'>
+						 	영화요소
+						 </div>
+						 	
+						 if(i == 4 || 마지막인덱스일 경우){
+							 <botto/div>
+						 }
+						 
+					 }
+				 }
+				 
+				 if(res.ottList.length != 0){
+					 // ott영화 목록 요소 작업 
+						for(let i=0; let<배열전체){
+						 
+						if(i가 0또는 5일 경우) {
+							 <div id='movie1-top | movie1-bottom'>
+							 
+							 
+							 
+						}
+						 
+						<div id='movie-list'>
+							영화요소
+						</div>
+						 	
+						if(i가 4 또는 마지막인덱스일 경우){
+						 </div>
+						}
+						 
+					}
+				}
+				 
+			}
+				
+				만들어진 요소 div에 뿌리기
+				*/
+				
+				
+				
 				console.log(res);
 				
 				if(res == null){
@@ -321,7 +379,6 @@ $(function(){
 	}
 
 </script>
-
 <!-- Footer start -->
 <%@ include file="/views/common/footer.jsp"%>
 <!-- Footer end -->

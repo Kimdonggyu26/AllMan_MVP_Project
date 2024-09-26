@@ -35,8 +35,8 @@
 	       	OR DIRECTOR LIKE '%' || ? || '%'
 	       	OR ACTOR LIKE '%' || ? || '%'
        	   AND STATUS IN (10, 20);
-	</entry>
-	
+	</entry>	
+
 	<entry key="insertMovie">
 		INSERT
 		  INTO MOVIE
