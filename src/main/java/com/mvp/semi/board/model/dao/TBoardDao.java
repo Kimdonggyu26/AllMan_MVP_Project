@@ -594,31 +594,7 @@ public class TBoardDao {
 		return b;
 	}
 
-	public List<Reply> selectReplyList(Connection conn, int boardNo) {
-		List<Reply> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("selectReplyList");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, boardNo);
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				list.add(new Reply(rset.getInt("reply_no")
-								 , rset.getString("reply_content")
-								 , rset.getString("user_id")
-								 , rset.getString("profile_path")));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		return list;
-	}
+	
 
 	public int insertReply(Connection conn, Reply r) {
 		int result = 0;
@@ -640,6 +616,90 @@ public class TBoardDao {
 		
 		
 		return result;
+	}
+
+	public int deleteReply(Connection conn, int replyNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteReply");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, replyNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+
+	public int selectTBoardReplyCount(Connection conn, int boardNo) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectTBoardReplyCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	public List<Reply> selectReplyList(Connection conn, int boardNo, PageInfo pi) {
+		List<Reply> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReplyList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, boardNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Reply(rset.getInt("reply_no")
+								 , rset.getString("reply_content")
+								 , rset.getString("regist_date")
+								 , rset.getString("user_id")
+								 , rset.getString("profile_path")));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 	}
 
 

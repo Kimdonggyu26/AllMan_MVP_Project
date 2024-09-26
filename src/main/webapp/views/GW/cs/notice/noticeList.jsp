@@ -50,7 +50,7 @@
 			<% } else { %>
 			<!-- case2. 조회된 공지글이 있을 경우 -->
 				<% for (Notice n : list) { %>
-            <tr class="board-title" data-toggle="collapse" data-target="#notice<%= n.getNoticeNo() %>">
+            <tr class="board-title1" data-toggle="collapse" data-target="#notice<%= n.getNoticeNo() %>">
               <td><%= n.getNoticeTitle() %></td>
               <td><%= n.getUserNo() %></td>
               <td><%= n.getRegistDate() %></td>
@@ -59,7 +59,7 @@
               <td colspan="3">
                 <p class="border rounded p-3 w-75 mx-auto" style="min-height: 150px;"><%= n.getNoticeContent() %></p>
                 
-              <% if(loginUser != null && loginUser.getStatus() == "A") { %>
+              <% if(loginUser != null && loginUser.getStatus().equals("A")) { %>
 	              <!-- 로그인한 회원이 관리자 권한일 경우 보여지는 요소 -->
 	              <div align="center">
 	                <a href="<%= contextPath %>/modify.no?no=<%= n.getNoticeNo() %>" type="button" class="btn btn-secondary btn-sm">수정하기</a>
@@ -211,6 +211,9 @@
     background-color: #131313; 
     border-color: #131313;
 }
+	.board-title1{
+		cursor: pointer;
+	}
 
   input[type="text"]::placeholder {color: #c2b9b9;}
 

@@ -50,7 +50,7 @@
 						<% } else { %>
 						<!-- case2. 조회된 FaQ이 있을 경우 -->
 							<% for (FaQ f : list) { %>
-            <tr class="board-title" data-toggle="collapse" data-target="#qna<%= f.getFaqNo() %>">
+            <tr class="board-title1" data-toggle="collapse" data-target="#qna<%= f.getFaqNo() %>">
               <td><%= f.getFaqTitle() %></td>
               <td><%= f.getUserNo() %></td>
               <td><%= f.getRegistDate() %></td>
@@ -59,7 +59,7 @@
               <td colspan="3">
                 <p class="border rounded p-3 w-75 mx-auto" style="min-height: 150px;"><%= f.getFaqContent() %></p>
                 
-                <% if(loginUser != null && loginUser.getStatus() == "A") { %>
+                <% if(loginUser != null && loginUser.getStatus().equals("A")) { %>
                 <!-- 로그인한 회원이 관리자 권한일 경우 보여지는 요소-->
                 <div align="center">
                   <a href="<%= contextPath %>/modify.faq?no=<%= f.getFaqNo() %>" type="button" class="btn btn-secondary btn-sm">수정하기</a>
@@ -149,6 +149,7 @@
     #search-bar { width: 657px; background-color: #666; color: #fff; }
     #search-btn { width: 132px; background-color: #F33F3F; color: #fff; }
     input[type="text"]::placeholder {color: #c2b9b9;}
+    .board-title1 { cursor: pointer;}
 
 </style>
 

@@ -26,6 +26,8 @@ public class UserDao {
 		}
 
 	}
+	
+	
 
 	public User loginUser(Connection conn, String userId, String userPwd) {
 		// select문 => ResultSet (한 행, 한 회원) => Member객체

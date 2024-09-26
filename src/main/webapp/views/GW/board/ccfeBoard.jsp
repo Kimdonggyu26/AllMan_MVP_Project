@@ -43,7 +43,7 @@
 
       <div class="container" id="bt1">
       
-				<%-- if(loginUser != null && loginUser.getTasteNo() == 60){ --%>
+				<%-- if(loginUser != null && loginUser.getTasteNo().equals(60)){ --%>
         <div class="d-flex justify-content-end mb-3">
            <a href="<%= contextPath %>/write.tbo" class="btn btn-secondary btn-sm">등록하기</a>
         </div>
@@ -60,7 +60,7 @@
         <div class="row justify-content-center">
           <!-- 첫 번째 카드 -->
           <% for(Board b : list){ %>
-          <div class="col-4 mb-4">
+          <div class="col-4 mb-4" id="c-box">
             <div class="card" data-no="<%=b.getBoardNo()%>">
               <img class="card-img-top" src="<%=contextPath + b.getTitlePath() %>" alt="영화 이미지" width="300px" height="230px">
               <div class="card-body">
@@ -276,15 +276,19 @@
 	  color: white;
 	}
 	
-.card {
-  width: 100%; /* 필요시 텍스트 영역의 너비 조절 */
-}
+	.card {
+	  width: 100%; /* 필요시 텍스트 영역의 너비 조절 */
+	}
+	
+	#mv-content{
+	  overflow: hidden;  		
+	  text-overflow: ellipsis;
+	  white-space: nowrap;
+	  width: 100%; 	
+	}
 
-#mv-content{
-  overflow: hidden;  		
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 100%; 	
-}
+ #c-box{
+ cursor: pointer;
+ }
 </style>
 </html>

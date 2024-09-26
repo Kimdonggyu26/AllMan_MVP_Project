@@ -27,23 +27,23 @@
     <section>
       <div class="btn-taste">
         <div class="row justify-content-center mt-5 mb-3">
-          <a href="<%= contextPath %>/list.NDHE" class="mx-2 btn btn-sm" id="taste">NDHE 게시판</a>
-          <a href="<%= contextPath %>/list.VDSE" class="mx-2 btn btn-sm" id="vdse">VDSE 게시판</a>
-          <a href="<%= contextPath %>/list.SPTF" class="mx-2 btn btn-sm" id="taste">SPTF 게시판</a>
-          <a href="<%= contextPath %>/list.BOFA" class="mx-2 btn btn-sm" id="taste">BOFA 게시판</a>
+          <a href="<%= contextPath %>/list.NDHE" class="mx-2 btn btn-sm" id="ndhe" >NDHE 게시판</a>
+          <a href="<%= contextPath %>/list.VDSE" class="mx-2 btn btn-sm" id="taste"  >VDSE 게시판</a>
+          <a href="<%= contextPath %>/list.SPTF" class="mx-2 btn btn-sm" id="taste"  >SPTF 게시판</a>
+          <a href="<%= contextPath %>/list.BOFA" class="mx-2 btn btn-sm" id="taste"  >BOFA 게시판</a>
         </div>
         <div class="row justify-content-center mb-3">
-          <a href="<%= contextPath %>/list.ETRF" class="mx-2 btn btn-sm" id="taste">ETRF 게시판</a>
-          <a href="<%= contextPath %>/list.CCFE" class="mx-2 btn btn-sm" id="taste">CCFE 게시판</a>
-          <a href="<%= contextPath %>/list.CASE" class="mx-2 btn btn-sm" id="taste">CASE 게시판</a>
-          <a href="<%= contextPath %>/list.HHAL" class="mx-2 btn btn-sm" id="taste">HHAL 게시판</a>
+          <a href="<%= contextPath %>/list.ETRF" class="mx-2 btn btn-sm" id="taste"  >ETRF 게시판</a>
+          <a href="<%= contextPath %>/list.CCFE" class="mx-2 btn btn-sm" id="taste"  >CCFE 게시판</a>
+          <a href="<%= contextPath %>/list.CASE" class="mx-2 btn btn-sm" id="taste"  >CASE 게시판</a>
+          <a href="<%= contextPath %>/list.HHAL" class="mx-2 btn btn-sm" id="taste"  >HHAL 게시판</a>
         </div>
       </div>
 
 
       <div class="container" id="bt1">
       
-				<%-- if(loginUser != null && loginUser.getTasteNo() == 20){ --%>
+				<%-- if(loginUser != null && loginUser.getTasteNo().equals(10)){ --%>
         <div class="d-flex justify-content-end mb-3">
            <a href="<%= contextPath %>/write.tbo" class="btn btn-secondary btn-sm">등록하기</a>
         </div>
@@ -59,11 +59,10 @@
 
         <div class="row justify-content-center">
           <!-- 첫 번째 카드 -->
-                    
           <% for(Board b : list){ %>
-          <div class="col-4 mb-4">
+          <div class="col-4 mb-4" id="c-box">
             <div class="card" data-no="<%=b.getBoardNo()%>">
-                 <img class="card-img-top" src="<%=contextPath + b.getTitlePath() %>" alt="영화 이미지" width="300px" height="230px">
+              <img class="card-img-top" src="<%=contextPath + b.getTitlePath() %>" alt="영화 이미지" width="300px" height="230px">
               <div class="card-body">
 
                     <div><%=b.getMovieTitle()%></div>
@@ -82,12 +81,11 @@
                 </table>
               </div>
             </div>
-
           </div>
-					<% } %>
+            <% } %>
         </div>
-             
-     <% } %>
+
+            <% } %>
         
       </div>
  
@@ -125,18 +123,18 @@
         <ul class="pagination d-flex justify-content-center text-dark" id="page">
         
           <li class='page-item <%= pi.getCurrentPage() == 1 ? "disabled" : "" %>'>
-          	<a class="page-link" href="<%= contextPath%>/list.VDSE?page=<%= pi.getCurrentPage() -1 %>">&lt;</a>
+          	<a class="page-link" href="<%= contextPath%>/list.tbo?page=<%= pi.getCurrentPage() -1 %>">&lt;</a>
           </li>
           
           <% for(int p=pi.getStartPage(); p<=pi.getEndPage(); p++) { %>
          	 <li class='page-item <%= p == pi.getCurrentPage() ? "active" : "" %>'>
-         	 	<a class="page-link" style="color: #ffffff;" href="<%= contextPath%>/list.VDSE?page=<%= p %>"><%= p %>
+         	 	<a class="page-link" style="color: #ffffff;" href="<%= contextPath%>/list.tbo?page=<%= p %>"><%= p %>
          	 	</a>
          	 </li>
           <% } %>
                    
           <li class='page-item <%= pi.getCurrentPage() == pi.getMaxPage() ? "disabled" : "" %>'>
-          	<a class="page-link" href="<%=contextPath%>/list.VDSE?page=<%= pi.getCurrentPage()+1 %>">&gt;
+          	<a class="page-link" href="<%=contextPath%>/list.tbo?page=<%= pi.getCurrentPage()+1 %>">&gt;
           	</a>
           </li>
           
@@ -269,8 +267,8 @@
 	  background-color: #3C3C3C;
 	}
 	
-	#vdse{
-	  background-color: orange;
+	#ndhe{
+	  background-color: red;
 	  width: 150px;
 	  height: 30px;
 	  border-radius: 20px;
@@ -278,15 +276,20 @@
 	  color: white;
 	}
 	
-.card {
-  width: 100%; /* 필요시 텍스트 영역의 너비 조절 */
-}
+	
+	.card {
+	  width: 100%; /* 필요시 텍스트 영역의 너비 조절 */
+	}
+	
+	#mv-content{
+	  overflow: hidden;  		
+	  text-overflow: ellipsis;
+	  white-space: nowrap;
+	  width: 100%; 	
+	}
 
-#mv-content{
-  overflow: hidden;  		
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 100%; 	
-}}
+ #c-box{
+ cursor: pointer;
+ }
 </style>
 </html>

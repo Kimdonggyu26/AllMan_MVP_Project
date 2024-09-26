@@ -57,7 +57,7 @@
             <!--  case2_1 본인 문의글일 경우-->
 					  <% for(Inquiry i : list){ %>
 					  	<% if(loginUser != null && loginUser.getUserId().equals(i.getUserNo())) { %>
-					  <tr class="board-title" data-no="<%=i.getInquiryNo()%>">
+					  <tr class="board-title1" data-no="<%=i.getInquiryNo()%>">
               <td><%= i.getInquiryTitle() %></td>
               <td><%= i.getUserNo() %></td>
               <td><%= i.getRegistDate() %></td>
@@ -77,17 +77,24 @@
         </div>
         
         
-          <script>
-        	$(function(){
-        		$("#qna-list tbody>tr").on('click', function(){
-        			// 현재 클릭한 게시글 제목
-        			location.href = "<%= contextPath %>/detail.iq?no=" +  $(this).data('no');
-        			// 현재 로그인한 회원 아이디
-        		  //<// %let loginUserId = '<// %= loginUser == null ? "" : loginUser.getUserId() %>'
-        			
-        		})
-        	})
-        </script>
+			<script>
+			$(function(){
+			    $("#qna-list tbody>tr").on('click', function(){
+			        // 본인의 문의글일 경우에만 클릭 가능
+			        if ($(this).data('no')) {
+			            location.href = "<%= contextPath %>/detail.iq?no=" + $(this).data('no');
+			        }
+			    });
+			
+			    // 비활성화된 행에 대해 클릭 이벤트를 막음
+			    $("#qna-list tbody>tr").each(function() {
+			        if ($(this).find('td').text().includes("본인의 문의글이 아닙니다.")) {
+			            $(this).css("cursor", "not-allowed");
+			            $(this).off('click'); // 클릭 이벤트 제거
+			        }
+			    });
+			});
+			</script>
 
 
         <div id="qna-b">
@@ -232,6 +239,9 @@
     background-color: #131313; 
     border-color: #131313;
 }
+	.board-title1{
+		cursor: pointer;
+	}
 
 input[type="text"]::placeholder {color: #c2b9b9;}
 

@@ -24,16 +24,15 @@ public class Reply {
 		this.refBoardNo = refBoardNo;
 	}
 	
-	
 
-	public Reply(int replyNo, String replyContent, String replyWriter, String writerProfile) {
+	public Reply(int replyNo, String replyContent, String registDt, String replyWriter, String writerProfile) {
 		super();
 		this.replyNo = replyNo;
 		this.replyContent = replyContent;
+		this.registDt = registDt;
 		this.replyWriter = replyWriter;
 		this.writerProfile = writerProfile;
 	}
-
 
 	public int getReplyNo() {
 		return replyNo;

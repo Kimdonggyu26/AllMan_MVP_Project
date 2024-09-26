@@ -165,14 +165,7 @@ public class TBoardService {
 		
 		return b;
 	}
-
-	public List<Reply> selectReplyList(int boardNo) {
-		Connection conn = getConnection();
-		List<Reply> list = tbDao.selectReplyList(conn, boardNo);
-		close(conn);
-		
-		return list;
-	}
+	
 
 	public int insertReply(Reply r) {
 		Connection conn = getConnection();
@@ -185,6 +178,35 @@ public class TBoardService {
 		close(conn);
 		return result;
 	}
+
+	public int deleteReply(int replyNo) {
+		Connection conn = getConnection();
+		int result = tbDao.deleteReply(conn, replyNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public int selectTBoardReplyCount(int boardNo) {
+		Connection conn = getConnection();
+		int listCount = tbDao.selectTBoardReplyCount(conn, boardNo);
+		close(conn);
+		return listCount;
+	}
+
+
+	public List<Reply> selectReplyList(int boardNo, PageInfo pi) {
+		Connection conn = getConnection();
+		List<Reply> list = tbDao.selectReplyList(conn, boardNo, pi);
+		close(conn);
+		
+		return list;
+	}
+
 
 	
 	
