@@ -20,13 +20,13 @@ import com.mvp.semi.movie.model.vo.Movie;
  * Servlet implementation class AjaxMovieListController
  */
 @WebServlet("/movieHeaderSearch.ms")
-public class AjaxMovieListController extends HttpServlet {
+public class AjaxMovieListController_delete123 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxMovieListController() {
+    public AjaxMovieListController_delete123() {
         super();
         // TODO Auto-generated constructor stub
     }

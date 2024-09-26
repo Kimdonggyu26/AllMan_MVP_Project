@@ -19,7 +19,6 @@
 	<%@ include file="/views/common/header.jsp"%>
 	<!-- Header, Nav end -->
 
-
 	<link rel="stylesheet"href="<%=contextPath%>/views/movieMain/css/mainPage.css">
 
 	<!-- body부 시작 -->
@@ -80,9 +79,9 @@
 <!-- sidebar div 끝 -->
 
 		
-			<!-- 검색결과 없음 출력 -->
-				<div id="noSearch"></div>
-				<!-- 
+	<!-- 검색결과 없음 출력 -->
+		<div id="noSearch"></div>
+		<!-- 
 				<div style="width: 1561px; height: 2361px; float: right; margin-top: 34px;">
 					<div id="text" style="display: flex; flex-direction: row;">
 						<p>상영 영화</p>
@@ -98,275 +97,31 @@
 					
 					<div id="movie1" style="display: flex; flex-direction: row;">
 									<div>
-<!-- 상단 검색 결과 섹션 -->
-										
-			<div>
-								<!-- movie1-top div 끝 -->
-			
-										<div id="movie1-bottom">
-											<div class="movie1-list">
-					
-												<div class="movie-info">
-													<div style="display: flex; align-items: center;">
-														<table style="margin-left: 12px; margin-bottom: 7px; margin-top: 7px;">
-															<tr>
-																<td style="color: white; font-weight: 900; font-size: 13px;">안녕,
-																	할부지</td>
-															</tr>
-															<tr>
-																<td>2024.09.04</td>
-															</tr>
-															<tr>
-																<td>장르 : 다큐멘터리, 애니메이션</td>
-															</tr>
-															<tr>
-																<td>감독 : 심형준</td>
-															</tr>
-														</table>
-														<i class="fa-regular fa-heart" id="heart"></i>
-													</div>
-													<div style="display: flex;">
-														<button type="button" class="btn btn-secondary" id="info">영화정보</button>
-														<button type="button" class="btn btn-danger" id="compare">
-															<img src="../DG/assets/image/logo/download_logo.png"
-																style="width: 14px; height: 14px; margin-right: 5px; margin-bottom: 4px;">비교하기
-														</button>
-													</div>
-												</div>
-											</div>
-										</div>				
-										<!-- movie1-bottom div 끝 -->
-					<!-- movie1 div 끝 -->
-		
-										<div id="text">
-											<div style="display: flex; flex-direction: row; margin-top: 116px">
-												<p>OTT 영화</p>
-												<div
-													style="display: flex; flex-direction: row; margin-left: 55%; font-size: 2rem;">
-													<div style="display: flex; align-items: center;">
-														<i class="fa-solid fa-circle-chevron-left"></i>
-													</div>
-													<div
-														style="display: flex; align-items: center; margin-left: 10px;">
-														<i class="fa-solid fa-circle-chevron-left"
-															style="transform: scaleX(-1);"></i>
-													</div>
-												</div>
-											</div>
-										</div>
-							
-										<div id="movie2">
-											<div id="movie2-top">
-												<div class="movie2-list">
-													<div class="movie-image">
-														<img src="./assets/image/movie_image/movie_image_2.png">
-													</div>
-													<div class="movie-info">
-														<div style="display: flex; align-items: center;">
-															<table
-																style="margin-left: 12px; margin-bottom: 7px; margin-top: 7px;">
-																<tr>
-																	<td style="color: white; font-weight: 900; font-size: 13px;">안녕,
-																		할부지<%=searchData%></td>
-																</tr>
-																<tr>
-																	<td>2024.09.04</td>
-																</tr>
-																<tr>
-																	<td>장르 : 다큐멘터리, 애니메이션</td>
-																</tr>
-																<tr>
-																	<td>감독 : 심형준</td>
-																</tr>
-															</table>
-															<i class="fa-regular fa-heart" id="heart"></i>
-														</div>
-														<div style="display: flex;">
-															<button type="button" class="btn btn-secondary" id="info">영화정보</button>
-															<button type="button" class="btn btn-danger" id="compare">
-																<img src="../DG/assets/image/logo/download_logo.png"
-																	style="width: 14px; height: 14px; margin-right: 5px; margin-bottom: 4px;">비교하기
-															</button>
-														</div>
-													</div>
-												</div>
-											</div>
-											<!-- movie2-top div 끝 -->
-											<div id="movie2-bottom">
-												<div class="movie2-list">
-													<div class="movie-image">
-														<img src="./assets/image/movie_image/movie_image_2.png">
-													</div>
-													<div class="movie-info">
-														<div style="display: flex; align-items: center;">
-															<table
-																style="margin-left: 12px; margin-bottom: 7px; margin-top: 7px;">
-																<tr>
-																	<td style="color: white; font-weight: 900; font-size: 13px;">안녕,
-																		할부지</td>
-																</tr>
-																<tr>
-																	<td>2024.09.04</td>
-																</tr>
-																<tr>
-																	<td>장르 : 다큐멘터리, 애니메이션</td>
-																</tr>
-																<tr>
-																	<td>감독 : 심형준</td>
-																</tr>
-															</table>
-															<i class="fa-regular fa-heart" id="heart"></i>
-														</div>
-														<div style="display: flex;">
-															<button type="button" class="btn btn-secondary" id="info">영화정보</button>
-															<button type="button" class="btn btn-danger" id="compare">
-																<img src="../DG/assets/image/logo/download_logo.png"
-																	style="width: 14px; height: 14px; margin-right: 5px; margin-bottom: 4px;">비교하기
-															</button>
-														</div>
-													</div>
-												</div>
-											</div>
-											<!-- movie2-bottom div 끝 -->
-										</div>
-										<!-- movie2 div 끝 -->
-								
+				-->					
+
+			<!-- 상단 검색 결과 섹션 -->					
+			<div id="printMovieList">
+				
 			</div>
 			
 	</div><!-- main div 끝-->		 
 
 
-	<!-- body부 종료 -->
+<!-- body부 종료 -->
 </body>
-
-<script>
-
-	$(function(){
-		fnAjaxShowSearch(1,1);
-	})
-
-	//상영 리스트
-	function fnAjaxShowSearch(showPage, ottPage) { 
-		const $searchData = "<%=searchData%>"; //검색
-		
-		$.ajax({
-			url: '<%=contextPath%>/showSearch.ms',
-			data: {
-				search: $searchData,
-				showPage: showPage,
-				ottPage: ottPage
-			},
-			success: function(res){
-				// {showList:[{},{}], showPi:{}}  
-				// 응답받아야되는 정보 : 상영영화list, 상영영화pi
-				// res.showList => 상영영화list
-				// res.ottList => ott영화list
-						console.log(res);
-
-						let h1El = ""; //검색결과 없음 담기 위한 변수 
-						let divEl = "";//영화 리스트를 담기 위한 변수
-						
-						var r = res.movieList; // 영화 데이터 
-						var pi = res.pageInfo; // 페이징
-				
-						if(r.length == 0){// 추후에 OTT 작업후  && res.ottList.length == 0 추가
-							// 검색결과 없음보여지는 요소작업  - id값 noSearch
-							console.log('검색결과 없음');
-						
-											
-							h1El += '<div style="display: flex; height: 500px; align-items: center; width: 1260px; justify-content: center;">'
-										+ 	'<h1>일치하는 검색결과가 없어요.</h1>'
-										+ '</div>';
-						}else {
-							 if(r.length != 0){
-								 // 상영영화 목록 요소 작업
-								 
-							h1El  += '<div style="width: 1561px; height: 2361px; float: right; margin-top: 34px;">'//전체 div
-								    +   '<div id="text">'
-								    +       '<p>상영 영화</p>'
-								    +   '</div>'
-								    +   '<div id="movie1">';//전체 movie1
-
-								for (let i = 0; i < r.length; i++) {
-								    if (i == 0 || i == 5) {
-								        if (i == 0) {
-								            divEl += '<div id="movie1-top">'; //movie1-top
-								        } else {
-								            divEl += '<div id="movie1-bottom">'; //movie1-bottom
-								        }
-								    }
-								    divEl += '<div class="movie1-list">'  //movie1-list
-						        +   '<div class="movie-image">'
-						        +       '<img src="=contextPath + r.titlePath ">'
-						        +   '</div>'
-						        +   '<div class="movie-info">'
-						        +       '<div style="display: flex; align-items: center;">'
-						        +           '<table style="margin-left: 12px; margin-bottom: 7px; margin-top: 7px;">'
-						        +               '<tr>'
-						        +                   '<td style="color: white; font-weight: 900; font-size: 13px;">안녕,할부지</td>'
-						        +               '</tr>'
-						        +               '<tr>'
-						        +                   '<td>2024.09.04</td>'
-						        +               '</tr>'
-						        +               '<tr>'
-						        +                   '<td>장르 : 다큐멘터리, 애니메이션</td>'
-						        +               '</tr>'
-						        +               '<tr>'
-						        +                   '<td>감독 : 심형준</td>'
-						        +               '</tr>'
-						        +           '</table>'
-						        +           '<i class="fa-regular fa-heart" id="heart"></i>'
-						        +       '</div>'
-						        +       '<div style="display: flex;">'
-						        +           '<button type="button" class="btn btn-secondary" id="info">영화정보</button>'
-						        +           '<button type="button" class="btn btn-danger" id="compare">'
-						        +               '<img src="../DG/assets/image/logo/download_logo.png" style="width: 14px; height: 14px; margin-right: 5px; margin-bottom: 4px;">'
-						        +               '비교하기'
-						        +           '</button>'
-						        +       '</div>'
-						        +   '</div>'// movie1-list 닫기
-						        + '</div>'; 
-
-								    // movie1-top과 movie1-bottom을 닫는 부분
-								    if (i == 4 || i == r.length - 1) {
-								        if (i == 4) {
-								            divEl += '</div>'; // movie1-bottom 닫기
-								        } else {
-								            divEl += '</div>'; // movie1-top 닫기
-								        }
-								    }
-								}
-
-								divEl += '</div>'; // movie1 닫기
-								divEl += '</div>'; // 전체 div 닫기
-
-										}
-								 }
-												 
-							}
-							 
-						
-							 
-				//만들어진 요소 div에 뿌리기
-				$('#noSearch').html(h1El);
-				$('#').html(divEl);
-						
-			},
-			error: function(){
-				console.log('영화 검색 ajax 통신 실패');
-			}	
+	
+	<script>
+	
+		$(function(){
+			fnAjaxShowSearch(1,1);
 		})
-	}
-		
 	
-	
-	//OTT 리스트
-		function fnAjaxOttSearch(showPage, ottPage) {
+		//상영 리스트
+		function fnAjaxShowSearch(showPage, ottPage) { 
 			const $searchData = "<%=searchData%>"; //검색
-
 			
 			$.ajax({
-				url: '<%=contextPath%>/ottSearch.ms',
+				url: '<%=contextPath%>/showSearch.ms',
 				data: {
 					search: $searchData,
 					showPage: showPage,
@@ -377,17 +132,125 @@
 					// 응답받아야되는 정보 : ott영화list, ott영화pi
 					// res.showList => 상영영화list
 					// res.ottList => ott영화list
-							console.log(res);
+					console.log(res);
 					
+					let h1El = ""; //검색결과 없음 담기 위한 변수 
+					let divEl = "";//영화 리스트를 담기 위한 변수
+					
+					var r = res.movieList; // 영화 데이터 
+					var pi = res.pageInfo; // 페이징
+					
+					let count = 0;
+			
+					if(r.length == 0){// 추후에 OTT 작업후  && res.ottList.length == 0 추가
+						// 검색결과 없음보여지는 요소작업  - id값 noSearch
+						console.log('검색결과 없음');
+					
+										
+						h1El += '<div style="display: flex; height: 500px; align-items: center; width: 1260px; justify-content: center;">'
+							 + 		'<h1>일치하는 검색결과가 없어요.</h1>'
+							 +  '</div>';
+					}else {
+						 if(r.length != 0){
+							 // 상영영화 목록 요소 작업
+							divEl  += '<div style="width: 1561px; height: 2361px; float: right; margin-top: 34px;">'//전체 div
+									    +   '<div id="text">'
+									    +       '<p>상영 영화</p>'
+									    +   '</div>'
+									    +   '<div id="movie1">';//전체 movie1
+									    for (let i = 0; i < r.length; i++) {
+										    if (count == 0 || count == 5) {
+										        if (count == 0) {
+										            divEl += '<div id="movie1-top">'; //movie1-top
+										        } else {
+										            divEl += '<div id="movie1-bottom">'; //movie1-bottom
+										        }
+										        count++;
+										    }
+									   		  divEl += '<div class="movie1-list">'  //movie1-list
+											        +   '<div class="movie-image">'
+											        +       '<img src="=contextPath + r.titlePath ">'
+											        +   '</div>'
+											        +   '<div class="movie-info">' // movie-info
+											        +       '<div style="display: flex; align-items: center;">' // a
+											        +           '<table style="margin-left: 12px; margin-bottom: 7px; margin-top: 7px;">'
+											        +               '<tr>'
+											        +                   '<td style="color: white; font-weight: 900; font-size: 13px;">안녕,할부지</td>'
+											        +               '</tr>'
+											        +               '<tr>'
+											        +                   '<td>2024.09.04</td>'
+											        +               '</tr>'
+											        +               '<tr>'
+											        +                   '<td>장르 : 다큐멘터리, 애니메이션</td>'
+											        +               '</tr>'
+											        +               '<tr>'
+											        +                   '<td>감독 : 심형준</td>'
+											        +               '</tr>'
+											        +           '</table>'
+											        +           '<i class="fa-regular fa-heart" id="heart"></i>'
+											        +		'<div>'// a
+											        +    '</div>'// movie-info 닫기
+											        +       '<div style="display: flex;">'//b
+											        +           '<button type="button" class="btn btn-secondary" id="info">영화정보</button>'
+											        +           '<button type="button" class="btn btn-danger" id="compare">'//c
+											        +               '<img src="../DG/assets/image/logo/download_logo.png" style="width: 14px; height: 14px; margin-right: 5px; margin-bottom: 4px;">비교하기'
+											        +           '</button>'//c
+											        +       '</div>'//b
+									        +  '</div>';// movie1-list 닫기
+									        
+									        count++; // count 증가
+	
+										    // movie1-top과 movie1-bottom을 닫는 부분
+										    if (count == 4) {
+											    divEl += '</div>'; // 마지막 movie1-top 닫기
+											}
+										   if (count == 5) {
+										        divEl += '</div>'; // movie1-bottom 닫기
+										        count = 0; // count를 다시 0으로 리셋
+										    }
+										}
+							    divEl += '</div>'; // movie1 닫기
+								divEl += '</div>'; // 전체 div 닫기
+						}
+					}
+					$('#noSearch').html(h1El);
+					$('#printMovieList').html(divEl);
 				},
 				error: function(){
 					console.log('영화 검색 ajax 통신 실패');
-				}	
-			})
+				}
+			})	
 		}
-
-</script>
-<!-- Footer start -->
-<%@ include file="/views/common/footer.jsp"%>
-<!-- Footer end -->
+	
+		
+		//OTT 리스트
+			function fnAjaxOttSearch(showPage, ottPage) {
+				const $searchData = "<%=searchData%>"; //검색
+	
+				
+				$.ajax({
+					url: '<%=contextPath%>/ottSearch.ms',
+					data: {
+						search: $searchData,
+						showPage: showPage,
+						ottPage: ottPage
+					},
+					success: function(res){
+						// {ottList:[{}, {}], ottPi:{}}  
+						// 응답받아야되는 정보 : ott영화list, ott영화pi
+						// res.showList => 상영영화list
+						// res.ottList => ott영화list
+								console.log(res);
+						
+					},
+					error: function(){
+						console.log('영화 검색 ajax 통신 실패');
+					}	
+				})
+			}
+	
+	</script>
+	<!-- Footer start -->
+	<%@ include file="/views/common/footer.jsp"%>
+	<!-- Footer end -->
 </html>
