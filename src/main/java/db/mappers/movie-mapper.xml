@@ -27,20 +27,36 @@
 		  	AND ?
 	</entry>
 	
-	<entry key="selectMovieListCount">
+	<entry key="selectShowMovieListCount">
 	
-		<!-- 영화 페이징 처리 위한 쿼리문 -->
+		<!-- 메인페이지 상영 페이징 처리 위한 쿼리문 -->
 	
 		SELECT
-        	   COUNT(*) as COUNT
+        	 COUNT(*) as COUNT
  		  FROM
-       		   MOVIE
+       		 MOVIE
 		 WHERE
-		 	   MOVIE_TITLE LIKE '%' || ? || '%' 
-	       	OR GENRE LIKE '%' || ? || '%'
-	       	OR DIRECTOR LIKE '%' || ? || '%'
-	       	OR ACTOR LIKE '%' || ? || '%'
-       	   AND STATUS IN (10, 20);
+		 	   	 MOVIE_TITLE LIKE '%' || ? || '%' 
+	         OR GENRE LIKE '%' || ? || '%'
+	       	 OR DIRECTOR LIKE '%' || ? || '%'
+	       	 OR ACTOR LIKE '%' || ? || '%'
+       	   AND STATUS IN ('10')
+	</entry>	
+	
+	<entry key="selectOTTMovieListCount">
+	
+		<!-- 메인페이지 OTT 페이징 처리 위한 쿼리문 -->
+	
+		SELECT
+        	 COUNT(*) as COUNT
+ 		  FROM
+       		 MOVIE
+		 WHERE
+		 	     MOVIE_TITLE LIKE '%' || ? || '%' 
+       	OR GENRE LIKE '%' || ? || '%'
+       	OR DIRECTOR LIKE '%' || ? || '%'
+       	OR ACTOR LIKE '%' || ? || '%'
+       AND STATUS IN ('20')
 	</entry>	
 
 	<entry key="insertMovie">

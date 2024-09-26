@@ -48,28 +48,56 @@ public class MovieService {
 		return result;
 	}
 	
-	public int selectShowingMovieList(){
+	public int selectShowMovieList(String searchData){
 		
 		// 상영중인 영화 갯수 반환(메인페이지)
 		
 		Connection conn = getConnection();
 		
-		int listCount = mvDao.selectShowingMovieList(conn);
+		int listCount = mvDao.selectShowMovieList(conn, searchData);
 		
 		close(conn);
 		
 		return listCount;
 	}
 	
-	public List<Movie> selectMovieList(PageInfo pi, String searchData){
+	public int selectOttMovieList(String searchData){
+		
+		// 상영중인 OTT 갯수 반환(메인페이지)
+		
 		Connection conn = getConnection();
 		
-		List<Movie> list = mvDao.selectMovieList(conn, pi, searchData);
+		int listCount = mvDao.selectOttMovieList(conn, searchData);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
+	public List<Movie> selectShowMovieList(PageInfo pi, String searchData){
+		//예찬
+		//메인페이지 상영 포스터 영화 리스트 가져오기
+		Connection conn = getConnection();
+		
+		List<Movie> list = mvDao.selectShowMovieList(conn, pi, searchData);
 		
 		close(conn);
 		
 		return list;
 	}
+	
+	public List<Movie> selectOttMovieList(PageInfo pi, String searchData){
+		//예찬
+		//메인페이지 OTT 포스터 영화 리스트 가져오기
+		Connection conn = getConnection();
+		
+		List<Movie> list = mvDao.selectOttMovieList(conn, pi, searchData);
+		
+		close(conn);
+		
+		return list;
+	}
+	
 	
 	public Movie selectMovieByNo(int movieNo){
 		Connection conn = getConnection();

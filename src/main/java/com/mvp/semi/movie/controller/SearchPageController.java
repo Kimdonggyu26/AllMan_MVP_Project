@@ -30,7 +30,7 @@ public class SearchPageController extends HttpServlet {
 		
 		String searchData = request.getParameter("search");//타입: String
 		
-		System.out.println(searchData);
+		System.out.println("#" + searchData);
 		
 		request.setAttribute("searchData", searchData);
 		

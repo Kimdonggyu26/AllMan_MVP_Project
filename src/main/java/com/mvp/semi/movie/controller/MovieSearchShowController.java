@@ -1,6 +1,7 @@
 package com.mvp.semi.movie.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,33 +21,31 @@ import com.mvp.semi.movie.model.vo.Movie;
 /**
  * Servlet implementation class MovieSearch
  */
-@WebServlet("/movieSearch.ms")
-public class MovieListController extends HttpServlet {
+@WebServlet("/showSearch.ms")
+public class MovieSearchShowController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MovieListController() {
+    public MovieSearchShowController() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 *@author 천예찬
+	 *@return responseData
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		//천예찬
 		//앞에서 상영영화인지 OTT인지 비교하는 구문 필요할듯? 그럼 뒤에 서비스 DB는 똑같으니깐
-//		if ("showing".equals(category)) {
-//		    listCount = new MovieService().selectShowingMovieList();
-//		} else if ("ott".equals(category)) {
-//		    listCount = new MovieService().selectOTTMovieList();
-//		}
 		
 		String searchData = request.getParameter("search");//타입: String
 		
-		int listCount = new MovieService().selectShowingMovieList();
+		System.out.println("@" + searchData);
+		
+		int listCount = new MovieService().selectShowMovieList(searchData);
 		
 		int currentPage = 1;
 		
@@ -69,19 +68,19 @@ public class MovieListController extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
-		List<Movie> list = new MovieService().selectMovieList(pi, searchData);
+		List<Movie> list = new MovieService().selectShowMovieList(pi, searchData);
+		
+		Map<String, Object> responseData = new HashMap<>();
+		
+		responseData.put("pageInfo", pi);
+		responseData.put("movieList", list);
 		
 		
-		System.out.println("list값 : " + list);
-		request.setAttribute("list", list);
+		response.setContentType("application/json; charset=UTF-8");
+		new Gson().toJson(responseData, response.getWriter());
 		
-		request.getRequestDispatcher("/views/movieMain/searchPage.jsp").forward(request, response);
-		
-//		response.setContentType("application/json; charset=UTF-8");
-//		new Gson().toJson(list, response.getWriter());
 //		String searchData = request.getParameter("movieSearchData");
 //		
 //		// 넘겨받아야되는 데이터
