@@ -214,196 +214,219 @@
 	              </tr>
             	</tbody>
             </table>
-	            
+	          
+	          <form action="<%=contextPath%>/movieDelete.md" method="post">
             <div id="body-main-list">
 	            <div id="list-category">
 	              <div class="show-movie tabActive" onclick="showingMovieList();">상영중인 영화</div>
 	              <div class="ott-movie" onclick="ottMovieList();">OTT 영화</div>
 	              <button type="button" style="background-color: #2F80ED; margin-left: 525px;"  data-toggle="modal" data-target="#insert-movie" >+ 등록</button>
-	              <button type="button" style="background-color: #F25858; margin-left: 15px;">- 삭제</button>
+	              <button type="submit" style="background-color: #F25858; margin-left: 15px;">- 삭제</button>
 	            </div>
                     
               <div class="list-head">
-                <div style="width: 64px; height: 18px;"><input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></div>
+                <div style="width: 64px; height: 18px;"><input type="checkbox" id="checkAll" style="width: 18px; height: 18px; margin-left: 46px;"></div>
                 <div style="margin-left: 58px;">NO</div>
                 <div style="margin-left: 85px;">제목</div>
                 <div style="margin-left: 526px;">등급</div>
                 <div style="margin-left: 167px;">개봉일</div>
               </div>
-                    
-              <table id="movie-list">
               
-		<script>
-		
-		// 클릭시 상영중인 영화 조회
-			function showingMovieList() {
-			
-				$(window.event.target).addClass("tabActive");
-				$(window.event.target).next().removeClass("tabActive");
-			
-				$.ajax({
-								url : '<%=contextPath%>/showing.mv',
-								success: function(res){
-												console.log(res);
-												let divEl = '';
-												if(res.length < 12){
-													for(let i = 0; i < res.length; i++){
-														divEl += '<tr onclick="checkMovie(event);">'
-																			+ '<td class="list-content" data-toggle="modal" data-target="#modify-movie">'
-																				 + '<div><input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></div>'
-																				 + '<div class="list-num">' + res[i].movieNo + '</div>'
-																				 + '<div class="list-title">' + res[i].movieTitle + '</div>'
-																				 + '<div class="list-ageLv">' + res[i].ageLv + '</div>'
-																				 + '<div class="list-date">' + res[i].openDate + '</div>'
-																			+ '</td>'	 	 
-																	 + '</tr>';
-											}
-													
-																 for(i = 0; i < 12-res.length; i++){
-													divEl += '<tr>'
-																		+ '<td class="list-content">'
-																			 + '<div><input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></div>'
-																			 + '<div class="list-num"></div>'
-																			 + '<div class="list-title"></div>'
-																			 + '<div class="list-ageLv"></div>'
-																			 + '<div class="list-date"></div>'
-																		+ '</td>'	 	 
-															 + '</tr>';
-																 }
-												}
-																 
-									$('#movie-list').html(divEl);
-									$('#movie-list tr:odd').css('background-color', '#f0f0f0');
-								},
-								error: function(){
-									console.log("실패");
-								}
-				})
-			}
-			
-			// 클릭 시 ott 영화 조회
-			function ottMovieList() {
-				
-				$(window.event.target).addClass("tabActive");
-				$(window.event.target).prev().removeClass("tabActive");
-				
-				$.ajax({
-								url : '<%=contextPath%>/ott.mv',
-								success: function(res){
-												
-												let divEl = '';
-												if(res.length < 12){
-												for(let i = 0; i < res.length; i++){
-													divEl += '<tr onclick="checkMovie();">'
-																			+ '<td class="list-content">'
-																				 + '<div><input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></div>'
-																				 + '<div class="list-num">' + res[i].movieNo + '</div>'
-																				 + '<div class="list-title">' + res[i].movieTitle + '</div>'
-																				 + '<div class="list-ageLv">' + res[i].ageLv + '</div>'
-																				 + '<div class="list-date">' + res[i].openDate + '</div>'
-																			+ '</td>'	 
-																 + '</tr>';
-												}
-												for(i = 0; i < 12-res.length; i++){
-													divEl += '<tr>'
-																		+ '<td class="list-content">'
-																			 + '<div><input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></div>'
-																			 + '<div class="list-num"></div>'
-																			 + '<div class="list-title"></div>'
-																			 + '<div class="list-ageLv"></div>'
-																			 + '<div class="list-date"></div>'
-																		+ '</td>'	 	 
-															 + '</tr>';
-																 }
-												}
-									$('#movie-list').html(divEl);
-									$('#movie-list tr:odd').css('background-color', '#f0f0f0');
-								},
-								error: function(){
-									console.log("실패");
-								}
-				})
-			}
-			
-			window.addEventListener('load', showingMovieList);
-			
-			function checkMovie(event){
-				console.log('tr요소 클릭됨');
-				
-				$.ajax({
-								url: '<%=contextPath%>/movieSelect.ms',
-								data: {
-											movieNo: $(event.currentTarget).find('.list-num').text()
-								},
-								success: function(res){
-									console.log(res);
-									$('#movieTitle').val(res.movieTitle);
-									$('#movieContent').val(res.movieContent);
+              
+              <table id="movie-list">
+              </table>
+              
+              
+								<script>
+								
+								// 클릭시 상영중인 영화 조회
+									function showingMovieList() {
 									
-									const genreArr = res.genre.split(',');
+										$(window.event.target).addClass("tabActive");
+										$(window.event.target).next().removeClass("tabActive");
 									
-									$('.genre').each(function(){
+										$.ajax({
+														url : '<%=contextPath%>/showing.mv',
+														success: function(res){
+																		//console.log(res);
+																		let divEl = '';
+																		if(res.length < 12){
+																			for(let i = 0; i < res.length; i++){
+																				divEl += '<tr onclick="checkMovie(event);">'
+																									+ '<td class="list-content">'
+																										 + '<div><input type="checkbox" class="list-checkbox" style="width: 18px; height: 18px; margin-left: 46px;" name="movieNo" value="' + res[i].movieNo + '"></div>'
+																										 + '<div class="list-num">' + res[i].movieNo + '</div>'
+																										 + '<div class="list-title" data-toggle="modal" data-target="#modify-movie">' + res[i].movieTitle + '</div>'
+																										 + '<div class="list-ageLv">' + res[i].ageLv + '</div>'
+																										 + '<div class="list-date">' + res[i].openDate + '</div>'
+																									+ '</td>'	 	 
+																							 + '</tr>';
+																	}
+																			
+																						 for(i = 0; i < 12-res.length; i++){
+																			divEl += '<tr>'
+																								+ '<td class="list-content">'
+																									 + '<div class="list-num"></div>'
+																									 + '<div class="list-title"></div>'
+																									 + '<div class="list-ageLv"></div>'
+																									 + '<div class="list-date"></div>'
+																								+ '</td>'	 	 
+																					 + '</tr>';
+																						 }
+																		}
+																		
+																						 
+															$('#movie-list').html(divEl);
+															$('#movie-list tr:odd').css('background-color', '#f0f0f0');
+														},
+														error: function(){
+															console.log("실패");
+														}
+										})
+									}
+									
+									// 클릭 시 ott 영화 조회
+									function ottMovieList() {
 										
-								    if (genreArr.includes($(this).val())) {
-								        $(this).prop('checked', true); // 체크박스 선택
-								    } else {
-								        $(this).prop('checked', false); // 체크박스 해제
-								    }
-								    
+										$(window.event.target).addClass("tabActive");
+										$(window.event.target).prev().removeClass("tabActive");
+										
+										$.ajax({
+														url : '<%=contextPath%>/ott.mv',
+														success: function(res){
+																		
+																		let divEl = '';
+																		if(res.length < 12){
+																		for(let i = 0; i < res.length; i++){
+																			divEl += '<tr onclick="checkMovie(event);">'
+																									+ '<td class="list-content" data-toggle="modal" data-target="#modify-movie">'
+																										 + '<div><input type="checkbox" class="list-checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></div>'
+																										 + '<div class="list-num">' + res[i].movieNo + '</div>'
+																										 + '<div class="list-title">' + res[i].movieTitle + '</div>'
+																										 + '<div class="list-ageLv">' + res[i].ageLv + '</div>'
+																										 + '<div class="list-date">' + res[i].openDate + '</div>'
+																									+ '</td>'	 
+																						 + '</tr>';
+																		}
+																		
+																		for(i = 0; i < 12-res.length; i++){
+																			divEl += '<tr>'
+																								+ '<td class="list-content">'
+																									 + '<div class="list-num"></div>'
+																									 + '<div class="list-title"></div>'
+																									 + '<div class="list-ageLv"></div>'
+																									 + '<div class="list-date"></div>'
+																								+ '</td>'	 	 
+																					 + '</tr>';
+																						 }
+																		}
+																		
+															$('#movie-list').html(divEl);
+															$('#movie-list tr:odd').css('background-color', '#f0f0f0');
+														},
+														error: function(){
+															console.log("실패");
+														}
+										})
+									}
+									
+									window.addEventListener('load', showingMovieList);
+									
+									function checkMovie(event){
+										console.log('tr요소 클릭됨');
+										
+										$.ajax({
+														url: '<%=contextPath%>/movieSelect.ms',
+														data: {
+																	movieNo: $(event.currentTarget).find('.list-num').text()
+														},
+														success: function(res){
+															//console.log(res);
+															
+															// 수정 시 영화 번호 조회용
+															$('#hiddenNo').val(res.movieNo);
+															const hiddenNo = $('#hiddenNo').val();
+															
+															$('#movieTitle').val(res.movieTitle);
+															$('#movieContent').val(res.movieContent);
+															
+															const genreArr = res.genre.split(',');
+															
+															$('.genre').each(function(){
+																
+														    if (genreArr.includes($(this).val())) {
+														        $(this).prop('checked', true); // 체크박스 선택
+														    } else {
+														        $(this).prop('checked', false); // 체크박스 해제
+														    }
+														    
+															});
+															
+															$('#taste-no-modify').val(res.tasteNo);
+															$('#openDate').val(res.openDate);
+												      $('#movie-level-modify').val(res.ageLv); 
+															$('#director').val(res.director);
+															$('#actor').val(res.actor);
+															$('#preview').val(res.preview);
+															// 메인이미지
+															$('#playtime').val(res.playTime);									
+															$('#country').val(res.country);
+															$('#audienceCount').val(res.audienceCount);
+															$('#movie-status-modify').val(res.status);
+															$('#grade').val(res.grade);
+															// 상세이미지 $('#img-preview').prop('src', res.contentPath);
+															console.log(res.movieNo);
+															console.log('히든넘버 : ' + hiddenNo);
+														}
+										})
+									}
+									
+									// 동적으로 만들어진 영화 목록 tr 요소에 클릭이벤트 발생시 
+									// ajax로 해당 영화정보 조회 요청 보내기 (이때 조회된 데이터를 응답데이터로 받기)
+									/*
+										$.ajax({
+											url: ,
+											data: {조회할영화번호},
+											success:function(res){ // res에는 영화정보 담긴 객체가 응답데이터로 돌아와서 담김
+												console.log(res);   // {key:value, ..}
+												
+												수정모달창에 각각의 input 요소 선택해서 value속성값으로 res의 영화 정보값을 뿌리기
+												
+											}
+										})
+										
+									*/
+									
+										// 체크박스 전체 선택
+										document.getElementById('checkAll').addEventListener('change', function(){
+										
+										const allChecked = this.checked;
+										
+										const checkboxes = document.querySelectorAll('.list-checkbox');
+										
+										checkboxes.forEach(function(cbox){
+											cbox.checked = allChecked;
+										});
 									});
 									
-									$('#tasteNo').val(res.tasteNo);
-									$('#openDate').val(res.openDate);
-									
-									const select = document.getElementById('movie-level');
-									
-									$('.movie-level').each(function(){
+									/*
+									function deleteMovie (){
 										
-										if(select.val.equals(res.movieLv)){
-											$('.movie-level').val(res.movieLv).prop("selected", true);
-										}
+										const checkedbox = $('.list-checkbox:checked');
 										
-									})
-								      
-									$('#director').val(res.director);
-									$('#actor').val(res.actor);
-									$('#preview').val(res.preview);
-									// 메인이미지
-									$('#playtime').val(res.playTime);									
-									$('#country').val(res.country);
-									$('#audienceCount').val(res.audienceCount);
-									// 상태
-									$('#grade').val(res.grade);
-									// 상세이미지
-									
-									console.log(res.ageLv);
-									console.log(select.value);
-								}
-				})
-			}
-			// 동적으로 만들어진 영화 목록 tr 요소에 클릭이벤트 발생시 
-			// ajax로 해당 영화정보 조회 요청 보내기 (이때 조회된 데이터를 응답데이터로 받기)
-			/*
-				$.ajax({
-					url: ,
-					data: {조회할영화번호},
-					success:function(res){ // res에는 영화정보 담긴 객체가 응답데이터로 돌아와서 담김
-						console.log(res);   // {key:value, ..}
-						
-						수정모달창에 각각의 input 요소 선택해서 value속성값으로 res의 영화 정보값을 뿌리기
-						
-					}
-				})
-				
-			*/
-			
-			
-		</script>
+										const checkedMovieNo = $(checkedbox).closest('tr').find('.list-num').text();
 										
-                  </table>
+										console.log(checkedbox);
+										console.log(checkedMovieNo);
+										
+										location.href="<%=contextPath%>/movieDelete.md?movieNo=" + checkedMovieNo;
+									}
+									*/
+								</script>
                 </div> <!-- list div 끝 -->
               </div> <!-- body-main-list 끝 -->
             </div> <!--body-main div 끝 -->
+            </form>
            </div> <!-- body-right div 끝 -->
 	            
 	            <!-- 사용자가 현재보고있는 페이지에 따라서 다르게 보여질 페이징바 추가하기 -->
@@ -481,7 +504,7 @@
 			                </div>
 			                <div>
 			                	<div style="width: 42px; height: 17px; margin-bottom: 5px;"><p>취향</p></div>
-					                <select id="taste-no" class="form-select" name="taste">
+					                <select id="taste-no-insert" class="form-select" name="taste">
 					                  <option value="10">NDHE</option>
 					                  <option value="20">VDSE</option>
 					                  <option value="30">SPTF</option>
@@ -542,7 +565,7 @@
 			              </div>
 			              <div style="display: flex; gap: 30px;">
 			                <div style="width: 42px; height: 17px;"><p style="margin-bottom: 10px;">등급</p></div>
-			                <select id="movie-level" class="form-select" name="age-level">
+			                <select id="movie-level-insert" class="form-select" name="age-level">
 			                  <option value="전체관람가">전체관람가</option>
 			                  <option value="12세이상관람가">12세이상관람가</option>
 			                  <option value="15세이상관람가">15세이상관람가</option>
@@ -582,7 +605,7 @@
 			              </div>
 			              <div style="display: flex; gap: 30px;">
 			              	<div style="width: 42px; height: 17px;"><p>상태</p></div>
-			                <select id="movie-status" class="form-select" name="movie-status">
+			                <select id="movie-status-insert" class="form-select" name="movie-status">
 			                  <option value="10">현재상영중인영화</option>
 			                  <option value="20">OTT영화</option>
 			                </select>
@@ -646,7 +669,7 @@
 			        <!-- Modal footer -->
 			        <div class="modal-footer">
 			          <div style="display: flex; gap: 196px; margin-right: 202px;">
-			            <button type="submit" class="btn btn-primary" style="width: 80px;" onclick="getCheckedValues();">등록</button>
+			            <button type="submit" class="btn btn-primary" style="width: 80px;">등록</button>
 			            <button type="button" class="btn btn-secondary" data-dismiss="modal">창 닫기</button>
 			          </div>
 			        </div>
@@ -655,9 +678,10 @@
 			    </div>
 			 </div>
 		</form>
-		<form>
+		
 						<!-- 영화 조회 및 수정 화면 (모달) -->
-			<form>
+			<form action="<%=contextPath%>/movieModify.mm" method="post" enctype="multipart/form-data">
+			<input id="hiddenNo" type="hidden" name="no">
 			 <div class="modal" id="modify-movie">
 			    <div class="modal-dialog modal-xl" style="width: 760px; height: 900px;">
 			    
@@ -721,7 +745,7 @@
 			                </div>
 			                <div>
 			                	<div style="width: 42px; height: 17px; margin-bottom: 5px;"><p>취향</p></div>
-					                <select id="movie-level" class="form-select" name="taste">
+					                <select id="taste-no-modify" class="form-select" name="taste">
 					                  <option value="10">NDHE</option>
 					                  <option value="20">VDSE</option>
 					                  <option value="30">SPTF</option>
@@ -782,7 +806,7 @@
 			              </div>
 			              <div style="display: flex; gap: 30px;">
 			                <div style="width: 42px; height: 17px;"><p style="margin-bottom: 10px;">등급</p></div>
-			                <select id="movie-level" class="form-select" name="age-level">
+			                <select class="form-select" name="age-level" id="movie-level-modify">
 			                  <option value="전체관람가">전체관람가</option>
 			                  <option value="12세이상관람가">12세이상관람가</option>
 			                  <option value="15세이상관람가">15세이상관람가</option>
@@ -822,7 +846,7 @@
 			              </div>
 			              <div style="display: flex; gap: 30px;">
 			              	<div style="width: 42px; height: 17px;"><p>상태</p></div>
-			                <select id="movie-status" class="form-select" name="movie-status">
+			                <select id="movie-status-modify" class="form-select" name="movie-status">
 			                  <option value="10">현재상영중인영화</option>
 			                  <option value="20">OTT영화</option>
 			                </select>
@@ -864,21 +888,15 @@
 			        <!-- Modal footer -->
 			        <div class="modal-footer">
 			          <div style="display: flex; gap: 196px; margin-right: 202px;">
-			            <button type="submit" class="btn btn-primary" style="width: 80px;" onclick="getCheckedValues();">수정</button>
+			            <button type="submit" class="btn btn-primary" style="width: 80px;">수정</button>
 			            <button type="button" class="btn btn-secondary" data-dismiss="modal">창 닫기</button>
 			          </div>
 			        </div>
 			        
 			      </div>
 			    </div>
-			 </div>
+			 </div> <!-- container div 끝 -->
 		</form>
-	</div> <!-- container div 끝 -->
 	
-
-
-
-
-
 </body>
 </html>

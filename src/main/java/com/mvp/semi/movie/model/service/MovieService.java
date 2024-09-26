@@ -110,4 +110,25 @@ public class MovieService {
 		return list;
 	}
 	
+	public int modifyMovie(Movie m, int movieNo) {
+		Connection conn = getConnection();
+		
+		int result = mvDao.modifyMovie(conn, m, movieNo);
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	public int deleteMovie(String allNum) {
+		Connection conn = getConnection();
+		
+		int result = mvDao.deleteMovie(conn, allNum);
+		
+		close(conn);
+		
+		return result;
+		
+	}
+	
 }

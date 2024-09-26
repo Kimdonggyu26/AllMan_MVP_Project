@@ -168,7 +168,55 @@
 		WHERE 
 					MOVIE_NO = ?
 	</entry>
+		
+	<entry key="modifyMovie">
+		
+	<!-- 관리자화면 - 영화수정 -->
 	
+		UPDATE
+		  		 MOVIE
+		   SET
+				   MOVIE_TITLE = ?
+				 , MOVIE_CONTENT = ?
+				 , GENRE = ?
+				 , PLAYTIME = ?
+				 , COUNTRY = ?
+				 , AGE_LV = ?
+				 , OPEN_DATE = ?
+				 , DIRECTOR = ?
+				 , AUDIENCE_COUNT = ?
+				 , ACTOR = ?
+				 , PREVIEW = ?
+				 , STATUS = ?
+				 , GRADE = ?
+				 , TITLE_PATH = ?
+				 , CONTENT_PATH = ?
+				 , TASTE_NO = ?
+		WHERE
+					MOVIE_NO = ?
+	</entry>
+	
+	<entry key="deleteMovie">
+		UPDATE
+					 MOVIE
+			 SET
+			 		 STATUS = '30'
+	</entry>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

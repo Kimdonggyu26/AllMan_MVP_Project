@@ -274,6 +274,76 @@ public class MovieDao {
 		
 		return list;
 	}
+	
+	public int modifyMovie(Connection conn, Movie m, int movieNo) {
+		
+		// 영화 수정
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("modifyMovie");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, m.getMovieTitle());
+			pstmt.setString(2, m.getMovieContent());
+			pstmt.setString(3, m.getGenre());
+			pstmt.setInt(4, m.getPlayTime());
+			pstmt.setString(5, m.getCountry());
+			pstmt.setString(6, m.getAgeLv());
+			pstmt.setString(7, m.getOpenDate());
+			pstmt.setString(8, m.getDirector());
+			pstmt.setInt(9, m.getAudienceCount());
+			pstmt.setString(10, m.getActor());
+			pstmt.setString(11, m.getPreview());
+			pstmt.setString(12, m.getStatus());
+			pstmt.setDouble(13, m.getGrade());
+			pstmt.setString(14, m.getTitlePath());
+			pstmt.setString(15, m.getContentPath());
+			pstmt.setInt(16, m.getTasteNo());
+			pstmt.setInt(17, movieNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+		
+	}
+	
+	public int deleteMovie(Connection conn, String allNum) {
+		//156
+		// 선택된 영화 삭제
+		
+		//String[] allNums = allNum.split("");
+		//String movieNums = String.join(",", allNums); // 선택된 번호들을 , 로 구분해서 합치기
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteMovie");
+		sql += "WHERE MOVIE_NO IN (" + allNum + ")";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+		
+		
+	}
+	
+	
 
 
 }
