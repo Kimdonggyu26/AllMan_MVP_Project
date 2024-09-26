@@ -207,6 +207,73 @@ public class MovieDao {
 		return mv;
 		
 	}
+	
+	public List<Movie> showingMovieList(Connection conn) {
+		
+		// 관리자 화면(영화 관리)에서 '상영중인 영화' 탭 클릭시 조회되는 영화 리스트
+
+		
+		List<Movie> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectShowingMovieList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while (rset.next()) {
+				list.add(new Movie(rset.getInt("movie_no"), rset.getString("movie_title"),
+						rset.getString("movie_content"), rset.getString("genre"), rset.getInt("playtime"),
+						rset.getString("country"), rset.getString("age_lv"), rset.getString("open_date"),
+						rset.getString("director"), rset.getInt("audience_count"), rset.getString("actor"),
+						rset.getString("preview"), rset.getString("status"), rset.getDouble("grade"),
+						rset.getString("title_path"), rset.getString("content_path"), rset.getInt("taste_no")));
+			}
+		}
+		 catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
+	public List<Movie> ottMovieList(Connection conn) {
+		
+		// 관리자 화면(영화 관리)에서 'OTT영화' 탭 클릭시 조회되는 영화 리스트
+		
+		List<Movie> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("ottMovieList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Movie(rset.getInt("movie_no"), rset.getString("movie_title"),
+						rset.getString("movie_content"), rset.getString("genre"), rset.getInt("playtime"),
+						rset.getString("country"), rset.getString("age_lv"), rset.getString("open_date"),
+						rset.getString("director"), rset.getInt("audience_count"), rset.getString("actor"),
+						rset.getString("preview"), rset.getString("status"), rset.getDouble("grade"),
+						rset.getString("title_path"), rset.getString("content_path"), rset.getInt("taste_no")));
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return list;
+	}
 
 
 }

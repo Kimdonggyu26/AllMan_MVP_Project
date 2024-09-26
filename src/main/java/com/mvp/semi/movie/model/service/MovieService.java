@@ -30,6 +30,9 @@ public class MovieService {
 	}
 	
 	public int insertMovie(Movie m) {
+		
+		// 관리자 페이지에서 영화 등록
+		
 		Connection conn = getConnection();
 		
 		int result = mvDao.insertMovie(conn, m);
@@ -46,6 +49,9 @@ public class MovieService {
 	}
 	
 	public int selectShowingMovieList(){
+		
+		// 상영중인 영화 갯수 반환(메인페이지)
+		
 		Connection conn = getConnection();
 		
 		int listCount = mvDao.selectShowingMovieList(conn);
@@ -76,6 +82,32 @@ public class MovieService {
 		close(conn);
 		
 		return mv;
+	}
+	
+	public List<Movie> showingMovieList() {
+		
+		// 관리자 화면(영화 관리)에서 '상영중인 영화' 탭 클릭시 조회되는 영화 리스트
+
+		Connection conn = getConnection();
+		
+		List<Movie> list = mvDao.showingMovieList(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	public List<Movie> ottMovieList() {
+		
+		// 관리자 화면(영화 관리)에서 'OTT영화' 탭 클릭시 조회되는 영화 리스트
+
+		Connection conn = getConnection();
+		
+		List<Movie> list = mvDao.ottMovieList(conn);
+		
+		close(conn);
+		
+		return list;
 	}
 	
 }

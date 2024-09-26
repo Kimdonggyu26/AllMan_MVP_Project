@@ -258,6 +258,7 @@
 																			+ '</td>'	 	 
 																	 + '</tr>';
 											}
+													
 																 for(i = 0; i < 12-res.length; i++){
 													divEl += '<tr>'
 																		+ '<td class="list-content">'

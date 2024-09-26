@@ -33,7 +33,10 @@ public class AjaxOttMovieListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Movie> list = new MovieService().selectOttMovieList();
+		// 관리자 화면(영화 관리)에서 'OTT영화' 탭 클릭시 조회되는 영화 리스트
+
+		
+		List<Movie> list = new MovieService().ottMovieList();
 		
 		
 		
