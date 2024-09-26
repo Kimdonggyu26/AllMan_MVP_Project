@@ -1,17 +1,3 @@
-<%@page import="com.mvp.semi.movie.model.vo.Movie"%>
-<%@page import="java.util.Map"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	
-<%
-  Map<String, Object> map = (Map<String, Object>) request.getAttribute("map");
-  Movie mv = null;
-
-  if (map != null) {
-      mv = (Movie) map.get("mv");
-  }
-%>  
-
 
 
 	
@@ -25,10 +11,9 @@
 <body>
 	
 	<!-- Header, Nav start -->
-	<%@ include file="/views/common/header.jsp"%>
 	<!-- Header, Nav end -->
 
-	<link rel="stylesheet" href="<%= contextPath %>/views/movieMain/css/mainPage.css">
+	<link rel="stylesheet" href="css/mainPage.css">
 	<!-- body부 시작 -->
 
 	<div id="main">
@@ -80,13 +65,10 @@
 			<!-- sidebar div 시작 -->
 			<div style="width: 310px; height: 2361px; float: left;">
 			   <div id="sidebar">
-				 <%@ include file="/views/common/basket.jsp"%>
 			   </div> <!-- sidebar div 끝 -->
 			</div>
 			<!-- sidebar div 끝 -->
-			
-			
-  <%if (mv != null) {	%>
+
   		<div style="width: 1561px; height: 2361px; float: right; margin-top: 34px;">
 			<div id="text">
 				<p>상영 영화</p>
@@ -99,8 +81,7 @@
 						</div>
 						<div class="movie-info">
 							<div style="display: flex; align-items: center;">
-								<table
-									style="margin-left: 12px; margin-bottom: 7px; margin-top: 7px;">
+								<table style="margin-left: 12px; margin-bottom: 7px; margin-top: 7px;">
 									<tr>
 										<td style="color: white; font-weight: 900; font-size: 13px;">안녕,
 											할부지</td>
@@ -368,11 +349,6 @@
 						</div>
 
 					</div>
-
-
-
-
-
 				</div>
 				<!-- movie1-bottom div 끝 -->
 			</div>
@@ -725,10 +701,7 @@
 
 			</div>
 			<!-- main div 끝-->
-	
-	 <% } else {
-	      
-	  }%>
+
 	
 			
 
@@ -740,6 +713,6 @@
 
 </body>
 <!-- Footer start -->
-<%@ include file="/views/common/footer.jsp"%>
+
 <!-- Footer end -->
 </html>

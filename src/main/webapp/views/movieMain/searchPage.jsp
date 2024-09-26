@@ -167,36 +167,37 @@
 										        }
 										        count++;
 										    }
-									   		  divEl += '<div class="movie1-list">'  //movie1-list
-											        +   '<div class="movie-image">'
-											        +       '<img src="=contextPath + r.titlePath ">'
-											        +   '</div>'
-											        +   '<div class="movie-info">' // movie-info
-											        +       '<div style="display: flex; align-items: center;">' // a
-											        +           '<table style="margin-left: 12px; margin-bottom: 7px; margin-top: 7px;">'
-											        +               '<tr>'
-											        +                   '<td style="color: white; font-weight: 900; font-size: 13px;">안녕,할부지</td>'
-											        +               '</tr>'
-											        +               '<tr>'
-											        +                   '<td>2024.09.04</td>'
-											        +               '</tr>'
-											        +               '<tr>'
-											        +                   '<td>장르 : 다큐멘터리, 애니메이션</td>'
-											        +               '</tr>'
-											        +               '<tr>'
-											        +                   '<td>감독 : 심형준</td>'
-											        +               '</tr>'
-											        +           '</table>'
-											        +           '<i class="fa-regular fa-heart" id="heart"></i>'
-											        +		'<div>'// a
-											        +    '</div>'// movie-info 닫기
-											        +       '<div style="display: flex;">'//b
-											        +           '<button type="button" class="btn btn-secondary" id="info">영화정보</button>'
-											        +           '<button type="button" class="btn btn-danger" id="compare">'//c
-											        +               '<img src="../DG/assets/image/logo/download_logo.png" style="width: 14px; height: 14px; margin-right: 5px; margin-bottom: 4px;">비교하기'
-											        +           '</button>'//c
-											        +       '</div>'//b
-									        +  '</div>';// movie1-list 닫기
+										    divEl += '<div class="movie1-list">' +  // movie1-list 시작
+										    '    <div class="movie-image">' +
+										    '        <img src="">' +  // contextPath에 r[i].titlePath 추가
+										    '    </div>' +
+										    '    <div class="movie-info">' +  // movie-info 시작
+										    '        <div style="display: flex; align-items: center;">' +  // a 시작
+										    '            <table style="margin-left: 12px; margin-bottom: 7px; margin-top: 7px;">' +
+										    '                <tr>' +
+										    '                    <td style="color: white; font-weight: 900; font-size: 13px;">안녕, 할부지</td>' +
+										    '                </tr>' +
+										    '                <tr>' +
+										    '                    <td>2024.09.04</td>' +
+										    '                </tr>' +
+										    '                <tr>' +
+										    '                    <td>장르 : 다큐멘터리, 애니메이션</td>' +
+										    '                </tr>' +
+										    '                <tr>' +
+										    '                    <td>감독 : 심형준</td>' +
+										    '                </tr>' +
+										    '            </table>' +
+										    '            <i class="fa-regular fa-heart" id="heart"></i>' +  // heart 아이콘
+										    '        </div>' +  // a 닫기
+										    '        <div style="display: flex;">' +  // b 시작
+										    '            <button type="button" class="btn btn-secondary" id="info">영화정보</button>' +
+										    '            <button type="button" class="btn btn-danger" id="compare">' +  // c 시작
+										    '                <img src="../DG/assets/image/logo/download_logo.png" style="width: 14px; height: 14px; margin-right: 5px; margin-bottom: 4px;">비교하기' +
+										    '            </button>' +  // c 닫기
+										    '        </div>' +  // b 닫기
+										    '    </div>' +  // movie-info 닫기
+										    '</div>';  // movie1-list 닫기
+
 									        
 									        count++; // count 증가
 	
@@ -204,7 +205,7 @@
 										    if (count == 4) {
 											    divEl += '</div>'; // 마지막 movie1-top 닫기
 											}
-										   if (count == 5) {
+										   if (count == 9) {
 										        divEl += '</div>'; // movie1-bottom 닫기
 										        count = 0; // count를 다시 0으로 리셋
 										    }
