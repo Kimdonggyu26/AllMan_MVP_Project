@@ -43,11 +43,11 @@
 
       <div class="container" id="bt1">
       
-				<%-- if(loginUser != null && loginUser.getTasteNo().equals(30)){ --%>
+				<% if(loginUser != null && loginUser.getTasteNo() == 30){ %>
         <div class="d-flex justify-content-end mb-3">
            <a href="<%= contextPath %>/write.tbo" class="btn btn-secondary btn-sm">등록하기</a>
         </div>
-         <%-- } --%>
+         <% } %>
         
         <% if(list.isEmpty()) { %>
         <div>
