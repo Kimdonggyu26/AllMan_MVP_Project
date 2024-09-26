@@ -35,6 +35,8 @@ public class AjaxMovieSelectController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 관리자 화면 - 영화 리스트 중 하나 클릭 시 해당 영화의 번호를 토대로 정보를 조회 해오는 기능
+		
 		int movieNo = Integer.parseInt(request.getParameter("movieNo"));
 		
 		System.out.println(movieNo);
@@ -45,6 +47,7 @@ public class AjaxMovieSelectController extends HttpServlet {
 		
 		System.out.println(mv);
 		System.out.println(mv.getMovieTitle());
+		
 		response.setContentType("application/json; charset=UTF-8");
 		new Gson().toJson(mv, response.getWriter());
 		

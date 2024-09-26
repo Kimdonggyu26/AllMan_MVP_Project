@@ -162,11 +162,11 @@ public class MovieDao {
 		return list;
 	}
 	
-	public Movie selectMovie(Connection conn, int movieNo) {
+	public Movie selectMovieByNo(Connection conn, int movieNo) {
 		Movie mv = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectMovie");
+		String sql = prop.getProperty("selectMovieByNo");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
