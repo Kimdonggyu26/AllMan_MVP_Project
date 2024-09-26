@@ -62,7 +62,7 @@
             <tr>
               <td style="color: white; text-align: left;">댓글작성</td>
             </tr>
-            <% if(loginUser == null ) { %>  <!-- || loginUser.getTasteNo() != b.getTasteNo() -->
+            <% if(loginUser == null || loginUser.getTasteNo() != b.getTasteNo()) { %>   
              <tr>
               <td><textarea id="reply-content" readonly placeholder="로그인이 안되어있거나 본인취향 게시판이 아닙니다."></textarea></td>
             </tr>
