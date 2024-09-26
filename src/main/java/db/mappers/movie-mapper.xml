@@ -3,6 +3,9 @@
 <properties>
 
 	<entry key="searchMovieList">
+	
+		<!-- searchData활용해서 영화 조회 -->
+	
 	    SELECT *
   		  FROM (
 		        SELECT
@@ -25,6 +28,9 @@
 	</entry>
 	
 	<entry key="selectMovieListCount">
+	
+		<!-- 영화 페이징 처리 위한 쿼리문 -->
+	
 		SELECT
         	   COUNT(*) as COUNT
  		  FROM
@@ -38,6 +44,9 @@
 	</entry>	
 
 	<entry key="insertMovie">
+	
+	<!-- 관리자화면 - 영화등록 -->
+	
 		INSERT
 		  INTO MOVIE
 		  (
@@ -82,7 +91,7 @@
 	</entry>
 	
 	<entry key="selectShowingMovieList">
-		-- 쓰는 지 확인 필요 
+		<!-- 상영중인 영화 모든 정보 조회 -->
 		SELECT
 						MOVIE_NO
 					,	MOVIE_TITLE
@@ -111,7 +120,6 @@
 	
 			<!-- 관리자 화면(영화 관리)에서 'OTT영화' 탭 클릭시 조회되는 영화 리스트 -->
 	
-	
 		SELECT
 						MOVIE_NO
 					,	MOVIE_TITLE
@@ -136,7 +144,7 @@
 					STATUS = '20'
 	</entry>
 	
-	<entry key="selectMovie">
+	<entry key="selectMovieByNo">
 				SELECT
 						MOVIE_NO
 					,	MOVIE_TITLE

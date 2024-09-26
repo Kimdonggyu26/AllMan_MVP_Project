@@ -74,7 +74,7 @@ public class MovieService {
 	public Movie selectMovieByNo(int movieNo){
 		Connection conn = getConnection();
 		
-		Movie mv = mvDao.selectMovie(conn, movieNo);
+		Movie mv = mvDao.selectMovieByNo(conn, movieNo);
 		
 //		Map<String, Object> map = new HashMap<>();
 //		map.put("mv", mv);

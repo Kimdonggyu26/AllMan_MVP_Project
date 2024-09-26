@@ -354,7 +354,17 @@
 									
 									$('#tasteNo').val(res.tasteNo);
 									$('#openDate').val(res.openDate);
-									$('#movie-level').val(res.movieLv);
+									
+									const select = document.getElementById('movie-level');
+									
+									$('.movie-level').each(function(){
+										
+										if(select.val.equals(res.movieLv)){
+											$('.movie-level').val(res.movieLv).prop("selected", true);
+										}
+										
+									})
+								      
 									$('#director').val(res.director);
 									$('#actor').val(res.actor);
 									$('#preview').val(res.preview);
@@ -365,7 +375,9 @@
 									// 상태
 									$('#grade').val(res.grade);
 									// 상세이미지
-									console.log(res.movieLv);
+									
+									console.log(res.ageLv);
+									console.log(select.value);
 								}
 				})
 			}
@@ -531,10 +543,10 @@
 			              <div style="display: flex; gap: 30px;">
 			                <div style="width: 42px; height: 17px;"><p style="margin-bottom: 10px;">등급</p></div>
 			                <select id="movie-level" class="form-select" name="age-level">
-			                  <option value="all">전체관람가</option>
-			                  <option value="12+">12세이상관람가</option>
-			                  <option value="15+">15세이상관람가</option>
-			                  <option value="19+">청소년관람불가(19+)</option>
+			                  <option value="전체관람가">전체관람가</option>
+			                  <option value="12세이상관람가">12세이상관람가</option>
+			                  <option value="15세이상관람가">15세이상관람가</option>
+			                  <option value="청소년관람불가">청소년관람불가</option>
 			                </select>
 			              </div>
 			              <div style="display: flex; gap: 30px;">
@@ -772,9 +784,9 @@
 			                <div style="width: 42px; height: 17px;"><p style="margin-bottom: 10px;">등급</p></div>
 			                <select id="movie-level" class="form-select" name="age-level">
 			                  <option value="전체관람가">전체관람가</option>
-			                  <option value="12+">12세이상관람가</option>
-			                  <option value="15+">15세이상관람가</option>
-			                  <option value="19+">청소년관람불가(19+)</option>
+			                  <option value="12세이상관람가">12세이상관람가</option>
+			                  <option value="15세이상관람가">15세이상관람가</option>
+			                  <option value="청소년관람불가">청소년관람불가</option>
 			                </select>
 			              </div>
 			              <div style="display: flex; gap: 30px;">

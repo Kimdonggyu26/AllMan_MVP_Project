@@ -35,6 +35,9 @@ public class MovieInsertController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 영화 등록
+		
+		
 		request.setCharacterEncoding("utf-8");
 		
 		String savePath = request.getServletContext().getRealPath("/resources/movie_upfiles");
