@@ -41,8 +41,8 @@
 	       	OR DIRECTOR LIKE '%' || ? || '%'
 	       	OR ACTOR LIKE '%' || ? || '%'
        	   AND STATUS IN (10, 20);
-	</entry>
-	
+	</entry>	
+
 	<entry key="insertMovie">
 	
 	<!-- 관리자화면 - 영화등록 -->
