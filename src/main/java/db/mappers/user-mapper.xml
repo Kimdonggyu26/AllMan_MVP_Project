@@ -35,6 +35,7 @@
 	 	 , ENROLL_DATE
 	 	 , MODIFY_DATE
 	 	 , STATUS
+	 	 , TASTE_NO
 	 	 
 	FROM 
  		   USERS

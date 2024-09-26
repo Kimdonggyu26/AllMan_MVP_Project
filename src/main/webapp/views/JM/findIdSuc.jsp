@@ -1,3 +1,4 @@
+<%@ page import="com.mvp.semi.user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -74,13 +75,11 @@ input:focus {outline: none;}
 </style>
 	<body>
 	
-						 <%
-								String contextPath = request.getContextPath();
-							%> 			
-									
-	  <!-- Header, Nav start -->
-   <%--  <%@ include file="/views/common/header.jsp" %> --%>
-    <!-- Header, Nav end -->
+					<%
+	String contextPath = request.getContextPath(); // "/web"
+		User loginUser = (User)session.getAttribute("loginUser");
+	String alertMsg = (String)session.getAttribute("alertMsg");
+%>
 	<form action="<%= contextPath %>/views/JM/login.jsp" >
 	<div class="container">
 	            <i class="fa-regular fa-circle-check" id="check"></i>
@@ -88,6 +87,7 @@ input:focus {outline: none;}
 	          <div class="font">개인정보 보호를 위해 <br>
 	            이메일의 일부만 제공합니다.</div>
 	        <div class="button-group">
+	            <input type="text" class="ifound" value="<%= loginUser.getEmail() %>" name="" readonly>
 	  <button type="submit"  id="buttons">로그인하러 가기</button>
 	</div>
 	</div>

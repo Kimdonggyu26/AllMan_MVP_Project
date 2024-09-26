@@ -51,7 +51,8 @@ public class UserDao {
 						rset.getString("USER_NICKNAME"),
 						rset.getDate("ENROLL_DATE"),
 						rset.getDate("MODIFY_DATE"),
-						rset.getString("STATUS"));
+						rset.getString("STATUS"),
+						rset.getString("taste_No"));
 			}
 
 		} catch (SQLException e) {
