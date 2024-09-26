@@ -138,12 +138,13 @@ public class MovieDao {
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			rset = pstmt.executeQuery();
 			
 			pstmt.setString(1, searchData);
 			pstmt.setString(2, searchData);
 			pstmt.setString(3, searchData);
 			pstmt.setString(4, searchData);
+
+			rset = pstmt.executeQuery();
 			
 			if(rset.next()){
 				listCount = rset.getInt("COUNT");
@@ -166,7 +167,7 @@ public class MovieDao {
 		List<Movie> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("searchMovieList");
+		String sql = prop.getProperty("searchShowMovieList");
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -206,7 +207,7 @@ public class MovieDao {
 		List<Movie> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("searchMovieList");
+		String sql = prop.getProperty("searchOttMovieList");
 
 		try {
 			pstmt = conn.prepareStatement(sql);

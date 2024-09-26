@@ -43,7 +43,7 @@ public class MovieSearchShowController extends HttpServlet {
 		
 		String searchData = request.getParameter("search");//타입: String
 		
-		System.out.println("@" + searchData);
+		System.out.println("상영 " + searchData);
 		
 		int listCount = new MovieService().selectShowMovieList(searchData);
 		

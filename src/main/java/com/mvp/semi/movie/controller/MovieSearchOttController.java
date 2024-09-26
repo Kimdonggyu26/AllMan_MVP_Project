@@ -1,7 +1,9 @@
 package com.mvp.semi.movie.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,6 +40,8 @@ public class MovieSearchOttController extends HttpServlet {
 
 		String searchData = request.getParameter("search");// 타입: String
 
+		System.out.println("OTT " + searchData);
+		
 		int listCount = new MovieService().selectOttMovieList(searchData);
 
 		int currentPage = 1;
@@ -63,9 +67,16 @@ public class MovieSearchOttController extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 
 		List<Movie> list = new MovieService().selectOttMovieList(pi, searchData);
+		
+		Map<String, Object> responseData = new HashMap<>();
+		
+		responseData.put("ottPageInfo", pi);
+		responseData.put("ottMovieList", list);
+		
+		
 
 		response.setContentType("application/json; charset=UTF-8");
-		new Gson().toJson(list, response.getWriter());
+		new Gson().toJson(responseData, response.getWriter());
 		
 	}
 
