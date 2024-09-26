@@ -1,3 +1,4 @@
+<%@ page import="com.mvp.semi.user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -174,7 +175,7 @@ a:active {
 
 
       <div class="modal-body">
-        <a href=""><img id="imagePreview" src="https://via.placeholder.com/200" alt="Click to upload" style="cursor: pointer; width: 200px; height: 200px; border: 1px solid #ccc;"></a>
+        <a href=""><img id="imagePreview" src="<%=contextPath + loginUser.getFilePath() %>" alt="Click to upload" style="cursor: pointer; width: 200px; height: 200px; border: 1px solid #ccc;"></a>
         <div><input type="text" value="<%= loginUser.getUserNick() %>" id="changenick" name="userNick"></div>
         <h6>*2자 이상 10자 이내의 한글 영문,숫자 입력 가능합니다.</h6>
       </div>
@@ -191,7 +192,7 @@ a:active {
 
 <div class="container">
   <div class="profile">
-      <img src="" alt="프로필 이미지" style="width: 50px; height: 50px;">
+      <img  class="card-img-top" src="<%=contextPath + loginUser.getFilePath() %>" alt="" style="width: 50px; height: 50px;">
       <span class="username" ><%= loginUser.getUserId() %></span>
       <button class="edit-button" data-toggle="modal" data-target="#myModal" type="button">프로필 수정</button>
   </div>

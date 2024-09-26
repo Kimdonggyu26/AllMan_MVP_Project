@@ -1,3 +1,12 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.mvp.semi.user.model.vo.User"%>
+<%@ page import="com.mvp.semi.movie.model.vo.Movie" %>
+<%@ page import="com.mvp.semi.board.model.vo.Board" %>
+<%@ page import="com.mvp.semi.cs.inquiry.model.vo.Inquiry" %>
+<%@ page import="com.mvp.semi.board.model.service.TBoardService" %>
+<%@ page import="com.mvp.semi.board.model.service.FBoardService" %>
+<%@ page import="com.mvp.semi.cs.inquiry.model.service.InquiryService" %>
+<%@ page import="com.mvp.semi.movie.model.service.MovieService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -175,7 +184,26 @@ a:active {
 }
 </style>
 
+<%
+    // 로그인된 사용자 정보 가져오기
+    User user = (User) session.getAttribute("loginUser");
+    if (user == null) {
+        response.sendRedirect("login.jsp"); // 로그인되지 않은 경우 로그인 페이지로 리디렉션
+        return;
+    }
+    // 서비스 객체 생성 후 데이터 가져오기
+    TBoardService tBoardService = new TBoardService();
+    FBoardService fBoardService = new FBoardService();
+    InquiryService inquiryService = new InquiryService();
+    MovieService movieService = new MovieService();
 
+    // 게시물과 문의 내역 데이터 가져오기
+    List<Board> tBoards = tBoardService.getUserTBoards(user.getUserNo());
+    List<Board> fBoards = fBoardService.getUserFBoards(user.getUserNo());
+    List<Inquiry> inquiries = inquiryService.getUserInquiries(user.getUserNo());
+    List<Movie> movies = movieService.getNowShowingMovies();  // 상영 중인 영화
+    List<Movie> ottMovies = movieService.getOTTMovies();      // OTT 영화 리스트
+%>
 
 <!-- body 시작부 -->
 <body>
@@ -184,10 +212,10 @@ a:active {
         <div class="title">마이페이지</div>
         <hr>
         <div class="mypage">
-            <img src="/AllMan_MVP_Project/src/main/webapp/resources/user_upfiles/" > 
+            <img src="<%= user.getFilePath() %>" > 
             <div class="mypage-info">
-                <h2 id="like">NDHE</h2>
-                <div class="button"><a href="">취향 다시 분석하기</a></div>
+                <h2 id="like"><%= user.getUserNick() %></h2>
+                <div class="button"><a href="<%= contextPath %>/analyzeTaste"></a></div>
                 <div><a href="<%= contextPath %>/views/JM/modifyUser.jsp" id="rechange">회원정보 수정</a></div>
             </div>
         </div>
@@ -197,19 +225,23 @@ a:active {
             <hr>
             <h4>상영 영화</h4>
             <div class="grid-container">
-                <div class="grid-item"></div>
-                <div class="grid-item"></div>
-                <div class="grid-item"></div>
-                <div class="grid-item"></div>
+                  <% for (Movie movie : movies) { %>
+                    <div class="grid-item">
+                        <img src="<%= movie.getTitlePath() %>" alt="<%= movie.getMovieTitle() %> 포스터" style="width: 100px; height: 150px;">
+                        <p><%= movie.getMovieTitle() %></p>
+                    </div>
+                <% } %>
                 <div class="grid-item" style="width: 50px;"></div>
             </div>
     
             <h4>OTT</h4>
             <div class="grid-container">
-                <div class="grid-item"></div>
-                <div class="grid-item"></div>
-                <div class="grid-item"></div>
-                <div class="grid-item"></div>
+                 <% for (Movie movie : ottMovies) { %>
+                    <div class="grid-item">
+                        <img src="<%= movie.getTitlePath() %>" alt="<%= movie.getMovieTitle() %> 포스터" style="width: 100px; height: 150px;">
+                        <p><%= movie.getMovieTitle() %></p>
+                    </div>
+                <% } %>
                 <div class="grid-item" style="width: 50px;"></div>
             </div>
         </div>
@@ -217,12 +249,11 @@ a:active {
         <div class="post-section">
             <h3>나의 게시글</h3>
             <hr>
-            <div class="list-container">
-                <div class="list-item"><a href="#">게시글 1</a></div>
-                <div class="list-item"><a href="#">게시글 1</a></div>
-                <div class="list-item"><a href="#">게시글 1</a></div>
-                <div class="list-item"><a href="#">게시글 1</a></div>
-            </div>
+           <% for (Board board : tBoards) { %>
+                    <div class="list-item">
+                        <a href="<%= contextPath %>/boardDetail?boardId=<%= board.getBoardId() %>"><%= board.getTitle() %></a>
+                    </div>
+                <% } %>
             <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="#"> < </a></li>
                 <li class="page-item"><a class="page-link" href="#">1</a></li>

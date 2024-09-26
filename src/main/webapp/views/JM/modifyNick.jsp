@@ -124,7 +124,7 @@
  					<%
 			   String contextPath = request.getContextPath();
 					%>
-				<form action="<%= contextPath %>/findId.us" method="post" enctype="multipart/form-data">
+				<form action="<%= contextPath %>/modifyProfile.us" method="post" enctype="multipart/form-data">
 				    <input type="hidden" name="userId" value="<%= request.getAttribute("userId") %>">
 				    <div class="container">
 				        <div class="idfo">프로필 사진을 선택하세요</div>
