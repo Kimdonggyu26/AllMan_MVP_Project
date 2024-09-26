@@ -36,6 +36,7 @@
 	 	 , MODIFY_DATE
 	 	 , STATUS
 	 	 , TASTE_NO
+	 	 , PROFILE_PATH
 	 	 
 	FROM 
  		   USERS
