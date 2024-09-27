@@ -80,7 +80,7 @@
 
 		
 	<!-- 검색결과 없음 출력 -->
-		<div id="noSearch"></div>
+		<!-- <div id="noSearch"></div>-->
 		<!-- 
 				<div style="width: 1561px; height: 2361px; float: right; margin-top: 34px;">
 					<div id="text" style="display: flex; flex-direction: row;">
@@ -100,13 +100,14 @@
 				-->					
 
 			<!-- 상단 검색 결과 섹션 -->					
-			<div id="printShowMovieList">
-				
-			</div>
+			<div id="printShowMovieList"></div>
+				<!-- 검색결과 없음 출력 -->
+			<div id="ShwoNoSearch"></div>
 			
-			<div id="printOTTMovieList">
+			<div id="printOTTMovieList"></div>
+			<div id="OTTNoSearch"></div>
 			
-			</div>
+			
 	</div><!-- main div 끝-->		 
 
 
@@ -151,13 +152,19 @@
 						// 검색결과 없음보여지는 요소작업  - id값 noSearch
 						console.log('검색결과 없음');
 					
-						h1El += '<div style="display: flex; height: 500px; align-items: center; width: 1260px; justify-content: center;">'
-							 + 		'<h1>일치하는 검색결과가 없어요.</h1>'
-							 +  '</div>';
+						h1El += '<div style="width: 1561px; height: 2361px; float: right; margin-top: 34px;">'//전체 div
+						    +   		'<div id="text">'
+						    +       	'<p>상영 영화</p>'
+						    +   		'</div>'
+							
+								+				'<div style="display: flex; height: 500px; align-items: center; width: 1260px; justify-content: center;">'
+							  +					'<h1>일치하는 검색결과가 없어요.</h1>'
+							  +  			'</div>'
+							  +		'</div>';
 					}else {
 						 if(r.length != 0){
 							 // 상영영화 목록 요소 작업
-							divEl  += '<div style="width: 1561px; height: 2361px; float: right; margin-top: 34px;">'//전체 div
+							divEl  += '<div style="width: 1561px; float: right; margin-top: 34px;">'//전체 div
 									    +   '<div id="text">'
 									    +       '<p>상영 영화</p>'
 									    +   '</div>'
@@ -211,7 +218,7 @@
 										    }
 
 										    // movie1-bottom을 닫는 부분
-										    if (count === 9) { // 8개 후 movie1-bottom 닫기
+										    if (count === 10) { // 8개 후 movie1-bottom 닫기
 										        divEl += '</div>'; // movie1-bottom 닫기
 										        count = 0; // count 리셋
 										    }
@@ -220,7 +227,7 @@
 								divEl += '</div>'; // 전체 div 닫기
 						}
 					}
-					$('#noSearch').html(h1El);
+					$('#ShwoNoSearch').html(h1El);
 					$('#printShowMovieList').html(divEl);
 				},
 				error: function(){
@@ -260,10 +267,14 @@
 					if(r.length == 0){// 추후에 OTT 작업후  && res.ottList.length == 0 추가
 						// 검색결과 없음보여지는 요소작업  - id값 noSearch
 						console.log('검색결과 없음');
-										
-						h1El += '<div style="display: flex; height: 500px; align-items: center; width: 1260px; justify-content: center;">'
-							 + 		'<h1>일치하는 검색결과가 없어요.</h1>'
-							 +  '</div>';
+						h1El += '<div style="width: 1561px; height: 2361px; float: right; margin-top: 34px;">'//전체 div
+						   	 +   		'<div id="text">'
+						   	 +       	'<p>OTT 영화</p>'
+						   	 +   		'</div>'
+								 +				'<div style="display: flex; height: 500px; align-items: center; width: 1260px; justify-content: center;">'
+								 +						'<h1>일치하는 검색결과가 없어요.</h1>'
+							   +  			'</div>'
+							   +	'</div>';
 					}else {
 						 if(r.length != 0){
 							 // 상영영화 목록 요소 작업
@@ -321,7 +332,7 @@
 										    }
 
 										    // movie1-bottom을 닫는 부분
-										    if (count === 9) { // 8개 후 movie1-bottom 닫기
+										    if (count === 11) { // 8개 후 movie1-bottom 닫기
 										        divEl += '</div>'; // movie1-bottom 닫기
 										        count = 0; // count 리셋
 										    }
@@ -330,7 +341,7 @@
 								divEl += '</div>'; // 전체 div 닫기
 							}
 						}
-						$('#noSearch').html(h1El);
+						$('#OTTNoSearch').html(h1El);
 						$('#printOTTMovieList').html(divEl);
 					},
 					error: function(){

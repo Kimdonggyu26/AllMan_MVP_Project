@@ -8,39 +8,51 @@
 	
 	    SELECT *
   		  FROM (
-		        SELECT
-			    	   MOVIE_NO
-		    	 	 , MOVIE_TITLE
-		    		 , GENRE
-			    	 , DIRECTOR
-			    	 , TITLE_PATH
-			    	 , ROW_NUMBER() OVER(ORDER BY MOVIE_TITLE) AS RNUM
-			      FROM 
-			      	   MOVIE
-			     WHERE 
-			      	   MOVIE_TITLE LIKE '%' || ? || '%' 
-			       	OR GENRE LIKE '%' || ? || '%'
-			       	OR DIRECTOR LIKE '%' || ? || '%'
-			       	OR ACTOR LIKE '%' || ? || '%'
-			       AND STATUS IN ('10')
-        		)
-		  WHERE RNUM BETWEEN ? 
-		  	AND ?
+			        SELECT
+						    	   MOVIE_NO
+					    	 	 , MOVIE_TITLE
+					    		 , GENRE
+						    	 , DIRECTOR
+						    	 , TITLE_PATH
+						    	 , ROW_NUMBER() OVER(ORDER BY MOVIE_TITLE) AS RNUM
+					      FROM 
+					      	   MOVIE
+					     WHERE 
+					     			 STATUS = 10
+					     	 AND (
+					      	   MOVIE_TITLE LIKE '%' || ? || '%' 
+					       	OR GENRE LIKE '%' || ? || '%'
+					       	OR DIRECTOR LIKE '%' || ? || '%'
+					       	OR ACTOR LIKE '%' || ? || '%'
+			       				 ) 
+        			)
+		 	  WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<entry key="searchOttMovieList">
 	
 		<!-- searchData활용해서 영화 조회 -->
-	
-	    SELECT MOVIE_NO, MOVIE_TITLE, GENRE, DIRECTOR, TITLE_PATH
-		  FROM MOVIE
-		 WHERE STATUS = 20
-		   AND (
-		         MOVIE_TITLE LIKE '%' || ? || '%' 
-		         OR GENRE LIKE '%' || ? || '%'
-		         OR DIRECTOR LIKE '%' || ? || '%'
-		         OR ACTOR LIKE '%' || ? || '%'
-		       )
+	    SELECT *
+  		  FROM (
+			        SELECT
+						    	   MOVIE_NO
+					    	 	 , MOVIE_TITLE
+					    		 , GENRE
+						    	 , DIRECTOR
+						    	 , TITLE_PATH
+						    	 , ROW_NUMBER() OVER(ORDER BY MOVIE_TITLE) AS RNUM
+					      FROM 
+					      	   MOVIE
+					     WHERE 
+					     			 STATUS = 20
+					     	 AND (
+					      	   MOVIE_TITLE LIKE '%' || ? || '%' 
+					       	OR GENRE LIKE '%' || ? || '%'
+					       	OR DIRECTOR LIKE '%' || ? || '%'
+					       	OR ACTOR LIKE '%' || ? || '%'
+			       				 ) 
+        			)
+		 	  WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<entry key="selectShowMovieListCount">
