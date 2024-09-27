@@ -188,7 +188,7 @@
 										    '    </div>' +
 										    '    <div class="movie-info">' +  // movie-info 시작
 										    '        <div style="display: flex; align-items: center;">' +  // a 시작
-										    '            <table style="margin-left: 12px; margin-bottom: 7px; margin-top: 7px;">' +
+										    '            <table style="margin-left: 12px; margin-bottom: 7px; margin-top: 7px width: 130px;">' +
 										    '                <tr>' +
 										    '                    <td style="color: white; font-weight: 900; font-size: 13px;">안녕, 할부지</td>' +
 										    '                </tr>' +
@@ -366,6 +366,13 @@
 					}
 				})	
 			}
+		
+			// 영화정보 버튼 클릭시 해당 영화 상세정보 페이지로 이동 (detailPage.jsp)
+			document.getElementById("info").addEventListener("click", function() {
+				var movieNo = 1; // 영화 번호 담기 (구현 전이라서 1 넣어놓음)
+		    window.location.href = "detailPage.jsp?movieNo=" + movieNo ; 
+		  });
+			
 	
 	</script>
 	<!-- Footer start -->
