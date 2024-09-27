@@ -703,7 +703,7 @@ public class TBoardDao {
 		return list;
 	}
 
-	public int TBoardInsertSearchCount(Connection conn, String search) {
+	public int TBoardInsertSearchCount(Connection conn, String search, int tno) {
 		int listCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -712,6 +712,10 @@ public class TBoardDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, search);
+			pstmt.setString(2, search);
+			pstmt.setString(3, search);
+			pstmt.setString(4, search);
+			pstmt.setInt(5, tno);
 			
 			rset = pstmt.executeQuery();
 			
@@ -741,18 +745,23 @@ public class TBoardDao {
 			int endRow = startRow + pi.getBoardLimit() - 1;
 			
 			pstmt.setString(1, search);
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, endRow);
+			pstmt.setString(2, search);
+			pstmt.setString(3, search);
+			pstmt.setString(4, search);
+			pstmt.setInt(5, tno);
+			pstmt.setInt(6, startRow);
+			pstmt.setInt(7, endRow);
 			
 			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Reply(rset.getInt("reply_no")
-								 , rset.getString("reply_content")
-								 , rset.getString("regist_date")
-								 , rset.getString("user_id")
-								 , rset.getString("profile_path")));
+				list.add(new Movie(rset.getInt("MOVIE_NO")
+								 , rset.getString("MOVIE_TITLE")
+								 , rset.getString("GENRE")
+								 , rset.getString("DIRECTOR")
+								 , rset.getString("ACTOR")
+								 , rset.getString("TITLE_PATH")));
 				
 			}
 			
@@ -762,6 +771,7 @@ public class TBoardDao {
 			close(rset);
 			close(pstmt);
 		}
+		
 		
 		return list;
 	}

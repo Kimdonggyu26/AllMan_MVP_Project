@@ -39,7 +39,7 @@ public class AjaxTBoardInsertSearchController extends HttpServlet {
 		String search = request.getParameter("search");
 		int tno = Integer.parseInt(request.getParameter("no"));
 		
-		int listCount = new TBoardService().TBoardInsertSearchCount(search);
+		int listCount = new TBoardService().TBoardInsertSearchCount(search, tno);
 		// * currentPage : 사용자가 요청한 페이지 번호 (요청시 전달됨 | 전달된게 없으면 1로 간주) 
 		int currentPage = 1;
 		if(request.getParameter("page") != null) {

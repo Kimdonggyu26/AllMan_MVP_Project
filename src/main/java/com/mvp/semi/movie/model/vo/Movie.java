@@ -53,6 +53,18 @@ public class Movie {
 		this.director = director;
 		this.titlePath = titlePath;
 	}
+	
+	
+
+	public Movie(int movieNo, String movieTitle, String genre, String director, String actor, String titlePath) {
+		super();
+		this.movieNo = movieNo;
+		this.movieTitle = movieTitle;
+		this.genre = genre;
+		this.actor = actor;
+		this.director = director;
+		this.titlePath = titlePath;
+	}
 
 	public int getMovieNo() {
 		return movieNo;
