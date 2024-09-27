@@ -2,7 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-	<entry key="searchMovieList">
+	<entry key="searchShowMovieList">
 	
 		<!-- searchData활용해서 영화 조회 -->
 	
@@ -22,14 +22,46 @@
 			       	OR GENRE LIKE '%' || ? || '%'
 			       	OR DIRECTOR LIKE '%' || ? || '%'
 			       	OR ACTOR LIKE '%' || ? || '%'
+			       AND STATUS IN ('10')
         		)
 		  WHERE RNUM BETWEEN ? 
 		  	AND ?
 	</entry>
 	
-	<entry key="selectMovieListCount">
+	<entry key="searchOttMovieList">
 	
-		<!-- 영화 페이징 처리 위한 쿼리문 -->
+		<!-- searchData활용해서 영화 조회 -->
+	
+	    SELECT MOVIE_NO, MOVIE_TITLE, GENRE, DIRECTOR, TITLE_PATH
+		  FROM MOVIE
+		 WHERE STATUS = 20
+		   AND (
+		         MOVIE_TITLE LIKE '%' || ? || '%' 
+		         OR GENRE LIKE '%' || ? || '%'
+		         OR DIRECTOR LIKE '%' || ? || '%'
+		         OR ACTOR LIKE '%' || ? || '%'
+		       )
+	</entry>
+	
+	<entry key="selectShowMovieListCount">
+	
+		<!-- 메인페이지 상영 페이징 처리 위한 쿼리문 -->
+	
+		SELECT
+        	   COUNT(*) as COUNT
+ 		  FROM
+       		   MOVIE
+		 WHERE
+		 	   MOVIE_TITLE LIKE '%' || ? || '%' 
+	        OR GENRE LIKE '%' || ? || '%'
+	        OR DIRECTOR LIKE '%' || ? || '%'
+	      	OR ACTOR LIKE '%' || ? || '%'
+	       AND STATUS IN ('10')
+	</entry>	
+	
+	<entry key="selectOTTMovieListCount">
+	
+		<!-- 메인페이지 OTT 페이징 처리 위한 쿼리문 -->
 	
 		SELECT
         	   COUNT(*) as COUNT
@@ -40,9 +72,9 @@
 	       	OR GENRE LIKE '%' || ? || '%'
 	       	OR DIRECTOR LIKE '%' || ? || '%'
 	       	OR ACTOR LIKE '%' || ? || '%'
-       	   AND STATUS IN (10, 20);
-	</entry>
-	
+	       AND STATUS IN ('20')
+	</entry>	
+
 	<entry key="insertMovie">
 	
 	<!-- 관리자화면 - 영화등록 -->
@@ -144,6 +176,35 @@
 					STATUS = '20'
 	</entry>
 	
+		<entry key="showingMovieList">
+		
+			<!-- 관리자 화면(영화 관리)에서 '상영중인 영화' 탭 클릭시 조회되는 영화 리스트 -->
+			
+		SELECT
+						MOVIE_NO
+					,	MOVIE_TITLE
+					,	MOVIE_CONTENT
+					,	GENRE
+					,	PLAYTIME
+					,	COUNTRY
+					,	AGE_LV
+					,	OPEN_DATE
+					,	DIRECTOR
+					,	AUDIENCE_COUNT
+					,	ACTOR
+					,	PREVIEW
+					,	STATUS
+					,	GRADE
+					,	TITLE_PATH
+					,	CONTENT_PATH
+					,	TASTE_NO
+		FROM 
+					MOVIE
+		WHERE 
+					STATUS = '10'
+		
+	</entry>
+	
 	<entry key="selectMovieByNo">
 				SELECT
 						MOVIE_NO
@@ -203,8 +264,94 @@
 			 		 STATUS = '30'
 	</entry>
 
+	<entry key="selectAllShowMovieList">
+	
+		<!-- 상영중인 영화 전체 갯수 조회 -->
+		SELECT
+					 COUNT(*) as COUNT
+		  FROM 
+		  		 MOVIE
+		 WHERE 
+		 			 STATUS = '10'
+		
+	</entry>
+	
+	<entry key="selectAllOttMovieList">
+	
+		<!-- 상영중인 영화 전체 갯수 조회 -->
+		SELECT
+					 COUNT(*) as COUNT
+		  FROM 
+		  		 MOVIE
+		 WHERE 
+		 			 STATUS = '20'
+		
+	</entry>
+	
+	<entry key="selectPagingShowMovieList">
+	
+		<!-- 상영중인 영화 페이지에 맞게 조회 -->
+		
+		SELECT *
+		  FROM (
+		  			SELECT
+			 						MOVIE_NO
+								,	MOVIE_TITLE
+								,	MOVIE_CONTENT
+								,	GENRE
+								,	PLAYTIME
+								,	COUNTRY
+								,	AGE_LV
+								,	OPEN_DATE
+								,	DIRECTOR
+								,	AUDIENCE_COUNT
+								,	ACTOR
+								,	PREVIEW
+								,	STATUS
+								,	GRADE
+								,	TITLE_PATH
+								,	CONTENT_PATH
+								,	TASTE_NO
+								, ROW_NUMBER() OVER(ORDER BY MOVIE_NO DESC) as RNUM
+						FROM 
+								 MOVIE
+					 WHERE
+					 			 STATUS = '10'
 
-
+	</entry>
+	
+		<entry key="selectPagingOttMovieList">
+	
+		<!-- 상영중인 영화 페이지에 맞게 조회 -->
+		
+		SELECT *
+		  FROM (
+		  			SELECT
+			 						MOVIE_NO
+								,	MOVIE_TITLE
+								,	MOVIE_CONTENT
+								,	GENRE
+								,	PLAYTIME
+								,	COUNTRY
+								,	AGE_LV
+								,	OPEN_DATE
+								,	DIRECTOR
+								,	AUDIENCE_COUNT
+								,	ACTOR
+								,	PREVIEW
+								,	STATUS
+								,	GRADE
+								,	TITLE_PATH
+								,	CONTENT_PATH
+								,	TASTE_NO
+								, ROW_NUMBER() OVER(ORDER BY MOVIE_NO DESC) as RNUM
+						FROM 
+								 MOVIE
+					 WHERE
+					 			 STATUS = '20'
+		  		)
+		 WHERE RNUM BETWEEN ? AND ?	
+	</entry>
 
 
 

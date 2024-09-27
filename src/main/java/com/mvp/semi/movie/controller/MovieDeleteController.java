@@ -35,15 +35,15 @@ public class MovieDeleteController extends HttpServlet {
 		
 		String[] deleteNumArr = request.getParameterValues("movieNo");
 		String allNum = String.join(",", deleteNumArr);
-		
+		System.out.println(allNum);
 		int result = new MovieService().deleteMovie(allNum);
 		
-		if(result == allNum.length()) {
+		if(result == deleteNumArr.length) {
 			
-			session.setAttribute("alertMsg", "선택하신 영화가 모두 삭제되었습니다.");
+			session.setAttribute("alertMsg", "선택하신" + result + "개의 영화가 모두 삭제되었습니다.");
 			response.sendRedirect(request.getContextPath() + "/views/DG/adminMainPage.jsp");
 			
-		}else if(result > 0 && allNum.length() > result) {
+		}else if(result > 0 && deleteNumArr.length > result) {
 			
 			session.setAttribute("alertMsg", "선택하신 영화 중" + result + "개의 영화가 삭제되었습니다.");
 			response.sendRedirect(request.getContextPath() + "/views/DG/adminMainPage.jsp");
