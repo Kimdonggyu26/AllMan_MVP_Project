@@ -61,22 +61,6 @@
 	   AND B.STATUS = 'Y'
 	</entry>
 	
-	<entry key="selectReplyList">
-		SELECT
-					REPLY_NO
-				, REPLY_CONTENT
-				, USER_ID
-				, PROFILE_PATH
-		 FROM
-					REPLY R
-		 JOIN USERS U ON (R.USER_NO = U.USER_NO)
-	  WHERE
-	  			R.BOARD_NO = ?
-	  	AND R.STATUS = 'Y'
-	  ORDER
-	  	 BY REPLY_NO DESC
-	</entry>
-	
 	<entry key="insetReply">
 		INSERT
 		INTO REPLY
@@ -102,6 +86,36 @@
 				  STATUS ='N'
 		WHERE
 					REPLY_NO = ? 
+	</entry>
+	
+	<entry key="selectTBoardReplyCount">
+		SELECT 
+					COUNT(*) as COUNT
+		FROM
+					REPLY
+		WHERE 
+				  BOARD_NO = ?		
+			AND	STATUS = 'Y'
+	</entry>
+	
+	<entry key="selectReplyList">
+		SELECT *
+		  FROM (
+		  			SELECT
+										REPLY_NO
+									, REPLY_CONTENT
+									, TO_CHAR(R.REGIST_DATE, 'MM/DD HH:MI:SS') as REGIST_DATE
+									, USER_ID
+									, PROFILE_PATH
+									, ROW_NUMBER() OVER(ORDER BY R.REPLY_NO DESC) as RNUM
+						 FROM
+										REPLY R
+		 				 JOIN USERS U ON (R.USER_NO = U.USER_NO)
+					  WHERE
+					  			R.BOARD_NO = ?
+					  	AND R.STATUS = 'Y'
+					  	)
+					  WHERE RNUM BETWEEN ? AND ?
 	</entry>
 
 </properties>

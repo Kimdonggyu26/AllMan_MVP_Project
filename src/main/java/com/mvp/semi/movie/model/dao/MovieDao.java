@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import com.mvp.semi.common.model.vo.PageInfo;
@@ -297,7 +298,7 @@ public class MovieDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("selectShowingMovieList");
+		String sql = prop.getProperty("showingMovieList");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -420,6 +421,226 @@ public class MovieDao {
 		
 		
 		
+	}
+	
+	public int selectAllShowMovieList(Connection conn, Map<String, String> searchData) { // map 넘겨받기
+		
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAllShowMovieList"); // "select ~~~~ where status = '10'"
+		
+		String startDate = searchData.get("startDate");
+		String endDate = searchData.get("endDate");
+		String genre = searchData.get("genre");
+		String keyword = searchData.get("keyword");
+		
+		String genreArr[] = genre.split(",");
+		
+		if(!startDate.equals("") && !endDate.equals("")) {
+			sql += " AND OPEN_DATE BETWEEN '" + startDate + "' AND '" + endDate + "'";
+		}
+			
+		if(!genre.equals("")) {
+			sql += " AND (GENRE LIKE ";
+			for(int i = 0; i < genreArr.length; i++) {
+				sql += "'%" + genreArr[i];
+				if (i < genreArr.length - 1) {
+			        sql += "%' OR GENRE LIKE "; 
+			    }else {
+			    	sql += "%')";
+			    }
+			}
+		}
+		
+		if(!keyword.equals("")) {
+			sql += " AND MOVIE_TITLE LIKE '%" + keyword + "%'";
+		}
+		
+		System.out.println(sql);
+		/*
+		 * 넘겨 받은 map으로 부터 
+		 * startDate, endDate, genre, keyword
+		 * 다 뽑기 
+		 * 
+		 * if(startDate랑 endDate가 존재할 경우) {
+		 *  	sql += "and startDate와 endDate 기간조건 ";
+		 * }
+		 * 
+		 * if(genre 가 존재할 경우) {
+		 * 		sql += "and 장르에 대한 in 조건";
+		 * }
+		 * 
+		 * if(keyword가 존재할 경우) {
+		 * 		sql += "and 검색어에 대한 조건";
+		 * }
+		 */
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("count");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return listCount;
+	}
+	
+	public int selectAllOttMovieList(Connection conn, Map<String, String> searchData) {
+		
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAllOttMovieList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("count");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return listCount;
+	}
+	
+	public List<Movie> selectPagingShowMovieList(Connection conn, PageInfo pi, Map<String, String> searchData){ // map 넘겨받기 
+		
+		List<Movie> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectPagingShowMovieList");
+		
+		String startDate = searchData.get("startDate");
+		String endDate = searchData.get("endDate");
+		String genre = searchData.get("genre");
+		String keyword = searchData.get("keyword");
+		
+		String genreArr[] = genre.split(",");
+		
+		if(!startDate.equals("") && !endDate.equals("")) {
+			sql += " AND OPEN_DATE BETWEEN '" + startDate + "' AND '" + endDate + "'";
+		}
+			
+		if(!genre.equals("")) {
+			sql += " AND (GENRE LIKE ";
+			for(int i = 0; i < genreArr.length; i++) {
+				sql += "'%" + genreArr[i];
+				if (i < genreArr.length - 1) {
+			        sql += "%' OR GENRE LIKE "; 
+			    }else {
+			    	sql += "%')";
+			    }
+			}
+		}
+		
+		if(!keyword.equals("")) {
+			sql += " AND MOVIE_TITLE LIKE '%" + keyword + "%'";
+		}
+		
+		sql += ") WHERE RNUM BETWEEN ? AND ?";
+		
+		System.out.println("\n" + sql);
+		/*
+		 * 넘겨 받은 map으로 부터 
+		 * startDate, endDate, genre, keyword
+		 * 다 뽑기 
+		 * 
+		 * if(startDate랑 endDate가 존재할 경우) {
+		 *  	sql += "and startDate와 endDate 기간조건 ";
+		 * }
+		 * 
+		 * if(genre 가 존재할 경우) {
+		 * 		sql += "and 장르에 대한 in 조건";
+		 * }
+		 * 
+		 * if(keyword가 존재할 경우) {
+		 * 		sql += "and 검색어에 대한 조건";
+		 * }
+		 * 
+		 * sql += ")  WHERE RNUM BETWEEN ? AND ?";
+		 */
+		
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Movie(rset.getInt("movie_no"), rset.getString("movie_title"),
+						rset.getString("movie_content"), rset.getString("genre"), rset.getInt("playtime"),
+						rset.getString("country"), rset.getString("age_lv"), rset.getString("open_date"),
+						rset.getString("director"), rset.getInt("audience_count"), rset.getString("actor"),
+						rset.getString("preview"), rset.getString("status"), rset.getDouble("grade"),
+						rset.getString("title_path"), rset.getString("content_path"), rset.getInt("taste_no")));				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
+	public List<Movie> selectPagingOttMovieList(Connection conn, PageInfo pi, Map<String, String> searchData){
+		
+		List<Movie> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectPagingOttMovieList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Movie(rset.getInt("movie_no"), rset.getString("movie_title"),
+						rset.getString("movie_content"), rset.getString("genre"), rset.getInt("playtime"),
+						rset.getString("country"), rset.getString("age_lv"), rset.getString("open_date"),
+						rset.getString("director"), rset.getInt("audience_count"), rset.getString("actor"),
+						rset.getString("preview"), rset.getString("status"), rset.getDouble("grade"),
+						rset.getString("title_path"), rset.getString("content_path"), rset.getInt("taste_no")));				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 	}
 	
 	

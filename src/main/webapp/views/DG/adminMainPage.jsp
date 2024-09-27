@@ -110,7 +110,7 @@
 	<% session.removeAttribute("alertMsg"); } %>
 	
 	
-	<div class="container">
+
 	    <div id="main">
 	      <div id="head">
 	         <div id="mvp_logo">
@@ -135,7 +135,7 @@
             </div>
           </div> <!-- body-left div 끝 -->
 	
-          <div id="body-right">
+         	<div id="body-right">
             <div id="body-right-title">
               <span>영화관리</span>
               <div style="width: 280px; height: 32px;">
@@ -146,123 +146,187 @@
             
 	          <hr style="border: 2px solid #959595; width: 1074px; margin: 0%;">
 	          
-          <div id="body-main">
-	          <table class="table table-bordered">
-	            <tbody>
-	              <tr>
-	                <td class="table-title">등록날짜</td>
-	                <td style="display: flex; gap: 20px; width: 902px; height: 57px;"><input type="date" class="form-control"> <hr> <input type="date" class="form-control"></td>
-	              </tr> 
-	              <tr>
-	                <td class="table-title">장르</td>
-	                <td style="padding: 0%;">
-	                  <div class="checkbox-list" style="margin-top: 5px; margin-left: 60px;">
-	                    <label style="display: flex; align-items: center;">
-	                      <input type="checkbox" class="form-check-input" name="액션">액션
-	                    </label>
-	                    <label style="display: flex; align-items: center;">
-	                      <input type="checkbox" class="form-check-input" name="범죄">범죄
-	                    </label>
-	                    <label style="display: flex; align-items: center;">
-	                      <input type="checkbox" class="form-check-input" name="SF">SF
-	                    </label>
-	                    <label style="display: flex; align-items: center;">
-	                      <input type="checkbox" class="form-check-input" name="코미디">코미디
-	                    </label>
-	                    <label style="display: flex; align-items: center;">
-	                      <input type="checkbox" class="form-check-input" name="슬랩스틱">슬랩스틱
-	                    </label>
-	                    <label style="display: flex; align-items: center;">
-	                      <input type="checkbox" class="form-check-input" name="로맨스">로맨스
-	                    </label>
-	                    <label style="display: flex; align-items: center;">
-	                      <input type="checkbox" class="form-check-input" name="멜로">멜로
-	                    </label>
-	                  </div>
-	                  <div class="checkbox-list" style="margin-top: 3px; margin-left: 60px;">
-	                    <label style="display: flex; align-items: center;">
-	                      <input type="checkbox" class="form-check-input" name="공포">공포
-	                    </label>
-	                    <label style="display: flex; align-items: center;">
-	                      <input type="checkbox" class="form-check-input" name="스릴러">스릴러
-	                    </label>
-	                    <label style="display: flex; align-items: center;">
-	                      <input type="checkbox" class="form-check-input" name="전쟁">전쟁
-	                    </label>
-	                    <label style="display: flex; align-items: center;">
-	                      <input type="checkbox" class="form-check-input" name="스포츠">스포츠
-	                    </label>
-	                    <label style="display: flex; align-items: center;">
-	                      <input type="checkbox" class="form-check-input" name="판타지">판타지
-	                    </label>
-	                    <label style="display: flex; align-items: center;">
-	                      <input type="checkbox" class="form-check-input" name="음악">음악
-	                    </label>
-	                    <label style="display: flex; align-items: center;">
-	                      <input type="checkbox" class="form-check-input" name="뮤지컬">뮤지컬
-	                    </label>
-	                  </div>
-	                </td>
-	              </tr>
-	              <tr>
-                	<td class="table-title">검색</td> 
-	                <td style="display: flex;">
-	                  <input type="text" class="form-control" placeholder="검색어를 입력하세요." style="width: 311px; height: 31px; font-size: 14px;">
-	                  <button id="search">검색</button>
-	                  <button id="reset">초기화</button>
-	                </td>
-	              </tr>
-            	</tbody>
-            </table>
+          	<div id="body-main">
+		          <table class="table table-bordered" id="search-area">
+		            <tbody>
+		              <tr>
+		                <td class="table-title">등록날짜</td>
+		                <td style="display: flex; gap: 20px; width: 902px; height: 57px;">
+		                <input type="date" class="form-control" id="startDate"> <hr>
+		                <input type="date" class="form-control" id="endDate"></td>
+		              </tr> 
+		              <tr>
+		                <td class="table-title">장르</td>
+		                <td style="padding: 0%;">
+		                  <div class="checkbox-list" style="margin-top: 5px; margin-left: 60px;">
+		                    <label style="display: flex; align-items: center;">
+		                      <input type="checkbox" class="form-check-input" value="액션">액션
+		                    </label>
+		                    <label style="display: flex; align-items: center;">
+		                      <input type="checkbox" class="form-check-input" value="범죄">범죄
+		                    </label>
+		                    <label style="display: flex; align-items: center;">
+		                      <input type="checkbox" class="form-check-input" value="SF">SF
+		                    </label>
+		                    <label style="display: flex; align-items: center;">
+		                      <input type="checkbox" class="form-check-input" value="코미디">코미디
+		                    </label>
+		                    <label style="display: flex; align-items: center;">
+		                      <input type="checkbox" class="form-check-input" value="슬랩스틱">슬랩스틱
+		                    </label>
+		                    <label style="display: flex; align-items: center;">
+		                      <input type="checkbox" class="form-check-input" value="로맨스">로맨스
+		                    </label>
+		                    <label style="display: flex; align-items: center;">
+		                      <input type="checkbox" class="form-check-input" value="멜로">멜로
+		                    </label>
+		                  </div>
+		                  <div class="checkbox-list" style="margin-top: 3px; margin-left: 60px;">
+		                    <label style="display: flex; align-items: center;">
+		                      <input type="checkbox" class="form-check-input" value="공포">공포
+		                    </label>
+		                    <label style="display: flex; align-items: center;">
+		                      <input type="checkbox" class="form-check-input" value="스릴러">스릴러
+		                    </label>
+		                    <label style="display: flex; align-items: center;">
+		                      <input type="checkbox" class="form-check-input" value="전쟁">전쟁
+		                    </label>
+		                    <label style="display: flex; align-items: center;">
+		                      <input type="checkbox" class="form-check-input" value="스포츠">스포츠
+		                    </label>
+		                    <label style="display: flex; align-items: center;">
+		                      <input type="checkbox" class="form-check-input" value="판타지">판타지
+		                    </label>
+		                    <label style="display: flex; align-items: center;">
+		                      <input type="checkbox" class="form-check-input" value="음악">음악
+		                    </label>
+		                    <label style="display: flex; align-items: center;">
+		                      <input type="checkbox" class="form-check-input" value="뮤지컬">뮤지컬
+		                    </label>
+		                  </div>
+		                </td>
+		              </tr>
+		              <tr>
+	                	<td class="table-title">검색</td> 
+		                <td style="display: flex;">
+		                  <input type="text" id="keyword" class="form-control" placeholder="검색어를 입력하세요." style="width: 311px; height: 31px; font-size: 14px;">
+		                  <button id="search">검색</button>
+		                  <button id="reset" onclick="resetSearchData();">초기화</button>
+		                </td>
+		              </tr>
+	            	</tbody>
+	            </table>
 	          
-	          <form action="<%=contextPath%>/movieDelete.md" method="post">
-            <div id="body-main-list">
-	            <div id="list-category">
-	              <div class="show-movie tabActive" onclick="showingMovieList();">상영중인 영화</div>
-	              <div class="ott-movie" onclick="ottMovieList();">OTT 영화</div>
-	              <button type="button" style="background-color: #2F80ED; margin-left: 525px;"  data-toggle="modal" data-target="#insert-movie" >+ 등록</button>
-	              <button type="submit" style="background-color: #F25858; margin-left: 15px;">- 삭제</button>
-	            </div>
+	          	<form action="<%=contextPath%>/movieDelete.md" method="post">
+            		<div id="body-main-list">
+            		
+			            <div id="list-category">
+			              <div class="show-movie tabActive" id="showMovieTab">상영중인 영화</div>
+			              <div class="ott-movie" id="ottMovieTab">OTT 영화</div>
+			              <button type="button" style="background-color: #2F80ED; margin-left: 525px;"  data-toggle="modal" data-target="#insert-movie" >+ 등록</button>
+			              <button type="submit" style="background-color: #F25858; margin-left: 15px;">- 삭제</button>
+			            </div>
                     
-              <div class="list-head">
-                <div style="width: 64px; height: 18px;"><input type="checkbox" id="checkAll" style="width: 18px; height: 18px; margin-left: 46px;"></div>
-                <div style="margin-left: 58px;">NO</div>
-                <div style="margin-left: 85px;">제목</div>
-                <div style="margin-left: 526px;">등급</div>
-                <div style="margin-left: 167px;">개봉일</div>
-              </div>
+		              <div id="list-head">
+		                <div style="width: 64px; height: 18px;"><input type="checkbox" id="checkAll" style="width: 18px; height: 18px; margin-left: 46px;"></div>
+		                <div style="margin-left: 58px;">NO</div>
+		                <div style="margin-left: 85px;">제목</div>
+		                <div style="margin-left: 526px;">등급</div>
+		                <div style="margin-left: 167px;">개봉일</div>
+		              </div>       
               
-              
-              <table id="movie-list">
-              </table>
-              
-              
+		              <table id="movie-list">
+		              </table>
+		              
+		            </div> <!-- body-main-list div 끝 -->
+		            <ul id="paging-bar" class="pagination d-flex justify-content-center" style="margin-top: 20px; cursor: pointer;"  >
+		            	
+		            </ul>
+            	</form> <!-- form 내의 삭제 버튼 ==> movieDelete.md -->    
+            </div> <!-- body-main div 끝 -->
+        	</div> <!-- body-right 끝 -->
+        </div> <!-- body div 끝 -->
+  		</div> <!-- main div 끝 -->
+	            
+	            <!-- 사용자가 현재보고있는 페이지에 따라서 다르게 보여질 페이징바 추가하기 -->
 								<script>
 								
-								// 클릭시 상영중인 영화 조회
-									function showingMovieList() {
+								$(function(){
+									$("#search").on("click", function(){ // 검색버튼 클릭시
+										// 현재활성화 되어있는 탭의 function을 호출 
+										if($('#showMovieTab').hasClass("tabActive")){
+											showingMovieList(1);
+										}else{
+											ottMovieList(1);
+										}
+									})
 									
-										$(window.event.target).addClass("tabActive");
-										$(window.event.target).next().removeClass("tabActive");
+									$("#showMovieTab").on("click", function(){
+										$(this).addClass("tabActive");
+										$(this).next().removeClass("tabActive");
+										
+										
+										resetSearchData(); // 검색 데이터 초기화
+
+										
+										showingMovieList(1);
+									})
+									
+									$("#ottMovieTab").on("click", function(){
+										$(this).addClass("tabActive");
+										$(this).prev().removeClass("tabActive");
+										
+										
+										resetSearchData(); // 검색 데이터 초기화
+
+										
+										ottMovieList(1);
+									})
+									
+								})
+								
+								
+								
+								// 클릭시 상영중인 영화 조회
+									function showingMovieList(page) {
+										
+										let genreList = [];
+										$("#search-area :checkbox").each(function(){
+											if($(this).prop("checked")){
+												genreList.push($(this).val())
+											}
+										})
 									
 										$.ajax({
 														url : '<%=contextPath%>/showing.mv',
+														data: {
+															page: page,
+															/*검색관련*/
+															startDate: $("#startDate").val(), 
+														  endDate: $("#endDate").val(),
+														  genre: genreList.toString(),
+														  keyword: $("#keyword").val()
+														},
 														success: function(res){
-																		//console.log(res);
+															console.log(res);
+															// res :  {pi: {}, list: [{}, {}]}
+														  // res.pi : PageInfo 객체 즉, {listCount:xx, currentPage:xx, ...}
+															// res.list : List<Movie> 객체 즉, [{movieNo:xx, movieTitle:xx}, {movieNo:xx, movieTitle:xx}]
+																		
 																		let divEl = '';
-																		if(res.length < 12){
-																			for(let i = 0; i < res.length; i++){
+																		
+																			for(let i = 0; i < res.list.length; i++){
 																				divEl += '<tr onclick="checkMovie(event);">'
 																									+ '<td class="list-content">'
-																										 + '<div><input type="checkbox" class="list-checkbox" style="width: 18px; height: 18px; margin-left: 46px;" name="movieNo" value="' + res[i].movieNo + '"></div>'
-																										 + '<div class="list-num">' + res[i].movieNo + '</div>'
-																										 + '<div class="list-title" data-toggle="modal" data-target="#modify-movie">' + res[i].movieTitle + '</div>'
-																										 + '<div class="list-ageLv">' + res[i].ageLv + '</div>'
-																										 + '<div class="list-date">' + res[i].openDate + '</div>'
+																										 + '<div><input type="checkbox" class="list-checkbox" style="width: 18px; height: 18px; margin-left: 46px;" name="movieNo" value="' + res.list[i].movieNo + '"></div>'
+																										 + '<div class="list-num">' + res.list[i].movieNo + '</div>'
+																										 + '<div class="list-title" data-toggle="modal" data-target="#modify-movie">' + res.list[i].movieTitle + '</div>'
+																										 + '<div class="list-ageLv">' + res.list[i].ageLv + '</div>'
+																										 + '<div class="list-date">' + res.list[i].openDate + '</div>'
 																									+ '</td>'	 	 
 																							 + '</tr>';
 																	}
-																			
+																			/*
 																						 for(i = 0; i < 12-res.length; i++){
 																			divEl += '<tr>'
 																								+ '<td class="list-content">'
@@ -273,7 +337,30 @@
 																								+ '</td>'	 	 
 																					 + '</tr>';
 																						 }
-																		}
+																		*/
+																		let liEl = '';
+																    
+																		liEl += '<li class="page-item ' + (res.pi.currentPage === 1 ? "disabled" : "") + '">'
+																	       + '<a class="page-link" onclick="showingMovieList(' + (res.pi.currentPage - 1) + ')">&laquo;</a>'
+																	       + '</li>';
+
+																	// 페이지 번호
+																	for (let i = res.pi.startPage; i <= res.pi.endPage; i++) {
+																	    liEl += '<li class="page-item ' + (i === res.pi.currentPage ? "active" : "") + '">'
+																	         + '<a class="page-link" onclick="showingMovieList(' + i + ')">' + i + '</a>'
+																	         + '</li>';
+																	}
+
+																	// 다음 페이지로 가는 버튼
+																	liEl += '<li class="page-item ' + (res.pi.currentPage === res.pi.maxPage ? "disabled" : "") + '">'
+																	       + '<a class="page-link" onclick="showingMovieList(' + (res.pi.currentPage < res.pi.maxPage ? (res.pi.currentPage + 1) : res.pi.maxPage) + ')">&raquo;</a>'
+																	       + '</li>';
+
+																         
+																         $('#paging-bar').html(liEl);
+																    			
+																		// 페이징바도 제작
+																		// 페이징바 제작시 해당 페이지 클릭시 다시 showingMovieList(클릭한페이지번호);
 																		
 																						 
 															$('#movie-list').html(divEl);
@@ -286,40 +373,64 @@
 									}
 									
 									// 클릭 시 ott 영화 조회
-									function ottMovieList() {
-										
-										$(window.event.target).addClass("tabActive");
-										$(window.event.target).prev().removeClass("tabActive");
+									function ottMovieList(page) {
+
+										let genreList = [];
+										$("#search-area :checkbox").each(function(){
+											if($(this).prop("checked")){
+												genreList.push($(this).val())
+											}
+										})
 										
 										$.ajax({
 														url : '<%=contextPath%>/ott.mv',
+														data : {
+															page : page,
+															/*검색관련*/
+															startDate: $("#startDate").val(), 
+														  endDate: $("#endDate").val(),
+														  genre: genreList.toString(),
+														  keyword: $("#keyword").val()
+														},
 														success: function(res){
-																		
+														console.log(res);				
 																		let divEl = '';
-																		if(res.length < 12){
-																		for(let i = 0; i < res.length; i++){
+																		
+																		for(let i = 0; i < res.list.length; i++){
 																			divEl += '<tr onclick="checkMovie(event);">'
-																									+ '<td class="list-content" data-toggle="modal" data-target="#modify-movie">'
-																										 + '<div><input type="checkbox" class="list-checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></div>'
-																										 + '<div class="list-num">' + res[i].movieNo + '</div>'
-																										 + '<div class="list-title">' + res[i].movieTitle + '</div>'
-																										 + '<div class="list-ageLv">' + res[i].ageLv + '</div>'
-																										 + '<div class="list-date">' + res[i].openDate + '</div>'
+																									+ '<td class="list-content">'
+																										 + '<div><input type="checkbox" class="list-checkbox" style="width: 18px; height: 18px; margin-left: 46px; name="movieNo" value="' + res.list[i].movieNo + '"></div>'
+																										 + '<div class="list-num">' + res.list[i].movieNo + '</div>'
+																										 + '<div class="list-title" data-toggle="modal" data-target="#modify-movie">' + res.list[i].movieTitle + '</div>'
+																										 + '<div class="list-ageLv">' + res.list[i].ageLv + '</div>'
+																										 + '<div class="list-date">' + res.list[i].openDate + '</div>'
 																									+ '</td>'	 
 																						 + '</tr>';
 																		}
 																		
-																		for(i = 0; i < 12-res.length; i++){
-																			divEl += '<tr>'
-																								+ '<td class="list-content">'
-																									 + '<div class="list-num"></div>'
-																									 + '<div class="list-title"></div>'
-																									 + '<div class="list-ageLv"></div>'
-																									 + '<div class="list-date"></div>'
-																								+ '</td>'	 	 
-																					 + '</tr>';
-																						 }
-																		}
+																		
+																		
+																		let liEl = '';
+																	    
+																		liEl += '<li class="page-item ' + (res.pi.currentPage === 1 ? "disabled" : "") + '">'
+																	       + '<a class="page-link" onclick="ottMovieList(' + (res.pi.currentPage - 1) + ')">&laquo;</a>'
+																	       + '</li>';
+
+																	// 페이지 번호
+																	for (let i = res.pi.startPage; i <= res.pi.endPage; i++) {
+																	    liEl += '<li class="page-item ' + (i === res.pi.currentPage ? "active" : "") + '">'
+																	         + '<a class="page-link" onclick="ottMovieList(' + i + ')">' + i + '</a>'
+																	         + '</li>';
+																	}
+
+																	// 다음 페이지로 가는 버튼
+																	liEl += '<li class="page-item ' + (res.pi.currentPage === res.pi.maxPage ? "disabled" : "") + '">'
+																	       + '<a class="page-link" onclick="ottMovieList(' + (res.pi.currentPage < res.pi.maxPage ? (res.pi.currentPage + 1) : res.pi.maxPage) + ')">&raquo;</a>'
+																	       + '</li>';
+
+																         
+																         $('#paging-bar').html(liEl);
+																		
 																		
 															$('#movie-list').html(divEl);
 															$('#movie-list tr:odd').css('background-color', '#f0f0f0');
@@ -330,7 +441,9 @@
 										})
 									}
 									
-									window.addEventListener('load', showingMovieList);
+									window.addEventListener('load', function(){
+										showingMovieList(1);
+									});
 									
 									function checkMovie(event){
 										console.log('tr요소 클릭됨');
@@ -422,18 +535,18 @@
 										location.href="<%=contextPath%>/movieDelete.md?movieNo=" + checkedMovieNo;
 									}
 									*/
+									
+									function resetSearchData(){
+										$("#startDate").val("");
+										$("#endDate").val("");
+										$("#search-area :checkbox").each(function(){
+											$(this).prop("checked", false);
+										})
+										$("#keyword").val("");
+									}
 								</script>
-                </div> <!-- list div 끝 -->
-              </div> <!-- body-main-list 끝 -->
-            </div> <!--body-main div 끝 -->
-            </form>
-           </div> <!-- body-right div 끝 -->
-	            
-	            <!-- 사용자가 현재보고있는 페이지에 따라서 다르게 보여질 페이징바 추가하기 -->
-	
-	        </div> <!-- body div 끝 -->
-	    </div> <!-- main div 끝 -->
-	
+
+
 	
 	
 		
@@ -441,242 +554,244 @@
 			
 			<form action="<%=contextPath%>/movieInsert.mi" method="post" enctype="multipart/form-data">	
 			<!-- 영화 등록 화면 (모달) -->
-			 <div class="modal" id="insert-movie">
-			    <div class="modal-dialog modal-xl" style="width: 760px; height: 900px;">
-			    
-			      <div class="modal-content">
-			      
-			        <!-- Modal Header -->
-			        <div class="modal-header">
-			          <div> <hr style="width: 4px; height: 20px; background-color: #2F80ED; margin: 0%; margin-top: 5px;"> </div>
-			          <div> <h4 class="modal-title" style="margin-right: 640px; font-size: 20px;">영화등록</h4> </div>  
-			        </div>
-			        
-			        
-			        <!-- Modal body -->
-			        <div class="modal-body" style="width: 708px; height: 694px;">  
-			          <div class="modal-body-top" style="width: 708px; height: 254px;">
-			            <div style="display: flex;">
-			              <p style="width: 60px; font-size: 14px;">영화제목</p>
-			              <input type="text" class="form-control" name="movie-title" placeholder="영화제목을 입력하세요." style="width: 630px; height: 20px; margin-left: 20px; font-size: 10px;">
-			            </div>
-			            <div style="display: flex;">
-			              <p style="width: 60px; font-size: 14px;">영화소개</p>
-			              <input type="text" class="form-control" name="movie-content" placeholder="영화소개를 입력하세요." style="width: 630px; height: 126px; margin-left: 20px; font-size: 10px;">
-			            </div>
-			            <div style="display: flex; flex-direction: column;"> <!-- 장르 div 시작 -->
-			              <p style="width: 60px; font-size: 14px;">장르</p>
-			              <div class="modal-checkbox-list" style="margin-top: 5px;">
-			                <div style="width: 55px; height: 17px;">
-			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="액션">액션
-			                  </label>
-			                </div>
-			                <div style="width: 55px; height: 17px;">
-			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="범죄">범죄
-			                  </label>
-			                </div>
-			                <div style="width: 55px; height: 17px;">
-			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="SF">SF
-			                  </label>
-			                </div>
-			                <div style="width: 55px; height: 17px;">
-			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="코미디">코미디
-			                  </label>
-			                </div>
-			                <div style="width: 55px; height: 17px;">
-			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="슬랩스틱">슬랩스틱
-			                  </label>
-			                </div>
-			                <div style="width: 55px; height: 17px;">  
-			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="로맨스">로맨스
-			                  </label>
-			                </div>
-			                <div style="width: 55px; height: 17px;">  
-			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="멜로">멜로
-			                  </label>
-			                </div>
-			                <div>
-			                	<div style="width: 42px; height: 17px; margin-bottom: 5px;"><p>취향</p></div>
-					                <select id="taste-no-insert" class="form-select" name="taste">
-					                  <option value="10">NDHE</option>
-					                  <option value="20">VDSE</option>
-					                  <option value="30">SPTF</option>
-					                  <option value="40">BOFA</option>
-					                  <option value="50">ETRF</option>
-					                  <option value="60">CCFE</option>
-					                  <option value="70">CAES</option>
-					                  <option value="80">HHAL</option>
-					                </select>
-			                	</div>
-			              	</div>
-			              <div class="modal-checkbox-list" style="margin-top: 3px;">
-			                <div style="width: 55px; height: 17px;">
-			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="공포">공포
-			                  </label>
-			                </div>
-			                <div style="width: 55px; height: 17px;">
-			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="스릴러">스릴러
-			                  </label>
-			                </div>
-			                <div style="width: 55px; height: 17px;">  
-			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="전쟁">전쟁
-			                  </label>
-			                </div>
-			                <div style="width: 55px; height: 17px;">  
-			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="스포츠">스포츠
-			                  </label>
-			                </div>
-			                <div style="width: 55px; height: 17px;">  
-			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="판타지">판타지
-			                  </label>
-			                </div>
-			                <div style="width: 55px; height: 17px;">  
-			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="음악">음악
-			                  </label>
-			                </div>
-			                <div style="width: 55px; height: 17px;">  
-			                  <label style="display: flex; align-items: center;">
-			                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="뮤지컬">뮤지컬
-			                  </label>
-			                </div>  
-			              </div>
-			            </div> <!-- 장르 div 끝 -->
-			          </div> <!-- modal-body-top div 끝 -->
-			          
-			          <!-- modal-body-bottom div 시작 -->
-			          <div class="modal-body-bottom">
-			            <div class="modal-body-bottom-left">
-			              <div style="display: flex; gap: 30px; text-align: center;">
-			                <div style="width: 42px; height: 17px;"><p style="margin-bottom: 10px;">개봉일</p></div>
-			                <input type="date" class="form-control" name="open-date">
-			              </div>
-			              <div style="display: flex; gap: 30px;">
-			                <div style="width: 42px; height: 17px;"><p style="margin-bottom: 10px;">등급</p></div>
-			                <select id="movie-level-insert" class="form-select" name="age-level">
-			                  <option value="전체관람가">전체관람가</option>
-			                  <option value="12세이상관람가">12세이상관람가</option>
-			                  <option value="15세이상관람가">15세이상관람가</option>
-			                  <option value="청소년관람불가">청소년관람불가</option>
-			                </select>
-			              </div>
-			              <div style="display: flex; gap: 30px;">
-			                <div style="width: 42px; height: 17px;"><p>감독</p></div>
-			                <input type="text" class="form-control" name="director" placeholder="감독명">
-			              </div>
-			              <div style="display: flex; gap: 30px;">
-			                <div style="width: 42px; height: 17px;"><p>출연진</p></div>
-			                <input type="text" class="form-control" name="actor" placeholder="출연진명( ,로 구분 )">
-			              </div>
-			              <div style="display: flex; gap: 30px; width: 600px">
-			                <div style="width: 42px; height: 17px;"><p>예고편</p></div>
-			                <input type="text" class="form-control" name="preview" placeholder="링크입력">
-			              </div>
-			              <div style="width: 270px; height: 169px; display: flex; gap: 20px;">
-			                <div style="width: 62px; height: 20px;"><p>메인이미지</p></div>
-			                <img class="img-preview title-img" onclick="chooseFile(0);">
-			              </div>
-			            </div> <!-- modal-body-bottom-left div 끝 -->
-			            
-			            <div class="modal-body-bottom-right">
-			              <div style="display: flex; gap: 20px;">
-			                <div style="width: 60px; height: 17px;"><p>재생시간</p></div>
-			                <input type="text" class="form-control" name="playtime" style="width: 200px; height: 20px;" placeholder="재생시간(분 단위)">
-			              </div>
-			              <div style="display: flex; gap: 20px;">
-			                <div style="width: 60px; height: 17px;"><p>제작국가</p></div>
-			                <input type="text" class="form-control" name="country" style="width: 200px; height: 20px;" placeholder="국가명">
-			              </div>
-			              <div style="display: flex; gap: 20px;">
-			                <div style="width: 60px; height: 17px;"><p>관객수</p></div>
-			                <input type="text" class="form-control" name="audience" style="width: 200px; height: 20px;" placeholder="관객수(만 단위)">
-			              </div>
-			              <div style="display: flex; gap: 30px;">
-			              	<div style="width: 42px; height: 17px;"><p>상태</p></div>
-			                <select id="movie-status-insert" class="form-select" name="movie-status">
-			                  <option value="10">현재상영중인영화</option>
-			                  <option value="20">OTT영화</option>
-			                </select>
-			              </div>
-			              <div style="display: flex; gap: 30px;">
-			              	<p style="margin: 0%">평점</p>
-			              	<input type="text" class="form-control" name="grade" style="width: 200px; height: 20px;" placeholder="네이버평점(0.0)">
-			              </div>
-			              <div style="margin-bottom: 20px;">
-			                <p style="margin-bottom: 5px">상세이미지</p>
-			                <img class="img-preview content-img" onclick="chooseFile(1);">
-			              </div>
-			            </div> 
-			          </div> <!-- modal-body-bottom div 끝 -->
-			        </div> <!-- modal-body div 끝 -->
-			        
-			        <div style="display: none;">
-			        	<input type="file" name="title-image" onchange="loadImg(0);" required> <!-- 메인이미지 -->
-			        	<input type="file" name="content-image" onchange="loadImg(1);" required> <!-- 상세이미지 -->
-			        </div>
-			        
-			        <script>
-			        
-			        // 첨부파일 function
-			        	function chooseFile(idx){
-			        			$(':File').eq(idx).click();
-			        	}
-			        	
-			        	function loadImg(idx){
-			        		const inputFile = window.event.target;
-			        		
-			        		if(inputFile.files.length == 1) {
-			        			const reader = new FileReader();
-			        			reader.readAsDataURL(inputFile.files[0]);
-			        			
-			        			reader.onload = function(evt) {
-			        				$('.img-preview').eq(idx).prop('src', evt.target.result);
-			        			}
-			        		}else{ 
-			          			$('.img-preview').eq(idx).prop('src', null);
-			          		}
-			        	}
-			        	
-			        	
-			        		// sidebar에서 각 탭 선택시 해당 페이지로 이동하는 function
-			        		const sidebarDivs = document.querySelectorAll('#sidebar div');
-			        		
-			        		sidebarDivs.forEach(div => {
-			        			div.addEventListener('click', function() {
-			        				
-			        				const chooseSidebar = this.getAttribute('name'); // sidebar 내의 각 div의 name값 담기
-			        				// console.log(chooseSidebar);
-			        				
-			        				window.location.href = "<%=contextPath%>/views/DG/" + chooseSidebar + ".jsp";
-			        				this.style.backgroundColor ="#D2E5FF";
-			        			})
-			        		})
-			        	
-			        	
-			        </script>
-			        <!-- Modal footer -->
-			        <div class="modal-footer">
-			          <div style="display: flex; gap: 196px; margin-right: 202px;">
-			            <button type="submit" class="btn btn-primary" style="width: 80px;">등록</button>
-			            <button type="button" class="btn btn-secondary" data-dismiss="modal">창 닫기</button>
-			          </div>
-			        </div>
-			        
-			      </div>
-			    </div>
-			 </div>
+			<div class="modal" id="insert-movie">
+	     <div class="modal-dialog modal-xl" style="width: 760px; height: 900px;">
+	    
+     	 	<div class="modal-content">
+	      
+	        <!-- Modal Header -->
+	        <div class="modal-header">
+	          <div> <hr style="width: 4px; height: 20px; background-color: #2F80ED; margin: 0%; margin-top: 5px;"> </div>
+	          <div> <h4 class="modal-title" style="margin-right: 640px; font-size: 20px;">영화등록</h4> </div>  
+	        </div>
+	        
+	        
+	        <!-- Modal body -->
+	        <div class="modal-body" style="width: 708px; height: 694px;">  
+	          <div class="modal-body-top" style="width: 708px; height: 254px;">
+	            <div style="display: flex;">
+	              <p style="width: 60px; font-size: 14px;">영화제목</p>
+	              <input type="text" class="form-control" name="movie-title" placeholder="영화제목을 입력하세요." style="width: 630px; height: 20px; margin-left: 20px; font-size: 10px;">
+	            </div>
+	            <div style="display: flex;">
+	              <p style="width: 60px; font-size: 14px;">영화소개</p>
+	              <input type="text" class="form-control" name="movie-content" placeholder="영화소개를 입력하세요." style="width: 630px; height: 126px; margin-left: 20px; font-size: 10px;">
+	            </div>
+	            <div style="display: flex; flex-direction: column;"> <!-- 장르 div 시작 -->
+	              <p style="width: 60px; font-size: 14px;">장르</p>
+	              <div class="modal-checkbox-list" style="margin-top: 5px;">
+	                <div style="width: 55px; height: 17px;">
+	                  <label style="display: flex; align-items: center;">
+	                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="액션">액션
+	                  </label>
+	                </div>
+	                <div style="width: 55px; height: 17px;">
+	                  <label style="display: flex; align-items: center;">
+	                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="범죄">범죄
+	                  </label>
+	                </div>
+	                <div style="width: 55px; height: 17px;">
+	                  <label style="display: flex; align-items: center;">
+	                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="SF">SF
+	                  </label>
+	                </div>
+	                <div style="width: 55px; height: 17px;">
+	                  <label style="display: flex; align-items: center;">
+	                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="코미디">코미디
+	                  </label>
+	                </div>
+	                <div style="width: 55px; height: 17px;">
+	                  <label style="display: flex; align-items: center;">
+	                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="슬랩스틱">슬랩스틱
+	                  </label>
+	                </div>
+	                <div style="width: 55px; height: 17px;">  
+	                  <label style="display: flex; align-items: center;">
+	                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="로맨스">로맨스
+	                  </label>
+	                </div>
+	                <div style="width: 55px; height: 17px;">  
+	                  <label style="display: flex; align-items: center;">
+	                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="멜로">멜로
+	                  </label>
+	                </div>
+
+	                <div>
+	                	<div style="width: 42px; height: 17px; margin-bottom: 5px;"><p>취향</p></div>
+		                <select id="taste-no-insert" class="form-select" name="taste">
+		                  <option value="10">NDHE</option>
+		                  <option value="20">VDSE</option>
+		                  <option value="30">SPTF</option>
+		                  <option value="40">BOFA</option>
+		                  <option value="50">ETRF</option>
+		                  <option value="60">CCFE</option>
+		                  <option value="70">CAES</option>
+		                  <option value="80">HHAL</option>
+		                </select>
+	                </div>
+              	</div>
+              	
+	              <div class="modal-checkbox-list" style="margin-top: 3px;">
+	                <div style="width: 55px; height: 17px;">
+	                  <label style="display: flex; align-items: center;">
+	                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="공포">공포
+	                  </label>
+	                </div>
+	                <div style="width: 55px; height: 17px;">
+	                  <label style="display: flex; align-items: center;">
+	                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="스릴러">스릴러
+	                  </label>
+	                </div>
+	                <div style="width: 55px; height: 17px;">  
+	                  <label style="display: flex; align-items: center;">
+	                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="전쟁">전쟁
+	                  </label>
+	                </div>
+	                <div style="width: 55px; height: 17px;">  
+	                  <label style="display: flex; align-items: center;">
+	                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="스포츠">스포츠
+	                  </label>
+	                </div>
+	                <div style="width: 55px; height: 17px;">  
+	                  <label style="display: flex; align-items: center;">
+	                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="판타지">판타지
+	                  </label>
+	                </div>
+	                <div style="width: 55px; height: 17px;">  
+	                  <label style="display: flex; align-items: center;">
+	                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="음악">음악
+	                  </label>
+	                </div>
+	                <div style="width: 55px; height: 17px;">  
+	                  <label style="display: flex; align-items: center;">
+	                    <input type="checkbox" class="form-check-input" style="width: 18px; height: 18px;" name="genre" value="뮤지컬">뮤지컬
+	                  </label>
+	                </div>  
+	              </div> <!-- modal-checkbox-list(2) div 끝 -->
+	            </div> <!-- 장르 div 끝 -->
+	          </div> <!-- modal-body-top div 끝 -->
+	          
+	          <!-- modal-body-bottom div 시작 -->
+	          <div class="modal-body-bottom">
+	            <div class="modal-body-bottom-left">
+	              <div style="display: flex; gap: 30px; text-align: center;">
+	                <div style="width: 42px; height: 17px;"><p style="margin-bottom: 10px;">개봉일</p></div>
+	                <input type="date" class="form-control" name="open-date">
+	              </div>
+	              <div style="display: flex; gap: 30px;">
+	                <div style="width: 42px; height: 17px;"><p style="margin-bottom: 10px;">등급</p></div>
+	                <select id="movie-level-insert" class="form-select" name="age-level">
+	                  <option value="전체관람가">전체관람가</option>
+	                  <option value="12세이상관람가">12세이상관람가</option>
+	                  <option value="15세이상관람가">15세이상관람가</option>
+	                  <option value="청소년관람불가">청소년관람불가</option>
+	                </select>
+	              </div>
+	              <div style="display: flex; gap: 30px;">
+	                <div style="width: 42px; height: 17px;"><p>감독</p></div>
+	                <input type="text" class="form-control" name="director" placeholder="감독명">
+	              </div>
+	              <div style="display: flex; gap: 30px;">
+	                <div style="width: 42px; height: 17px;"><p>출연진</p></div>
+	                <input type="text" class="form-control" name="actor" placeholder="출연진명( ,로 구분 )">
+	              </div>
+	              <div style="display: flex; gap: 30px; width: 600px">
+	                <div style="width: 42px; height: 17px;"><p>예고편</p></div>
+	                <input type="text" class="form-control" name="preview" placeholder="링크입력">
+	              </div>
+	              <div style="width: 270px; height: 169px; display: flex; gap: 20px;">
+	                <div style="width: 62px; height: 20px;"><p>메인이미지</p></div>
+	                <img class="img-preview title-img" onclick="chooseFile(0);">
+	              </div>
+	            </div> <!-- modal-body-bottom-left div 끝 -->
+	            
+	            <div class="modal-body-bottom-right">
+	              <div style="display: flex; gap: 20px;">
+	                <div style="width: 60px; height: 17px;"><p>재생시간</p></div>
+	                <input type="text" class="form-control" name="playtime" style="width: 200px; height: 20px;" placeholder="재생시간(분 단위)">
+	              </div>
+	              <div style="display: flex; gap: 20px;">
+	                <div style="width: 60px; height: 17px;"><p>제작국가</p></div>
+	                <input type="text" class="form-control" name="country" style="width: 200px; height: 20px;" placeholder="국가명">
+	              </div>
+	              <div style="display: flex; gap: 20px;">
+	                <div style="width: 60px; height: 17px;"><p>관객수</p></div>
+	                <input type="text" class="form-control" name="audience" style="width: 200px; height: 20px;" placeholder="관객수(만 단위)">
+	              </div>
+	              <div style="display: flex; gap: 30px;">
+	              	<div style="width: 42px; height: 17px;"><p>상태</p></div>
+	                <select id="movie-status-insert" class="form-select" name="movie-status">
+	                  <option value="10">현재상영중인영화</option>
+	                  <option value="20">OTT영화</option>
+	                </select>
+	              </div>
+	              <div style="display: flex; gap: 30px;">
+	              	<p style="margin: 0%">평점</p>
+	              	<input type="text" class="form-control" name="grade" style="width: 200px; height: 20px;" placeholder="네이버평점(0.0)">
+	              </div>
+	              <div style="margin-bottom: 20px;">
+	                <p style="margin-bottom: 5px">상세이미지</p>
+	                <img class="img-preview content-img" onclick="chooseFile(1);">
+	              </div>
+	            </div> 
+	          </div> <!-- modal-body-bottom div 끝 -->
+	        </div> <!-- modal-body div 끝 -->
+	        
+	        <div style="display: none;">
+	        	<input type="file" name="title-image" onchange="loadImg(0);" required> <!-- 메인이미지 -->
+	        	<input type="file" name="content-image" onchange="loadImg(1);" required> <!-- 상세이미지 -->
+	        </div>
+	        
+	        <script>
+	        
+	        // 첨부파일 function
+	        	function chooseFile(idx){
+	        			$(':File').eq(idx).click();
+	        	}
+	        	
+	        	function loadImg(idx){
+	        		const inputFile = window.event.target;
+	        		
+	        		if(inputFile.files.length == 1) {
+	        			const reader = new FileReader();
+	        			reader.readAsDataURL(inputFile.files[0]);
+	        			
+	        			reader.onload = function(evt) {
+	        				$('.img-preview').eq(idx).prop('src', evt.target.result);
+	        			}
+	        		}else{ 
+	          			$('.img-preview').eq(idx).prop('src', null);
+	          		}
+	        	}
+	        	
+	        	
+	        		// sidebar에서 각 탭 선택시 해당 페이지로 이동하는 function
+	        		const sidebarDivs = document.querySelectorAll('#sidebar div');
+	        		
+	        		sidebarDivs.forEach(div => {
+	        			div.addEventListener('click', function() {
+	        				
+	        				const chooseSidebar = this.getAttribute('name'); // sidebar 내의 각 div의 name값 담기
+	        				// console.log(chooseSidebar);
+	        				
+	        				window.location.href = "<%=contextPath%>/views/DG/" + chooseSidebar + ".jsp";
+	        				this.style.backgroundColor ="#D2E5FF";
+	        			})
+	        		})
+	        	
+	        	
+	        </script>
+	        <!-- Modal footer -->
+	        <div class="modal-footer">
+	          <div style="display: flex; gap: 196px; margin-right: 202px;">
+	            <button type="submit" class="btn btn-primary" style="width: 80px;">등록</button>
+	            <button type="button" class="btn btn-secondary" data-dismiss="modal">창 닫기</button>
+	          </div>
+	        </div>
+	        
+	      </div> <!-- modal-content div 끝 -->
+	     </div>
+	 		</div> <!-- modal div 끝 -->
 		</form>
 		
 						<!-- 영화 조회 및 수정 화면 (모달) -->
@@ -756,7 +871,7 @@
 					                  <option value="80">HHAL</option>
 					                </select>
 			                	</div>
-			              	</div>
+			              </div>
 			              <div class="modal-checkbox-list" style="margin-top: 3px;">
 			                <div style="width: 55px; height: 17px;">
 			                  <label style="display: flex; align-items: center;">
@@ -859,7 +974,7 @@
 			                <p style="margin-bottom: 5px">상세이미지</p>
 			                <img class="img-preview content-img" onclick="chooseFile(1);">
 			              </div>
-			            </div> 
+			            </div>  <!-- modal-body-bottom-right div 끝 -->
 			          </div> <!-- modal-body-bottom div 끝 -->
 			        </div> <!-- modal-body div 끝 -->
 			       
@@ -884,7 +999,7 @@
 			          			$('.img-preview').eq(idx).prop('src', null);
 			          		}
 			        	}
-		        </script>
+		        	</script>
 			        <!-- Modal footer -->
 			        <div class="modal-footer">
 			          <div style="display: flex; gap: 196px; margin-right: 202px;">
@@ -893,10 +1008,10 @@
 			          </div>
 			        </div>
 			        
-			      </div>
+			      </div> <!-- modal-content div 끝 -->
 			    </div>
-			 </div> <!-- container div 끝 -->
-		</form>
+			 </div> <!-- modal div 끝 -->
+			</form>
 	
 </body>
 </html>

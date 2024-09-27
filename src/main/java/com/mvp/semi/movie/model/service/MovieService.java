@@ -159,4 +159,32 @@ public class MovieService {
 		
 	}
 	
+	public int selectAllShowMovieList(Map<String, String>searchData) {
+		Connection conn = getConnection();
+		int listCount = mvDao.selectAllShowMovieList(conn, searchData);
+		close(conn);
+		return listCount;
+	}
+	
+	public int selectAllOttMovieList(Map<String, String> searchData) {
+		Connection conn = getConnection();
+		int listCount = mvDao.selectAllOttMovieList(conn, searchData);
+		close(conn);
+		return listCount;
+	}
+	
+	public List<Movie> selectPagingShowMovieList(PageInfo pi, Map<String, String> searchData){
+		Connection conn = getConnection();
+		List<Movie> list = mvDao.selectPagingShowMovieList(conn, pi, searchData);
+		close(conn);
+		return list;
+	}
+	
+	public List<Movie> selectPagingOttMovieList(PageInfo pi, Map<String, String> searchData){
+		Connection conn = getConnection();
+		List<Movie> list = mvDao.selectPagingOttMovieList(conn, pi, searchData);
+		close(conn);
+		return list;
+	}
+	
 }
