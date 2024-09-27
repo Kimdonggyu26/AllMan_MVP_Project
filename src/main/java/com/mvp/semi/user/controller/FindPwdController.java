@@ -37,11 +37,11 @@ public class FindPwdController extends HttpServlet {
 		HttpSession session = request.getSession();
 		if (result.getUserPwd() == null) {
 			System.out.println("실패");
-			request.getRequestDispatcher("/views/JM/findPwdFail.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/account/findPwdFail.jsp").forward(request, response);
 		} else {
 			System.out.println("성공");
 			session.setAttribute("userId", result);
-			request.getRequestDispatcher("/views/JM/findPwdSuc.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/account/findPwdSuc.jsp").forward(request, response);
 		}
 	}
 

@@ -46,7 +46,7 @@ public class UserLoginController extends HttpServlet {
 
 		if (loginUser == null) {
 			request.setAttribute("alerMsg", "로그인실패");
-			request.getRequestDispatcher("views/JM/login.jsp").forward(request, response);
+			request.getRequestDispatcher("views/account/login.jsp").forward(request, response);
 			
 			// 만약 로그인 페이지로 작동 x
 			// 다시 로그인 페이지 경로 잡아주기
@@ -55,7 +55,7 @@ public class UserLoginController extends HttpServlet {
 			session.setAttribute("loginUser", loginUser);
 
 			/* response.sendRedirect(request.getContextPath()); */
-			request.getRequestDispatcher("views/JM/modifyUser.jsp").forward(request, response);
+			request.getRequestDispatcher("views/account/modifyUser.jsp").forward(request, response);
 		}
 	}
 

@@ -41,11 +41,11 @@ public class FindIdController extends HttpServlet {
 		if (result.getUserId() == null) {
 			System.out.println("실패");
 			session.setAttribute("alertMsg", "검색결과가 없습니다.");
-			request.getRequestDispatcher("/views/JM/findIdFail.jsp").forward(request, response);;
+			request.getRequestDispatcher("/views/account/findIdFail.jsp").forward(request, response);;
 		} else {
 			System.out.println("성공");
 			session.setAttribute("userId", result);
-			request.getRequestDispatcher("/views/JM/findIdSuc.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/account/findIdSuc.jsp").forward(request, response);
 		}
 
 	}

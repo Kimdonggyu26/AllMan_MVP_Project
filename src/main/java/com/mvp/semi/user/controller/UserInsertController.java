@@ -58,7 +58,7 @@ public class UserInsertController extends HttpServlet {
 			 */
 			request.getSession().setAttribute("alertMsg", "성공적으로 회원가입 되었습니다.");
 			request.setAttribute("userId",userId);
-			request.getRequestDispatcher("/views/JM/modifyNick.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/account/modifyNick.jsp").forward(request, response);
 		}else {
 			/*
 			 * * 회원가입 실패
