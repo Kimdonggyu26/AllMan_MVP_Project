@@ -208,9 +208,9 @@ public class TBoardService {
 		return list;
 	}
 
-	public int TBoardInsertSearchCount(String search) {
+	public int TBoardInsertSearchCount(String search, int tno) {
 		Connection conn = getConnection();
-		int listCount = tbDao.TBoardInsertSearchCount(conn, search);
+		int listCount = tbDao.TBoardInsertSearchCount(conn, search, tno);
 		close(conn);
 		return listCount;
 	}
