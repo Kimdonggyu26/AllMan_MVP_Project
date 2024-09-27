@@ -8,24 +8,36 @@
 	
 	    SELECT *
   		  FROM (
-			        SELECT
-						    	   MOVIE_NO
-					    	 	 , MOVIE_TITLE
-					    		 , GENRE
-						    	 , DIRECTOR
-						    	 , TITLE_PATH
-						    	 , ROW_NUMBER() OVER(ORDER BY MOVIE_TITLE) AS RNUM
-					      FROM 
-					      	   MOVIE
-					     WHERE 
-					     			 STATUS = 10
-					     	 AND (
-					      	   MOVIE_TITLE LIKE '%' || ? || '%' 
-					       	OR GENRE LIKE '%' || ? || '%'
-					       	OR DIRECTOR LIKE '%' || ? || '%'
-					       	OR ACTOR LIKE '%' || ? || '%'
-			       				 ) 
-        			)
+	  		   SELECT
+					  MOVIE_NO
+					, MOVIE_TITLE
+					, MOVIE_CONTENT
+					, GENRE
+					, PLAYTIME
+					, COUNTRY
+					, AGE_LV
+					, OPEN_DATE
+					, DIRECTOR
+					, AUDIENCE_COUNT
+					, ACTOR
+					, PREVIEW
+					, STATUS
+					, GRADE
+					, TITLE_PATH
+					, CONTENT_PATH
+					, TASTE_NO
+				    , ROW_NUMBER() OVER(ORDER BY MOVIE_TITLE) AS RNUM
+			      FROM 
+			      	   MOVIE
+			     WHERE 
+			     			 STATUS = 10
+			       AND (
+			      	   MOVIE_TITLE LIKE '%' || ? || '%' 
+			       	OR GENRE LIKE '%' || ? || '%'
+			       	OR DIRECTOR LIKE '%' || ? || '%'
+			       	OR ACTOR LIKE '%' || ? || '%'
+	       			) 
+       			)
 		 	  WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
@@ -35,12 +47,24 @@
 	    SELECT *
   		  FROM (
 			    SELECT
-				   	   MOVIE_NO
-				 	 , MOVIE_TITLE
-			   		 , GENRE
-			    	 , DIRECTOR
-			    	 , TITLE_PATH
-			    	 , ROW_NUMBER() OVER(ORDER BY MOVIE_TITLE) AS RNUM
+					   MOVIE_NO
+					 , MOVIE_TITLE
+					 , MOVIE_CONTENT
+					 , GENRE
+					 , PLAYTIME
+					 , COUNTRY
+					 , AGE_LV
+					 , OPEN_DATE
+					 , DIRECTOR
+					 , AUDIENCE_COUNT
+					 , ACTOR
+					 , PREVIEW
+					 , STATUS
+					 , GRADE
+					 , TITLE_PATH
+					 , CONTENT_PATH
+					 , TASTE_NO
+					 , ROW_NUMBER() OVER(ORDER BY MOVIE_TITLE) AS RNUM
 			      FROM 
 			      	   MOVIE
 					   WHERE 
