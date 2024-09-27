@@ -457,7 +457,6 @@ public class MovieDao {
 			sql += " AND MOVIE_TITLE LIKE '%" + keyword + "%'";
 		}
 		
-		System.out.println(sql);
 		/*
 		 * 넘겨 받은 map으로 부터 
 		 * startDate, endDate, genre, keyword
@@ -500,6 +499,34 @@ public class MovieDao {
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectAllOttMovieList");
 		
+		String startDate = searchData.get("startDate");
+		String endDate = searchData.get("endDate");
+		String genre = searchData.get("genre");
+		String keyword = searchData.get("keyword");
+		
+		String genreArr[] = genre.split(",");
+		
+		if(!startDate.equals("") && !endDate.equals("")) {
+			sql += " AND OPEN_DATE BETWEEN '" + startDate + "' AND '" + endDate + "'";
+		}
+			
+		if(!genre.equals("")) {
+			sql += " AND (GENRE LIKE ";
+			for(int i = 0; i < genreArr.length; i++) {
+				sql += "'%" + genreArr[i];
+				if (i < genreArr.length - 1) {
+			        sql += "%' OR GENRE LIKE "; 
+			    }else {
+			    	sql += "%')";
+			    }
+			}
+		}
+		
+		System.out.println(sql);
+		
+		if(!keyword.equals("")) {
+			sql += " AND MOVIE_TITLE LIKE '%" + keyword + "%'";
+		}
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rset = pstmt.executeQuery();
@@ -547,13 +574,14 @@ public class MovieDao {
 			}
 		}
 		
+		System.out.println("\n" + sql);
+		
 		if(!keyword.equals("")) {
 			sql += " AND MOVIE_TITLE LIKE '%" + keyword + "%'";
 		}
 		
 		sql += ") WHERE RNUM BETWEEN ? AND ?";
 		
-		System.out.println("\n" + sql);
 		/*
 		 * 넘겨 받은 map으로 부터 
 		 * startDate, endDate, genre, keyword
@@ -613,6 +641,36 @@ public class MovieDao {
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectPagingOttMovieList");
 		
+		String startDate = searchData.get("startDate");
+		String endDate = searchData.get("endDate");
+		String genre = searchData.get("genre");
+		String keyword = searchData.get("keyword");
+		
+		String genreArr[] = genre.split(",");
+		
+		if(!startDate.equals("") && !endDate.equals("")) {
+			sql += " AND OPEN_DATE BETWEEN '" + startDate + "' AND '" + endDate + "'";
+		}
+			
+		if(!genre.equals("")) {
+			sql += " AND (GENRE LIKE ";
+			for(int i = 0; i < genreArr.length; i++) {
+				sql += "'%" + genreArr[i];
+				if (i < genreArr.length - 1) {
+			        sql += "%' OR GENRE LIKE "; 
+			    }else {
+			    	sql += "%')";
+			    }
+			}
+		}
+		
+		if(!keyword.equals("")) {
+			sql += " AND MOVIE_TITLE LIKE '%" + keyword + "%'";
+		}
+		
+		sql += ") WHERE RNUM BETWEEN ? AND ?";
+		
+
 		try {
 			pstmt = conn.prepareStatement(sql);
 			

@@ -363,8 +363,6 @@
 								 MOVIE
 					 WHERE
 					 			 STATUS = '20'
-		  		)
-		 WHERE RNUM BETWEEN ? AND ?	
 	</entry>
 
 

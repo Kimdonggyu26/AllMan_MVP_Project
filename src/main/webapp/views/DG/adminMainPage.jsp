@@ -300,8 +300,9 @@
 										$.ajax({
 														url : '<%=contextPath%>/showing.mv',
 														data: {
+															// 페이지정보
 															page: page,
-															/*검색관련*/
+															// 검색데이터
 															startDate: $("#startDate").val(), 
 														  endDate: $("#endDate").val(),
 														  genre: genreList.toString(),
@@ -446,8 +447,6 @@
 									});
 									
 									function checkMovie(event){
-										console.log('tr요소 클릭됨');
-										
 										$.ajax({
 														url: '<%=contextPath%>/movieSelect.ms',
 														data: {
@@ -529,13 +528,12 @@
 										
 										const checkedMovieNo = $(checkedbox).closest('tr').find('.list-num').text();
 										
-										console.log(checkedbox);
-										console.log(checkedMovieNo);
-										
+
 										location.href="<%=contextPath%>/movieDelete.md?movieNo=" + checkedMovieNo;
 									}
 									*/
 									
+									// 검색 영역의 데이터 초기화
 									function resetSearchData(){
 										$("#startDate").val("");
 										$("#endDate").val("");
