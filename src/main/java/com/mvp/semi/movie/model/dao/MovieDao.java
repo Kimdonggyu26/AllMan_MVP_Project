@@ -164,7 +164,7 @@ public class MovieDao {
 
 	public List<Movie> selectShowMovieList(Connection conn, PageInfo pi, String searchData) {
 		//예찬
-		//메인페이지 포스터 영화 리스트
+		//포스터 영화 리스트
 		List<Movie> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -188,9 +188,21 @@ public class MovieDao {
 			while(rset.next()) {
 				list.add(new Movie(rset.getInt("MOVIE_NO")
 								 , rset.getString("MOVIE_TITLE")
+								 , rset.getString("MOVIE_CONTENT")
 								 , rset.getString("GENRE")
+								 , rset.getInt("PLAYTIME")
+								 , rset.getString("COUNTRY")
+								 , rset.getString("AGE_LV")
+								 , rset.getString("OPEN_DATE")
 								 , rset.getString("DIRECTOR")
-								 , rset.getString("TITLE_PATH")));
+								 , rset.getInt("AUDIENCE_COUNT")
+								 , rset.getString("ACTOR")
+								 , rset.getString("PREVIEW")
+								 , rset.getString("STATUS")
+								 , rset.getDouble("GRADE")
+								 , rset.getString("TITLE_PATH")
+								 , rset.getString("CONTENT_PATH")
+								 , rset.getInt("TASTE_NO")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -204,7 +216,7 @@ public class MovieDao {
 	
 	public List<Movie> selectOttMovieList(Connection conn, PageInfo pi, String searchData) {
 		//예찬
-		//메인페이지 포스터 영화 리스트
+		//포스터 영화 리스트
 		List<Movie> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -228,9 +240,21 @@ public class MovieDao {
 			while(rset.next()) {
 				list.add(new Movie(rset.getInt("MOVIE_NO")
 								 , rset.getString("MOVIE_TITLE")
+								 , rset.getString("MOVIE_CONTENT")
 								 , rset.getString("GENRE")
+								 , rset.getInt("PLAYTIME")
+								 , rset.getString("COUNTRY")
+								 , rset.getString("AGE_LV")
+								 , rset.getString("OPEN_DATE")
 								 , rset.getString("DIRECTOR")
-								 , rset.getString("TITLE_PATH")));
+								 , rset.getInt("AUDIENCE_COUNT")
+								 , rset.getString("ACTOR")
+								 , rset.getString("PREVIEW")
+								 , rset.getString("STATUS")
+								 , rset.getDouble("GRADE")
+								 , rset.getString("TITLE_PATH")
+								 , rset.getString("CONTENT_PATH")
+								 , rset.getInt("TASTE_NO")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

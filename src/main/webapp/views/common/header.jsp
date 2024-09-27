@@ -80,6 +80,11 @@
     color: #ffffff;
     text-decoration: underline;
   }
+  #myImg{
+  	width: 30px;
+  	height: 30px;
+  	border-radius: 100px;
+  }
   
 </style>
 
@@ -111,11 +116,13 @@
 		        <div>
 		        	<a href="#"><img src="<%= contextPath%>/assets/image/header/bell.png" alt="" id="bellIcon" class="mr-3"></a>
 		        </div>
+		        
 		        <div>
-		        	<% if(false) { %> //로그인유저세션 == null
-		        		<a href="#로그인 페이지 이동"><img src="<%= contextPath%>####//비회원" id="myImg"></a>
+		        	<% if(loginUser == null) { %>
+		        		<a href="<%= contextPath%>/views/account/login.jsp">로그인</a>
 		        	<%} else{%>
-		        		<a href="#마이페이지 이동"><img src="<%= contextPath%>####//회원" id="myImg"></a>
+		        		<!-- 클릭 시 마이페이지 이동 -->
+		        		<a href="<%= contextPath%>/views/account/mypage.jsp"><img src="<%= contextPath + loginUser.getFilePath()%>" id="myImg"></a>
 		        	<%} %>
 		        </div>
 	      </div>

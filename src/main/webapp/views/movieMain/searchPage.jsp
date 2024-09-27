@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@page import="com.mvp.semi.movie.model.vo.Movie"%>
 <%@page import="java.util.List"%>
 <%@page import="com.mvp.semi.common.model.vo.PageInfo"%>
@@ -115,7 +116,6 @@
 </body>
 	
 	<script>
-	
 		$(function(){
 			fnAjaxShowSearch(1);
 		})
@@ -184,25 +184,25 @@
 									        }
 										    divEl += '<div class="movie1-list">' +  // movie1-list 시작
 										    '    <div class="movie-image">' +
-										    '        <img src="">' +  // contextPath에 r[i].titlePath 추가
+										    '        <img src="">' +  // contextPath에 r[i].titlePath 추가  
 										    '    </div>' +
 										    '    <div class="movie-info">' +  // movie-info 시작
 										    '        <div style="display: flex; align-items: center;">' +  // a 시작
 										    '            <table style="margin-left: 12px; margin-bottom: 7px; margin-top: 7px width: 130px;">' +
 										    '                <tr>' +
-										    '                    <td style="color: white; font-weight: 900; font-size: 13px;">안녕, 할부지</td>' +
+										    '                    <td style="color: white; font-weight: 900; font-size: 13px;">'+ r[i].movieTitle +'</td>' +
 										    '                </tr>' +
 										    '                <tr>' +
-										    '                    <td>2024.09.04</td>' +
+										    '                    <td>'+ r[i].openDate +'</td>' +
 										    '                </tr>' +
 										    '                <tr>' +
-										    '                    <td>장르 : 다큐멘터리, 애니메이션</td>' +
+										    '                    <td>장르 : '+ r[i].genre +'</td>' +
 										    '                </tr>' +
 										    '                <tr>' +
-										    '                    <td>감독 : 심형준</td>' +
+										    '                    <td>감독 : '+ r[i].director +'</td>' +
 										    '                </tr>' +
 										    '            </table>' +
-										    '            <i class="fa-regular fa-heart" id="heart"></i>' +  // heart 아이콘
+										    '            <i class="fa-regular fa-heart" id="heart" style=""></i>' +  // heart 아이콘
 										    '        </div>' +  // a 닫기
 										    '        <div style="display: flex;">' +  // b 시작
 										    '            <button type="button" class="btn btn-secondary" id="info">영화정보</button>' +
