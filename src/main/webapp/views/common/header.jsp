@@ -119,7 +119,7 @@
 		        
 		        <div>
 		        	<% if(loginUser == null) { %>
-		        		<a href="<%= contextPath%>/views/account/login.jsp">로그인</a>
+		        		<a href="login.us">로그인</a>
 		        	<%} else{%>
 		        		<!-- 클릭 시 마이페이지 이동 -->
 		        		<a href="<%= contextPath%>/views/account/mypage.jsp"><img src="<%= contextPath + loginUser.getFilePath()%>" id="myImg"></a>
@@ -136,7 +136,7 @@
       <a class="nav-link" href="#">상영영화</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">OTT영화</a>
+      <a class="nav-link" href="">OTT영화</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="list.fbo">자유게시판</a>
@@ -156,3 +156,21 @@
     </li>
   </ul>
 </nav>
+
+<script>
+	function saveSearchTerm() {
+	    var searchTerm = document.getElementById("searchInput").value; // input에서 검색어 가져오기
+	    localStorage.setItem("searchTerm", searchTerm); // 로컬 스토리지에 저장
+	}
+	
+	function loadSearchTerm() {
+	    var savedTerm = localStorage.getItem("searchTerm"); // 로컬 스토리지에서 검색어 가져오기
+	    if (savedTerm) {
+	        document.getElementById("searchInput").value = savedTerm; // input에 검색어 설정
+	    }
+	}
+	
+	window.onload = function() {
+	    loadSearchTerm(); // 페이지가 로드될 때 검색어를 input에 채움
+	};
+</script>

@@ -17,11 +17,10 @@
 
 		<!-- Section start -->
 		<section class="row m-3" style="min-height: 500px">
-
-			<div class="container border p-5 m-4 rounded">
-				<h2 class="m-4" style="color: orangered;"><%= request.getAttribute("msg") %></h2>
+			<div class="container border p-5 m-4 rounded" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+				<h2 class="m-4" style="color: #ffffff; ">잘못된 접근입니다.</h2>
+				<a type="button" class="btn btn-success" href="<%= contextPath%>/views/movieMain/mainPage.jsp">돌아기기</a>
 			</div>
-
 		</section>
 		<!-- Section end -->
 

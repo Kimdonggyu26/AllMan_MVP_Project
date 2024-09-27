@@ -13,10 +13,10 @@
     User loginUser = (User) session.getAttribute("loginUser");
 
     if (loginUser != null) {
-    	//임시로 검색페이지 요청
-        response.sendRedirect(contextPath + "/views/movieMain/searchPage.jsp");
+    	//임시로 검색페이지 요청 // 서블릿으로 처리 필요
+        response.sendRedirect(contextPath + "/views/movieMain/mainPage.jsp");
     } else {
-        response.sendRedirect(contextPath + "/views/account/login.jsp");
+        response.sendRedirect(contextPath + "/login.us");
     }
 	%>
 	 

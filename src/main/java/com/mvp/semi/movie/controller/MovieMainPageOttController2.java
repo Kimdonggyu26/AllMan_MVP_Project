@@ -19,14 +19,14 @@ import com.mvp.semi.movie.model.vo.Movie;
 /**
  * Servlet implementation class MovieMainPageController
  */
-@WebServlet("/ottSearch.ms")
-public class MovieSearchOttController extends HttpServlet {
+@WebServlet("/ottMainList.ml")
+public class MovieMainPageOttController2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public MovieSearchOttController() {
+	public MovieMainPageOttController2() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -37,13 +37,10 @@ public class MovieSearchOttController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		String searchData = request.getParameter("search");// 타입: String
-
-		System.out.println("OTT " + searchData);
-		
-		int listCount = new MovieService().selectOttMovieList(searchData);
-		System.out.println("OTT Count : " + listCount);
+		//천예찬
+		//메인페이지 OTT리스트
+		int listCount = new MovieService().selectOTTMainMovieList();
+		System.out.println("메인 OTT Count : " + listCount);
 		int currentPage = 1;
 
 		if (request.getParameter("ottPage") != null) {
@@ -66,7 +63,7 @@ public class MovieSearchOttController extends HttpServlet {
 
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 
-		List<Movie> list = new MovieService().selectOttMovieList(pi, searchData);
+		List<Movie> list = new MovieService().selectOttMainMovieList(pi);
 		
 		Map<String, Object> responseData = new HashMap<>();
 		

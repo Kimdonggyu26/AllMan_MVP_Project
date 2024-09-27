@@ -21,14 +21,14 @@ import com.mvp.semi.movie.model.vo.Movie;
 /**
  * Servlet implementation class MovieSearch
  */
-@WebServlet("/showSearch.ms")
-public class MovieSearchShowController extends HttpServlet {
+@WebServlet("/showMainList.ml")
+public class MovieMainPageShowController2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MovieSearchShowController() {
+    public MovieMainPageShowController2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,13 +39,9 @@ public class MovieSearchShowController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//천예찬
-		//앞에서 상영영화인지 OTT인지 비교하는 구문 필요할듯? 그럼 뒤에 서비스 DB는 똑같으니깐
-		
-		String searchData = request.getParameter("search");//타입: String
-		
-		System.out.println("상영 " + searchData);
-		int listCount = new MovieService().selectShowMovieList(searchData);
-		System.out.println("상영 Count : " + listCount);
+		//메인페이지 상영 리스트
+		int listCount = new MovieService().selectShowMainMovieList();
+		System.out.println("메인 상영 Count : " + listCount);
 		
 		int currentPage = 1;
 		
@@ -70,7 +66,7 @@ public class MovieSearchShowController extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
-		List<Movie> list = new MovieService().selectShowMovieList(pi, searchData);
+		List<Movie> list = new MovieService().selectShowMainMovieList(pi);
 		
 		Map<String, Object> responseData = new HashMap<>();
 		

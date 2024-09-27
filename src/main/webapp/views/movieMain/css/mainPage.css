@@ -20,9 +20,11 @@ p{
   font-weight: bold;
   margin-bottom: 16px;
 }
+td{
+	white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
 #movie1{
   width: 1187px; 
-  height: 768px;
   margin-top: 6px;
 }
 #movie1 img{
