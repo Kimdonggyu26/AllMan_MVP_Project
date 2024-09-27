@@ -49,8 +49,8 @@ public class MovieSearchShowController extends HttpServlet {
 		
 		int currentPage = 1;
 		
-		if(request.getParameter("page") != null) {
-			currentPage = Integer.parseInt(request.getParameter("page"));
+		if(request.getParameter("showPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("showPage"));
 		}
 		
 		int pageLimit = 10;

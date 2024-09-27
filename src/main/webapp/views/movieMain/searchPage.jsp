@@ -117,13 +117,11 @@
 	<script>
 	
 		$(function(){
-			fnAjaxShowSearch(1,1);
-			fnAjaxOttSearch(1,1);
-			
+			fnAjaxShowSearch(1);
 		})
 	
 		//상영 리스트
-		function fnAjaxShowSearch(showPage, ottPage) { 
+		function fnAjaxShowSearch(showPage) { 
 			const $searchData = "<%=searchData%>"; //검색
 			
 			$.ajax({
@@ -131,7 +129,6 @@
 				data: {
 					search: $searchData,
 					showPage: showPage,
-					ottPage: ottPage
 				},
 				success: function(res){
 					// {ottList:[{}, {}], ottPi:{}}  
@@ -144,7 +141,7 @@
 					let divEl = "";//영화 리스트를 담기 위한 변수
 					
 					var r = res.movieList; // 영화 데이터 
-					var pi = res.pageInfo; // 페이징
+					var p = res.pageInfo; // 페이징
 					
 					let count = 0;
 			
@@ -152,7 +149,7 @@
 						// 검색결과 없음보여지는 요소작업  - id값 noSearch
 						console.log('검색결과 없음');
 					
-						h1El += '<div style="width: 1561px; height: 2361px; float: right; margin-top: 34px;">'//전체 div
+						h1El += '<div style="width: 1561px; float: right; margin-top: 34px;">'//전체 div
 						    +   		'<div id="text">'
 						    +       	'<p>상영 영화</p>'
 						    +   		'</div>'
@@ -165,9 +162,21 @@
 						 if(r.length != 0){
 							 // 상영영화 목록 요소 작업
 							divEl  += '<div style="width: 1561px; float: right; margin-top: 34px;">'//전체 div
-									    +   '<div id="text">'
+									    +   '<div id="text"  style="display: flex; flex-direction: row;">'
 									    +       '<p>상영 영화</p>'
-									    +   '</div>'
+											+			    '<ul style="margin-left: 55%; font-size: 2rem; display: flex; list-style-type: none;">'
+											+			          '<li>'
+											+			         		 '<a onclick="fnAjaxShowSearch(' + (p.currentPage == 1 ? p.maxPage : (p.currentPage - 1)) + ')">'
+											+			            	  		'<i id="left-arrow" class="fa-solid fa-circle-chevron-left" style="cursor: pointer;"></i>' 
+											+			          		'</a>'
+											+			          '</li>'
+											+				          '<li>'
+											+				        		'<a onclick="fnAjaxShowSearch(' + (p.currentPage == p.maxPage ? 1 : (p.currentPage + 1)) +')">' 
+											+				          		    '<i id="right-arrow" class="fa-solid fa-circle-chevron-left" style="transform: scaleX(-1); cursor: pointer;"></i>'
+											+				         		'</a>' 
+											+				          '</li>' 
+											+						'</ul>'
+									    +   	'</div>'
 									    +   '<div id="movie1">';//전체 movie1
 									    for (let i = 0; i < r.length; i++) {
 									        if (count === 0) {
@@ -238,7 +247,7 @@
 	
 		
 		//OTT 리스트
-		function fnAjaxOttSearch(showPage, ottPage) {
+		function fnAjaxOttSearch(ottPage) {
 			const $searchData = "<%=searchData%>"; //검색
 
 			
@@ -246,7 +255,6 @@
 				url: '<%=contextPath%>/ottSearch.ms',
 				data: {
 					search: $searchData,
-					showPage: showPage,
 					ottPage: ottPage
 				},
 				success: function(res){
@@ -278,9 +286,18 @@
 					}else {
 						 if(r.length != 0){
 							 // 상영영화 목록 요소 작업
-							divEl  += '<div style="width: 1561px; height: 2361px; float: right; margin-top: 34px;">'//전체 div
-									    +   '<div id="text">'
-									    +       '<p style="margin-top: 116px">OTT영화</p>'
+							divEl  += '<div style="width: 1561px; float: right; margin-top: 34px;">'//전체 div
+									    +   '<div id="text"  style="display: flex; flex-direction: row;">'
+									    +       '<p>상영 영화</p>'
+											+			    '<div style="display: flex; flex-direction: row; margin-left: 55%; font-size: 2rem;">'
+											+							'<div style="display: flex; align-items: center;">'
+											+								'<i id="left-arrow" class="fa-solid fa-circle-chevron-left" onclick="fnReplyList()" style="cursor: pointer;"></i>'//왼쪽 버튼
+											+							'</div>'
+											+							'<div style="display: flex; align-items: center; margin-left: 10px;">'
+																			//오른쪽 버튼
+											+								'<i id="right-arrow" class="fa-solid fa-circle-chevron-left"  onclick="fnReplyList()" style="transform: scaleX(-1); cursor: pointer;"></i>'
+											+							'</div>'
+											+					'</div>'
 									    +   '</div>'
 									    +   '<div id="movie2">';//전체 movie1
 									    for (let i = 0; i < r.length; i++) {

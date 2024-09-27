@@ -63,11 +63,11 @@
         	   COUNT(*) as COUNT
  		  FROM
        		   MOVIE
-		 WHERE
+		 WHERE(
 		 	   MOVIE_TITLE LIKE '%' || ? || '%' 
 	        OR GENRE LIKE '%' || ? || '%'
 	        OR DIRECTOR LIKE '%' || ? || '%'
-	      	OR ACTOR LIKE '%' || ? || '%'
+	      	OR ACTOR LIKE '%' || ? || '%')
 	       AND STATUS IN ('10')
 	</entry>	
 	
