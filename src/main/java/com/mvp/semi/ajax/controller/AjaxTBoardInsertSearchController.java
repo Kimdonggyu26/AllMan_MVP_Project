@@ -13,20 +13,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.mvp.semi.board.model.service.TBoardService;
-import com.mvp.semi.board.model.vo.Reply;
 import com.mvp.semi.common.model.vo.PageInfo;
+import com.mvp.semi.movie.model.vo.Movie;
 
 /**
- * Servlet implementation class AjaxReplyListController
+ * Servlet implementation class AjaxTBoardInsertSearchController
  */
-@WebServlet("/list.re")
-public class AjaxReplyListController extends HttpServlet {
+@WebServlet("/tbSearch.mv")
+public class AjaxTBoardInsertSearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxReplyListController() {
+    public AjaxTBoardInsertSearchController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,27 +36,19 @@ public class AjaxReplyListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	    String boardNoParam = request.getParameter("no");
-	    String pageParam = request.getParameter("page"); // 페이지 파라미터 가져오기
-
-	    if (boardNoParam == null) {
-	        // boardNo가 null인 경우 에러 처리
-	        System.out.println("boardNo 파라미터가 누락되었습니다.");
-	        return;
-	    }
+		String search = request.getParameter("search");
+		int tno = Integer.parseInt(request.getParameter("no"));
 		
-		int boardNo = Integer.parseInt(request.getParameter("no"));
-		
-		int listCount = new TBoardService().selectTBoardReplyCount(boardNo);
+		int listCount = new TBoardService().TBoardInsertSearchCount(search);
 		// * currentPage : 사용자가 요청한 페이지 번호 (요청시 전달됨 | 전달된게 없으면 1로 간주) 
 		int currentPage = 1;
 		if(request.getParameter("page") != null) {
 			currentPage = Integer.parseInt(request.getParameter("page"));
 		}
 		// * pageLimit	: 페이징바의 목록 수 (몇개 단위씩 보여지게 할건지)
-		int pageLimit = 10;
+		int pageLimit = 5;
 		// * boardLimit : 한 페이지에 보여질 게시글 수 (몇개 단위씩 보여지게 할건지)
-		int boardLimit = 15;
+		int boardLimit = 10;
 		
 		int maxPage = (int)Math.ceil((double)listCount / boardLimit);
 		
@@ -71,7 +63,7 @@ public class AjaxReplyListController extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);	
 		
 		
-		List<Reply> list = new TBoardService().selectReplyList(boardNo,pi);
+		List<Movie> list = new TBoardService().TboardInsertSaerchList(search,tno,pi);
 		
 		response.setContentType("application/json; charset=utf-8");
 		

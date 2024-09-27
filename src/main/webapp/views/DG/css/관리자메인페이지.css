@@ -140,7 +140,7 @@
   width: 1078px;
   height: 522px;
 }
-.list-head{
+#list-head{
 	width: 1078px;
   height: 40px;
   font-size: 14px;
@@ -203,3 +203,4 @@
 	margin: 0%;
 	padding: 0%;
 }
+

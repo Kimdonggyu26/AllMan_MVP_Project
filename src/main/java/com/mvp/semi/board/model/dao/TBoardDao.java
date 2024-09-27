@@ -15,6 +15,7 @@ import java.util.Properties;
 import com.mvp.semi.board.model.vo.Board;
 import com.mvp.semi.board.model.vo.Reply;
 import com.mvp.semi.common.model.vo.PageInfo;
+import com.mvp.semi.movie.model.vo.Movie;
 
 
 public class TBoardDao {
@@ -677,6 +678,69 @@ public class TBoardDao {
 			int endRow = startRow + pi.getBoardLimit() - 1;
 			
 			pstmt.setInt(1, boardNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Reply(rset.getInt("reply_no")
+								 , rset.getString("reply_content")
+								 , rset.getString("regist_date")
+								 , rset.getString("user_id")
+								 , rset.getString("profile_path")));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public int TBoardInsertSearchCount(Connection conn, String search) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("TBoardInsertSearchCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, search);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+
+	public List<Movie> TboardInsertSaerchList(Connection conn, String search, int tno, PageInfo pi) {
+		List<Movie> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("TboardInsertSaerchList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+			pstmt.setString(1, search);
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, endRow);
 			
