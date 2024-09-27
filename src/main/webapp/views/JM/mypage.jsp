@@ -200,9 +200,9 @@ a:active {
     // 게시물과 문의 내역 데이터 가져오기
     List<Board> tBoards = tBoardService.getUserTBoards(user.getUserNo());
     List<Board> fBoards = fBoardService.getUserFBoards(user.getUserNo());
-    List<Inquiry> inquiries = inquiryService.getUserInquiries(user.getUserNo());
-    List<Movie> movies = movieService.getNowShowingMovies();  // 상영 중인 영화
-    List<Movie> ottMovies = movieService.getOTTMovies();      // OTT 영화 리스트
+    List<Inquiry> inquiries = inquiryService.selectInquiryList(   );
+    List<Movie> movies = movieService.showingMovieList();  // 상영 중인 영화
+    List<Movie> ottMovies = movieService.ottMovieList();      // OTT 영화 리스트
 %>
 
 <!-- body 시작부 -->

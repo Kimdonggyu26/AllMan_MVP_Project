@@ -53,7 +53,8 @@ public class UserDao {
 						rset.getDate("MODIFY_DATE"),
 						rset.getString("STATUS"),
 						rset.getInt("taste_No"),
-						rset.getString("PROFILE_PATH"));
+						rset.getString("PROFILE_PATH"),
+						rset.getString("taste_code"));
 			}
 
 		} catch (SQLException e) {

@@ -35,15 +35,17 @@
 	 	 , ENROLL_DATE
 	 	 , MODIFY_DATE
 	 	 , STATUS
-	 	 , TASTE_NO
+	 	 , U.TASTE_NO
 	 	 , PROFILE_PATH
+	 	 , TASTE_CODE
 	 	 
 	FROM 
- 		   USERS
+ 		   USERS U
+  JOIN TASTE T ON U.TASTE_NO = T.TASTE_NO
  WHERE
-		   USER_ID = ?
-	 AND USER_PWD = ?
-	 AND STATUS IN ('A' ,'U')
+		   U. USER_ID = ?
+	 AND U. USER_PWD = ?
+	 AND U. STATUS IN ('A' ,'U')
 
  </entry>
  

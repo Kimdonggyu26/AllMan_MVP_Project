@@ -15,13 +15,14 @@ public class User {
 		private int tasteNo;
 		private String filePath;
 		private int teamNo;
+		private String tasteCode;
 		
 		
 public User() {}
 
 
 public User(int userNo, String userId, String userPwd, String phone, String email, String userNick, Date enrollDt,
-		Date modifyDt, String status, int tasteNo, String filePath, int teamNo) {
+		Date modifyDt, String status, int tasteNo, String filePath, int teamNo, String tasteCode) {
 	super();
 	this.userNo = userNo;
 	this.userId = userId;
@@ -35,12 +36,13 @@ public User(int userNo, String userId, String userPwd, String phone, String emai
 	this.tasteNo = tasteNo;
 	this.filePath = filePath;
 	this.teamNo = teamNo;
+	this.tasteCode = tasteCode;
 	
 }
 
 
 public User(int userNo, String userId, String userPwd, String phone, String email, String userNick, Date enrollDt,
-		Date modifyDt, String status, int tasteNo, String filePath) {
+		Date modifyDt, String status, int tasteNo, String filePath, String tasteCode) {
 	super();
 	this.userNo = userNo;
 	this.userId = userId;
@@ -53,6 +55,7 @@ public User(int userNo, String userId, String userPwd, String phone, String emai
 	this.status = status;
 	this.tasteNo = tasteNo;
 	this.filePath = filePath;
+	this.tasteCode = tasteCode;
 }
 
 
@@ -283,11 +286,21 @@ public void setTeamNo(int teamNo) {
 }
 
 
+public String getTasteCode() {
+	return tasteCode;
+}
+
+
+public void setTasteCode(String tasteCode) {
+	this.tasteCode = tasteCode;
+}
+
+
 @Override
 public String toString() {
 	return "User [userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", phone=" + phone + ", email="
 			+ email + ", userNick=" + userNick + ", enrollDt=" + enrollDt + ", modifyDt=" + modifyDt + ", status="
-			+ status + ", tasteNo=" + tasteNo + ", filePath=" + filePath + ", teamNo=" + teamNo + "]";
+			+ status + ", tasteNo=" + tasteNo + ", filePath=" + filePath + ", teamNo=" + teamNo + ", , tasteCode=" + tasteCode + "]";
 }
 		
 }
