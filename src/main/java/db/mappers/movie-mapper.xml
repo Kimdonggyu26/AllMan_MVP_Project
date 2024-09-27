@@ -176,6 +176,35 @@
 					STATUS = '20'
 	</entry>
 	
+		<entry key="showingMovieList">
+		
+			<!-- 관리자 화면(영화 관리)에서 '상영중인 영화' 탭 클릭시 조회되는 영화 리스트 -->
+			
+		SELECT
+						MOVIE_NO
+					,	MOVIE_TITLE
+					,	MOVIE_CONTENT
+					,	GENRE
+					,	PLAYTIME
+					,	COUNTRY
+					,	AGE_LV
+					,	OPEN_DATE
+					,	DIRECTOR
+					,	AUDIENCE_COUNT
+					,	ACTOR
+					,	PREVIEW
+					,	STATUS
+					,	GRADE
+					,	TITLE_PATH
+					,	CONTENT_PATH
+					,	TASTE_NO
+		FROM 
+					MOVIE
+		WHERE 
+					STATUS = '10'
+		
+	</entry>
+	
 	<entry key="selectMovieByNo">
 				SELECT
 						MOVIE_NO
@@ -235,8 +264,94 @@
 			 		 STATUS = '30'
 	</entry>
 
+	<entry key="selectAllShowMovieList">
+	
+		<!-- 상영중인 영화 전체 갯수 조회 -->
+		SELECT
+					 COUNT(*) as COUNT
+		  FROM 
+		  		 MOVIE
+		 WHERE 
+		 			 STATUS = '10'
+		
+	</entry>
+	
+	<entry key="selectAllOttMovieList">
+	
+		<!-- 상영중인 영화 전체 갯수 조회 -->
+		SELECT
+					 COUNT(*) as COUNT
+		  FROM 
+		  		 MOVIE
+		 WHERE 
+		 			 STATUS = '20'
+		
+	</entry>
+	
+	<entry key="selectPagingShowMovieList">
+	
+		<!-- 상영중인 영화 페이지에 맞게 조회 -->
+		
+		SELECT *
+		  FROM (
+		  			SELECT
+			 						MOVIE_NO
+								,	MOVIE_TITLE
+								,	MOVIE_CONTENT
+								,	GENRE
+								,	PLAYTIME
+								,	COUNTRY
+								,	AGE_LV
+								,	OPEN_DATE
+								,	DIRECTOR
+								,	AUDIENCE_COUNT
+								,	ACTOR
+								,	PREVIEW
+								,	STATUS
+								,	GRADE
+								,	TITLE_PATH
+								,	CONTENT_PATH
+								,	TASTE_NO
+								, ROW_NUMBER() OVER(ORDER BY MOVIE_NO DESC) as RNUM
+						FROM 
+								 MOVIE
+					 WHERE
+					 			 STATUS = '10'
 
-
+	</entry>
+	
+		<entry key="selectPagingOttMovieList">
+	
+		<!-- 상영중인 영화 페이지에 맞게 조회 -->
+		
+		SELECT *
+		  FROM (
+		  			SELECT
+			 						MOVIE_NO
+								,	MOVIE_TITLE
+								,	MOVIE_CONTENT
+								,	GENRE
+								,	PLAYTIME
+								,	COUNTRY
+								,	AGE_LV
+								,	OPEN_DATE
+								,	DIRECTOR
+								,	AUDIENCE_COUNT
+								,	ACTOR
+								,	PREVIEW
+								,	STATUS
+								,	GRADE
+								,	TITLE_PATH
+								,	CONTENT_PATH
+								,	TASTE_NO
+								, ROW_NUMBER() OVER(ORDER BY MOVIE_NO DESC) as RNUM
+						FROM 
+								 MOVIE
+					 WHERE
+					 			 STATUS = '20'
+		  		)
+		 WHERE RNUM BETWEEN ? AND ?	
+	</entry>
 
 
 
