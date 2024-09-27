@@ -1,3 +1,4 @@
+<%@page import="com.mvp.semi.user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,17 +8,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
-	<a href="바로 메인페이지로">비회원</a>
-	<a href="로그인페이지로">회원</a>
 	<%
-		String contextPath = request.getContextPath(); 
+    String contextPath = request.getContextPath();
+    User loginUser = (User) session.getAttribute("loginUser");
+
+    if (loginUser != null) {
+    	//임시로 검색페이지 요청
+        response.sendRedirect(contextPath + "/views/movieMain/searchPage.jsp");
+    } else {
+        response.sendRedirect(contextPath + "/views/account/login.jsp");
+    }
 	%>
-		<div>
-			<form action="<%=contextPath %>/views/movieMain/mainPage.jsp">
-				<button>d</button>
-			</form>
-		</div>
+	 
+
 		
 	<%-- 
 		방법2. 현재페이지에 로그인폼요소랑 메인페이지의 요소를 다 두고 
@@ -30,8 +33,7 @@
 		
 	 --%>
 	 
-	 
-	 
+	
 	 
 	 
 	 <!-- 

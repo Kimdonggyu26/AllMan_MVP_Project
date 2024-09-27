@@ -34,25 +34,25 @@
 		<!-- searchData활용해서 영화 조회 -->
 	    SELECT *
   		  FROM (
-			        SELECT
-						    	   MOVIE_NO
-					    	 	 , MOVIE_TITLE
-					    		 , GENRE
-						    	 , DIRECTOR
-						    	 , TITLE_PATH
-						    	 , ROW_NUMBER() OVER(ORDER BY MOVIE_TITLE) AS RNUM
-					      FROM 
-					      	   MOVIE
-					     WHERE 
-					     			 STATUS = 20
-					     	 AND (
-					      	   MOVIE_TITLE LIKE '%' || ? || '%' 
-					       	OR GENRE LIKE '%' || ? || '%'
-					       	OR DIRECTOR LIKE '%' || ? || '%'
-					       	OR ACTOR LIKE '%' || ? || '%'
-			       				 ) 
-        			)
-		 	  WHERE RNUM BETWEEN ? AND ?
+			    SELECT
+				   	   MOVIE_NO
+				 	 , MOVIE_TITLE
+			   		 , GENRE
+			    	 , DIRECTOR
+			    	 , TITLE_PATH
+			    	 , ROW_NUMBER() OVER(ORDER BY MOVIE_TITLE) AS RNUM
+			      FROM 
+			      	   MOVIE
+					   WHERE 
+					   STATUS = 20
+				   AND (
+			    	    MOVIE_TITLE LIKE '%' || ? || '%' 
+					    OR GENRE LIKE '%' || ? || '%'
+					    OR DIRECTOR LIKE '%' || ? || '%'
+					    OR ACTOR LIKE '%' || ? || '%'
+			       	   ) 
+        		)
+		 	    WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<entry key="selectShowMovieListCount">
@@ -63,11 +63,12 @@
         	   COUNT(*) as COUNT
  		  FROM
        		   MOVIE
-		 WHERE(
-		 	   MOVIE_TITLE LIKE '%' || ? || '%' 
-	        OR GENRE LIKE '%' || ? || '%'
-	        OR DIRECTOR LIKE '%' || ? || '%'
-	      	OR ACTOR LIKE '%' || ? || '%')
+		 WHERE (
+			 	MOVIE_TITLE LIKE '%' || ? || '%' 
+		        OR GENRE LIKE '%' || ? || '%'
+		        OR DIRECTOR LIKE '%' || ? || '%'
+		      	OR ACTOR LIKE '%' || ? || '%'
+	      	   )
 	       AND STATUS IN ('10')
 	</entry>	
 	
@@ -79,11 +80,12 @@
         	   COUNT(*) as COUNT
  		  FROM
        		   MOVIE
-		 WHERE
+		 WHERE (
 		 	   MOVIE_TITLE LIKE '%' || ? || '%' 
-	       	OR GENRE LIKE '%' || ? || '%'
-	       	OR DIRECTOR LIKE '%' || ? || '%'
-	       	OR ACTOR LIKE '%' || ? || '%'
+		       OR GENRE LIKE '%' || ? || '%'
+		       OR DIRECTOR LIKE '%' || ? || '%'
+		       OR ACTOR LIKE '%' || ? || '%'
+	       	   )
 	       AND STATUS IN ('20')
 	</entry>	
 
