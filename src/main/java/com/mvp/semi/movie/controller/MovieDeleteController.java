@@ -41,12 +41,12 @@ public class MovieDeleteController extends HttpServlet {
 		if(result == deleteNumArr.length) {
 			
 			session.setAttribute("alertMsg", "선택하신" + result + "개의 영화가 모두 삭제되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/views/DG/adminMainPage.jsp");
+			response.sendRedirect(request.getContextPath() + "/views/adminPage/adminMainPage.jsp");
 			
 		}else if(result > 0 && deleteNumArr.length > result) {
 			
 			session.setAttribute("alertMsg", "선택하신 영화 중" + result + "개의 영화가 삭제되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/views/DG/adminMainPage.jsp");
+			response.sendRedirect(request.getContextPath() + "/views/adminPage/adminMainPage.jsp");
 			
 		}else {
 			session.setAttribute("alertMsg", "삭제에 실패하였습니다. 다시 시도해주세요.");

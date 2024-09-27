@@ -91,10 +91,10 @@ public class MovieModifyController extends HttpServlet {
 		
 		if(result > 0) {
 			session.setAttribute("alertMsg", "수정 되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/views/DG/adminMainPage.jsp");
+			response.sendRedirect(request.getContextPath() + "/views/adminPage/adminMainPage.jsp");
 		}else {
 			session.setAttribute("alertMsg", "영화 수정에 실패하였습니다. 다시 시도해주세요.");
-			response.sendRedirect(request.getContextPath() + "/views/DG/adminMainPage.jsp");
+			response.sendRedirect(request.getContextPath() + "/views/adminPage/adminMainPage.jsp");
 		}
 	}
 

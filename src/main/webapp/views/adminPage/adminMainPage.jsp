@@ -772,7 +772,7 @@
 	        				const chooseSidebar = this.getAttribute('name'); // sidebar 내의 각 div의 name값 담기
 	        				// console.log(chooseSidebar);
 	        				
-	        				window.location.href = "<%=contextPath%>/views/DG/" + chooseSidebar + ".jsp";
+	        				window.location.href = "<%=contextPath%>/views/adminPage/" + chooseSidebar + ".jsp";
 	        				this.style.backgroundColor ="#D2E5FF";
 	        			})
 	        		})
