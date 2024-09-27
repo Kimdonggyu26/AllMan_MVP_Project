@@ -74,7 +74,7 @@
               <td><textarea maxlength="100" id="reply-content" placeholder="비속어 등의 댓글은 금지사항이며, 제제 사유입니다 "></textarea></td>
             </tr>
             <tr>
-              <td style="text-align: right;"><button class="btn" style="background-color: #F33F3F; color: white;" onclick="fnReplyInsert();">등록</button></td>
+              <td style="text-align: right;"><button class="btn" id="submit-btn" style="background-color: #F33F3F; color: white;" onclick="fnReplyInsert();" disabled>등록</button></td>
             </tr>
             <% } %>
         </table>
@@ -94,8 +94,10 @@
       
        
       
-			<script>
+			<script>		
+			
 			var contextPath = '<%= contextPath %>';
+			
 			  $(function() {
 			    fnReplyList(); // 페이지 로드시 초기 댓글 목록 조회를 위해서
 			     //setInterval(fnReplyList, 3000); // 2초간격마다 매번 조회 요청 (실시간으로 보여지게 처리 가능)
@@ -204,6 +206,19 @@
 				    }
 				  });
 				}
+			  
+				$(document).ready(function() {
+				    // textarea에 입력이 있을 때 버튼 활성화
+				    $('#reply-content').on('keyup', function() {
+				        var content = $(this).val().trim();  // 공백 제거한 입력 값 확인
+				        if (content.length > 0) {
+				            $('#submit-btn').prop('disabled', false);  // 글자가 있으면 버튼 활성화
+				        } else {
+				            $('#submit-btn').prop('disabled', true);   // 글자가 없으면 버튼 비활성화
+				        }
+				    });
+				});
+				
 			</script>
 			
                   
@@ -328,7 +343,7 @@
 	  box-sizing: border-box;
 	}
 	
-		#taste{
+	#taste{
 	  width: 150px;
 	  height: 30px;
 	  border-radius: 20px;
@@ -338,9 +353,12 @@
 	}
 	
 	#reply-area span{
-	
-	cursor: pointer;
+		cursor: pointer;
 	}
+	#page-area{
+		cursor: pointer;
+	}
+	
 
 </style>
 
