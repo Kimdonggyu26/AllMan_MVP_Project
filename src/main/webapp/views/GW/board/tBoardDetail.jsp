@@ -139,70 +139,71 @@
 			  }
 			
 			  // 현재 게시글의 댓글 목록 조회용 함수 (ajax 요청)
-			  function fnReplyList() {
-			    $.ajax({
-			      url: '<%= contextPath %>/list.re',
-			      data: {
-			    	  no: <%= b.getBoardNo() %> 
-			      },
-			      success: function(res) {
-			        console.log(res);
-			        
-
-			        
-			        var r = res.list;
-			        var p = res.pi;
-			        
-			        let trEl = "";
-			        if (res.length == 0) { // 댓글이 없을 경우
-			          trEl += '<tr><td colspan="3">존재하는 댓글이 없습니다.</td></tr>';
-			        } else { // 댓글이 있을 경우
-			        	for (let i = 0; i < r.length; i++) {
-			        		  trEl += '<tr style="border">' +
-			        		    '<td style="width: 40px;"><img src="' + contextPath + r[i].writerProfile + '" style="height: 30px; width: 30px;"></td>' +
-			        		    '<td style="width: 750px;">' + r[i].replyWriter + '</td>' +
-			        		    '</tr>' +
-			        		    '<tr>' +
-			        		    '<td colspan="2" style="font-size: 15px;">' + r[i].replyContent + '</td>' +
-			        		    '<td>' + r[i].registDt + '</td>';  // 날짜 정보 추가
-
-			        		  // 로그인한 사용자와 댓글 작성자가 동일할 경우 수정/삭제 버튼 추가
-			        		  if (r[i].replyWriter == '<%= loginUser == null ? "" : loginUser.getUserId() %>') {
-			        		    trEl += '<td><span style="font-size: 15px;" data-no="' + r[i].replyNo + '">x</span></td>';
-			        		  }
-
-			        		  trEl += '</tr>'; 
-			        		  
-			        		  trEl += '<tr><td colspan="3" style="border-top: 1px solid #ccc; height: 10px;"></td></tr>'; // 구분선
-			        		}
-			        }		        
-			        $('#reply-area').html(trEl);
-			        
-			        
-			        
-			        let liEl = "";  
-			        liEl += "<li class='page-item " + (p.currentPage === 1 ? "disabled" : "") + "'>" +
-			                '<a class="page-link" href="' + contextPath + '/list.re?page=' + (p.currentPage > 1 ? (p.currentPage - 1) : 1) + '">&lt;</a>' +
-			                "</li>";
-
-			        for (let i = p.startPage; i <= p.endPage; i++) {
-			            liEl += "<li class='page-item " + (i === p.currentPage ? "active" : "") + "'>" +
-			                    '<a class="page-link" href="' + contextPath + '/list.re?no=' + <%= b.getBoardNo() %> + '&page=' + i + '">' + i + '</a>' +
-			                    "</li>";
-			        }
-
-			        liEl += "<li class='page-item " + (p.currentPage === p.maxPage ? "disabled" : "") + "'>" +
-			                '<a class="page-link" href="' + contextPath + '/list.re?page=' + (p.currentPage < p.maxPage ? (p.currentPage + 1) : p.maxPage) + '">&gt;</a>' +
-			                "</li>";
-
-			        $('#page-area').html(liEl);
-			        
-			      },
-			      error: function() {
-			        console.log('댓글 목록 조회용 ajax 통신 실패');
-			      }
-			    });
-			  }
+			  function fnReplyList(page) {
+				  $.ajax({
+				    url: '<%= contextPath %>/list.re',
+				    data: {
+				      no: <%= b.getBoardNo() %>, 
+				      page: page
+				    },
+				    success: function(res) {
+				      console.log(res);
+				      
+				      var r = res.list;  // 댓글 목록
+				      var p = res.pi;    // 페이지 정보
+				      
+				      let trEl = "";
+				      if (r.length === 0) { // 댓글이 없을 경우
+				        trEl += '<tr><td colspan="3">존재하는 댓글이 없습니다.</td></tr>';
+				      } else { // 댓글이 있을 경우
+				        for (let i = 0; i < r.length; i++) {
+				          trEl += '<tr style="border">' +
+				                  '<td style="width: 40px;"><img src="' + contextPath + r[i].writerProfile + '" style="height: 30px; width: 30px;"></td>' +
+				                  '<td style="width: 750px;">' + r[i].replyWriter + '</td>' +
+				                  '</tr>' +
+				                  '<tr>' +
+				                  '<td colspan="2" style="font-size: 15px;">' + r[i].replyContent + '</td>' +
+				                  '<td>' + r[i].registDt + '</td>';  // 날짜 정보 추가
+				
+				          // 로그인한 사용자와 댓글 작성자가 동일할 경우 수정/삭제 버튼 추가
+				          if (r[i].replyWriter == '<%= loginUser == null ? "" : loginUser.getUserId() %>') {
+				            trEl += '<td><span style="font-size: 15px;" data-no="' + r[i].replyNo + '">x</span></td>';
+				          }
+				
+				          trEl += '</tr>'; 
+				          trEl += '<tr><td colspan="3" style="border-top: 1px solid #ccc; height: 10px;"></td></tr>'; // 구분선
+				        }
+				      }        
+				      $('#reply-area').html(trEl);
+				
+				      // 페이지네이션 생성
+				      let liEl = "";  
+				
+				      // 이전 페이지 버튼
+				      liEl += "<li class='page-item " + (p.currentPage === 1 ? "disabled" : "") + "'>" +
+				              '<a class="page-link" onclick="fnReplyList(' + (p.currentPage - 1) + ')">&lt;</a>' +
+				              "</li>";
+				
+				      // 페이지 번호 버튼
+				      for (let i = p.startPage; i <= p.endPage; i++) {
+				        liEl += "<li class='page-item " + (i === p.currentPage ? "active" : "") + "'>" +
+				                '<a class="page-link" onclick="fnReplyList(' + i + ')">' + i + '</a>' +
+				                "</li>";
+				      }
+				
+				      // 다음 페이지 버튼
+				      liEl += "<li class='page-item " + (p.currentPage === p.maxPage ? "disabled" : "") + "'>" +
+				              '<a class="page-link" onclick="fnReplyList(' + (p.currentPage < p.maxPage ? (p.currentPage + 1) : p.maxPage) + ')">&gt;</a>' +
+				              "</li>";
+				
+				      $('#page-area').html(liEl);
+				
+				    },
+				    error: function() {
+				      console.log('댓글 목록 조회용 ajax 통신 실패');
+				    }
+				  });
+				}
 			</script>
 			
                   
