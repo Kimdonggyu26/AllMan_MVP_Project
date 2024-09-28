@@ -112,9 +112,9 @@ button {
   border-radius: 6%;
   background: #f33f3f;
   color: #ffffff;
-  margin-left: 200px;
-  padding: 10px 14px;
-  font-size: 65%;
+  margin-left: 140px;
+  padding: 9px 9px;
+  font-size: 68%;
   font-weight: bold;
   width: 92px;
   height: 34px;
@@ -153,7 +153,7 @@ button {
   font-weight: bold;
 }
 .right_content {
-  font-size: 13px;
+  font-size: 15px;
   margin-top: 10px;
   margin-bottom: 8px;
 }
@@ -166,8 +166,8 @@ button {
 }
 #right_content_line1 > button > img {
   width: 20px;
-  height: 14px;
-  margin-right: 2px;
+  height: 16px;
+  margin-right: 4px;
   margin-bottom: 6px;
 }
 
@@ -244,6 +244,7 @@ button {
 
 #searchInput {
   margin-top: 13px;
+  width: 100%;
 }
 #form-control {
   background-color: #131313;

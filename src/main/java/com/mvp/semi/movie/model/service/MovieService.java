@@ -233,5 +233,14 @@ public class MovieService {
 		close(conn);
 		return list;
 	}
+	
+	public Movie showDetail(int movieNo) {
+		Connection conn = getConnection();
+		Movie mv = mvDao.showDetail(conn, movieNo);
+		
+		close(conn);
+		
+		return mv;
+	}
 
 }

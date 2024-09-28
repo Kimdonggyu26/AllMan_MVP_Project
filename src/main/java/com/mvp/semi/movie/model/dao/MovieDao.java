@@ -30,7 +30,7 @@ public class MovieDao {
 	}
 
 	public List<Movie> searchMovieList(Connection conn, String searchData) {
-		//안쓰는 메소드 같음 추후에 삭제 -예찬
+		// 안쓰는 메소드 같음 추후에 삭제 -예찬
 		List<Movie> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -800,6 +800,38 @@ public class MovieDao {
 		}
 
 		return list;
+	}
+
+	public Movie showDetail(Connection conn, int movieNo) {
+
+		Movie mv = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMovieByNo");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, movieNo);
+
+			rset = pstmt.executeQuery();
+			if (rset.next()) { // 단일 결과만 처리
+				mv = new Movie(rset.getInt("movie_no"), rset.getString("movie_title"), rset.getString("movie_content"),
+						rset.getString("genre"), rset.getInt("playtime"), rset.getString("country"),
+						rset.getString("age_lv"), rset.getString("open_date"), rset.getString("director"),
+						rset.getInt("audience_count"), rset.getString("actor"), rset.getString("preview"),
+						rset.getString("status"), rset.getDouble("grade"), rset.getString("title_path"),
+						rset.getString("content_path"), rset.getInt("taste_no"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return mv;
 	}
 
 }

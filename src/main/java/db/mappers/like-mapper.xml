@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="insertLike">
+		INSERT
+		  INTO LIKES 
+			  (
+			  	USER_NO
+		    , REVIEW_NO
+			   ) 
+		VALUES
+				 (
+				 	 ?
+				 , ?
+				 )
+	</entry>
+
+</properties>
