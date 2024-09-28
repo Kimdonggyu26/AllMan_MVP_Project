@@ -15,11 +15,10 @@ public class TeastAlgorithm {
 		      //      .
 		      //      .
 		      //      .
-		      
 		      //해당 알고리즘으로 활용하여 기능 구현
-		        int[] answers1to4 = {1, 1, 1, 1};   // 1~4번 질문의 답변
-		        int[] answers5to8 = {0, 1, 1, 1};   // 5~8번 질문의 답변
-		        int[] answers9to12 = {0, 1, 0, 0};  // 9~12번 질문의 답변
+		        int[] answers1to4 = {1, 1, 1, 1};   // 1~4번 질문의 답변 / 취향 1, 5, 9
+		        int[] answers5to8 = {0, 1, 1, 1};   // 5~8번 질문의 답변 /    ... 
+		        int[] answers9to12 = {0, 1, 0, 0};  // 9~12번 질문의 답변/    ...
 
 		        // 최종 확정된 답변을 저장할 배열
 		        int[] finalAnswers = new int[4];
