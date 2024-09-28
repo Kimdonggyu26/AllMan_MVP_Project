@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class TestYc
  */
 @WebServlet("/TestYc")
-public class TestYc extends HttpServlet {
+public class TasteStartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TestYc() {
+    public TasteStartController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,7 @@ public class TestYc extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 response.sendRedirect(request.getContextPath() + "/views/taste/taste1_1.jsp");
+		request.getRequestDispatcher("/views/taste/taste1_1.jsp").forward(request, response);
 	}
 
 	/**

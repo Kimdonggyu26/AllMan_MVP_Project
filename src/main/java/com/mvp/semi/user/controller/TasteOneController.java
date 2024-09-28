@@ -12,13 +12,13 @@ import javax.servlet.http.HttpSession;
  * Servlet implementation class TasetOneController
  */
 @WebServlet("/taste.t1")
-public class TasetOneController extends HttpServlet {
+public class TasteOneController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TasetOneController() {
+    public TasteOneController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,9 +41,10 @@ public class TasetOneController extends HttpServlet {
         if (taste != null) {
             int tasteValue = Integer.parseInt(taste);
             session.setAttribute("taste1", tasteValue);
-            // 다음 페이지로 리다이렉트
-            
-            response.sendRedirect(request.getContextPath() + "/views/taste/taste1_2.jsp");
+            request.getRequestDispatcher("/views/taste/taste1_2.jsp").forward(request, response);
+        }else {
+        	request.setAttribute("msg", "데이터 손실. 처음으로 돌아갑니다.");
+        	request.getRequestDispatcher("/views/taste/taste1_1.jsp").forward(request, response);
         }
 
 	}

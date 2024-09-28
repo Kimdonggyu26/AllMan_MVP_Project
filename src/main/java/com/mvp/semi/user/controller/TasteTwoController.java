@@ -39,9 +39,9 @@ public class TasteTwoController extends HttpServlet {
             int tasteValue = Integer.parseInt(taste);
             session.setAttribute("taste2", tasteValue);
             // 다음 페이지로 리다이렉트
-            response.sendRedirect("taste.t3");
+            request.getRequestDispatcher("/views/taste/taste1_3.jsp").forward(request, response);
         }else {
-        	response.sendRedirect("/taste.t1");
+        	request.getRequestDispatcher("/views/taste/taste1_1.jsp").forward(request, response);
         }
 
 	}

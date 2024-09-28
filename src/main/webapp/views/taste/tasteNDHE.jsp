@@ -1,9 +1,13 @@
+
+
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
 <style>
 body {
 	background-color: #131313;
@@ -30,7 +34,7 @@ body {
 
 .highlight {
     font-size: 40px;
-    color: #FE7D7D; /* ê°•ì¡°ëœ ë¹¨ê°„ìƒ‰ í…ìŠ¤íŠ¸ */
+    color: #FE7D7D; /* °­Á¶µÈ »¡°£»ö ÅØ½ºÆ® */
     margin-bottom: 20px;
 }
 
@@ -57,19 +61,22 @@ body {
     cursor: pointer;
     
 }
-
-    </style>
+</style>
 </head>
+
+<%
+	String ContextPath = request.getContextPath(); // "/web"
+%>
 <body>
     <div class="container">
-        <h1 class="username">0000ë‹˜ì˜ ë¶„ì„ ê²°ê³¼ëŠ”</h1>
+        <h1 class="username">ooo´ÔÀÇ test¿ëºÐ¼® °á°ú´Â</h1>
         <h2 class="highlight">NDHE</h2>
        
-            <div class="main">ì„œì‚¬ ì¤‘ì‹¬ì˜ ì—­ì‚¬ ë“œë¼ë§ˆ ì• í˜¸ê°€</div>
-            <div class="sub">ê¹Šì´ ìžˆëŠ” ì´ì•¼ê¸° + ì—­ì‚¬ì  ë°°ê²½ + ë¬´ê±°ìš´ ì£¼ì œ + í˜„ì‹¤ ê¸°ë°˜</div>
+            <div class="main">¼­»ç Áß½ÉÀÇ ¿ª»çtest¿ë  µå¶ó¸¶ ¾ÖÈ£°¡</div>
+            <div class="sub">±íÀÌ ÀÖ´Â ÀÌ¾ß±âtest¿ë + ½Ã°¢Àû ¾Æ¸§´Ù¿ò + ¹«°Å¿î ÁÖÁ¦ + Çö½Ç ±â¹Ý</div>
 
-        <p class="content">ì·¨í–¥ì— ë§žëŠ” ì‚¬ëžŒë“¤ê³¼ í•¨ê»˜ ì†Œí†µí•´ë³´ì„¸ìš”!</p>
-        <button class="main-button">ë©”ì¸íŽ˜ì´ì§€ë¡œ</button>
+        <p class="content">ÃëÇâ¿¡ ¸Â´Â »ç¶÷µé°útest¿ë ÇÔ²² ¼ÒÅëÇØº¸¼¼¿ä!</p>
+        <a type="submit" href="<%=ContextPath%>"><button class="main-button" >¸ÞÀÎÆäÀÌÁö·Î</button></a>
     </div>
 
 </body>
