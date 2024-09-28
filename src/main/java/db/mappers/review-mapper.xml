@@ -21,5 +21,28 @@
 		 	  BY 
 		 	  	R.REVIEW_DATE DESC
 	</entry>
+	
+	<entry key="insertReview">
+		INSERT
+		  INTO 
+		  		 REVIEW
+	  		(
+	  		  REVIEW_NO
+				, REVIEW_CONTENT
+				, GRADE
+				, USER_NO
+				, MOVIE_NO
+				, REVIEW_DATE
+	  		)
+	  VALUES
+	  		(
+	  			SEQ_REVIEWNO.NEXTVAL
+	  		, ?
+	  		, ?
+	  		, ?
+	  		, ?
+	  		, SYSDATE
+	  		)
+	</entry>
 
 </properties>

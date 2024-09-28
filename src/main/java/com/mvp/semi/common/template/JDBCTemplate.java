@@ -25,7 +25,7 @@ public class JDBCTemplate {
       }catch(IOException e) {
          e.printStackTrace();
       }
-      
+      System.out.println(filePath);
       String driver = prop.getProperty("driver");
       String url = prop.getProperty("url");
       String username = prop.getProperty("username");

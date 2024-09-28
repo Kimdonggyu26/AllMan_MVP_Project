@@ -15,5 +15,14 @@
 				 , ?
 				 )
 	</entry>
+	
+	<entry key="likeCount">
+		SELECT 
+					 COUNT(*) as COUNT
+			FROM 
+					 LIKES
+		 WHERE 
+		 			 REVIEW_NO = ?
+	</entry>
 
 </properties>

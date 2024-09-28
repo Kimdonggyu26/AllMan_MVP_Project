@@ -21,7 +21,7 @@ public class ReviewDao {
 	
 	public ReviewDao() {
 		try {
-			prop.loadFromXML(new FileInputStream(MovieDao.class.getResource("/db/mappers/review-mapper.xml").getPath()));
+			prop.loadFromXML(new FileInputStream(ReviewDao.class.getResource("/db/mappers/review-mapper.xml").getPath()));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,6 +57,30 @@ public class ReviewDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	public int insertReview(Connection conn, int userNo, String reviewContent, int rate, int movieNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, reviewContent);
+			pstmt.setInt(2, rate);
+			pstmt.setInt(3, userNo);
+			pstmt.setInt(4, movieNo);
+			
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
 	}
 
 }

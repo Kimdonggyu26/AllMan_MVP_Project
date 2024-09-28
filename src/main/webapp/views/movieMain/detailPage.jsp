@@ -4,7 +4,9 @@
     pageEncoding="UTF-8"%>
 <%
 	String contextPath = request.getContextPath(); // "/web"
-
+    User loginUser = (User) session.getAttribute("loginUser");
+    int userNo = loginUser != null ? loginUser.getUserNo() : 0;
+    String userNickname = (String) session.getAttribute("userNickname");
 	String alertMsg = (String)session.getAttribute("alertMsg");
 %>
 <!DOCTYPE html>
@@ -108,7 +110,7 @@
             <div id="searchInput" class="input-group">
               <input type="text" id="form-control" class="form-control" placeholder="리뷰를 등록해두세요." autocomplete="off">
               <div id="searchButton" class="input-group-append">
-                <button class="btn btn-danger p" type="button">등록</button>
+                <button class="btn btn-danger p" type="submit" onclick="insertReview(<%=mv.getMovieNo()%>);">등록</button>
               </div>
             </div>
           </div>
@@ -194,7 +196,7 @@
         </div>
       </div>
     </div>
-
+		</div>
 
 
 
@@ -236,9 +238,9 @@
     		                     +'<div class="review_body_content">' + res[i].reviewContent + '</div>'
     							           +'<div class="right_line" style="width: 100%; margin: 10px 0px "></div>'
     							           +'<div class="review_thumb_up">'
-    							           	+'<img src="<%=contextPath%>/assets/image/mainPage/thumb_up.png"	'
-    							           	+ 'onclick="likeReview(' + res[i].reviewNo + ')">'
-    							           	+'<P>33</P>'
+    							           	+'<img src="<%=contextPath%>/assets/image/mainPage/thumb_up.png" class="like_btn" style="cursor: pointer;"'
+    							           	+ 'onclick="likeReview(' + <%=userNo%> + ',' + res[i].reviewNo + ')">'
+    							           	+'<P class="likeCount' + res[i].reviewNo + '"></P>'
     							           +'</div>'
     				                 + '<div class="right_line" style="width: 100%; margin: 10px 0px "></div>'
     				                 + '<div style="display: flex; flex-direction: row;">'
@@ -273,10 +275,45 @@
     					},
     					success: function(res){
     						console.log(res);
+    						$('.likeCount' + reviewNo).html(res);
     					}
     					
     	})
     }
+    
+    	function insertReview(movieNo){
+    		
+    		 
+    		 var userNo = <%= session.getAttribute("userNo") %>;
+    		 var reviewText = $('#form-control').val();
+    		 var starRating = $('input[class="star"]:checked').val();
+    		 console.log()
+    	        // 입력 값이 비어 있는지 확인
+    	        if (!reviewText) {
+    	            alert('리뷰를 입력해주세요.'); // 비어있으면 경고 메시지
+    	            return;
+    	        }
+    	        
+    	        $.ajax({
+    	        				url: '<%=contextPath%>/insertReview.ir',
+    	        				method: 'post',
+    	        				data: {
+    	        					userNo: userNo,
+    	        				  movieNo: movieNo,
+    	        					review: reviewText,
+    	        					rate: starRating
+    	        				},
+    	        				success: function(res) {
+    	        		            // 성공 시 리뷰 목록 갱신
+    	        		            reviewListByDate(movieNo); // movieNo를 넘겨서 리뷰 목록 갱신
+    	        		            $('#form-control').val(''); // 입력 필드 초기화
+    	        		            $('.star').prop('checked', false); // 별점 초기화
+    	        		        },
+    	        				error: function(){
+    	        					console.log("실패");
+    	        				}
+    	        })
+    	}
 
 
   </script>

@@ -20,4 +20,12 @@ public class LikesService {
 		return result;
 	}
 	
+	public int likeCount(int reviewNo) {
+		Connection conn = getConnection();
+		
+		int likeCount = lDao.likeCount(conn, reviewNo);
+		close(conn);
+		return likeCount;
+	}
+	
 }

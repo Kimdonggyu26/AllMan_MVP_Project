@@ -26,4 +26,14 @@ public class ReviewService {
 		
 		
 	}
+	
+	public int insertReview(int userNo, String reviewContent, int rate, int movieNo) {
+		Connection conn = getConnection();
+		
+		int result = rvDao.insertReview(conn, userNo, reviewContent, rate, movieNo);
+		close(conn);
+		
+		return result;
+	}
+		
 }
