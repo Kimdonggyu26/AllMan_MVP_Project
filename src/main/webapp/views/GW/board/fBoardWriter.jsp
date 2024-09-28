@@ -47,7 +47,7 @@
             <td style="width: 140px;">
               <select id="tboard" name="tboard" class="form-control" style="background-color: #3D3E3D; color: #BEBEBE; border: none;" onchange="resetSearchResults()">
                 <option value="<%= loginUser.getTasteNo() %>"><%= loginUser.getTasteCode() %>게시판</option>
-                <option value="0">자유게시판</option>
+                <option value="0"  selected>자유게시판</option>
               </select>
             </td>
             <td colspan="2">
@@ -107,7 +107,7 @@
       document.getElementById('searchModal').style.display = 'block';
       const boardType = document.getElementById('tboard').value;
     }
-    
+
     function closeModal() {
       document.getElementById('search-area').innerHTML = '';
       document.getElementById('page-area').innerHTML = '';
@@ -147,11 +147,11 @@
       }
       
       $.ajax({
-        url: '<%= contextPath %>/tbSearch.mv',
+        url: '<%= contextPath %>/fbSearch.mv',
         type: 'GET',
         data: {
-          no: <%= loginUser.getTasteNo() %>,
-          boardType: boardType,
+        	no: <%= loginUser.getTasteNo() %>,
+        	boardType: boardType,
           search: search,
           page: page
         },
@@ -238,10 +238,10 @@
             if (boardType == 10){
             	 window.location.href = '<%= contextPath %>/list.tbo';
             } else if (boardType == 0){
-            	window.location.href = '<%= contextPath %>/list.fbo';
+              window.location.href = '<%= contextPath %>/list.fbo';
             } else{
             	window.location.href = '<%= contextPath %>/list.<%= loginUser.getTasteCode() %>';
-            }
+            }  
           }
         },
         error: function() {
@@ -249,6 +249,7 @@
         }
       });
     }
+    
   </script>
 
 </body>

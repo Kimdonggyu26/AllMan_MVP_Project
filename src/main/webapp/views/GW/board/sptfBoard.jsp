@@ -45,7 +45,7 @@
       
 				<% if(loginUser != null && loginUser.getTasteNo() == 30){ %>
         <div class="d-flex justify-content-end mb-3">
-           <a href="<%= contextPath %>/write.tbo" class="btn btn-secondary btn-sm">등록하기</a>
+           <a href="<%= contextPath %>/write.tbo" class="btn btn-secondary btn-sm">글쓰기</a>
         </div>
          <% } %>
         

@@ -23,22 +23,7 @@
     <!-- Section start -->
 
     <section class="container-me">
-
-		<div class="btn-taste">
-		    <div class="row justify-content-center mt-5 mb-3">
-		        <a href="<%= contextPath %>/list.NDHE" class="mx-2 btn btn-sm" id="taste" style="background-color: <%= (b.getTasteNo() == 10) ? "red" : "#3C3C3C" %>;">NDHE 게시판</a>
-		        <a href="<%= contextPath %>/list.VDSE" class="mx-2 btn btn-sm" id="taste" style="background-color: <%= (b.getTasteNo() == 20) ? "orange" : "#3C3C3C" %>;">VDSE 게시판</a>
-		        <a href="<%= contextPath %>/list.SPTF" class="mx-2 btn btn-sm" id="taste" style="background-color: <%= (b.getTasteNo() == 30) ? "yellow" : "#3C3C3C" %>;">SPTF 게시판</a>
-		        <a href="<%= contextPath %>/list.BOFA" class="mx-2 btn btn-sm" id="taste" style="background-color: <%= (b.getTasteNo() == 40) ? "green" : "#3C3C3C" %>;">BOFA 게시판</a>
-		    </div>
-		    <div class="row justify-content-center mb-3">
-		        <a href="<%= contextPath %>/list.ETRF" class="mx-2 btn btn-sm" id="taste" style="background-color: <%= (b.getTasteNo() == 50) ? "skyblue" : "#3C3C3C" %>;">ETRF 게시판</a>
-		        <a href="<%= contextPath %>/list.CCFE" class="mx-2 btn btn-sm" id="taste" style="background-color: <%= (b.getTasteNo() == 60) ? "blue" : "#3C3C3C" %>;">CCFE 게시판</a>
-		        <a href="<%= contextPath %>/list.CASE" class="mx-2 btn btn-sm" id="taste" style="background-color: <%= (b.getTasteNo() == 70) ? "purple" : "#3C3C3C" %>;">CASE 게시판</a>
-		        <a href="<%= contextPath %>/list.HHAL" class="mx-2 btn btn-sm" id="taste" style="background-color: <%= (b.getTasteNo() == 80) ? "pink" : "#3C3C3C" %>;">HHAL 게시판</a>
-		    </div>
-		</div>
-		
+    
 
       <div id="title">
 
@@ -63,9 +48,9 @@
             <tr>
               <td style="color: white; text-align: left;">댓글작성</td>
             </tr>
-            <% if(loginUser == null || loginUser.getTasteNo() != b.getTasteNo()) { %>   
+            <% if(loginUser == null) { %>   
              <tr>
-              <td><textarea id="reply-content" readonly placeholder="로그인이 안되어있거나 본인취향 게시판이 아닙니다."></textarea></td>
+              <td><textarea id="reply-content" readonly placeholder="로그인후 이용가능합니다."></textarea></td>
             </tr>
         			<tr>
               	<td style="text-align: right;"><button class="btn" style="background-color: #F33F3F; color: white;" type="button" disabled>등록</button></td>

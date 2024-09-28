@@ -9,8 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.google.gson.Gson;
 import com.mvp.semi.board.model.service.FBoardService;
 import com.mvp.semi.board.model.service.TBoardService;
@@ -18,16 +16,16 @@ import com.mvp.semi.common.model.vo.PageInfo;
 import com.mvp.semi.movie.model.vo.Movie;
 
 /**
- * Servlet implementation class AjaxTBoardInsertSearchController
+ * Servlet implementation class AjaxFBoardInsertSearchController
  */
-@WebServlet("/tbSearch.mv")
-public class AjaxTBoardInsertSearchController extends HttpServlet {
+@WebServlet("/fbSearch.mv")
+public class AjaxFBoardInsertSearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxTBoardInsertSearchController() {
+    public AjaxFBoardInsertSearchController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -77,7 +75,7 @@ public class AjaxTBoardInsertSearchController extends HttpServlet {
 	        
 	        Gson gson = new Gson();
 	        gson.toJson(resultMap, response.getWriter());
-	        
+        
 		} else {
 		
 		int listCount = new TBoardService().TBoardInsertSearchCount(search, tno);
@@ -118,7 +116,6 @@ public class AjaxTBoardInsertSearchController extends HttpServlet {
 		}
 		
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

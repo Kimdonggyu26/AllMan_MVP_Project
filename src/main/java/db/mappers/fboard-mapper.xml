@@ -2,18 +2,17 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-	<entry key="selectTBoardListCount">
+	<entry key="selectFBoardListCount">
 		SELECT 
 					COUNT(*) as COUNT
 		FROM
 					BOARD
 		WHERE 
-					BOARD_TYPE = 1
-			AND TASTE_NO = ?		
+					BOARD_TYPE = 0	
 			AND	STATUS = 'Y'
 	</entry>
 	
-	<entry key="selectTBoardList">
+	<entry key="selectFBoardList">
 		SELECT *
 	  	FROM (
 						SELECT
@@ -25,17 +24,13 @@
 							    M.MOVIE_CONTENT,
 							    M.OPEN_DATE,
 							    M.TITLE_PATH,
-							    T.TASTE_NO,
-							    T.TASTE_CODE,
 							    ROW_NUMBER() OVER(ORDER BY B.BOARD_NO DESC) as RNUM
 						FROM 
 						   	  BOARD B
 						JOIN  USERS U ON B.USER_NO = U.USER_NO
-						JOIN  TASTE T ON B.TASTE_NO = T.TASTE_NO
 						JOIN  MOVIE M ON B.MOVIE_NO = M.MOVIE_NO
 						WHERE
-						    	B.BOARD_TYPE = 1
-						AND 	T.TASTE_NO = ?
+						    	B.BOARD_TYPE = 0
 						AND 	B.STATUS = 'Y'
 			   )
 	WHERE RNUM BETWEEN ? AND ?
@@ -50,13 +45,10 @@
 					, U.USER_ID
 					, M.GENRE
 					, M.TITLE_PATH
-					, T.TASTE_NO
-					, T.TASTE_CODE
 			FROM
 					 BOARD B
 			JOIN  USERS U ON B.USER_NO = U.USER_NO
 			JOIN  MOVIE M ON B.MOVIE_NO = M.MOVIE_NO
-			JOIN  TASTE T ON B.TASTE_NO = T.TASTE_NO
 	 	WHERE 
 	 			B.BOARD_NO = ?
 	   AND B.STATUS = 'Y'
@@ -119,7 +111,7 @@
 					  WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
-	<entry key="TBoardInsertSearchCount">
+	<entry key="FBoardInsertSearchCount">
 		SELECT
         	   COUNT(*) as COUNT
  		  FROM
@@ -130,10 +122,9 @@
 			    OR DIRECTOR LIKE '%' || ? || '%'
 			    OR ACTOR LIKE '%' || ? || '%'
 			   AND STATUS IN ('10', '20')
-			   AND TASTE_NO = ?
 	</entry>
 	
-	<entry key="TboardInsertSaerchList">
+	<entry key="FboardInsertSaerchList">
 		SELECT *
 					FROM (
 						    SELECT
@@ -155,12 +146,11 @@
 				        OR DIRECTOR LIKE '%' || ? || '%'
 				        
 				      )
-				      AND TASTE_NO = ?
 			)
 			WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
-	<entry key="insertTBoard">
+	<entry key="insertFBoard">
 		INSERT
 		INTO BOARD
 		    (
@@ -169,13 +159,11 @@
 		    ,	BOARD_TITLE
 		    ,	BOARD_CONTENT
 		    , USER_NO
-		    , TASTE_NO
 		    , MOVIE_NO
 		    )
 		    VALUES
 		    (
 		   	  SEQ_BOARDNO.NEXTVAL
-		    , 1
 		    , ?
 		    , ?
 		    , ?
