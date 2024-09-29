@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class TestYc
  */
-@WebServlet("/TestYc")
+@WebServlet("/taste.t0")
 public class TasteStartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

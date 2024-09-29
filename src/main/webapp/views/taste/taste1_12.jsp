@@ -75,9 +75,9 @@ input:focus {outline: none;}
         <div class="button-group">
         	<form id="tasteForm" action="<%=tsContextPath%>/taste.t12" method="post">
 			    <input type="hidden" name="taste" id="tasteInput" value="">
-			    <button type="submit" class="btn" id="btn1" name="taste2" value="0" onclick="setTasteValue(0)">새로운 관점이나 사고의 전환</button>
+			    <button type="submit" class="btn" id="btn1" onclick="setTasteValue(0)">새로운 관점이나 사고의 전환</button>
 			    <br>
-			    <button type="submit" class="btn" id="btn2" value="1" onclick="setTasteValue(1)">가볍고 재미있는 일탈</button>
+			    <button type="submit" class="btn" id="btn2" onclick="setTasteValue(1)">가볍고 재미있는 일탈</button>
 			</form>
         </div>
     </div>
