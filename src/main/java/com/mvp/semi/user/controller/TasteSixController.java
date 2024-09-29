@@ -38,12 +38,10 @@ public class TasteSixController extends HttpServlet {
         if (taste != null) {
             int tasteValue = Integer.parseInt(taste);
             session.setAttribute("taste6", tasteValue);
+            request.getRequestDispatcher("/views/taste/taste1_7.jsp").forward(request, response);
         }else {
-        	response.sendRedirect("taste1.jsp");
+        	request.getRequestDispatcher("/views/taste/taste1_1.jsp").forward(request, response);
         }
-
-        // 다음 페이지로 리다이렉트
-        response.sendRedirect("taste7.jsp");
 	}
 
 	/**

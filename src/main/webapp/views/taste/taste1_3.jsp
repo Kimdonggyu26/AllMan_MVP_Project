@@ -73,7 +73,7 @@ input:focus {outline: none;}
         <div class="font">영화 취향 분석</div>
         <div class="content">캐릭터의 유형 중 어느 쪽에 더 매력을 느낍니까?</div>
         <div class="button-group">
-        	<form id="tasteForm" action="<%=tsContextPath%>/taste.t4" method="post">
+        	<form id="tasteForm" action="<%=tsContextPath%>/taste.t3" method="post">
 			    <input type="hidden" name="taste" id="tasteInput" value="">
 			    <button type="submit" class="btn" id="btn1" name="taste2" value="0" onclick="setTasteValue(0)">비범한 능력을 가진 영웅적인 인물</button>
 			    <br>

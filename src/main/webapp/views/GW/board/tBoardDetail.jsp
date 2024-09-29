@@ -24,20 +24,21 @@
 
     <section class="container-me">
 
- 			<div class="btn-taste">
-        <div class="row justify-content-center mt-5 mb-3">
-          <a href="<%= contextPath %>/list.NDHE" class="mx-2 btn btn-sm" id="taste">NDHE 게시판</a>
-          <a href="<%= contextPath %>/list.VDSE" class="mx-2 btn btn-sm" id="taste">VDSE 게시판</a>
-          <a href="<%= contextPath %>/list.SPTF" class="mx-2 btn btn-sm" id="taste">SPTF 게시판</a>
-          <a href="<%= contextPath %>/list.BOFA" class="mx-2 btn btn-sm" id="taste">BOFA 게시판</a>
-        </div>
-        <div class="row justify-content-center mb-3">
-          <a href="<%= contextPath %>/list.ETRF" class="mx-2 btn btn-sm" id="taste">ETRF 게시판</a>
-          <a href="<%= contextPath %>/list.CCFE" class="mx-2 btn btn-sm" id="taste">CCFE 게시판</a>
-          <a href="<%= contextPath %>/list.CASE" class="mx-2 btn btn-sm" id="taste">CASE 게시판</a>
-          <a href="<%= contextPath %>/list.HHAL" class="mx-2 btn btn-sm" id="taste">HHAL 게시판</a>
-        </div>
-      </div>
+		<div class="btn-taste">
+		    <div class="row justify-content-center mt-5 mb-3">
+		        <a href="<%= contextPath %>/list.NDHE" class="mx-2 btn btn-sm" id="taste" style="background-color: <%= (b.getTasteNo() == 10) ? "red" : "#3C3C3C" %>;">NDHE 게시판</a>
+		        <a href="<%= contextPath %>/list.VDSE" class="mx-2 btn btn-sm" id="taste" style="background-color: <%= (b.getTasteNo() == 20) ? "orange" : "#3C3C3C" %>;">VDSE 게시판</a>
+		        <a href="<%= contextPath %>/list.SPTF" class="mx-2 btn btn-sm" id="taste" style="background-color: <%= (b.getTasteNo() == 30) ? "yellow" : "#3C3C3C" %>;">SPTF 게시판</a>
+		        <a href="<%= contextPath %>/list.BOFA" class="mx-2 btn btn-sm" id="taste" style="background-color: <%= (b.getTasteNo() == 40) ? "green" : "#3C3C3C" %>;">BOFA 게시판</a>
+		    </div>
+		    <div class="row justify-content-center mb-3">
+		        <a href="<%= contextPath %>/list.ETRF" class="mx-2 btn btn-sm" id="taste" style="background-color: <%= (b.getTasteNo() == 50) ? "skyblue" : "#3C3C3C" %>;">ETRF 게시판</a>
+		        <a href="<%= contextPath %>/list.CCFE" class="mx-2 btn btn-sm" id="taste" style="background-color: <%= (b.getTasteNo() == 60) ? "blue" : "#3C3C3C" %>;">CCFE 게시판</a>
+		        <a href="<%= contextPath %>/list.CASE" class="mx-2 btn btn-sm" id="taste" style="background-color: <%= (b.getTasteNo() == 70) ? "purple" : "#3C3C3C" %>;">CASE 게시판</a>
+		        <a href="<%= contextPath %>/list.HHAL" class="mx-2 btn btn-sm" id="taste" style="background-color: <%= (b.getTasteNo() == 80) ? "pink" : "#3C3C3C" %>;">HHAL 게시판</a>
+		    </div>
+		</div>
+		
 
       <div id="title">
 

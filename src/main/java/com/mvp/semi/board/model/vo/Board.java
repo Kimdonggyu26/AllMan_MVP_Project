@@ -54,10 +54,11 @@ public class Board {
 		
 	}
 
-	public Board(int boardNo, String userId, String profilePath, String movieTitle, String movieContent, Date movieOpenDate, String titlePath, int tasteNo,
+	public Board(int boardNo, int boardType, String userId, String profilePath, String movieTitle, String movieContent, Date movieOpenDate, String titlePath, int tasteNo,
 			String tasteCode) {
 		super();
 		this.boardNo = boardNo;
+		this.boardType = boardType;
 		this.userId = userId;
 		this.profilePath = profilePath;
 		this.movieTitle = movieTitle;
@@ -66,6 +67,7 @@ public class Board {
 		this.titlePath = titlePath;
 		this.tasteNo = tasteNo;
 		this.tasteCode = tasteCode;
+		
 	}
 	
 	
@@ -81,6 +83,21 @@ public class Board {
 		this.genre = genre;
 		this.tasteNo = tasteNo;
 		this.tasteCode = tasteCode;
+	}
+	
+	
+
+	public Board(int boardNo, int boardType, String userId, String profilePath, String movieTitle, String movieContent,
+			Date movieOpenDate, String titlePath) {
+		super();
+		this.boardNo = boardNo;
+		this.boardType = boardType;
+		this.userId = userId;
+		this.profilePath = profilePath;
+		this.movieTitle = movieTitle;
+		this.movieContent = movieContent;
+		this.movieOpenDate = movieOpenDate;
+		this.titlePath = titlePath;
 	}
 
 	public int getBoardNo() {

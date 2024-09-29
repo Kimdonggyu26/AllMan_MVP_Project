@@ -15,18 +15,16 @@
 
   <!-- Section start -->
   <section class="container-me">
-    <div id="content-regist">
-      취향게시판 글쓰기
-    </div>
+    <div id="content-regist">게시판 글작성</div>
 
     <div id="all">
       <!-- 왼쪽 이미지와 버튼 -->
       <div id="content-box">
-        <div>
-          <img src="<%=contextPath%>/resources/movie_upfiles/1727080814186_28616" alt="image" width="275px" height="370px">
+        <div id="cbo">
+          <img src="<%=contextPath%>/resources/board_upfiles/QnA.png" alt="image" width="275px" height="370px" name="ttimg" onclick="openModal()" id="basic">
         </div>
         <div id="button-red">
-          <button class="btn" type="button" style="background-color: #F33F3F; color: white;">등록하기</button>
+          <button class="btn" type="button" style="background-color: #F33F3F; color: white;" onclick="fnWriteInsert();">등록하기</button>
         </div>
         <div id="button-reset"> 
           <button class="btn" type="reset" style="background-color: #3D3E3D; color: white;" onclick="resetForm()">초기화</button>
@@ -35,24 +33,25 @@
 
       <!-- 오른쪽 입력 폼 -->
       <div id="content">
+        <input type="hidden" id="movieNo" name="movieNo">
         <table class="table-borderless">
           <tr>         
-            <td colspan="2" >
+            <td colspan="2">
               <div class="input-container">
                 <label for="title">제목 |</label>
-                <input type="text" id="title" placeholder="내용을 입력하세요." style="border: none;">
+                <input type="text" id="title" name="tt" placeholder="내용을 입력하세요." style="border: none;">
               </div>
             </td>
           </tr>
           <tr>
             <td style="width: 140px;">
-              <select id="tboard" name="tboard" class="form-control" style="background-color: #3D3E3D; color: #BEBEBE; border: none;">
+              <select id="tboard" name="tboard" class="form-control" style="background-color: #3D3E3D; color: #BEBEBE; border: none;" onchange="resetSearchResults()">
                 <option value="<%= loginUser.getTasteNo() %>"><%= loginUser.getTasteCode() %>게시판</option>
                 <option value="0">자유게시판</option>
               </select>
             </td>
             <td colspan="2">
-              <input type="text" name="search" id="search1" size="40" class="form-control" placeholder="영화 제목을 입력해주세요." required onclick="openModal()">
+              <input type="text" name="search" id="search1" size="40" class="form-control" placeholder="영화 제목을 입력해주세요." required onclick="openModal()" readonly>
             </td>
           </tr>
           <tr>
@@ -70,18 +69,13 @@
         <h3>영화검색</h3>
         <div id="search3">
           <input type="text" id="modalSearch" placeholder="검색어를 입력하세요." style="margin-bottom:10px">
-          <button class="btn" class="btn btn-sm" onclick="performSearch()" id="m-search">검색</button>
+          <button class="btn" onclick="performSearch()" id="m-search">검색</button>
         </div>
         <hr color="white" style="width: 680px; margin-right: 31px;">
-
         <div style="text-align: left; color: white;">
-          <table id="search-area" style="width: 680px;">
-          
-          </table>
+          <table id="search-area" style="width: 680px;"></table>
         </div>
-
-        <hr style="backgroundcolor= white;">
-
+        <hr style="background-color: white;">
         <ul class="pagination d-flex justify-content-center text-dark" id="page-area"></ul>
       </div>
     </div>
@@ -91,66 +85,73 @@
 
   <!-- Footer -->
   <%@ include file="/views/common/footer.jsp" %>
-
   <!-- JavaScript -->
   <script>
-    function submitForm() {
-      const title = document.getElementById('title').value;
-      const tboard = document.getElementById('tboard').value;
-      const search = document.getElementById('search1').value;
-      const content = document.getElementById('content-text').value;
-
-      // AJAX 요청
-      fetch('/insert.tbo', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          title: title,
-          tboard: tboard,
-          search: search,
-          content: content
-        })
-      });
-    }
-
     function resetForm() {
       document.getElementById('title').value = '';
-      document.getElementById('tboard').value = '10'; // 기본값으로 초기화
+      document.getElementById('tboard').value = '<%= loginUser.getTasteNo() %>';
       document.getElementById('search1').value = '';
       document.getElementById('content-text').value = '';
+      document.getElementById('movieNo').value = '';
+      
+      var imgElement = document.querySelector('#basic');
+      if (imgElement) {
+        imgElement.src = '<%=contextPath%>/resources/board_upfiles/QnA.png';
+      }
     }
 
     function openModal() {
-    	document.getElementById('modalSearch').value = ''; // 검색어 초기화
-    	document.getElementById('search-area').innerHTML = ''; // 검색 결과 초기화
-    	document.getElementById('page-area').innerHTML = ''; // 페이지 초기화
+      document.getElementById('modalSearch').value = '';
+      document.getElementById('search-area').innerHTML = '';
+      document.getElementById('page-area').innerHTML = '';
       document.getElementById('searchModal').style.display = 'block';
+      const boardType = document.getElementById('tboard').value;
     }
-
+    
     function closeModal() {
-    	document.getElementById('search-area').innerHTML = '';
-    	document.getElementById('page-area').innerHTML = '';
+      document.getElementById('search-area').innerHTML = '';
+      document.getElementById('page-area').innerHTML = '';
       document.getElementById('searchModal').style.display = 'none';
     }
+    
+    function resetSearchResults() {
+        // 검색어 및 검색 결과 초기화
+					openModal();
+      }
 
-    // 모달 바깥을 클릭했을 때 모달 닫기
+    function selectMovie(titlePath, movieTitle, movieNo) {
+      var contextPath = '<%= contextPath %>';
+      var imgElement = document.querySelector('#cbo img');
+      if (imgElement) {
+        imgElement.src = contextPath + titlePath;  
+      }
+
+      $("#search1").val(movieTitle);
+      document.getElementById('movieNo').value = movieNo;
+      closeModal();
+    }
+
     window.onclick = function(event) {
       var modal = document.getElementById('searchModal');
       if (event.target == modal) {
-        modal.style.display = "none";
+        closeModal();
       }
     }
 
     function performSearch(page) {
-      var search = document.getElementById('modalSearch').value;
+      var search = document.getElementById('modalSearch').value.trim();
+      const boardType = document.getElementById('tboard').value;
+      if (search === "") {
+        $('#search-area').html('<tr><td colspan="4">검색결과가 없습니다.</td></tr>');
+        return;
+      }
       
       $.ajax({
         url: '<%= contextPath %>/tbSearch.mv',
         type: 'GET',
         data: {
           no: <%= loginUser.getTasteNo() %>,
+          boardType: boardType,
           search: search,
           page: page
         },
@@ -162,50 +163,89 @@
           if (s.length === 0) {
             scEl += '<tr><td colspan="4">검색결과가 없습니다.</td></tr>';
           } else {
-        	  
-          	scEl += '<tr>' +
-										'<th>영화제목</th>' +
-										'<th>장르</th>' +
-										'<th>출연진</th>' +
-										'<th>감독</th>' +
-										'<tr>'
-						scEl += '<tr><td colspan="4" style="border-top: 1px solid #ccc; height: 0px;"></td></tr>';
-        	  
+            scEl += '<tr>' +
+                     '<th>영화제목</th>' +
+                     '<th>장르</th>' +
+                     '<th>출연진</th>' +
+                     '<th>감독</th>' +
+                     '</tr>';
+            scEl += '<tr><td colspan="4" style="border-top: 1px solid #ccc; height: 0px;"></td></tr>';
+            
             for (let i = 0; i < s.length; i++) {
-            					
-              scEl += '<tr style="border" onclick="selectMovie(\'' + s[i].titlePath + '\')">' +  // 클릭 이벤트 추가
-                      '<td>' + s[i].movieTitle + '</td>' +
-                      '<td>' + s[i].genre + '</td>' +
-                      '<td>' + s[i].actor + '</td>' +
-                      '<td>' + s[i].director + '</td>' +
-                      '</tr>';
+              scEl += '<tr onclick="selectMovie(\'' + s[i].titlePath + '\', \'' + s[i].movieTitle + '\', ' + s[i].movieNo + ')">' +    
+                       '<td>' + s[i].movieTitle + '</td>' +
+                       '<td>' + s[i].genre + '</td>' +
+                       '<td>' + s[i].actor + '</td>' +
+                       '<td>' + s[i].director + '</td>' +
+                       '</tr>';
               scEl += '<tr><td colspan="4" style="border-top: 1px solid #ccc; height: 0px;"></td></tr>';
             }
           }
 
           $('#search-area').html(scEl);
-
-          // 페이지네이션 생성
-          let liEl = "";
-          
-          liEl += "<li class='page-item " + (p.currentPage === 1 ? "disabled" : "") + "'>" +
-                  '<a class="page-link" onclick="performSearch(' + (p.currentPage - 1) + ')">&lt;</a>' +
-                  "</li>";
-
-          for (let i = p.startPage; i <= p.endPage; i++) {
-            liEl += "<li class='page-item " + (i === p.currentPage ? "active" : "") + "'>" +
-                    '<a class="page-link" onclick="performSearch(' + i + ')">' + i + '</a>' +
-                    "</li>";
-          }
-
-          liEl += "<li class='page-item " + (p.currentPage === p.maxPage ? "disabled" : "") + "'>" +
-                  '<a class="page-link" onclick="performSearch(' + (p.currentPage < p.maxPage ? (p.currentPage + 1) : p.maxPage) + ')">&gt;</a>' +
-                  "</li>";
-
-          $('#page-area').html(liEl);
+          createPagination(p);
         },
         error: function(error) {
           console.error('검색 중 오류 발생:', error);
+        }
+      });
+    }
+
+    function createPagination(p) {
+      let liEl = "<li class='page-item " + (p.currentPage === 1 ? "disabled" : "") + "'>" +
+                 '<a class="page-link" onclick="performSearch(' + (p.currentPage - 1) + ')">&lt;</a>' +
+                 "</li>";
+
+      for (let i = p.startPage; i <= p.endPage; i++) {
+        liEl += "<li class='page-item " + (i === p.currentPage ? "active" : "") + "'>" +
+                '<a class="page-link" onclick="performSearch(' + i + ')">' + i + '</a>' +
+                "</li>";
+      }
+
+      liEl += "<li class='page-item " + (p.currentPage === p.maxPage ? "disabled" : "") + "'>" +
+               '<a class="page-link" onclick="performSearch(' + (p.currentPage < p.maxPage ? (p.currentPage + 1) : p.maxPage) + ')">&gt;</a>' +
+               "</li>";
+
+      $('#page-area').html(liEl);
+    }
+
+    function fnWriteInsert() {
+      const boardType = document.getElementById('tboard').value;
+      const boardTitle = document.getElementById('title').value;
+      const boardContent = document.getElementById('content-text').value;
+      const userNo = <%= loginUser.getUserNo() %>;
+      const movieNo = document.getElementById('movieNo').value;
+
+      if (!boardTitle || !boardContent || !movieNo || !boardType) {
+        alert("빈값을 입력할 수 없습니다.");
+        return;
+      }
+
+      // AJAX 요청
+      $.ajax({
+        url: '<%= contextPath %>/tbinsert.tbo',
+        type: 'POST',
+        data: {
+          boardType: boardType,
+          boardTitle: boardTitle,
+          boardContent: boardContent,
+          userNo: userNo,
+          movieNo: movieNo
+        },
+        success: function(res) {
+          if (res > 0) {
+            alert("게시글이 성공적으로 등록되었습니다.");
+            if (boardType == 10){
+            	 window.location.href = '<%= contextPath %>/list.tbo';
+            } else if (boardType == 0){
+            	window.location.href = '<%= contextPath %>/list.fbo';
+            } else{
+            	window.location.href = '<%= contextPath %>/list.<%= loginUser.getTasteCode() %>';
+            }
+          }
+        },
+        error: function() {
+          alert('게시글 작성에 실패하였습니다.');
         }
       });
     }
@@ -256,10 +296,12 @@
 
   #button-red{
     margin-top: 35px;
+    margin-left: 96.5px;
   }
 
   #button-reset{
     margin-top: 20px;
+    margin-left: 103px;
   }
 
   #all{

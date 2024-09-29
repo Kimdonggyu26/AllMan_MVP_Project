@@ -67,6 +67,7 @@ input:focus {outline: none;}
 
 <%
 	String tsContextPath = request.getContextPath(); // "/mvp"
+	String alertMsg = (String)session.getAttribute("alertMsg");
 %>
 
 <body>

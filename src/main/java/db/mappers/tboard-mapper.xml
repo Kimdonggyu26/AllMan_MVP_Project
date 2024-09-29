@@ -18,6 +18,7 @@
 	  	FROM (
 						SELECT
 							    B.BOARD_NO,
+							    B.BOARD_TYPE,
 							    U.USER_ID,
 							    U.PROFILE_PATH,
 							    M.MOVIE_TITLE,
@@ -158,20 +159,30 @@
 			)
 			WHERE RNUM BETWEEN ? AND ?
 	</entry>
-	<entry key="selectUserTBoardList">
-    SELECT *
-    FROM (
-        SELECT
-            B.BOARD_NO,
-            B.TITLE,
-            B.CONTENT,
-            B.REGIST_DATE,
-            ROW_NUMBER() OVER(ORDER BY B.BOARD_NO DESC) as RNUM
-        FROM BOARD B
-        WHERE B.USER_NO = ?
-        AND B.STATUS = 'Y'
-    )
-    WHERE RNUM BETWEEN ? AND ?
-</entry>
+	
+	<entry key="insertTBoard">
+		INSERT
+		INTO BOARD
+		    (
+		    	BOARD_NO
+		    ,	BOARD_TYPE
+		    ,	BOARD_TITLE
+		    ,	BOARD_CONTENT
+		    , USER_NO
+		    , TASTE_NO
+		    , MOVIE_NO
+		    )
+		    VALUES
+		    (
+		   	  SEQ_BOARDNO.NEXTVAL
+		    , 1
+		    , ?
+		    , ?
+		    , ?
+		    , ?
+		    , ?
+	    )
+	</entry>
+	
 
 </properties>

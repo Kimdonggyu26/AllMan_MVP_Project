@@ -76,6 +76,7 @@ public class TBoardDao {
 			
 			while(rset.next()) {
 				list.add(new Board( rset.getInt("BOARD_NO")
+								  , rset.getInt("BOARD_TYPE")
 						  		  , rset.getString("USER_ID")
 								  , rset.getString("PROFILE_PATH")
 								  , rset.getString("MOVIE_TITLE")
@@ -142,6 +143,7 @@ public class TBoardDao {
 			
 			while(rset.next()) {
 				list.add(new Board( rset.getInt("BOARD_NO")
+								  , rset.getInt("BOARD_TYPE")
 						  		  , rset.getString("USER_ID")
 								  , rset.getString("PROFILE_PATH")
 								  , rset.getString("MOVIE_TITLE")
@@ -208,6 +210,7 @@ public class TBoardDao {
 			
 			while(rset.next()) {
 				list.add(new Board( rset.getInt("BOARD_NO")
+						          , rset.getInt("BOARD_TYPE")
 						  		  , rset.getString("USER_ID")
 								  , rset.getString("PROFILE_PATH")
 								  , rset.getString("MOVIE_TITLE")
@@ -274,6 +277,7 @@ public class TBoardDao {
 			
 			while(rset.next()) {
 				list.add(new Board( rset.getInt("BOARD_NO")
+								  , rset.getInt("BOARD_TYPE")
 						  		  , rset.getString("USER_ID")
 								  , rset.getString("PROFILE_PATH")
 								  , rset.getString("MOVIE_TITLE")
@@ -340,6 +344,7 @@ public class TBoardDao {
 			
 			while(rset.next()) {
 				list.add(new Board( rset.getInt("BOARD_NO")
+						  		  , rset.getInt("BOARD_TYPE")
 						  		  , rset.getString("USER_ID")
 								  , rset.getString("PROFILE_PATH")
 								  , rset.getString("MOVIE_TITLE")
@@ -406,6 +411,7 @@ public class TBoardDao {
 			
 			while(rset.next()) {
 				list.add(new Board( rset.getInt("BOARD_NO")
+								  , rset.getInt("BOARD_TYPE")
 						  		  , rset.getString("USER_ID")
 								  , rset.getString("PROFILE_PATH")
 								  , rset.getString("MOVIE_TITLE")
@@ -472,6 +478,7 @@ public class TBoardDao {
 			
 			while(rset.next()) {
 				list.add(new Board( rset.getInt("BOARD_NO")
+								  , rset.getInt("BOARD_TYPE")
 						  		  , rset.getString("USER_ID")
 								  , rset.getString("PROFILE_PATH")
 								  , rset.getString("MOVIE_TITLE")
@@ -538,6 +545,7 @@ public class TBoardDao {
 			
 			while(rset.next()) {
 				list.add(new Board( rset.getInt("BOARD_NO")
+						  		  , rset.getInt("BOARD_TYPE")
 						  		  , rset.getString("USER_ID")
 								  , rset.getString("PROFILE_PATH")
 								  , rset.getString("MOVIE_TITLE")
@@ -810,6 +818,30 @@ public class TBoardDao {
 
 	}
 
+
+	public int insertTBoard(Connection conn, Board b) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertTBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, b.getBoardTitle());
+			pstmt.setString(2, b.getBoardContent());
+			pstmt.setString(3, b.getUserId());
+			pstmt.setInt(4, b.getTasteNo());
+			pstmt.setString(5, b.getMovieTitle());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
 
 
 
