@@ -163,7 +163,7 @@ a:active {
 </style>
 
 
- <form action="modifyuser.us">
+ <form action="modifyuser.us" method="post">
 <div class="modal" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">

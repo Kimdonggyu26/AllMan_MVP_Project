@@ -53,7 +53,7 @@
 		      // SMTP 서버 정보와 사용자 정보를 기반으로 Session 클래스의 인스턴스를 생성
 		       Session session = Session.getDefaultInstance(props, new Authenticator() {
 		           protected PasswordAuthentication getPasswordAuthentication() {
-		               return new PasswordAuthentication("발신자계정@naver.com", "발신자계정비번");
+		               return new PasswordAuthentication("allofyaeji@naver.com", "mvpmvp123");
 		           }
 		       });
 

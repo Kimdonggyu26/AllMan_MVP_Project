@@ -30,7 +30,11 @@ public class UserLogoutController extends HttpServlet {
 		request.getSession().invalidate();
 		
 		// 응답페이지 : 메인페이지
-		response.sendRedirect(request.getContextPath());	}
+		response.sendRedirect(request.getContextPath());
+		
+		
+		
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

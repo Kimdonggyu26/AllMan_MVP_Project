@@ -287,7 +287,7 @@ public class InquiryDao {
     public List<Inquiry> selectInquiriesByUser(Connection conn, String userId) {
         PreparedStatement pstmt = null;
         ResultSet rset = null;
-        List<Inquiry> list = new ArrayList<>();
+        List<Inquiry> inquiries = new ArrayList<>();
         
         // properties 파일에서 쿼리 불러오기
         String sql = prop.getProperty("selectUser");
@@ -299,7 +299,7 @@ public class InquiryDao {
 
             // 결과 처리: Inquiry 객체 리스트에 저장
             while (rset.next()) {
-                list.add(new Inquiry(rset.getInt("INQUIRY_NO"),
+            	inquiries.add(new Inquiry(rset.getInt("INQUIRY_NO"),
                                      rset.getString("INQUIRY_TITLE"),
                                      rset.getDate("REGIST_DATE")));   
             }
@@ -310,6 +310,6 @@ public class InquiryDao {
             close(pstmt);
         }
         
-        return list;
+        return inquiries;
     }
 }

@@ -153,6 +153,21 @@ public class UserService {
 		}
 		close(conn);
 		return result;
+	
+	
+	public int updateUser(String userId, String email, String phone) {
+        Connection conn = getConnection();
+        int result = new UserDao().updateUser(conn, userId, email, phone);
+        
+        if (result > 0) {
+            commit(conn);
+        } else {
+            rollback(conn);
+        }
+        close(conn);
+        return result;
+    }
+	
 	}
 
 }

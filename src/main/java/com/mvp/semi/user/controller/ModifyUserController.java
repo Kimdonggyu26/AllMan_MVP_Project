@@ -35,7 +35,7 @@ public class ModifyUserController extends HttpServlet {
 		String userNick = request.getParameter("userNick");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
-
+        
         // 현재 세션에서 사용자 아이디 가져오기 (로그인된 사용자)
         HttpSession session = request.getSession();
         String userId = ((User) session.getAttribute("loginUser")).getUserId();

@@ -318,5 +318,26 @@ public class UserDao {
 		}
 		return result;
 	}
+	public int updateUser(Connection conn, String userId, String email, String phone) {
+        PreparedStatement pstmt = null;
+        int result = 0;
+        String sql = "UPDATE USER SET EMAIL = ?, PHONE = ? WHERE USER_ID = ?";
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, email);
+            pstmt.setString(2, phone);
+            pstmt.setString(3, userId);
+
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(pstmt);
+        }
+
+        return result;
+    }
+	
 
 }
