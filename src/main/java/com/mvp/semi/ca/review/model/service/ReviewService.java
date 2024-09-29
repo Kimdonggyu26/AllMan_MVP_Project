@@ -23,8 +23,6 @@ public class ReviewService {
 		
 		return list;
 		
-		
-		
 	}
 	
 	public int insertReview(int userNo, String reviewContent, int rate, int movieNo) {
@@ -34,6 +32,25 @@ public class ReviewService {
 		close(conn);
 		
 		return result;
+	}
+	
+	public List<Review> rvListByLike(int movieNo){
+		
+		Connection conn = getConnection();
+		
+		List<Review> list = rvDao.rvListByLike(conn, movieNo);
+		close(conn);
+		
+		return list;
+	}
+	
+	public double mvpGrade(int movieNo) {
+		Connection conn = getConnection();
+		
+		double mvpGrade = rvDao.mvpGrade(conn, movieNo);
+		close(conn);
+		
+		return mvpGrade;
 	}
 		
 }

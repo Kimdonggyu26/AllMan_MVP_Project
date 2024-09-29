@@ -82,13 +82,15 @@ button {
 #back {
   position: absolute;
   top: 5%;
-  right: 20%;
+  left: 13%;
   display: flex;
   flex-direction: column;
   color: #ffffff;
+  cursor: pointer;
+  font-size: 30px;
 }
 
-#mian_content_1 {
+#main_content_1 {
   display: flex;
   justify-content: center;
 }
@@ -217,8 +219,8 @@ button {
   width: 15px;
 }
 .star-rating {
-  margin-left: 206px;
-}
+  margin-left: 290px;
+ }
 
 .star {
   appearance: none;
@@ -327,7 +329,7 @@ button {
   align-items: center;
   color: #ffffff;
 }
-.review_thumb_up > img{
+.review_thumb_up > i{
   width: 24px;
   height: 24px;
 }

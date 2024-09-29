@@ -40,14 +40,13 @@ public class ReviewDao {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, movieNo);
-			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
 				list.add(new Review(rset.getInt("REVIEW_NO"), rset.getString("REVIEW_CONTENT")
 								  , rset.getInt("GRADE"), rset.getInt("USER_NO")
 								  , rset.getInt("MOVIE_NO"), rset.getDate("REVIEW_DATE")
-								  , rset.getString("USER_NICKNAME")));
+								  , rset.getString("USER_NICKNAME"),rset.getInt("LIKE_COUNT")));
 			}
 			
 		} catch (SQLException e) {
@@ -57,6 +56,39 @@ public class ReviewDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	public List<Review> rvListByLike(Connection conn, int movieNo){
+		
+		List<Review> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("rvListByLike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, movieNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Review(rset.getInt("REVIEW_NO"), rset.getString("REVIEW_CONTENT")
+								  , rset.getInt("GRADE"), rset.getInt("USER_NO")
+								  , rset.getInt("MOVIE_NO"), rset.getDate("REVIEW_DATE")
+								  , rset.getString("USER_NICKNAME"), rset.getInt("LIKE_COUNT")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+		
+				
 	}
 	
 	public int insertReview(Connection conn, int userNo, String reviewContent, int rate, int movieNo) {
@@ -82,5 +114,34 @@ public class ReviewDao {
 		}
 		return result;
 	}
+	
+	public double mvpGrade(Connection conn, int movieNo) {
+		
+		double mvpGrade = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("getMvpGrade");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, movieNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				mvpGrade = rset.getDouble("AVG_GRADE");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return mvpGrade;
+		
+	}
+
 
 }

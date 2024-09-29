@@ -4,22 +4,54 @@
 
 	<entry key="rvListByDate">
 		SELECT 
-					R.REVIEW_NO
-				, R.REVIEW_CONTENT
-				, R.GRADE
-				, R.USER_NO
-				, R.MOVIE_NO
-				, R.REVIEW_DATE
-				, U.USER_NICKNAME
+					 R.REVIEW_NO
+				 , R.REVIEW_CONTENT
+				 , R.GRADE
+				 , R.USER_NO
+				 , R.MOVIE_NO
+				 , R.REVIEW_DATE
+				 , U.USER_NICKNAME
+				 , COUNT(L.REVIEW_NO) AS LIKE_COUNT
 			FROM 
-					REVIEW R
+					 REVIEW R
 		  JOIN
-		  		USERS U ON R.USER_NO = U.USER_NO
+		  		 USERS U ON R.USER_NO = U.USER_NO
+ LEFT JOIN LIKES L ON R.REVIEW_NO = L.REVIEW_NO
 		 WHERE
-		 		  R.MOVIE_NO = ?
+		 		   R.MOVIE_NO = ?
+     GROUP 
+     	  BY 
+    			 R.REVIEW_NO, R.REVIEW_CONTENT, R.GRADE, R.USER_NO, R.MOVIE_NO, R.REVIEW_DATE, U.USER_NICKNAME
 		 ORDER
 		 	  BY 
 		 	  	R.REVIEW_DATE DESC
+	</entry>
+	
+	<entry key="rvListByLike">
+		SELECT 
+		        R.REVIEW_NO
+		      , R.REVIEW_CONTENT
+		      , R.GRADE
+		      , R.USER_NO
+		      , R.MOVIE_NO
+		      , R.REVIEW_DATE
+		      , U.USER_NICKNAME
+		      , COUNT(L.REVIEW_NO) AS LIKE_COUNT
+		   FROM 
+		 			  REVIEW R
+		   JOIN
+		        USERS U ON R.USER_NO = U.USER_NO
+	LEFT JOIN 
+		        LIKES L ON R.REVIEW_NO = L.REVIEW_NO 
+		  WHERE 
+			      R.MOVIE_NO = ?
+		  GROUP
+		  	 BY 
+		        R.REVIEW_NO, R.REVIEW_CONTENT, R.GRADE, R.USER_NO, R.MOVIE_NO, R.REVIEW_DATE, U.USER_NICKNAME
+		 	ORDER
+		 	   BY
+		        LIKE_COUNT DESC
+		       
 	</entry>
 	
 	<entry key="insertReview">
@@ -43,6 +75,18 @@
 	  		, ?
 	  		, SYSDATE
 	  		)
+	</entry>
+	
+	<entry key="getMvpGrade">
+		SELECT
+				   ROUND(AVG(GRADE), 1) AS AVG_GRADE
+			FROM
+					 REVIEW
+		 WHERE 
+		 			 MOVIE_NO = ?
+		 GROUP
+		 	  BY
+		 	  	 MOVIE_NO
 	</entry>
 
 </properties>

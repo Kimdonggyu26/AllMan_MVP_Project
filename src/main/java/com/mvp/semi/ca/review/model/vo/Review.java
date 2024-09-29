@@ -11,6 +11,7 @@ public class Review {
 	private int movieNo;
 	private Date reviewDate;
 	private String userNickname;
+	private int likeCount;
 	
 	public Review() {}
 
@@ -24,7 +25,7 @@ public class Review {
 		this.reviewDate = reviewDate;
 	}
 	
-	public Review(int reviewNo, String reviewContent, int grade, int userNo, int movieNo, Date reviewDate, String userNickname) {
+	public Review(int reviewNo, String reviewContent, int grade, int userNo, int movieNo, Date reviewDate, String userNickname, int likeCount) {
 		super();
 		this.reviewNo = reviewNo;
 		this.reviewContent = reviewContent;
@@ -33,6 +34,7 @@ public class Review {
 		this.movieNo = movieNo;
 		this.reviewDate = reviewDate;
 		this.userNickname = userNickname;
+		this.likeCount = likeCount;
 	}
 
 	public int getReviewNo() {
@@ -91,6 +93,14 @@ public class Review {
 
 	public void setUserNickname(String userNickname) {
 		this.userNickname = userNickname;
+	}
+
+	public int getLikeCount() {
+		return likeCount;
+	}
+
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
 	}
 
 	@Override

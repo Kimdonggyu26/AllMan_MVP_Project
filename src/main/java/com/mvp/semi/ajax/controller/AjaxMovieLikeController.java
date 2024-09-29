@@ -10,20 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
-import com.mvp.semi.ca.likes.model.service.LikesService;
+import org.json.simple.JSONObject;
+
+import com.mvp.semi.ca.favorites.model.service.FavoritesService;
 
 /**
- * Servlet implementation class AjaxReviewLikeController
+ * Servlet implementation class AjaxMovieLikeController
  */
-@WebServlet("/likeReview.lr")
-public class AjaxReviewLikeController extends HttpServlet {
+@WebServlet("/likeMovie.lm")
+public class AjaxMovieLikeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxReviewLikeController() {
+    public AjaxMovieLikeController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,26 +35,39 @@ public class AjaxReviewLikeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
         request.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json; charset=utf-8");    
         
-       
         int userNo = Integer.parseInt(request.getParameter("userNo"));
-        int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
+        int movieNo = Integer.parseInt(request.getParameter("movieNo"));
         
+        
+        FavoritesService fvService = new FavoritesService();
+        
+        int alreadyLiked = fvService.checkMovieLiked(userNo, movieNo); // 중복 체크 메소드
+        System.out.println("already: " + alreadyLiked);
+        
+        int result;
+        
+        if(alreadyLiked == 0) {
+        	
+        	 result = fvService.insertMovieLike(userNo, movieNo); // 좋아요 등록 메소드
+        	
+        }else {
+        	
+        	 result = fvService.deleteMovieLike(userNo, movieNo); // 좋아요 취소(삭제) 메소드
+        }
+        
+        JSONObject jsonResponse = new JSONObject();
+        
+        jsonResponse.put("alreadyLiked", alreadyLiked);
+        jsonResponse.put("result", result);
 
-        LikesService lService = new LikesService();
         
-        int result = lService.insertLike(userNo, reviewNo);
+        response.getWriter().print(jsonResponse.toString());
+
         
-        int likeCount = lService.likeCount(reviewNo);
+	}
         
-        response.setContentType("application/json; charset=utf-8");
-        PrintWriter out = response.getWriter();
-        
-        // JSON 객체 생성
-		response.setContentType("application/json; charset=UTF-8");
-		// Gson객체.toJson(응답할데이터(자바객체), 스트림객체);
-		new Gson().toJson(likeCount, response.getWriter());
-	} 
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

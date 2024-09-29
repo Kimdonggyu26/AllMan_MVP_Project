@@ -3,8 +3,8 @@ package com.mvp.semi.ca.likes.model.service;
 import java.sql.Connection;
 
 import com.mvp.semi.ca.likes.model.dao.LikesDao;
-import static com.mvp.semi.common.template.JDBCTemplate.close;
 import static com.mvp.semi.common.template.JDBCTemplate.getConnection;
+import static com.mvp.semi.common.template.JDBCTemplate.close;
 import static com.mvp.semi.common.template.JDBCTemplate.commit;
 import static com.mvp.semi.common.template.JDBCTemplate.rollback;
 
