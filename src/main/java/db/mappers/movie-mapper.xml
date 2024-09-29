@@ -475,7 +475,19 @@
 	</entry>
 
 
-
+	<entry key="favoriteOtt">
+		SELECT 
+							* 
+		FROM (
+	        SELECT MOVIE_NO, 
+	        MOVIE_TITLE, 
+	        TITLE_PATH, 
+	        ROW_NUMBER() OVER(ORDER BY MOVIE_NO DESC) AS RNUM 
+	                    FROM MOVIE WHERE STATUS = '20')
+	       WHERE RNUM BETWEEN ? AND ?
+		
+		</entry>
+	
 
 
 

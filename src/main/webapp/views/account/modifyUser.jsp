@@ -224,7 +224,7 @@ a:active {
   </div>
 </div>
   <div> <hr style="background-color: gray;"> </div>
-  <a href="<%= contextPath %>/views/JM/deleteUser.jsp" style="color:  gray; margin-left: 30px; text-decoration: none;"> 회원탈퇴 및 계정삭제</a>
+  <a href="<%= contextPath %>/views/account/deleteUser.jsp" style="color:  gray; margin-left: 30px; text-decoration: none;"> 회원탈퇴 및 계정삭제</a>
 </form>
 
 <!-- body 종료 -->

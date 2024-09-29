@@ -168,7 +168,20 @@
 					)
 	
 	</entry>
-	
-	
+		<entry key="selectUser">
+	SELECT
+			i.INQUIRY_NO,
+			 i.INQUIRY_TITLE,
+			  i.REGIST_DATE,
+			   u.USER_ID
+	FROM 
+				INQUIRY i
+JOIN 
+				USER u ON i.USER_NO = u.USER_NO
+WHERE 
+				u.USER_ID = ? 
+ORDER 
+			BY i.REGIST_DATE DESC;
+		</entry>	
 
 </properties>

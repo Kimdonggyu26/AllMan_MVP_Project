@@ -284,4 +284,32 @@ public class InquiryDao {
 		return result;
 	}
 
+    public List<Inquiry> selectInquiriesByUser(Connection conn, String userId) {
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        List<Inquiry> list = new ArrayList<>();
+        
+        // properties 파일에서 쿼리 불러오기
+        String sql = prop.getProperty("selectUser");
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userId);  // 사용자 ID로 필터링
+            rset = pstmt.executeQuery();
+
+            // 결과 처리: Inquiry 객체 리스트에 저장
+            while (rset.next()) {
+                list.add(new Inquiry(rset.getInt("INQUIRY_NO"),
+                                     rset.getString("INQUIRY_TITLE"),
+                                     rset.getDate("REGIST_DATE")));   
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(rset);
+            close(pstmt);
+        }
+        
+        return list;
+    }
 }

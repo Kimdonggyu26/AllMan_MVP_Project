@@ -34,6 +34,13 @@ public class Inquiry {
 
 
 
+	public Inquiry(int inquiryNo, String inquiryTitle, Date registDate) {
+		super();
+		this.inquiryNo = inquiryNo;
+		this.inquiryTitle = inquiryTitle;
+		this.registDate = registDate;
+	}
+
 	public Inquiry(int inquiryNo, String inquiryTitle, String inquirycontent, String inquiryType, Date registDate,
 			String userNo, String replyContent, String userNickname, Date replyDate) {
 		super();

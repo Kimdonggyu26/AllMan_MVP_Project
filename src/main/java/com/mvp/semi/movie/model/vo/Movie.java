@@ -65,6 +65,14 @@ public class Movie {
 		this.director = director;
 		this.titlePath = titlePath;
 	}
+	
+
+	public Movie(int movieNo, String movieTitle, String titlePath) {
+		super();
+		this.movieNo = movieNo;
+		this.movieTitle = movieTitle;
+		this.titlePath = titlePath;
+	}
 
 	public int getMovieNo() {
 		return movieNo;

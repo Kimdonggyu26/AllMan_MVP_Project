@@ -53,7 +53,7 @@ public class Board {
 		this.tasteCode = tasteCode;
 		
 	}
-
+	
 	public Board(int boardNo, int boardType, String userId, String profilePath, String movieTitle, String movieContent, Date movieOpenDate, String titlePath, int tasteNo,
 			String tasteCode) {
 		super();

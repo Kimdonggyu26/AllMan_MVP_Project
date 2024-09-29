@@ -243,4 +243,11 @@ public class MovieService {
 		return mv;
 	}
 
+	 public List<Movie> getOttMoviesByPage(int page, int itemsPerPage) {
+	        Connection conn = getConnection();
+	        List<Movie> ottMovies = new MovieDao().selectOttMoviesByPage(conn, page, itemsPerPage);
+	        close(conn);
+	        return ottMovies;
+	    }
+
 }

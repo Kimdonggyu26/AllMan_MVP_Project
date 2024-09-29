@@ -834,4 +834,33 @@ public class MovieDao {
 		return mv;
 	}
 
+	  public List<Movie> selectOttMoviesByPage(Connection conn, int page, int itemsPerPage) {
+	        PreparedStatement pstmt = null;
+	        ResultSet rset = null;
+	        List<Movie> list = new ArrayList<>();
+	        String sql = prop.getProperty("favoriteOtt");
+
+	        try {
+	            pstmt = conn.prepareStatement(sql);
+	            int startRow = (page - 1) * itemsPerPage + 1;
+	            int endRow = page * itemsPerPage;
+	            pstmt.setInt(1, startRow);
+	            pstmt.setInt(2, endRow);
+	            rset = pstmt.executeQuery();
+
+	            while (rset.next()) {
+	            	list.add(new Movie(
+	                rset.getInt("MOVIE_NO"),
+	                rset.getString("MOVIE_TITLE"),
+	                rset.getString("TITLE_PATH")));
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {
+	            close(rset);
+	            close(pstmt);
+	        }
+	        return list;
+	    }
+
 }
