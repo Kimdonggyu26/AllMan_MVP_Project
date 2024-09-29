@@ -265,5 +265,16 @@
 			)
 			WHERE RNUM BETWEEN ? AND ?
 	</entry>
-		
+
+	
+	<entry key="deleteboard">
+		UPDATE
+					BOARD
+			SET
+					STATUS = 'N'
+		WHERE 
+					BOARD_NO = ?
+	</entry>
+	
+
 </properties>

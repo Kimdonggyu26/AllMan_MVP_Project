@@ -91,6 +91,18 @@ public class FBoardService {
 		return list;
 	}
 
+	public int deleteFboard(int boardNo) {
+		Connection conn = getConnection();
+		int result = fbDao.deleteFboard(conn, boardNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
+
 
 
 

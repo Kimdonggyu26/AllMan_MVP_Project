@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/비교페이지.css">
+
+
 </head>
 <body>
 		

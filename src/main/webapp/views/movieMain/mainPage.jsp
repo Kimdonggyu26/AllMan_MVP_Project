@@ -165,7 +165,7 @@
 						    '        </div>' +  // a 닫기
 						    '        <div style="display: flex;">' +  // b 시작
 						    '            <button type="button" class="btn btn-secondary" id="info">영화정보</button>' +
-						    '            <button type="button" class="btn btn-danger" id="compare">' +  // c 시작
+						    '            <button type="button" class="btn btn-danger" id="compare" onclick="fnComparisonAdd(\'' + r[i].movieNo + '\', \'' + r[i].titlePath + '\');">' +  // c 시작
 						    '                <img src="assets/image/mainPage/download_logo.png" style="width: 14px; height: 14px; margin-right: 5px; margin-bottom: 4px;">비교하기' +
 						    '            </button>' +  // c 닫기
 						    '        </div>' +  // b 닫기
@@ -282,7 +282,7 @@
 	                              +  '</div>'
 	                              +  '<div style="display: flex;">'
 	                              +  '<button type="button" class="btn btn-secondary" id="info">영화정보</button>'
-	                              +  '<button type="button" class="btn btn-danger" id="compare">'
+	                              +  '<button type="button" class="btn btn-danger" id="compare" onclick="fnComparisonAdd(\'' + r[i].movieNo + '\', \'' + r[i].titlePath + '\');">'
 	                              +  '<img src="assets/image/mainPage/download_logo.png" style="width: 14px; height: 14px; margin-right: 5px; margin-bottom: 4px;">비교하기'
 	                              +  '</button>'
 	                              +  '</div>'
@@ -318,7 +318,45 @@
 	        }
 	    });
 	}	
-							
+	
+
+	function fnComparisonAdd(movieNo, titlePath) {
+	    const basketMovie = document.getElementById('basket-movie');
+
+	    // 현재 담긴 영화 개수 체크
+	    if (basketMovie.childElementCount >= 3) {
+	        alert("최대 3개까지만 담을 수 있습니다."); // 경고 메시지
+	        return; // 3개 이상일 경우 함수 종료
+	    }
+
+	    // 이미 추가된 영화인지 체크
+	    const existingMovies = basketMovie.getElementsByClassName('movie-basket-list');
+	    for (let i = 0; i < existingMovies.length; i++) {
+	        const existingMovieNo = existingMovies[i].getAttribute('data-movie-no');
+	        if (existingMovieNo === movieNo) {
+	            alert("이미 추가된 영화입니다."); // 경고 메시지
+	            return; // 이미 추가된 경우 함수 종료
+	        }
+	    }
+
+	    // 영화 이미지 요소 생성
+	    const movieItem = document.createElement('div');
+	    movieItem.className = 'movie-basket-list';
+	    movieItem.setAttribute('data-movie-no', movieNo); // 영화 번호 저장
+
+	    const imgElement = document.createElement('img');
+	    imgElement.src = '<%= basketContextPath %>' + titlePath; // 올바른 이미지 경로
+	    imgElement.style.marginTop = '15px';
+	    imgElement.style.marginBottom = '15px';
+	    imgElement.onclick = function() { removeMovie(this); }; // 클릭 시 제거 기능 추가
+
+	    movieItem.appendChild(imgElement);
+	    basketMovie.appendChild(movieItem); // movieItem을 basketMovie에 추가
+
+	    updateMovieCount(); // 영화 개수 업데이트
+	}
+	
+	
 
 </script>
 	<!-- Footer start -->

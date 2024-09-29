@@ -364,8 +364,18 @@ public class TBoardService {
 		return list;
 	}
 
-	
-	
+	public int deleteTboard(int boardNo) {
+		Connection conn = getConnection();
+		int result = tbDao.deleteTboard(conn, boardNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
+
 	
 
 
