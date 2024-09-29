@@ -204,10 +204,6 @@ a:active {
     List<Inquiry> inquiries = (List<Inquiry>)request.getAttribute("inquiries");
     PageInfo pi = (PageInfo) request.getAttribute("pi");
 
-    // 서블릿에서 전달된 영화 리스트 가져오기
-    List<Movie> favoriteMovies = (List<Movie>) request.getAttribute("favoriteMovies");
-    List<Movie> ottMovies = (List<Movie>) request.getAttribute("ottMovies"); // OTT 영화 리스트
-
 %>
 
 <!-- body 시작부 -->
@@ -259,7 +255,7 @@ a:active {
     <div class="grid-item" style="width: 50px; height: 150px;" id="next-page-btn" onclick="loadNextPage()">  </div>
 </div> --%>
     
-        <div class="post-section">
+<%--         <div class="post-section">
             <h3>나의 게시글</h3>
             <hr>
    		        <% if (tBoards != null && tBoards.size() > 0) { %>
@@ -274,7 +270,7 @@ a:active {
 					<% } else { %>
 					    <p>게시글이 없습니다.</p>
 					<% } %>
-
+ --%>
            <% if (pi != null) { %>
         <ul class="pagination">
             <li class="page-item <%= pi.getCurrentPage() == 1 ? "disabled" : "" %>">
@@ -298,7 +294,7 @@ a:active {
 				<div class="inquiry-section">
 				    <h3>문의내역</h3>
 				    <hr>
-				    <% if (inquiries != null && inquiries.size() > 0) { %>
+				   <%--  <% if (inquiries != null && inquiries.size() > 0) { %> --%>
 				        <% for (Inquiry i : inquiries) { %>
 				            <div class="list-item">
 				                <a href="<%= contextPath %>/list.iq?no=<%= i.getInquiryNo() %>">
@@ -307,9 +303,9 @@ a:active {
 				                <p><%= i.getRegistDate() %></p>
 				            </div>
 				        <% } %>
-				    <% } else { %>
+				 <%--    <% } else { %>
 				        <p>문의내용이 없습니다.</p>
-				    <% } %>
+				    <% } %> --%>
 				</div>
 
                 <% if (pi != null) { %>

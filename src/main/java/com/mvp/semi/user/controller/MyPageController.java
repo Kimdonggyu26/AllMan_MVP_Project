@@ -75,47 +75,23 @@ public class MyPageController extends HttpServlet {
 		if(endPage > maxPage) {
 			endPage = maxPage;
 		}
-		int ottPage = 1;
-		 if (request.getParameter("ottPage") != null) {
-	            ottPage = Integer.parseInt(request.getParameter("ottPage"));
-	        }
-
-	        int itemsPerPage = 4;  // 페이지당 영화 4개씩 표시
-	        MovieService movieService = new MovieService();
-	        List<Movie> ottMovies = movieService.getOttMoviesByPage(ottPage, itemsPerPage);
-
-	        response.setContentType("application/json");
-	        PrintWriter out = response.getWriter();
-	        out.print(new Gson().toJson(ottMovies));
-	        out.flush();
 	        HttpSession session = request.getSession();
 	        User loginUser = (User) session.getAttribute("loginUser");
 		// * 페이징바를 제작하기 위한 데이터 => PageInfo vo 객체
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		String userId = loginUser.getUserId();
 		// * 사용자가 요청한 페이지상에 필요한 게시글 데이터 조회
-		List<Board> list = new TBoardService().selectTBoardList(pi);
 		InquiryService inquiryService = new InquiryService();
 	    List<Inquiry> inquiries = inquiryService.getUserInquiries(userId);
-
-	        request.setAttribute("list", list);
+	    // userId가 잘 들어왔는지 확인하기 위한 출력
+        System.out.println("User ID: " + userId);  // 로그 확인
 	        request.setAttribute("inquiries", inquiries);
 		// 응답페이지 : 일반게시글 목록페이지 (/views/board/boardList.jsp)
 		// 응답데이터 : 페이징바 제작할 데이터, 게시글 데이터 
 		request.setAttribute("pi", pi);
-		request.setAttribute("list", list);
-	    request.setAttribute("ottMovies", ottMovies);  // OTT 영화 리스트 추가
-        if (request.getParameter("page") != null) {
-            currentPage = Integer.parseInt(request.getParameter("page"));
-        }
 
 
 
-		
-		/*
-		 * request.getRequestDispatcher("/views/board/boardList.jsp").forward(request,
-		 * response);
-		 */
 
 	        // JSP로 포워딩
 	        request.getRequestDispatcher("/views/account/mypage.jsp").forward(request, response);
