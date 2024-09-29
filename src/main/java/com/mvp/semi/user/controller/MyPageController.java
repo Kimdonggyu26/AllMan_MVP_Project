@@ -112,12 +112,13 @@ public class MyPageController extends HttpServlet {
 
 
 		
-		
-		request.getRequestDispatcher("/views/board/boardList.jsp").forward(request, response);
-	
+		/*
+		 * request.getRequestDispatcher("/views/board/boardList.jsp").forward(request,
+		 * response);
+		 */
 
 	        // JSP로 포워딩
-	        request.getRequestDispatcher("/views/mypage/MyPage.jsp").forward(request, response);
+	        request.getRequestDispatcher("/views/account/MyPage.jsp").forward(request, response);
 	    }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
