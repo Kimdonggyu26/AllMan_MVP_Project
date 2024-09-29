@@ -184,7 +184,7 @@ public class ModifyNickController extends HttpServlet {
         if (result > 0) { // result 값에 아이디값이 있으면 1로 바뀌어서 > 가 맞음
             // 회원 정보 변경 성공 시 성공 메시지를 세션에 저장하고 리다이렉트
             session.setAttribute("alertMsg", "성공적으로 회원정보가 저장되었습니다.");
-            session.setAttribute("userID", userId);
+            session.setAttribute("userID", u);
             request.getRequestDispatcher("/views/taste/taste1_1.jsp").forward(request, response);
         } else {
             // 회원 정보 변경 실패 시 실패 메시지를 request에 저장하고 포워딩
