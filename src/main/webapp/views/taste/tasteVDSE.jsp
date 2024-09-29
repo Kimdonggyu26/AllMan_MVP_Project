@@ -1,5 +1,3 @@
-
-
 <%@page import="com.mvp.semi.user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
@@ -9,23 +7,20 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 </head>
-    <style>
-        body {
-    background-color: #131313;
-
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+<style>
+body {
+	background-color: #131313;
+	
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
 }
 
 .container {
     text-align: center;
-
- 
-   
 }
 
 .username {
@@ -35,7 +30,7 @@
 
 .highlight {
     font-size: 40px;
-    color: #8260D0; /* 강조된 빨간색 텍스트 */
+    color: #FFA564; /* 강조된 빨간색 텍스트 */
     margin-bottom: 20px;
 }
 
@@ -62,8 +57,8 @@
     cursor: pointer;
     
 }
-
-    </style>
+</style>
+</head>
 
 <%
 	String ContextPath = request.getContextPath();
@@ -72,7 +67,7 @@
 <body>
     <div class="container">
         <h1 class="username"><%= u.getUserNick() %>님의 분석 결과는</h1>
-        <h2 class="highlight">NDHE</h2>
+        <h2 class="highlight">VDSE</h2>
        		
             <div class="sub">취향 분석은 마이페이지에서 다시 할 수 있어요!</div>
 

@@ -78,15 +78,14 @@
 							%> 			
 												
 					<!-- body부 시작  -->
-				  	<form action="<%= contextPath %>/findid.us" >
-					<div class="container">
-					          <div class="idfo">아이디 찾기</div>
-					          <div id="ifound">이메일찾기</div>
-					          <div class="font">가입 시 등록한 이메일을 입력해주세요.</div>
-					        <div class="button-group">
-					  <input type="text" class="ifound"  name="email" placeholder="이메일"  >
-					  <button type="submit"  id="buttons" >확인</button>
-					</div>
+				  	<form action="smtpTest.do" >
+						<div class="container">
+						          <div class="idfo">아이디 찾기</div>
+						          <div class="font">가입 시 등록한 이메일을 입력해주세요.</div>
+						        <div class="button-group">
+						  <input type="text" class="ifound"  name="email" placeholder="이메일"  >
+						  <button type="submit"  id="buttons" >확인</button>
+						</div>
 					</div>
 					</form>
 

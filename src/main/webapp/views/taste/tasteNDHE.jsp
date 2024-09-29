@@ -1,5 +1,3 @@
-
-
 <%@page import="com.mvp.semi.user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
@@ -23,9 +21,6 @@ body {
 
 .container {
     text-align: center;
-
- 
-   
 }
 
 .username {
@@ -35,7 +30,7 @@ body {
 
 .highlight {
     font-size: 40px;
-    color: #FE7D7D; /* 강조된 빨간색 텍스트 */
+    color: #F33F3F; /* 강조된 빨간색 텍스트 */
     margin-bottom: 20px;
 }
 
