@@ -98,7 +98,7 @@
 <div class="d-flex justify-content-center">
     <header>
 	      <div class="col-2">
-	        <a href="<%=contextPath%>"><img src="<%= contextPath%>/assets/image/header/MOVIE_PICK.png"></a>
+	        <a href="<%=contextPath%>"><img src="<%=contextPath%>/assets/image/header/MOVIE_PICK.png"></a>
 	      </div>
 	      <!--검색창-->
 	      <div class="col-8">
@@ -106,23 +106,25 @@
 	          <div id="searchInput" class="input-group">
 	            <input type="text" name="search" id="form-control" class="form-control" placeholder="검색" autocomplete="off">
 	            <div id="searchButton" class="input-group-append">
-	              <button class="btn btn-danger p" type="submit">SEARCH</button>
+	              <button class="btn btn-danger p" type="submit" style="margin: 0;height: 44px; width: 200px">검색</button>
 	            </div>
 	          </div>
 	        </form>
 	      </div>
 	      
 	      <div id="headerIcon" class="col-2 d-flex align-items-center">
-		        <div>
-		        	<a href="#"><img src="<%= contextPath%>/assets/image/header/bell.png" alt="" id="bellIcon" class="mr-3"></a>
-		        </div>
+		        
 		        
 		        <div>
 		        	<% if(loginUser == null) { %>
 		        		<a href="login.us">로그인</a>
 		        	<%} else{%>
-		        		<!-- 클릭 시 마이페이지 이동 -->
-		        		<a href="<%= contextPath%>/views/account/mypage.jsp"><img src="<%= contextPath + loginUser.getFilePath()%>" id="myImg"></a>
+		        		<div style="display: flex; flex-direction: row;">
+
+				        	<a href="mypage.us" style="color: f2f2f2f2;  text-decoration: none; color: inherit;"><B><%=loginUser.getUserNick() %></B>님 &nbsp&nbsp&nbsp&nbsp</a>
+			        		<!-- 클릭 시 마이페이지 이동 -->
+			        		<a href="mypage.us"><img src="<%= contextPath + loginUser.getFilePath()%>" id="myImg"></a>
+		        		</div>
 		        	<%} %>
 		        </div>
 	      </div>

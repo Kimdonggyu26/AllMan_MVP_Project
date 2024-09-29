@@ -14,7 +14,7 @@
 
     if (loginUser != null) {
     	//임시로 검색페이지 요청 // 서블릿으로 처리 필요
-        response.sendRedirect(contextPath + "/views/movieMain/mainPage.jsp");
+        response.sendRedirect(contextPath + "/main");
     } else {
 
         response.sendRedirect(contextPath + "/login.us");
