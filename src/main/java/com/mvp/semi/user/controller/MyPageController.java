@@ -75,8 +75,8 @@ public class MyPageController extends HttpServlet {
 		if(endPage > maxPage) {
 			endPage = maxPage;
 		}
-	        HttpSession session = request.getSession();
-	        User loginUser = (User) session.getAttribute("loginUser");
+		HttpSession session = request.getSession();
+        User loginUser = (User) session.getAttribute("loginUser");
 		// * 페이징바를 제작하기 위한 데이터 => PageInfo vo 객체
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		String userId = loginUser.getUserId();
@@ -85,17 +85,16 @@ public class MyPageController extends HttpServlet {
 	    List<Inquiry> inquiries = inquiryService.getUserInquiries(userId);
 	    // userId가 잘 들어왔는지 확인하기 위한 출력
         System.out.println("User ID: " + userId);  // 로그 확인
-	        request.setAttribute("inquiries", inquiries);
+	    request.setAttribute("inquiries", inquiries);
 		// 응답페이지 : 일반게시글 목록페이지 (/views/board/boardList.jsp)
 		// 응답데이터 : 페이징바 제작할 데이터, 게시글 데이터 
 		request.setAttribute("pi", pi);
+		
+		System.out.println(inquiries);
 
-
-
-
-	        // JSP로 포워딩
-	        request.getRequestDispatcher("/views/account/mypage.jsp").forward(request, response);
-	    }
+		// JSP로 포워딩
+		request.getRequestDispatcher("/views/account/mypage.jsp").forward(request, response);
+	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

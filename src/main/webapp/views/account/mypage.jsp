@@ -271,7 +271,9 @@ a:active {
 					    <p>게시글이 없습니다.</p>
 					<% } %>
  --%>
-           <% if (pi != null) { %>
+ 
+ 
+  <%--           <% if (pi != null) { %>
         <ul class="pagination">
             <li class="page-item <%= pi.getCurrentPage() == 1 ? "disabled" : "" %>">
                 <a class="page-link" href="<%= contextPath %>/mypage.us?page=<%= pi.getCurrentPage()-1 %>"> < </a>
@@ -288,7 +290,7 @@ a:active {
 		    <% } else { %>
 		        
 		    <% } %>
-				</div>
+				</div> --%>
 						    
 				        
 				<div class="inquiry-section">
@@ -297,7 +299,7 @@ a:active {
 				   <%--  <% if (inquiries != null && inquiries.size() > 0) { %> --%>
 				        <% for (Inquiry i : inquiries) { %>
 				            <div class="list-item">
-				                <a href="<%= contextPath %>/list.iq?no=<%= i.getInquiryNo() %>">
+				                <a href="<%= contextPath %>/detail.iq?no=<%= i.getInquiryNo() %>">
 				                    <%= i.getInquiryTitle() %>
 				                </a>
 				                <p><%= i.getRegistDate() %></p>
