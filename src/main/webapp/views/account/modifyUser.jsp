@@ -209,26 +209,14 @@ a:active {
   <div style="display: flex; flex-direction: row;">
   <div class="email">이메일</div>
   <div >
-      <input type="text" id="email" name="email" style="width: 200px;"  value="<%= loginUser.getEmail() %>">
-      <span style="margin: 10px;">@</span>
-      <select id="email-domain" style="width: 250px;">
-          <option value="naver.com">naver.com</option>
-          <option value="gmail.com">gmail.com</option>
-          <option value="hanmail.net">hanmail.net</option>
-          <option value="nate.com">nate.com</option>
-      </select>
+      <input type="text" id="email" name="email" style="width: 200px;"  value="<%= loginUser.getEmail() %>">	
   </div>
 </div>
 <div style="display: flex; flex-direction: row;">
   <div id="phone">휴대폰 번호</div>
-  <div style="display: flex;">
-      <select>
-          <option>010</option>
-          <option>011</option>
-      </select>
-      <input type="text" style="flex: 1; margin-left: 10px;" value="#">
-      <input type="text" style="flex: 1; margin-left: 10px;" value="#">
-  </div>
+			<div>
+				<input type="text"  name="phone" style="width: 200px;"  value="<%= loginUser.getPhone() %>">
+		</div>
 </div>
   <div  id="btns">
       <button ><a href="" style="color: black;">확인</a></button>

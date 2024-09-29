@@ -102,9 +102,9 @@
 		<div>
 			<table class="found">
 				<tr>
-					<td class="p-3"><a href="<%= contextPath %>/views/JM/findId.jsp">아이디 찾기 &nbsp|&nbsp  </a></td>
-					<td class="p-3"><a href="<%= contextPath %>/views/JM/findPwd.jsp">비밀번호 찾기 &nbsp | &nbsp </a></td>
-					<td class="p-3"><a href="<%= contextPath%>/views/JM/signUp.jsp ">회원가입</a></td>
+					<td class="p-3"><a href="<%= contextPath %>/views/account/findId.jsp">아이디 찾기 &nbsp|&nbsp  </a></td>
+					<td class="p-3"><a href="<%= contextPath %>/views/account/findPwd.jsp">비밀번호 찾기 &nbsp | &nbsp </a></td>
+					<td class="p-3"><a href="<%= contextPath%>/views/account/signUp.jsp ">회원가입</a></td>
 				</tr>
 			</table>
 

@@ -775,7 +775,41 @@ public class TBoardDao {
 		
 		return list;
 	}
+	 public List<Board> selectUserTBoards(Connection conn, int userNo, PageInfo pi) {
+	        PreparedStatement pstmt = null;
+	        ResultSet rset = null;
+	        List<Board> list = new ArrayList<>();
+	        String query = prop.getProperty("selectUserTBoardList");  // 매퍼에서 쿼리 가져오기
+
+	        try {
+	            pstmt = conn.prepareStatement(query);
+	            pstmt.setInt(1, userNo); // 사용자 번호 설정
+	            pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1); // 시작 RNUM 설정
+	            pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit()); // 끝 RNUM 설정
+
+	            rset = pstmt.executeQuery();
+	            while (rset.next()) {
+	            	 list.add(new Board(rset.getInt("BOARD_NO"),
+	            			 			rset.getString("TITLE"),
+	            			 			rset.getString("CONTENT"),
+	            			 			rset.getDate("REGIST_DATE")));
+	               
+	            }
+
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {
+	            close(rs);
+	            close(pstmt);
+	        }
+
+	        return list;
+	    }
 
 
 
-}
+	}
+
+
+
+

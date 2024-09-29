@@ -214,16 +214,13 @@ public class TBoardService {
 		close(conn);
 		return listCount;
 	}
+    public List<Board> getUserTBoards(int userNo, PageInfo pi) {
+        Connection conn = getConnection(); // DB 연결
+        List<Board> list = tbDao.selectUserTBoards(conn, userNo, pi); // DAO 호출
+        close(conn); // DB 연결 종료
+        return list; // 결과 반환
+    }
 
-	public List<Movie> TboardInsertSaerchList(String search, int tno, PageInfo pi) {
-		Connection conn = getConnection();
-		List<Movie> list = tbDao.TboardInsertSaerchList(conn, search, tno, pi);
-		close(conn);
-		
-		return list;
-	}
+  
 
-
-	
-	
 }
