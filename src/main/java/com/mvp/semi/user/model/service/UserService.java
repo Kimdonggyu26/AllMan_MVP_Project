@@ -47,7 +47,6 @@ public class UserService {
 		return count;
 	}
 
-
 	public int deleteUser(String userId, String userPwd) {
 		Connection conn = getConnection();
 		int result = uDao.deleteUser(conn, userId, userPwd);
@@ -79,73 +78,71 @@ public class UserService {
 
 	public int modifyUser(String userId, String userNick, String email, String phone) {
 		Connection conn = getConnection();
-		
-		int result = uDao.modifyUser(conn,userId,userNick,email,phone);
+
+		int result = uDao.modifyUser(conn, userId, userNick, email, phone);
 		close(conn);
 		return result;
 	}
-	
-	
+
 	public int updatenick(User u) {
 		Connection conn = getConnection();
 		User updatenick = null;
 		int count = uDao.selectUserByNick(conn, u.getUserNick());
 		int result2 = 0;
-		
+
 		if (count == 0) {
 			result2 = uDao.updatenick(conn, u);
-			
+
 			if (result2 > 0) {
 				commit(conn);
 			} else {
 				rollback(conn);
 			}
 		}
-		
+
 		close(conn);
-		
+
 		return result2;
-		
+
 	}
-	
 
 	public int updateUserProfile(User u) {
-		  Connection conn = getConnection();
-		    int result = 0;
+		Connection conn = getConnection();
+		int result = 0;
 
-		    // 1. 닉네임 중복 체크
-		    int nickCount = uDao.selectUserByNick(conn, u.getUserNick());
+		// 1. 닉네임 중복 체크
+		int nickCount = uDao.selectUserByNick(conn, u.getUserNick());
 
-		    if (nickCount == 0) {
-		        // 2. 닉네임 중복이 없으면 닉네임 및 프로필 업데이트
-		        result = uDao.updateUserProfile(conn, u);
+		if (nickCount == 0) {
+			// 2. 닉네임 중복이 없으면 닉네임 및 프로필 업데이트
+			result = uDao.updateUserProfile(conn, u);
 
-		        if (result > 0) {
-		            // 3. 업데이트 성공 시 커밋
-		            commit(conn);
-		        } else {
-		            // 4. 업데이트 실패 시 롤백
-		            rollback(conn);
-		        }
-		    } else {
-		        // 닉네임 중복 시, result 값으로 실패 처리 (ex: -1)
-		        result = -1;
-		    }
+			if (result > 0) {
+				// 3. 업데이트 성공 시 커밋
+				commit(conn);
+			} else {
+				// 4. 업데이트 실패 시 롤백
+				rollback(conn);
+			}
+		} else {
+			// 닉네임 중복 시, result 값으로 실패 처리 (ex: -1)
+			result = -1;
+		}
 
-		    // 5. 연결 종료
-		    close(conn);
+		// 5. 연결 종료
+		close(conn);
 
-		    return result;
-		
+		return result;
+
 	}
 
 	public int updateTaste(int i, String u) {
-		//취향분석 업데이트
-		//매개변수 10, 20 .. 80
+		// 취향분석 업데이트
+		// 매개변수 10, 20 .. 80
 		Connection conn = getConnection();
 		int result = uDao.updateUserTaste(conn, i, u);
-		
-		//트랜젝션 처리
+
+		// 트랜젝션 처리
 		if (result > 0) {
 			commit(conn);
 		} else {
@@ -153,25 +150,20 @@ public class UserService {
 		}
 		close(conn);
 		return result;
-	
-	
+
+	}
+
 	public int updateUser(String userId, String email, String phone) {
-        Connection conn = getConnection();
-        int result = new UserDao().updateUser(conn, userId, email, phone);
-        
-        if (result > 0) {
-            commit(conn);
-        } else {
-            rollback(conn);
-        }
-        close(conn);
-        return result;
-    }
-	
+		Connection conn = getConnection();
+		int result = new UserDao().updateUser(conn, userId, email, phone);
+
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 
 }
-
-	
-
-
