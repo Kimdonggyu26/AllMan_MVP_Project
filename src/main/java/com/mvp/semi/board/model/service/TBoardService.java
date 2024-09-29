@@ -214,14 +214,14 @@ public class TBoardService {
 		close(conn);
 		return listCount;
 	}
-    public List<Board> getUserTBoards(int userNo, PageInfo pi) {
-        Connection conn = getConnection(); // DB 연결
-        List<Board> list = tbDao.selectUserTBoards(conn, userNo, pi); // DAO 호출
-        close(conn); // DB 연결 종료
-        return list; // 결과 반환
-    }
 
-  
+	public List<Movie> TboardInsertSaerchList(String search, int tno, PageInfo pi) {
+		Connection conn = getConnection();
+		List<Movie> list = tbDao.TboardInsertSaerchList(conn, search, tno, pi);
+		close(conn);
+		
+		return list;
+	}
 
 	public int insertTBoard(Board b) {
 		Connection conn = getConnection();
@@ -235,6 +235,136 @@ public class TBoardService {
 		
 		return result;
 	}
+
+	public int TBoarNDHEConut(String searchtext, int searchField) {
+		Connection conn = getConnection();
+		int listCount = tbDao.TBoarNDHEConut(conn, searchtext, searchField);
+		close(conn);
+		
+		return listCount;
+	}
+
+	public List<Board> TboardSaerchNDHE(String searchtext, PageInfo pi, int searchField) {
+		Connection conn = getConnection();
+		List<Board> list = tbDao.TboardSaerchNDHE(conn, searchtext, pi, searchField);
+		close(conn);
+				
+		return list;
+	}
+
+	public int TBoarVDSEConut(String searchtext, int searchField) {
+		Connection conn = getConnection();
+		int listCount = tbDao.TBoarVDSEConut(conn, searchtext, searchField);
+		close(conn);
+		
+		return listCount;
+	}
+
+	public List<Board> TboardSaerchVDSE(String searchtext, PageInfo pi, int searchField) {
+		Connection conn = getConnection();
+		List<Board> list = tbDao.TboardSaerchVDSE(conn, searchtext, pi, searchField);
+		close(conn);
+				
+		return list;
+	}
+	
+	public int TBoarSPTFConut(String searchtext, int searchField) {
+		Connection conn = getConnection();
+		int listCount = tbDao.TBoarSPTFConut(conn, searchtext, searchField);
+		close(conn);
+		
+		return listCount;
+	}
+
+	public List<Board> TboardSaerchSPTF(String searchtext, PageInfo pi, int searchField) {
+		Connection conn = getConnection();
+		List<Board> list = tbDao.TboardSaerchSPTF(conn, searchtext, pi, searchField);
+		close(conn);
+				
+		return list;
+	}
+	
+	public int TBoarBOFAConut(String searchtext, int searchField) {
+		Connection conn = getConnection();
+		int listCount = tbDao.TBoarBOFAConut(conn, searchtext, searchField);
+		close(conn);
+		
+		return listCount;
+	}
+
+	public List<Board> TboardSaerchBOFA(String searchtext, PageInfo pi, int searchField) {
+		Connection conn = getConnection();
+		List<Board> list = tbDao.TboardSaerchBOFA(conn, searchtext, pi, searchField);
+		close(conn);
+				
+		return list;
+	}
+	
+	public int TBoarETRFConut(String searchtext, int searchField) {
+		Connection conn = getConnection();
+		int listCount = tbDao.TBoarETRFConut(conn, searchtext, searchField);
+		close(conn);
+		
+		return listCount;
+	}
+
+	public List<Board> TboardSaerchETRF(String searchtext, PageInfo pi, int searchField) {
+		Connection conn = getConnection();
+		List<Board> list = tbDao.TboardSaerchETRF(conn, searchtext, pi, searchField);
+		close(conn);
+				
+		return list;
+	}
+	
+	public int TBoarCCFEConut(String searchtext, int searchField) {
+		Connection conn = getConnection();
+		int listCount = tbDao.TBoarCCFEConut(conn, searchtext, searchField);
+		close(conn);
+		
+		return listCount;
+	}
+
+	public List<Board> TboardSaerchCCFE(String searchtext, PageInfo pi, int searchField) {
+		Connection conn = getConnection();
+		List<Board> list = tbDao.TboardSaerchCCFE(conn, searchtext, pi, searchField);
+		close(conn);
+				
+		return list;
+	}
+	
+	public int TBoarCASEConut(String searchtext, int searchField) {
+		Connection conn = getConnection();
+		int listCount = tbDao.TBoarCASEConut(conn, searchtext, searchField);
+		close(conn);
+		
+		return listCount;
+	}
+
+	public List<Board> TboardSaerchCASE(String searchtext, PageInfo pi, int searchField) {
+		Connection conn = getConnection();
+		List<Board> list = tbDao.TboardSaerchCASE(conn, searchtext, pi, searchField);
+		close(conn);
+				
+		return list;
+	}
+	
+	public int TBoarHHALConut(String searchtext, int searchField) {
+		Connection conn = getConnection();
+		int listCount = tbDao.TBoarHHALConut(conn, searchtext, searchField);
+		close(conn);
+		
+		return listCount;
+	}
+
+	public List<Board> TboardSaerchHHAL(String searchtext, PageInfo pi, int searchField) {
+		Connection conn = getConnection();
+		List<Board> list = tbDao.TboardSaerchHHAL(conn, searchtext, pi, searchField);
+		close(conn);
+				
+		return list;
+	}
+	
+	
 
 
 	

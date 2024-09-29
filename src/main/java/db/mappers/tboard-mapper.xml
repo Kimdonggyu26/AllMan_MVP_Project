@@ -184,5 +184,87 @@
 	    )
 	</entry>
 	
+	<entry key="TBoardccConut0">
+		SELECT
+        	   COUNT(*) as COUNT
+ 		  FROM
+       		   BOARD
+		 WHERE
+				 	   BOARD_TITLE LIKE '%' || ? || '%' 
+			    OR BOARD_CONTENT LIKE '%' || ? || '%'
+
+			   AND STATUS IN ('Y')
+			   AND TASTE_NO = ?
+	</entry>
+	
+	<entry key="TBoardccConut1">
+    SELECT
+        COUNT(*) as COUNT
+    FROM
+        BOARD B
+    JOIN
+        USERS U ON B.USER_NO = U.USER_NO
+    WHERE
+        U.USER_ID LIKE '%' || ? || '%' 
+        AND B.STATUS IN ('Y')
+        AND B.TASTE_NO = ?
+	</entry>
+	
+	<entry key="TboardSaerchList0">
+		SELECT *
+					FROM (
+						    SELECT
+						           B.BOARD_NO,
+										   B.BOARD_TYPE,
+										   U.USER_ID,
+										   U.PROFILE_PATH,
+										   M.MOVIE_TITLE,
+										   M.MOVIE_CONTENT,
+										   M.OPEN_DATE,
+										   M.TITLE_PATH,
+										   ROW_NUMBER() OVER(ORDER BY B.BOARD_NO DESC) as RNUM
+				    FROM 
+				           BOARD B
+				    JOIN  USERS U ON B.USER_NO = U.USER_NO
+						JOIN  MOVIE M ON B.MOVIE_NO = M.MOVIE_NO
+				    WHERE 
+				           B.STATUS IN ('Y') 
+				      AND (
+				               BOARD_TITLE LIKE '%' || ? || '%' 
+			   					  OR BOARD_CONTENT LIKE '%' || ? || '%' 
+				      )
+				      AND B.TASTE_NO = ?
+			)
+			WHERE RNUM BETWEEN ? AND ?
+	</entry>
+
+	
+	<entry key="TboardSaerchList1">
+		SELECT *
+					FROM (
+						    SELECT
+						           B.BOARD_NO,
+										   B.BOARD_TYPE,
+										   U.USER_ID,
+										   U.PROFILE_PATH,
+										   M.MOVIE_TITLE,
+										   M.MOVIE_CONTENT,
+										   M.OPEN_DATE,
+										   M.TITLE_PATH,
+										   ROW_NUMBER() OVER(ORDER BY B.BOARD_NO DESC) as RNUM
+				    FROM 
+				           BOARD B
+				    JOIN  USERS U ON B.USER_NO = U.USER_NO
+						JOIN  MOVIE M ON B.MOVIE_NO = M.MOVIE_NO
+				    WHERE 
+				           B.STATUS IN ('Y') 
+				      AND (
+				            U.USER_ID LIKE '%' || ? || '%' 
+				      )
+				      AND B.TASTE_NO = ?
+			)
+			WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
 
 </properties>

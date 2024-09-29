@@ -783,41 +783,6 @@ public class TBoardDao {
 		
 		return list;
 	}
-	 public List<Board> selectUserTBoards(Connection conn, int userNo, PageInfo pi) {
-	        PreparedStatement pstmt = null;
-	        ResultSet rset = null;
-	        List<Board> list = new ArrayList<>();
-	        String query = prop.getProperty("selectUserTBoardList");  // 매퍼에서 쿼리 가져오기
-
-	        try {
-	            pstmt = conn.prepareStatement(query);
-	            pstmt.setInt(1, userNo); // 사용자 번호 설정
-	            pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1); // 시작 RNUM 설정
-	            pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit()); // 끝 RNUM 설정
-
-	            rset = pstmt.executeQuery();
-	            while (rset.next()) {
-	            	 list.add(new Board(rset.getInt("BOARD_NO"),
-	            			 			rset.getString("TITLE"),
-	            			 			rset.getString("CONTENT"),
-	            			 			rset.getDate("REGIST_DATE")));
-	               
-	            }
-
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        } finally {
-	            close(rs);
-	            close(pstmt);
-	        }
-
-	        return list;
-	    }
-
-
-
-	}
-
 
 	public int insertTBoard(Connection conn, Board b) {
 		int result = 0;
@@ -843,5 +808,1110 @@ public class TBoardDao {
 		return result;
 	}
 
+	public int TBoarNDHEConut(Connection conn, String searchtext, int searchField) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchField == 0) {
+			String sql = prop.getProperty("TBoardccConut0");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchtext);
+				pstmt.setString(2, searchtext);
+				pstmt.setInt(3, 10);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("count");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return listCount;
+			
+		}else{
+			
+			String sql = prop.getProperty("TBoardccConut1");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchtext);
+				pstmt.setInt(2, 10);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("count");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return listCount;
+		}
+	}
+
+	public List<Board> TboardSaerchNDHE(Connection conn, String searchtext, PageInfo pi, int searchField) {
+		List<Board> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchField == 0) {
+			
+			String sql = prop.getProperty("TboardSaerchList0");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+				
+				pstmt.setString(1, searchtext);
+				pstmt.setString(2, searchtext);
+				pstmt.setInt(3, 10);
+				pstmt.setInt(4, startRow);
+				pstmt.setInt(5, endRow);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Board( rset.getInt("BOARD_NO")
+									  , rset.getInt("BOARD_TYPE")
+							  		  , rset.getString("USER_ID")
+									  , rset.getString("PROFILE_PATH")
+									  , rset.getString("MOVIE_TITLE")
+									  , rset.getString("MOVIE_CONTENT")
+									  , rset.getDate("OPEN_DATE")
+									  , rset.getString("TITLE_PATH")));
+				}
+					
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return list;
+			
+		}else {
+			String sql = prop.getProperty("TboardSaerchList1");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+				
+				pstmt.setString(1, searchtext);
+				pstmt.setInt(2, 10);
+				pstmt.setInt(3, startRow);
+				pstmt.setInt(4, endRow);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Board( rset.getInt("BOARD_NO")
+									  , rset.getInt("BOARD_TYPE")
+							  		  , rset.getString("USER_ID")
+									  , rset.getString("PROFILE_PATH")
+									  , rset.getString("MOVIE_TITLE")
+									  , rset.getString("MOVIE_CONTENT")
+									  , rset.getDate("OPEN_DATE")
+									  , rset.getString("TITLE_PATH")));
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			
+			return list;
+		}
+	}
+
+	public int TBoarVDSEConut(Connection conn, String searchtext, int searchField) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchField == 0) {
+			String sql = prop.getProperty("TBoardccConut0");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchtext);
+				pstmt.setString(2, searchtext);
+				pstmt.setInt(3, 20);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("count");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return listCount;
+			
+		}else{
+			
+			String sql = prop.getProperty("TBoardccConut1");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchtext);
+				pstmt.setInt(2, 20);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("count");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return listCount;
+		}
+	}
+
+	public List<Board> TboardSaerchVDSE(Connection conn, String searchtext, PageInfo pi, int searchField) {
+		List<Board> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchField == 0) {
+			
+			String sql = prop.getProperty("TboardSaerchList0");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+				
+				pstmt.setString(1, searchtext);
+				pstmt.setString(2, searchtext);
+				pstmt.setInt(3, 20);
+				pstmt.setInt(4, startRow);
+				pstmt.setInt(5, endRow);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Board( rset.getInt("BOARD_NO")
+									  , rset.getInt("BOARD_TYPE")
+							  		  , rset.getString("USER_ID")
+									  , rset.getString("PROFILE_PATH")
+									  , rset.getString("MOVIE_TITLE")
+									  , rset.getString("MOVIE_CONTENT")
+									  , rset.getDate("OPEN_DATE")
+									  , rset.getString("TITLE_PATH")));
+				}
+					
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return list;
+			
+		}else {
+			String sql = prop.getProperty("TboardSaerchList1");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+				
+				pstmt.setString(1, searchtext);
+				pstmt.setInt(2, 20);
+				pstmt.setInt(3, startRow);
+				pstmt.setInt(4, endRow);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Board( rset.getInt("BOARD_NO")
+									  , rset.getInt("BOARD_TYPE")
+							  		  , rset.getString("USER_ID")
+									  , rset.getString("PROFILE_PATH")
+									  , rset.getString("MOVIE_TITLE")
+									  , rset.getString("MOVIE_CONTENT")
+									  , rset.getDate("OPEN_DATE")
+									  , rset.getString("TITLE_PATH")));
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			
+			return list;
+		}
+	}
+	
+	public int TBoarSPTFConut(Connection conn, String searchtext, int searchField) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchField == 0) {
+			String sql = prop.getProperty("TBoardccConut0");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchtext);
+				pstmt.setString(2, searchtext);
+				pstmt.setInt(3, 30);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("count");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return listCount;
+			
+		}else{
+			
+			String sql = prop.getProperty("TBoardccConut1");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchtext);
+				pstmt.setInt(2, 30);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("count");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return listCount;
+		}
+	}
+
+	public List<Board> TboardSaerchSPTF(Connection conn, String searchtext, PageInfo pi, int searchField) {
+		List<Board> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchField == 0) {
+			
+			String sql = prop.getProperty("TboardSaerchList0");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+				
+				pstmt.setString(1, searchtext);
+				pstmt.setString(2, searchtext);
+				pstmt.setInt(3, 30);
+				pstmt.setInt(4, startRow);
+				pstmt.setInt(5, endRow);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Board( rset.getInt("BOARD_NO")
+									  , rset.getInt("BOARD_TYPE")
+							  		  , rset.getString("USER_ID")
+									  , rset.getString("PROFILE_PATH")
+									  , rset.getString("MOVIE_TITLE")
+									  , rset.getString("MOVIE_CONTENT")
+									  , rset.getDate("OPEN_DATE")
+									  , rset.getString("TITLE_PATH")));
+				}
+					
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return list;
+			
+		}else {
+			String sql = prop.getProperty("TboardSaerchList1");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+				
+				pstmt.setString(1, searchtext);
+				pstmt.setInt(2, 30);
+				pstmt.setInt(3, startRow);
+				pstmt.setInt(4, endRow);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Board( rset.getInt("BOARD_NO")
+									  , rset.getInt("BOARD_TYPE")
+							  		  , rset.getString("USER_ID")
+									  , rset.getString("PROFILE_PATH")
+									  , rset.getString("MOVIE_TITLE")
+									  , rset.getString("MOVIE_CONTENT")
+									  , rset.getDate("OPEN_DATE")
+									  , rset.getString("TITLE_PATH")));
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			
+			return list;
+		}
+	}
+	
+	public int TBoarBOFAConut(Connection conn, String searchtext, int searchField) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchField == 0) {
+			String sql = prop.getProperty("TBoardccConut0");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchtext);
+				pstmt.setString(2, searchtext);
+				pstmt.setInt(3, 40);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("count");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return listCount;
+			
+		}else{
+			
+			String sql = prop.getProperty("TBoardccConut1");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchtext);
+				pstmt.setInt(2, 40);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("count");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return listCount;
+		}
+	}
+
+	public List<Board> TboardSaerchBOFA(Connection conn, String searchtext, PageInfo pi, int searchField) {
+		List<Board> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchField == 0) {
+			
+			String sql = prop.getProperty("TboardSaerchList0");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+				
+				pstmt.setString(1, searchtext);
+				pstmt.setString(2, searchtext);
+				pstmt.setInt(3, 40);
+				pstmt.setInt(4, startRow);
+				pstmt.setInt(5, endRow);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Board( rset.getInt("BOARD_NO")
+									  , rset.getInt("BOARD_TYPE")
+							  		  , rset.getString("USER_ID")
+									  , rset.getString("PROFILE_PATH")
+									  , rset.getString("MOVIE_TITLE")
+									  , rset.getString("MOVIE_CONTENT")
+									  , rset.getDate("OPEN_DATE")
+									  , rset.getString("TITLE_PATH")));
+				}
+					
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return list;
+			
+		}else {
+			String sql = prop.getProperty("TboardSaerchList1");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+				
+				pstmt.setString(1, searchtext);
+				pstmt.setInt(2, 40);
+				pstmt.setInt(3, startRow);
+				pstmt.setInt(4, endRow);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Board( rset.getInt("BOARD_NO")
+									  , rset.getInt("BOARD_TYPE")
+							  		  , rset.getString("USER_ID")
+									  , rset.getString("PROFILE_PATH")
+									  , rset.getString("MOVIE_TITLE")
+									  , rset.getString("MOVIE_CONTENT")
+									  , rset.getDate("OPEN_DATE")
+									  , rset.getString("TITLE_PATH")));
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			
+			return list;
+		}
+	}
+	
+	public int TBoarETRFConut(Connection conn, String searchtext, int searchField) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchField == 0) {
+			String sql = prop.getProperty("TBoardccConut0");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchtext);
+				pstmt.setString(2, searchtext);
+				pstmt.setInt(3, 50);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("count");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return listCount;
+			
+		}else{
+			
+			String sql = prop.getProperty("TBoardccConut1");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchtext);
+				pstmt.setInt(2, 50);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("count");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return listCount;
+		}
+	}
+
+	public List<Board> TboardSaerchETRF(Connection conn, String searchtext, PageInfo pi, int searchField) {
+		List<Board> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchField == 0) {
+			
+			String sql = prop.getProperty("TboardSaerchList0");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+				
+				pstmt.setString(1, searchtext);
+				pstmt.setString(2, searchtext);
+				pstmt.setInt(3, 50);
+				pstmt.setInt(4, startRow);
+				pstmt.setInt(5, endRow);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Board( rset.getInt("BOARD_NO")
+									  , rset.getInt("BOARD_TYPE")
+							  		  , rset.getString("USER_ID")
+									  , rset.getString("PROFILE_PATH")
+									  , rset.getString("MOVIE_TITLE")
+									  , rset.getString("MOVIE_CONTENT")
+									  , rset.getDate("OPEN_DATE")
+									  , rset.getString("TITLE_PATH")));
+				}
+					
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return list;
+			
+		}else {
+			String sql = prop.getProperty("TboardSaerchList1");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+				
+				pstmt.setString(1, searchtext);
+				pstmt.setInt(2, 50);
+				pstmt.setInt(3, startRow);
+				pstmt.setInt(4, endRow);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Board( rset.getInt("BOARD_NO")
+									  , rset.getInt("BOARD_TYPE")
+							  		  , rset.getString("USER_ID")
+									  , rset.getString("PROFILE_PATH")
+									  , rset.getString("MOVIE_TITLE")
+									  , rset.getString("MOVIE_CONTENT")
+									  , rset.getDate("OPEN_DATE")
+									  , rset.getString("TITLE_PATH")));
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			
+			return list;
+		}
+	}
+	
+	public int TBoarCCFEConut(Connection conn, String searchtext, int searchField) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchField == 0) {
+			String sql = prop.getProperty("TBoardccConut0");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchtext);
+				pstmt.setString(2, searchtext);
+				pstmt.setInt(3, 60);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("count");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return listCount;
+			
+		}else{
+			
+			String sql = prop.getProperty("TBoardccConut1");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchtext);
+				pstmt.setInt(2, 60);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("count");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return listCount;
+		}
+	}
+
+	public List<Board> TboardSaerchCCFE(Connection conn, String searchtext, PageInfo pi, int searchField) {
+		List<Board> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchField == 0) {
+			
+			String sql = prop.getProperty("TboardSaerchList0");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+				
+				pstmt.setString(1, searchtext);
+				pstmt.setString(2, searchtext);
+				pstmt.setInt(3, 60);
+				pstmt.setInt(4, startRow);
+				pstmt.setInt(5, endRow);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Board( rset.getInt("BOARD_NO")
+									  , rset.getInt("BOARD_TYPE")
+							  		  , rset.getString("USER_ID")
+									  , rset.getString("PROFILE_PATH")
+									  , rset.getString("MOVIE_TITLE")
+									  , rset.getString("MOVIE_CONTENT")
+									  , rset.getDate("OPEN_DATE")
+									  , rset.getString("TITLE_PATH")));
+				}
+					
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return list;
+			
+		}else {
+			String sql = prop.getProperty("TboardSaerchList1");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+				
+				pstmt.setString(1, searchtext);
+				pstmt.setInt(2, 60);
+				pstmt.setInt(3, startRow);
+				pstmt.setInt(4, endRow);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Board( rset.getInt("BOARD_NO")
+									  , rset.getInt("BOARD_TYPE")
+							  		  , rset.getString("USER_ID")
+									  , rset.getString("PROFILE_PATH")
+									  , rset.getString("MOVIE_TITLE")
+									  , rset.getString("MOVIE_CONTENT")
+									  , rset.getDate("OPEN_DATE")
+									  , rset.getString("TITLE_PATH")));
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			
+			return list;
+		}
+	}
+	
+	public int TBoarCASEConut(Connection conn, String searchtext, int searchField) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchField == 0) {
+			String sql = prop.getProperty("TBoardccConut0");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchtext);
+				pstmt.setString(2, searchtext);
+				pstmt.setInt(3, 70);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("count");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return listCount;
+			
+		}else{
+			
+			String sql = prop.getProperty("TBoardccConut1");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchtext);
+				pstmt.setInt(2, 70);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("count");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return listCount;
+		}
+	}
+
+	public List<Board> TboardSaerchCASE(Connection conn, String searchtext, PageInfo pi, int searchField) {
+		List<Board> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchField == 0) {
+			
+			String sql = prop.getProperty("TboardSaerchList0");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+				
+				pstmt.setString(1, searchtext);
+				pstmt.setString(2, searchtext);
+				pstmt.setInt(3, 70);
+				pstmt.setInt(4, startRow);
+				pstmt.setInt(5, endRow);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Board( rset.getInt("BOARD_NO")
+									  , rset.getInt("BOARD_TYPE")
+							  		  , rset.getString("USER_ID")
+									  , rset.getString("PROFILE_PATH")
+									  , rset.getString("MOVIE_TITLE")
+									  , rset.getString("MOVIE_CONTENT")
+									  , rset.getDate("OPEN_DATE")
+									  , rset.getString("TITLE_PATH")));
+				}
+					
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return list;
+			
+		}else {
+			String sql = prop.getProperty("TboardSaerchList1");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+				
+				pstmt.setString(1, searchtext);
+				pstmt.setInt(2, 70);
+				pstmt.setInt(3, startRow);
+				pstmt.setInt(4, endRow);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Board( rset.getInt("BOARD_NO")
+									  , rset.getInt("BOARD_TYPE")
+							  		  , rset.getString("USER_ID")
+									  , rset.getString("PROFILE_PATH")
+									  , rset.getString("MOVIE_TITLE")
+									  , rset.getString("MOVIE_CONTENT")
+									  , rset.getDate("OPEN_DATE")
+									  , rset.getString("TITLE_PATH")));
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			
+			return list;
+		}
+	}
+	
+	public int TBoarHHALConut(Connection conn, String searchtext, int searchField) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchField == 0) {
+			String sql = prop.getProperty("TBoardccConut0");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchtext);
+				pstmt.setString(2, searchtext);
+				pstmt.setInt(3, 80);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("count");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return listCount;
+			
+		}else{
+			
+			String sql = prop.getProperty("TBoardccConut1");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchtext);
+				pstmt.setInt(2, 80);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("count");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return listCount;
+		}
+	}
+
+	public List<Board> TboardSaerchHHAL(Connection conn, String searchtext, PageInfo pi, int searchField) {
+		List<Board> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchField == 0) {
+			
+			String sql = prop.getProperty("TboardSaerchList0");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+				
+				pstmt.setString(1, searchtext);
+				pstmt.setString(2, searchtext);
+				pstmt.setInt(3, 80);
+				pstmt.setInt(4, startRow);
+				pstmt.setInt(5, endRow);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Board( rset.getInt("BOARD_NO")
+									  , rset.getInt("BOARD_TYPE")
+							  		  , rset.getString("USER_ID")
+									  , rset.getString("PROFILE_PATH")
+									  , rset.getString("MOVIE_TITLE")
+									  , rset.getString("MOVIE_CONTENT")
+									  , rset.getDate("OPEN_DATE")
+									  , rset.getString("TITLE_PATH")));
+				}
+					
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return list;
+			
+		}else {
+			String sql = prop.getProperty("TboardSaerchList1");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+				
+				pstmt.setString(1, searchtext);
+				pstmt.setInt(2, 80);
+				pstmt.setInt(3, startRow);
+				pstmt.setInt(4, endRow);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Board( rset.getInt("BOARD_NO")
+									  , rset.getInt("BOARD_TYPE")
+							  		  , rset.getString("USER_ID")
+									  , rset.getString("PROFILE_PATH")
+									  , rset.getString("MOVIE_TITLE")
+									  , rset.getString("MOVIE_CONTENT")
+									  , rset.getDate("OPEN_DATE")
+									  , rset.getString("TITLE_PATH")));
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			
+			return list;
+		}
+	}
 
 
+
+}

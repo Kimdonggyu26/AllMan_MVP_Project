@@ -221,5 +221,139 @@ public class FBoardDao {
 		return result;
 	}
 
+	public int FBoarSearchCount(Connection conn, String searchtext, int searchField) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchField == 0) {
+			String sql = prop.getProperty("FBoarSearchCount0");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchtext);
+				pstmt.setString(2, searchtext);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("count");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return listCount;
+			
+		}else{
+			
+			String sql = prop.getProperty("FBoarSearchCount1");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchtext);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("count");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return listCount;
+		}
+	}
+
+	public List<Board> FboardSaerchList(Connection conn, String searchtext, PageInfo pi, int searchField) {
+		List<Board> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchField == 0) {
+			
+			String sql = prop.getProperty("FboardSaerchList0");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+				
+				pstmt.setString(1, searchtext);
+				pstmt.setString(2, searchtext);
+				pstmt.setInt(3, startRow);
+				pstmt.setInt(4, endRow);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Board( rset.getInt("BOARD_NO")
+									  , rset.getInt("BOARD_TYPE")
+							  		  , rset.getString("USER_ID")
+									  , rset.getString("PROFILE_PATH")
+									  , rset.getString("MOVIE_TITLE")
+									  , rset.getString("MOVIE_CONTENT")
+									  , rset.getDate("OPEN_DATE")
+									  , rset.getString("TITLE_PATH")));
+				}
+					
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return list;
+			
+		}else {
+			String sql = prop.getProperty("FboardSaerchList1");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+				int endRow = startRow + pi.getBoardLimit() - 1;
+				
+				pstmt.setString(1, searchtext);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Board( rset.getInt("BOARD_NO")
+									  , rset.getInt("BOARD_TYPE")
+							  		  , rset.getString("USER_ID")
+									  , rset.getString("PROFILE_PATH")
+									  , rset.getString("MOVIE_TITLE")
+									  , rset.getString("MOVIE_CONTENT")
+									  , rset.getDate("OPEN_DATE")
+									  , rset.getString("TITLE_PATH")));
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			
+			return list;
+		}
+	}
+
 
 }

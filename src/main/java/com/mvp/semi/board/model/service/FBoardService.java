@@ -75,6 +75,22 @@ public class FBoardService {
 		return result;
 	}
 
+	public int FBoarSearchCount(String searchtext, int searchField) {
+		Connection conn = getConnection();
+		int listCount = fbDao.FBoarSearchCount(conn, searchtext, searchField);
+		close(conn);
+		
+		return listCount;
+	}
+
+	public List<Board> FboardSaerchList(String searchtext, PageInfo pi, int searchField) {
+		Connection conn = getConnection();
+		List<Board> list = fbDao.FboardSaerchList(conn, searchtext, pi, searchField);
+		close(conn);
+				
+		return list;
+	}
+
 
 
 

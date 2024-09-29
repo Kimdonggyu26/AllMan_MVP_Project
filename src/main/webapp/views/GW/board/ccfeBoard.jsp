@@ -104,46 +104,156 @@
 
 
 
-        <div id="board-b" class="row justify-content-center">
-          <form method="post" name="search" action="">
-              <table class="">
-                <tr>
-                  <td><select class="form-control" name="searchField" id="select-bar">
-                      <option value="bbsTitle">제목+내용</option>
-                      <option value="userID">작성자</option>
-                  </select></td>
-                  <td><input type="text" class="form-control" id="search-bar" placeholder="검색" name="searchText"> </td> 
-                  <td><button type="submit" class="btn" id="search-btn">검색</button></td>
+        <<!-- 검색 결과를 출력할 영역 -->
+      <div class="row justify-content-center" id="search-results"></div>
+
+      <div id="board-b" class="row justify-content-center">
       
-              </table>
-            </form>
-          </div>
+         <form id="searchForm" method="post" name="search">
+            <table class="">
+               <tr>
+                  <td>
+                     <select class="form-control" name="searchField" id="select-bar">
+                        <option value="0">제목+내용</option>
+                        <option value="1">작성자</option>
+                     </select>
+                  </td>
+                  <td>
+                     <input type="text" class="form-control" id="search-bar" placeholder="검색" name="searchText">
+                  </td>
+                  <td>
+                     <button type="submit" class="btn" id="search-btn">검색</button>
+                  </td>
+               </tr>
+            </table>
+         </form>
+      </div>
 
-
-        <ul class="pagination d-flex justify-content-center text-dark" id="page">
-        
-          <li class='page-item <%= pi.getCurrentPage() == 1 ? "disabled" : "" %>'>
-          	<a class="page-link" href="<%= contextPath%>/list.tbo?page=<%= pi.getCurrentPage() -1 %>">&lt;</a>
-          </li>
-          
-          <% for(int p=pi.getStartPage(); p<=pi.getEndPage(); p++) { %>
-         	 <li class='page-item <%= p == pi.getCurrentPage() ? "active" : "" %>'>
-         	 	<a class="page-link" style="color: #ffffff;" href="<%= contextPath%>/list.tbo?page=<%= p %>"><%= p %>
-         	 	</a>
-         	 </li>
-          <% } %>
-                   
-          <li class='page-item <%= pi.getCurrentPage() == pi.getMaxPage() ? "disabled" : "" %>'>
-          	<a class="page-link" href="<%=contextPath%>/list.tbo?page=<%= pi.getCurrentPage()+1 %>">&gt;
-          	</a>
-          </li>
-          
-        </ul>
+      <ul class="pagination d-flex justify-content-center text-dark" id="page">
+         <li class='page-item <%= pi.getCurrentPage() == 1 ? "disabled" : "" %>'>
+            <a class="page-link" href="<%= contextPath%>/list.fbo?page=<%= pi.getCurrentPage() -1 %>">&lt;</a>
+         </li>
+         
+         <% for(int p=pi.getStartPage(); p<=pi.getEndPage(); p++) { %>
+         <li class='page-item <%= p == pi.getCurrentPage() ? "active" : "" %>'>
+            <a class="page-link" style="color: #ffffff;" href="<%= contextPath%>/list.fbo?page=<%= p %>"><%= p %></a>
+         </li>
+         <% } %>
+         
+         <li class='page-item <%= pi.getCurrentPage() == pi.getMaxPage() ? "disabled" : "" %>'>
+            <a class="page-link" href="<%= contextPath%>/list.fbo?page=<%= pi.getCurrentPage() + 1 %>">&gt;</a>
+         </li>
+      </ul>
 
 
 
 
     </section>
+
+
+         <script>
+         $(document).ready(function() { // DOM이 준비된 후 실행
+            // 카드 클릭 시 상세보기로 이동
+            $(document).on('click', '.card', function() {
+               const boardNo = $(this).data('no');
+               location.href = '<%= contextPath %>/detail.tbo?no=' + boardNo;
+            });
+
+            // 검색 폼의 제출 이벤트를 Ajax로 처리
+            $('#searchForm').on('submit', function(e) {
+               e.preventDefault();  // 폼의 기본 제출 동작을 막음
+               performSearch(1);  // 검색 수행, 첫 번째 페이지부터 시작
+            });
+         });
+
+         function performSearch(page) {
+        	  const contextPath = '<%= contextPath %>'
+            const searchField = $('#select-bar').val();  // 선택된 검색 필드
+            const searchText = $('#search-bar').val().trim();  // 검색어 입력값
+
+            if (!searchText) {
+               alert('검색어를 입력하세요.');
+               return;
+            }
+
+            // Ajax 요청
+            $.ajax({
+               url: '<%= contextPath %>/ccfe.mv',  // 서버의 검색 엔드포인트
+               type: 'GET',
+               data: {
+                  searchField: searchField,
+                  searchText: searchText,
+                  page: page  // 현재 페이지 정보
+               },
+               success: function(res) {
+                  // 서버에서 반환된 데이터로 결과와 페이지네이션 업데이트
+                  var result = res.list;
+                  var pagination = res.pi;
+
+                  // 기존 게시글 목록과 페이지네이션을 숨김
+                  $('#bt1').hide();  // 게시글 리스트 숨김
+                  $('#page').hide();  // 기존 페이지네이션 숨김
+
+                  // 결과 영역 초기화
+                  $('#search-results').html('');  // 검색 결과 영역 초기화
+                  let resultHtml = '';
+
+                  if (result.length === 0) {
+                     resultHtml += '<div>검색 결과가 없습니다.</div>';
+                  } else {
+                     // 결과를 반복문으로 HTML 생성
+									for (let i = 0; i < result.length; i++) {
+									    resultHtml += '<div class="col-4 mb-4" id="c-box">' +
+									                      '<div class="card" data-no="' + result[i].boardNo + '">' +
+									                          '<img class="card-img-top" src="' + contextPath + result[i].titlePath + '" alt="영화 이미지" width="300px" height="230px">' +
+									                          '<div class="card-body">' +
+									                              '<div>' + result[i].movieTitle + '</div>' +
+									                              '<div id="mv-content">' + result[i].movieContent + '</div>' +
+									                              '<div>' + result[i].movieOpenDate + '</div>' +
+									                          '</div>' +
+									                          '<div class="card-footer">' +
+									                              '<table>' +
+									                                  '<tr>' +
+									                                      '<td><img src="' + result[i].profilePath + '" style="width: 25px; height: 25px;"></td>' +
+									                                      '<td>' + result[i].userId + '</td>' +
+									                                  '</tr>' +
+									                              '</table>' +
+									                          '</div>' +
+									                      '</div>' +
+									                  '</div>';
+									}
+                  }
+
+                  $('#search-results').html(resultHtml);  // 검색 결과 표시
+
+                  // 페이지네이션 생성
+                  let liEl = "";  
+
+                  // 이전 페이지 버튼
+                  liEl += "<li class='page-item " + (pagination.currentPage === 1 ? "disabled" : "") + "'>" +
+                          '<a class="page-link" onclick="performSearch(' + (pagination.currentPage - 1) + ')">&lt;</a>' +
+                          "</li>";
+
+                  // 페이지 번호 버튼
+                  for (let i = pagination.startPage; i <= pagination.endPage; i++) {
+                     liEl += "<li class='page-item " + (i === pagination.currentPage ? "active" : "") + "'>" +
+                             '<a class="page-link" onclick="performSearch(' + i + ')">' + i + '</a>' +
+                             "</li>";
+                  }
+
+                  // 다음 페이지 버튼
+                  liEl += "<li class='page-item " + (pagination.currentPage === pagination.maxPage ? "disabled" : "") + "'>" +
+                          '<a class="page-link" onclick="performSearch(' + (pagination.currentPage < pagination.maxPage ? (pagination.currentPage + 1) : pagination.maxPage) + ')">&gt;</a>' +
+                          "</li>";
+
+                  $('#page').html(liEl);  // 검색 페이지네이션 업데이트
+               },
+               error: function(error) {
+                  console.error('검색 중 오류 발생:', error);
+               }
+            });
+         }
+      </script>
 
 
 
