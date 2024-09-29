@@ -138,7 +138,24 @@ public class UserService {
 		    return result;
 		
 	}
+
+	public int updateTaste(int i, String u) {
+		//취향분석 업데이트
+		//매개변수 10, 20 .. 80
+		Connection conn = getConnection();
+		int result = uDao.updateUserTaste(conn, i, u);
+		
+		//트랜젝션 처리
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
+
+}
 
 	
 

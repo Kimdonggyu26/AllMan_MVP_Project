@@ -12,13 +12,13 @@ import javax.servlet.http.HttpSession;
  * Servlet implementation class TasetOneController
  */
 @WebServlet("/taste.t4")
-public class TasteFourController extends HttpServlet {
+public class Taste_4Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TasteFourController() {
+    public Taste_4Controller() {
         super();
         // TODO Auto-generated constructor stub
     }

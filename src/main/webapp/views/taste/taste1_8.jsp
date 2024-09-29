@@ -33,7 +33,7 @@ input:focus {outline: none;}
 .btn {
     border: none;
     border-radius: 5px;
-    background-color: #60D060; /* 녹색 버튼 색상 */
+    background-color: #8AA442; /* 녹색 버튼 색상 */
     color: white; /* 텍스트 색상 */
     font-size: 16px;
     cursor: pointer; 

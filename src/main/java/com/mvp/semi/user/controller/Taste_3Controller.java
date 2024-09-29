@@ -11,14 +11,14 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class TasetOneController
  */
-@WebServlet("/taste.t5")
-public class TasteFiveController extends HttpServlet {
+@WebServlet("/taste.t3")
+public class Taste_3Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TasteFiveController() {
+    public Taste_3Controller() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,8 +37,8 @@ public class TasteFiveController extends HttpServlet {
         // null 체크 후 세션에 저장
         if (taste != null) {
             int tasteValue = Integer.parseInt(taste);
-            session.setAttribute("taste5", tasteValue);
-            request.getRequestDispatcher("/views/taste/taste1_6.jsp").forward(request, response);
+            session.setAttribute("taste3", tasteValue);
+            request.getRequestDispatcher("/views/taste/taste1_4.jsp").forward(request, response);
         }else {
         	request.getRequestDispatcher("/views/taste/taste1_1.jsp").forward(request, response);
         }

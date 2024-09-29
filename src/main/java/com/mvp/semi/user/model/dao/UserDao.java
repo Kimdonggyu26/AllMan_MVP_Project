@@ -298,4 +298,25 @@ public class UserDao {
 		
 	}
 
+
+
+	public int updateUserTaste(Connection conn, int i, String u) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("userTaste");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, i);
+			pstmt.setString(2, u);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 }

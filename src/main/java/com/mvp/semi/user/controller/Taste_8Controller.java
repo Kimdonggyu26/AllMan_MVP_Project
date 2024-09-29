@@ -11,14 +11,14 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class TasetOneController
  */
-@WebServlet("/taste.t1")
-public class TasteOneController extends HttpServlet {
+@WebServlet("/taste.t8")
+public class Taste_8Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TasteOneController() {
+    public Taste_8Controller() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,9 +27,6 @@ public class TasteOneController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
 		request.setCharacterEncoding("utf-8");
 		
 		HttpSession session = request.getSession();
@@ -40,13 +37,11 @@ public class TasteOneController extends HttpServlet {
         // null 체크 후 세션에 저장
         if (taste != null) {
             int tasteValue = Integer.parseInt(taste);
-            session.setAttribute("taste1", tasteValue);
-            request.getRequestDispatcher("/views/taste/taste1_2.jsp").forward(request, response);
+            session.setAttribute("taste8", tasteValue);
+            request.getRequestDispatcher("/views/taste/taste1_9.jsp").forward(request, response);
         }else {
-        	request.setAttribute("msg", "데이터 손실. 처음으로 돌아갑니다.");
         	request.getRequestDispatcher("/views/taste/taste1_1.jsp").forward(request, response);
         }
-
 	}
 
 	/**

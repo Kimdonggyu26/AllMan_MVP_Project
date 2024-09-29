@@ -172,7 +172,7 @@ public class ModifyNickController extends HttpServlet {
         u.setUserId(userId);
         u.setUserNick(userNick);
         u.setFilePath("/resources/user_upfiles/" + fileName); // 프로필 이미지 경로 설정
-
+        
         // 닉네임 및 프로필 이미지 업데이트
         System.out.println(userNick);
 		 
@@ -183,8 +183,9 @@ public class ModifyNickController extends HttpServlet {
 // 결과 처리
         if (result > 0) { // result 값에 아이디값이 있으면 1로 바뀌어서 > 가 맞음
             // 회원 정보 변경 성공 시 성공 메시지를 세션에 저장하고 리다이렉트
-            session.setAttribute("alertMsg", "성공적으로 회원정보가 변경되었습니다.");
-            request.getRequestDispatcher("/views/account/modifyUser.jsp").forward(request, response);
+            session.setAttribute("alertMsg", "성공적으로 회원정보가 저장되었습니다.");
+            session.setAttribute("userID", userId);
+            request.getRequestDispatcher("/views/taste/taste1_1.jsp").forward(request, response);
         } else {
             // 회원 정보 변경 실패 시 실패 메시지를 request에 저장하고 포워딩
             request.setAttribute("msg", "닉네임 또는 프로필 이미지 변경 실패");
