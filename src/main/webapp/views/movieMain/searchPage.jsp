@@ -2,6 +2,7 @@
 <%@page import="com.mvp.semi.movie.model.vo.Movie"%>
 <%@page import="java.util.List"%>
 <%@page import="com.mvp.semi.common.model.vo.PageInfo"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%
@@ -213,8 +214,19 @@
 		            for (let i = 0; i < r.length; i++) {
 		                $('#info' + r[i].movieNo).on('click', function() {
 		                    var movieNo = r[i].movieNo; // 현재 영화 번호
-		                    console.log('영화정보 버튼이 클릭되었습니다. 영화번호:', movieNo);
-		                    location.href = "<%=contextPath%>/showDetail.sd?movieNo=" + movieNo;
+		                    
+		                    $.ajax({
+		                        type: "POST",
+		                        url: "<%=contextPath%>/showDetail.sd", // 서블릿 URL
+		                        data: { movieNo: movieNo }, // 영화 번호를 데이터로 전송
+		                        success: function(response) {
+		                            // 성공적으로 요청이 처리된 후, 페이지 이동
+		                            window.location.href = "<%=contextPath%>/views/movieMain/detailPage.jsp";
+		                        },
+		                        error: function(error) {
+		                            console.error("Error:", error);
+		                        }
+		                    });
 		                });
 		            }
 				},
@@ -342,10 +354,28 @@
 					
 		            for (let i = 0; i < r.length; i++) {
 		                $('#info' + r[i].movieNo).on('click', function() {
-		                    var movieNo = r[i].movieNo; // 현재 영화 번호
-		                    console.log('영화정보 버튼이 클릭되었습니다. 영화번호:', movieNo);
-		                    location.href = "<%=contextPath%>/showDetail.sd?movieNo=" + movieNo;
-		                });
+		                	
+	                    var movieNo = r[i].movieNo; // 현재 영화 번호
+	                    console.log('영화정보 버튼이 클릭되었습니다. 영화번호:', movieNo);
+
+				                    $.ajax({
+				                        url: "<%=contextPath%>/showDetail.sd", // 서블릿 URL
+				                        data: { movieNo: movieNo }, // 영화 번호를 데이터로 전송
+				                        success: function(res) {
+				                            // 성공적으로 요청이 처리된 후, 페이지 이동
+				                            console.log(res);
+				                            if(res){
+				                                window.location.href = "<%=contextPath%>/views/movieMain/detailPage.jsp?movieNo=" + movieNo;
+				                            }else{
+				                            	alert('영화 정보를 불러오는데 실패했습니다.');
+				                            }
+				                        		
+				                        }		
+	                        
+	                        
+	                    });
+	                    
+	        				});
 		            }
 		        },
 		        error: function() {

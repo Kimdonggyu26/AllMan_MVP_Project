@@ -3,11 +3,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String contextPath = request.getContextPath(); // "/web"
+		String contextPath = request.getContextPath(); // "/web"
     User loginUser = (User) session.getAttribute("loginUser");
     String userNickname = (String) session.getAttribute("userNickname");
-	String alertMsg = (String)session.getAttribute("alertMsg");
-	
+		String alertMsg = (String)session.getAttribute("alertMsg");
+    Integer movieNo = (Integer) session.getAttribute("movieNo");
 	int userNo = -1;
 	if(loginUser != null){
 		userNo = loginUser.getUserNo();	
@@ -30,17 +30,18 @@
 <body>
 
 	<%
-		Movie mv = (Movie) request.getAttribute("movie");	
+		Movie mv = (Movie) session.getAttribute("movie");	
 		String[] genreArr = mv.getGenre().split(",");
-		 StringBuilder genres = new StringBuilder(); 
+		StringBuilder genres = new StringBuilder(); 
 
-		    for (int i = 0; i < genreArr.length; i++) {
-		        genres.append(genreArr[i].trim()); 
-		        if (i < genreArr.length - 1) {
-		            genres.append(", ");
-		        }
-		        
-		    }
+		 		
+    for (int i = 0; i < genreArr.length; i++) {
+        genres.append(genreArr[i].trim()); 
+        if (i < genreArr.length - 1) {
+            genres.append(", ");
+        }
+        
+    }
 	%>
   <!--상세 이미지 영역-->
     <div id="main_img_div">
@@ -262,7 +263,7 @@
     								 
     								divEl +=	'<div class="top_review">'
     			                    + '<div class="user_header">'
-    			                     + '<img src="/mvp<%=loginUser.getFilePath()%>" alt="">'
+    			        //             + '<img src="" alt="">'
     												 	 + '<div>'
     												 	  + '<div>' + res[i].userNickname + '</div>'
     												 	  + '<p>' + res[i].reviewDate + '</p>'

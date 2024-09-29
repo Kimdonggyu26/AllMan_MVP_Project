@@ -9,7 +9,6 @@ body {
 body {
   background: #131313;
   margin: 0;
-  border: 1px solid blue;
 }
 
 #main_img_div {
@@ -82,7 +81,7 @@ button {
 #back {
   position: absolute;
   top: 5%;
-  left: 13%;
+  left: 20%;
   display: flex;
   flex-direction: column;
   color: #ffffff;
@@ -96,7 +95,6 @@ button {
 }
 
 #right_contents {
-  border: 1px solid red;
   width: 422px;
   height: 750px;
   border-radius: 3%;
@@ -174,7 +172,6 @@ button {
 }
 
 #left_contents {
-  border: 1px solid rgb(139, 77, 255);
   margin-right: 31px;
 }
 
@@ -261,14 +258,7 @@ button {
   font-family: "pretendard";
 }
 
-
-
-#review{
-  border: 1px solid white;
-}
-
 #review_menu{
-  border: 1px solid pink;
   background-color: #707070;
 }
 
