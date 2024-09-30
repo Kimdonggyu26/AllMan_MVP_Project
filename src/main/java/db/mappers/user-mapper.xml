@@ -163,6 +163,17 @@ SELECT
 		 WHERE
 					 USER_ID = ?
 	</entry>
+	<entry key="updateUser">
+		UPDATE
+					 USERS 
+		SET 
+					USER_NICKNAME = ?,
+					EMAIL = ?,
+					PHONE = ?
+	 WHERE 
+	 				USER_ID = ?
+	</entry>
+	
 	
 	<entry key="selectAllUserList">
 		SELECT
@@ -214,7 +225,7 @@ SELECT
 		  						 USER_NO
 								 , USER_ID
 								 , USER_PWD
-							   	 , PHONE
+							   , PHONE
 								 , EMAIL
 								 , USER_NICKNAME
 								 , ENROLL_DATE

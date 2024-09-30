@@ -364,7 +364,7 @@
 				                            // 성공적으로 요청이 처리된 후, 페이지 이동
 				                            console.log(res);
 				                            if(res){
-				                                window.location.href = "<%=contextPath%>/showDetail.sd?movieNo=" + movieNo;
+				                                window.location.href = "<%=contextPath%>/views/movieMain/detailPage.jsp?movieNo=" + movieNo;
 				                            }else{
 				                            	alert('영화 정보를 불러오는데 실패했습니다.');
 				                            }

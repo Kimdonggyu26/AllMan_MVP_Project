@@ -38,6 +38,11 @@ public class ModifyUserController extends HttpServlet {
         String userId = request.getParameter("userid");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
+        
+        // 현재 세션에서 사용자 아이디 가져오기 (로그인된 사용자)
+        HttpSession session = request.getSession();
+        User loginUser = (User) session.getAttribute("loginUser");
+        String userId = loginUser.getUserId();  // 로그인된 사용자의 ID 가져오기
         String userNick = request.getParameter("userNick");
 
         // 파일 업로드 처리
@@ -67,6 +72,14 @@ public class ModifyUserController extends HttpServlet {
         int result = userService.updateUser(user);
 
         if (result > 0) {
+            // 업데이트 성공 시, 프로필 페이지로 리다이렉트
+        	loginUser.setUserNick(userNick);
+        	System.out.println("수정된 닉네임: " + userNick);
+        	loginUser.setEmail(email);
+        	loginUser.setPhone(phone);
+        	session.setAttribute("loginUser", loginUser);
+        	session.setAttribute("alertMsg", "성공적으로 수정했습니다.");
+            response.sendRedirect(request.getContextPath());
             // 수정된 정보를 세션에 반영
             HttpSession session = request.getSession();
             session.setAttribute("loginUser", user);

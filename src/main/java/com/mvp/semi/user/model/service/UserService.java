@@ -155,6 +155,15 @@ public class UserService {
 
 	}
 
+	public int updateUser(String userId, String userNick,String email, String phone) {
+		Connection conn = getConnection();
+		int result = new UserDao().updateUser(conn, userNick ,userId, email, phone);
+		System.out.println("수정된 닉네임 업데이트: " + userNick);
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
 	
 	public int emailCheck(String checkEmail) {
 		Connection conn = getConnection();

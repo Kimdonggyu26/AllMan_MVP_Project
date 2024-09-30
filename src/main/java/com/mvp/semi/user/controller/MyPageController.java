@@ -70,6 +70,40 @@ public class MyPageController extends HttpServlet {
 		int maxPage = (int) Math.ceil((double) listCount / boardLimit);
 		int maxPage2 = (int) Math.ceil((double) listCount2 / boardLimit2);
 
+		int listCount = new TBoardService().selectTBoardListCount();
+		// * currentPage : 사용자가 요청한 페이지 번호 (요청시 전달됨|전달된게 없으면 1로 간주)
+		int currentPage = 1;
+		if (request.getParameter("page") != null) {
+			currentPage = Integer.parseInt(request.getParameter("page"));
+		}
+		// * pageLimit : 페이징바의 목록 수 (몇개 단위씩 보여지게 할건지)
+		int pageLimit = 5;
+		// * boardLimit : 한 페이지에 보여질 게시글 수 (몇개 단위씩 보여지게 할건지)
+		int boardLimit = 5;
+
+		int maxPage = (int) Math.ceil((double) listCount / boardLimit);
+
+		int listCount = new InquiryService().selectInquiryListCount();
+		int listCount2 = new TBoardService().selectTBoardListCount();
+		// * currentPage : 사용자가 요청한 페이지 번호 (요청시 전달됨|전달된게 없으면 1로 간주)
+		int currentPage = 1;
+		int currentPage2 = 1;
+		if (request.getParameter("page") != null) {
+			currentPage = Integer.parseInt(request.getParameter("page"));
+		}
+		if (request.getParameter("page2") != null) {
+			currentPage2 = Integer.parseInt(request.getParameter("page2"));
+		}
+		// * pageLimit : 페이징바의 목록 수 (몇개 단위씩 보여지게 할건지)
+		int pageLimit = 5;
+		int pageLimit2 = 5;
+		// * boardLimit : 한 페이지에 보여질 게시글 수 (몇개 단위씩 보여지게 할건지)
+		int boardLimit = 5;
+		int boardLimit2 = 5;
+
+		int maxPage = (int) Math.ceil((double) listCount / boardLimit);
+		int maxPage2 = (int) Math.ceil((double) listCount2 / boardLimit2);
+
 		/*
 		
 		 */

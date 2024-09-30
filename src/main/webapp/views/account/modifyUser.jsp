@@ -193,6 +193,27 @@ a:active {
                         <h6>*2자 이상 10자 이내의 한글 영문,숫자 입력 가능합니다.</h6>
                     </div>
 
+      
+      <div class="modal-header" style="justify-content: center;">
+        <div class="modal-title">프로필 편집</div>
+      </div>
+
+
+      <div class="modal-body">
+        <a href=""><img id="imagePreview" src="<%=contextPath + loginUser.getFilePath() %>" alt="Click to upload" style="cursor: pointer; width: 200px; height: 200px; border: 1px solid #ccc;"></a>
+        <div><input type="text" value="<%= loginUser.getUserNick() %>" id="changenick" name="userNick"></div>
+        <h6>*2자 이상 10자 이내의 한글 영문,숫자 입력 가능합니다.</h6>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer" style="justify-content: center;">
+        <button type="submit" class="btn1" data-dismiss="modal"><a href="" style="color: black;">확인</a></button>
+        <button type="button" class="btn2" data-dismiss="modal"><a href="">취소</a></button>
+      </div>
+
+    </div>
+  </div>
+</div>
                     <!-- Modal footer -->
                     <div class="modal-footer" style="justify-content: center;">
                         <button type="submit" class="btn1" style="background-color: gray;">저장</button>

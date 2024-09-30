@@ -141,7 +141,7 @@
               <span>영화관리</span>
               <div style="width: 280px; height: 32px;">
                 <img src="<%=contextPath%>/assets/image/adminPage/user_logo.png">
-                <span>관리자님 환영합니다.</span>
+                <span><%=loginUser.getUserNick()%> 관리자님 환영합니다.</span>
               </div>
             </div><!-- body-right-title div 끝 -->
             

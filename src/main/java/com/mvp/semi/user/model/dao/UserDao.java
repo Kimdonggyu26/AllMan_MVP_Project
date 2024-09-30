@@ -461,6 +461,54 @@ public class UserDao {
 		return count;
 	}
 
+	public int selectAllAdminList(Connection conn, Map<String, String> searchData) { // map 넘겨받기
+
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAllAdminList"); // "select ~~~~ where status = '10'"
+
+		String startDate = searchData.get("startDate");
+		String endDate = searchData.get("endDate");
+		String teamNo = searchData.get("teamNo");
+		String keyword = searchData.get("keyword");
+
+		if (!startDate.equals("") && !endDate.equals("")) {
+			sql += " AND OPEN_DATE BETWEEN '" + startDate + "' AND '" + endDate + "'";
+		}
+
+		if (!teamNo.equals("")) {
+			sql += " AND (TEAM_NO = '" + teamNo +"'";
+		}
+
+		if (!keyword.equals("")) {
+			sql += " AND USER_NICKNAME LIKE '%" + keyword + "%'";
+		}
+
+		/*
+		 * 넘겨 받은 map으로 부터 startDate, endDate, genre, keyword 다 뽑기
+		 * 
+		 * if(startDate랑 endDate가 존재할 경우) { sql += "and startDate와 endDate 기간조건 "; }
+		 * 
+		 * if(genre 가 존재할 경우) { sql += "and 장르에 대한 in 조건"; }
+		 * 
+		 * if(keyword가 존재할 경우) { sql += "and 검색어에 대한 조건"; }
+		 */
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				listCount = rset.getInt("COUNT");
+			}
+		}
+
+				return listCount;
+	}
+
+
+
 	public int phoneCheck(Connection conn, String checkPhone) {
 		int count = 0;
 		PreparedStatement pstmt = null;
@@ -536,11 +584,11 @@ public class UserDao {
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				list.add(new User(rset.getInt("USER_NO"), rset.getString("USER_ID"), rset.getString("USER_PWD"),
-						rset.getString("PHONE"), rset.getString("EMAIL"), rset.getString("USER_NICKNAME"),
-						rset.getDate("ENROLL_DATE"), rset.getDate("MODIFY_DATE"), rset.getString("STATUS"),
-						rset.getInt("TASTE_NO"), rset.getString("PROFILE_PATH"), rset.getInt("TEAM_NO"),
-						rset.getString("TASTE_CODE")));
+				list.add(new User(rset.getInt("USER_NO"), rset.getString("USER_ID"),
+						rset.getString("USER_PWD"), rset.getString("PHONE"), rset.getString("EMAIL"),
+						rset.getString("USER_NICKNAME"), rset.getDate("ENROLL_DATE"), rset.getDate("MODIFY_DATE"),
+						rset.getString("STATUS"), rset.getInt("TASTE_NO"), rset.getString("PROFILE_PATH"),
+						rset.getInt("TEAM_NO"), rset.getString("TASTE_CODE")));
 			}
 			System.out.println(sql);
 
@@ -593,11 +641,11 @@ public class UserDao {
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				list.add(new User(rset.getInt("USER_NO"), rset.getString("USER_ID"), rset.getString("USER_PWD"),
-						rset.getString("PHONE"), rset.getString("EMAIL"), rset.getString("USER_NICKNAME"),
-						rset.getDate("ENROLL_DATE"), rset.getDate("MODIFY_DATE"), rset.getString("STATUS"),
-						rset.getInt("TASTE_NO"), rset.getString("PROFILE_PATH"), rset.getInt("TEAM_NO"),
-						rset.getString("TASTE_CODE")));
+				list.add(new User(rset.getInt("USER_NO"), rset.getString("USER_ID"),
+						rset.getString("USER_PWD"), rset.getString("PHONE"), rset.getString("EMAIL"),
+						rset.getString("USER_NICKNAME"), rset.getDate("ENROLL_DATE"), rset.getDate("MODIFY_DATE"),
+						rset.getString("STATUS"), rset.getInt("TASTE_NO"), rset.getString("PROFILE_PATH"),
+						rset.getInt("TEAM_NO"), rset.getString("TASTE_CODE")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

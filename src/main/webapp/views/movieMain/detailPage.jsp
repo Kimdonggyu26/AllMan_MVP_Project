@@ -5,6 +5,7 @@
 <%
 		String contextPath = request.getContextPath(); // "/web"
     User loginUser = (User) session.getAttribute("loginUser");
+    String userNickname = (String) session.getAttribute("userNickname");
 		String alertMsg = (String)session.getAttribute("alertMsg");
     Integer movieNo = (Integer) session.getAttribute("movieNo");
 	int userNo = -1;
