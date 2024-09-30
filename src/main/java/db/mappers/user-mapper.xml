@@ -111,10 +111,14 @@
 	</entry>
 	
 	<entry key="finduserid">
-SELECT USER_ID
-  FROM USERS
- WHERE EMAIL = ?
-   AND STATUS IN ('A','U')
+SELECT 
+				USER_ID
+  FROM 
+  			USERS
+ WHERE 
+ 				EMAIL = ?
+   AND 
+   			STATUS IN ('A','U')
     </entry>
     	<entry key="finduserpwd">
 SELECT 
@@ -132,7 +136,8 @@ SELECT
      			USER_NICKNAME = ?,
      			PROFILE_PATH = ?,
      		 EMAIL = ?, 
-     		 PHONE = ? 
+     		 PHONE = ?,
+     		PROFILE_PATH = ?
     WHERE USER_ID = ?
     </entry>
     <entry key="updateuserprofile">

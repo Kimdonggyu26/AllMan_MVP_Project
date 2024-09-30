@@ -44,7 +44,7 @@ public class FindIdController extends HttpServlet {
 			request.getRequestDispatcher("/views/account/findIdFail.jsp").forward(request, response);;
 		} else {
 			System.out.println("성공");
-			session.setAttribute("userId", result);
+			session.setAttribute("email", result);
 			request.getRequestDispatcher("/views/account/findIdSuc.jsp").forward(request, response);
 		}
 

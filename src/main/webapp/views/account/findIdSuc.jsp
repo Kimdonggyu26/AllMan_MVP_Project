@@ -80,14 +80,13 @@ input:focus {outline: none;}
 		User loginUser = (User)session.getAttribute("loginUser");
 	String alertMsg = (String)session.getAttribute("alertMsg");
 %>
-	<form action="<%= contextPath %>/views/JM/login.jsp" >
+	<form action="<%= contextPath %>/login.us" >
 	<div class="container">
 	            <i class="fa-regular fa-circle-check" id="check"></i>
 	          <div class="idfo">입력하신 정보와 일치하는 결과입니다.</div>
-	          <div class="font">개인정보 보호를 위해 <br>
-	            이메일의 일부만 제공합니다.</div>
+	           <div class="font">이메일을 확인하여 비밀번호 재설정을 완료해주세요.</div>
+	          
 	        <div class="button-group">
-	            <input type="text" class="ifound" value="<%= loginUser.getEmail() %>" name="" readonly>
 	  <button type="submit"  id="buttons">로그인하러 가기</button>
 	</div>
 	</div>

@@ -319,9 +319,9 @@ public class UserDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, user.getUserNick()); // 수정할 닉네임
-			pstmt.setString(2, user.getFilePath());
-			pstmt.setString(3, user.getEmail()); // 수정할 이메일
-			pstmt.setString(4, user.getPhone()); // 수정할 전화번호
+			pstmt.setString(2, user.getEmail()); // 수정할 이메일
+			pstmt.setString(3, user.getPhone()); // 수정할 전화번호
+			pstmt.setString(4, user.getFilePath());
 			pstmt.setString(5, user.getUserId());
 
 			result = pstmt.executeUpdate();
@@ -461,52 +461,7 @@ public class UserDao {
 		return count;
 	}
 
-	public int selectAllAdminList(Connection conn, Map<String, String> searchData) { // map 넘겨받기
-
-		int listCount = 0;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("selectAllAdminList"); // "select ~~~~ where status = '10'"
-
-		String startDate = searchData.get("startDate");
-		String endDate = searchData.get("endDate");
-		String teamNo = searchData.get("teamNo");
-		String keyword = searchData.get("keyword");
-
-		if (!startDate.equals("") && !endDate.equals("")) {
-			sql += " AND OPEN_DATE BETWEEN '" + startDate + "' AND '" + endDate + "'";
-		}
-
-		if (!teamNo.equals("")) {
-			sql += " AND (TEAM_NO = '" + teamNo +"'";
-		}
-
-		if (!keyword.equals("")) {
-			sql += " AND USER_NICKNAME LIKE '%" + keyword + "%'";
-		}
-
-		/*
-		 * 넘겨 받은 map으로 부터 startDate, endDate, genre, keyword 다 뽑기
-		 * 
-		 * if(startDate랑 endDate가 존재할 경우) { sql += "and startDate와 endDate 기간조건 "; }
-		 * 
-		 * if(genre 가 존재할 경우) { sql += "and 장르에 대한 in 조건"; }
-		 * 
-		 * if(keyword가 존재할 경우) { sql += "and 검색어에 대한 조건"; }
-		 */
-
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rset = pstmt.executeQuery();
-
-			if (rset.next()) {
-				listCount = rset.getInt("COUNT");
-			}
-		}
-
-				return listCount;
-	}
-
+	
 
 
 	public int phoneCheck(Connection conn, String checkPhone) {

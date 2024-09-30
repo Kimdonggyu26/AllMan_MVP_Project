@@ -78,17 +78,30 @@
 							%> 			
 												
 					<!-- body부 시작  -->
-				  	<form action="smtpTest.do" >
+				  	<form action="<%=contextPath %>/findid.us" >
 						<div class="container">
 						          <div class="idfo">아이디 찾기</div>
 						          <div class="font">가입 시 등록한 이메일을 입력해주세요.</div>
 						        <div class="button-group">
-						  <input type="text" class="ifound"  name="email" placeholder="이메일"  >
+						  <input type="text" class="ifound"   id="emailInput" name="email" placeholder="이메일"  >
 						  <button type="submit"  id="buttons" >확인</button>
 						</div>
 					</div>
 					</form>
+						<script>
+    const emailInput = document.getElementById("emailInput");
+    const submitButton = document.getElementById("buttons");
 
-					
+    // 이메일 입력 값 감지
+    emailInput.addEventListener("input", function() {
+        if (emailInput.value.trim() !== "") {
+            // 값이 입력된 경우 배경색을 빨간색으로 변경
+            submitButton.style.backgroundColor = "#f33f3f";
+        } else {
+            // 값이 없는 경우 기본 배경색으로 변경
+            submitButton.style.backgroundColor = "#ffffff91";
+        }
+    });
+</script>
 </body>
 </html>

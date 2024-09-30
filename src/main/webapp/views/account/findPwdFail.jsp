@@ -74,7 +74,7 @@ input:focus {outline: none;}
 	  <!-- Header, Nav start -->
    	<%--  <%@ include file="/views/common/header.jsp" %> --%>
     <!-- Header, Nav end -->
-					<form action="<%= contextPath %>/views/JM/findPwd.jsp">
+					<form action="<%= contextPath %>/views/account/findPwd.jsp">
 				<div class="container">
 				  <i class="fa-regular fa-circle-xmark" id="check"></i>
 				          <div class="idfo">일치하는 결과를 찾을 수 없습니다.</div>
@@ -88,7 +88,7 @@ input:focus {outline: none;}
 		<!-- Header, Nav start -->
    	<%--  <%@ include file="/views/common/footer.jsp" %> --%>
     <!-- Header, Nav end -->
-    
+   
     
 </body>
 </html>

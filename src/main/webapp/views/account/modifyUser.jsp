@@ -188,23 +188,10 @@ a:active {
                         
                         <!-- 닉네임 수정 필드 -->
                         <div>
-                            <input type="text" value="<%= loginUser.getUserNick() %>" id="changenick" name="userNick" placeholder="닉네임">
+                          <input type="text" name="userNick" value="<%= loginUser.getUserNick() %>">
                         </div>
                         <h6>*2자 이상 10자 이내의 한글 영문,숫자 입력 가능합니다.</h6>
                     </div>
-
-      
-      <div class="modal-header" style="justify-content: center;">
-        <div class="modal-title">프로필 편집</div>
-      </div>
-
-
-      <div class="modal-body">
-        <a href=""><img id="imagePreview" src="<%=contextPath + loginUser.getFilePath() %>" alt="Click to upload" style="cursor: pointer; width: 200px; height: 200px; border: 1px solid #ccc;"></a>
-        <div><input type="text" value="<%= loginUser.getUserNick() %>" id="changenick" name="userNick"></div>
-        <h6>*2자 이상 10자 이내의 한글 영문,숫자 입력 가능합니다.</h6>
-      </div>
-
       <!-- Modal footer -->
       <div class="modal-footer" style="justify-content: center;">
         <button type="submit" class="btn1" data-dismiss="modal"><a href="" style="color: black;">확인</a></button>
@@ -214,14 +201,7 @@ a:active {
     </div>
   </div>
 </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer" style="justify-content: center;">
-                        <button type="submit" class="btn1" style="background-color: gray;">저장</button>
-                        <button type="button" class="btn2" data-dismiss="modal">취소</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+                  
 
 <div class="container">
   <div class="profile">
@@ -264,18 +244,46 @@ a:active {
 	<%@ include file="/views/common/footer.jsp"%>
 	<!-- Header, Nav end -->
  <script>
-        // 파일 선택 시 이미지 미리보기
-        document.getElementById("profileImage").addEventListener("change", function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.getElementById("imagePreview");
-                    img.src = e.target.result;  // 이미지 미리보기
-                };
-                reader.readAsDataURL(file);  // 파일을 읽어 데이터 URL로 변환
-            }
-        });
-    </script>
+  // 프로필 이미지 클릭 시 파일 선택 창 열기
+  document.getElementById("imagePreview").addEventListener("click", function() {
+    document.getElementById("profileImage").click();
+  });
+
+  // 파일 선택 시 이미지 미리보기
+  document.getElementById("profileImage").addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById("imagePreview").src = e.target.result; // 이미지 미리보기
+      };
+      reader.readAsDataURL(file); // 파일을 데이터 URL로 읽음
+    }
+  });
+
+  // AJAX를 사용하여 폼 제출
+  document.getElementById("userUpdateForm").addEventListener("submit", function(e) {
+    e.preventDefault();  // 폼 기본 제출 방지
+
+    // 폼 데이터를 가져옴
+    var formData = new FormData(this);
+
+    // AJAX 요청
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "modifyuser.us", true);
+
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        // 서버에서 성공적으로 응답 받으면 페이지 리로드 또는 데이터 업데이트
+        alert('회원정보가 수정되었습니다.');
+        window.location.reload(); // 페이지 리로드
+      } else {
+        alert('수정에 실패하였습니다.');
+      }
+    };
+
+    xhr.send(formData);  // 폼 데이터 전송
+  });
+</script>
 </body>
 </html>

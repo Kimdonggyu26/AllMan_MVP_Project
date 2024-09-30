@@ -86,13 +86,27 @@ input:focus {outline: none;}
           <div class="font">아이디 확인 후 등록된 이메일 주소로 비밀번호 재설정을 위한 인증 메일이 발송됩니다.<br> 
             이메일을 확인하여 비밀번호 재설정을 완료해주세요.</div>
         <div class="button-group">
-			  <input type="text" class="ifound" placeholder="아이디"  name="userId">
+			  <input type="text" class="ifound" placeholder="아이디" id="userId"  name="userId">
 			  <button type="submit"  id="buttons">확인</button>
 			</div>
 			    </form>
 			</div>
 
 		<!-- body 종료 -->
+ <script>
+    const emailInput = document.getElementById("userId");
+    const submitButton = document.getElementById("buttons");
 
+    // 이메일 입력 값 감지
+    emailInput.addEventListener("input", function() {
+        if (emailInput.value.trim() !== "") {
+            // 값이 입력된 경우 배경색을 빨간색으로 변경
+            submitButton.style.backgroundColor = "#f33f3f";
+        } else {
+            // 값이 없는 경우 기본 배경색으로 변경
+            submitButton.style.backgroundColor = "#ffffff91";
+        }
+    });
+</script>
 </body>
 </html>
