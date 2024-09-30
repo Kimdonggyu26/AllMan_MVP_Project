@@ -30,6 +30,10 @@
         <div class="" id="head">
           <h3 >공지사항</h3><hr color="white">
         </div>
+        
+        <% if(loginUser != null && loginUser.getStatus().equals("A")) { %>
+        	<a href="<%= contextPath %>/write.no" type="button" class="btn btn-secondary btn-sm" id="regist" >글쓰기</a>
+				<% } %>
 
         <div id="qna-h">
         <table id="qna-list" class="table">
@@ -147,7 +151,7 @@
   }
 
   #qna-h{
-    width: 1276px; margin-left: 322px; margin-top: 60px;
+    width: 1276px; margin-left: 322px; 
   }
   #qna-b{
     margin-top: 44px;
@@ -216,6 +220,11 @@
 	}
 
   input[type="text"]::placeholder {color: #c2b9b9;}
+  
+    #regist{
+    margin-left: 1538px;
+    margin-bottom: 15px;
+  }
 
 </style>
 </html>
