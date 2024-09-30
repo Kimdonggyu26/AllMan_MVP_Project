@@ -1,0 +1,210 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
+#main{
+  width: 1920px;
+  height: 2500px;
+  background-color: #131313;
+  margin: auto;
+  font-family: pretendard;
+}
+#genre{
+  width: 674px;
+  height: 77px;
+  margin: auto;
+  margin-top: 28px;
+}
+svg{
+	cursor: pointer;
+}
+#movieLike {
+  width: 28px;
+  fill: #ffffff;
+}
+#movieLike {
+  fill: #f33f3f;
+}
+p{
+  width: 220px;
+  height: 66px;
+  color: white;
+  font-size: 55px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+td{
+	white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+#movie1 {
+	margin-top: 40px;
+ 	display: flex;
+  flex-wrap: wrap; /* 한 줄에 5개씩 표시하고 넘치면 새 줄로 이동 */
+  gap: 30px; /* 아이템 사이 간격 */
+  justify-content: space-between; /* 간격을 고르게 분배 */
+  width: 1200px;
+}
+#movie1 img{
+  width: 183px;
+  height: 261px;
+}
+#movie2{
+  width: 1187px;
+  height: 768px;
+  margin-top: 16px;
+}
+.genre-top{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 19px;
+}
+.genre-top button{
+  padding: 0%;
+  width: 80px;
+  height: 30px;
+  border-radius: 16px;
+  font-size: 16px;
+}
+.genre-bottom{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 19px;
+}
+.genre-bottom button{
+  padding: 0%;
+  width: 80px;
+  height: 30px;
+  border-radius: 16px;
+  margin-top: 17px;
+  font-size: 16px;
+}
+.movie1-list {
+	margin-bottom: 25px;
+  width: 182.5px;
+  height: 359px;
+  background-color: #262626;
+  border-radius: 11px;
+}
+.movie2-list{
+  width: 182.5px;
+  height: 359px;
+  background-color: #262626;
+  border-radius: 11px;
+}
+#movie1-top{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  gap: 68.5px;
+}
+#movie1-bottom{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  gap: 68.5px;
+  margin-top: 50px;
+}
+#movie2-top{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  gap: 68.5px;
+}
+#movie2-bottom{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  gap: 68.5px;
+  margin-top: 50px;
+}
+.movie1-image{
+  width: 182.47px;
+  height: 260.02px;
+}
+.movie-info{
+  width: 182px;
+  height: 98px;
+}
+.movie-info tr{
+  color: rgba(255, 255, 255, 0.61);
+  font-size: 8px;
+}
+.btn-secondary{
+  width: 92px;
+  height: 34px;
+  padding: 0%;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 1px;
+  font-size: 14px;
+}
+#compare{
+  width: 92px;
+  height: 34px;
+  padding: 0%;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 1px;
+  border-bottom-right-radius: 10px;
+  font-size: 14px; 
+}
+#heart{
+  color: white;
+  font-size: 23px;
+}
+body{
+  color: white;
+  font-family: pretendard;
+}
+#sidebar{
+  width: 255px;
+  height: 700px;
+  margin-left: 33px;
+  position: sticky;
+  top: 220px;
+}
+
+#sidebar a{
+  font-size: 24px;
+}
+#basket{
+  width: 255px;
+  height: 520px;
+  border-radius: 15px;
+  background-color: #30303057;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.inner_content {
+  height: 25px;
+}
+#movie-basket div{
+  width: 127px;
+  height: 182px;
+}
+#basket::-webkit-scrollbar {
+  width: 12px;
+}
+#basket::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+#basket::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: gray;
+}
+.scroll_box::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
+#basket-movie{
+  width: 127px;
+  height: 563px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 64px;
+  margin-right: 64px;
+}
+#basket-movie img{
+  width: 127px;
+  height: 182px;
+}
