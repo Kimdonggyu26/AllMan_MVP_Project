@@ -279,7 +279,6 @@
     					url :'<%=contextPath%>/listByDate.rv',
     					data: {movieNo: rvMovieNo},
     					success: function(res){
-    						
     						let divEl = '';
    					    		divEl += '<div class="review_title"><p>최신순</p></div>'
    					    	if (res && res.length > 0) {	
@@ -287,10 +286,10 @@
     								 
     								divEl +=	'<div class="top_review">'
     			                    + '<div class="user_header">'
-    			        //             + '<img src="" alt="">'
+    			                    + '<img src="' + '<%=contextPath%>' + res[i].userFilePath + '" alt="">'
     												 	 + '<div>'
     												 	  + '<div>' + '<%=loginUser.getUserNick()%>' + '</div>'
-    												 	  + '<p>' + res[i].reviewDate + '</p>'
+    												 	  + '<p style="width: 110px;">' + res[i].reviewDate + '</p>'
     												   + '</div>' 
     													+ '<div class="review_str">'
     												 	 + '<img src="<%=contextPath%>/assets/image/comparePage/star_logo.png">'
@@ -302,14 +301,13 @@
     		                     	+'<div class="review_body_content">' + res[i].reviewContent + '</div>'
     							           	+'<div class="right_line" style="width: 100%; margin: 10px 0px "></div>'
     							          	 +'<div class="review_thumb_up">'
-    							           		+'<img src="<%=contextPath%>/assets/image/mainPage/thumb_up.png" class="like_btn" style="cursor: pointer;"'
+    							           		+'<img src="<%=contextPath%>/assets/image/mainPage/thumb_up.png" class="like_btn" style="cursor: pointer; margin-right: 7px;"'
     							           		+ 'onclick="likeReview(' + <%=userNo%> + ',' + res[i].reviewNo + ')">'
     							           		+'<P class="likeCount' + res[i].reviewNo + '">' + res[i].likeCount + '</P>'
     							          	 +'</div>'
     				                 	+ '<div class="right_line" style="width: 100%; margin: 10px 0px "></div>'
     				                 	+ '<div style="display: flex; flex-direction: row;">'
 	   		                     		+ '<p style="color: #ffffff; font-size: 18px; margin-right: 289px;">좋아요</p>'
-	   		                    		+ '<i class="fa-solid fa-ellipsis" style="color: #ffffff; width: 18px; height: 4px; margin-top: 5px;"></i>'
 	   		                     	+ '</div></div></div>';
     							}
     						}else{
@@ -337,13 +335,14 @@
     	})		
     }
     
+      // 리뷰목록 출력(좋아요가 많은 순서)
     function reviewListByLike(rvMovieNo){
     	
     	$.ajax({
     					url :'<%=contextPath%>/listByLike.rv',
     					data: {movieNo: rvMovieNo},
     					success: function(res){
-    						
+    							console.log(res);
     						let divEl = '';
    					    		divEl += '<div class="review_title"><p>인기순</p></div>'
    					    	if (res && res.length > 0) {	
@@ -351,7 +350,7 @@
     								 
     								divEl +=	'<div class="top_review">'
     			                    + '<div class="user_header">'
-    			                     + '<img src="./assets/image/icon/웨이브.png" alt="">'
+    			                    + '<img src="' + '<%=contextPath%>' + res[i].userFilePath + '" alt="">'
     												 	 + '<div>'
     												 + '<div>' + '<%=loginUser.getUserNick()%>' + '</div>'
     												 + '<p>' + res[i].reviewDate + '</p>'
@@ -366,14 +365,13 @@
     		                     +'<div class="review_body_content">' + res[i].reviewContent + '</div>'
     							           +'<div class="right_line" style="width: 100%; margin: 10px 0px "></div>'
     							           +'<div class="review_thumb_up">'
-    							           	+'<img src="<%=contextPath%>/assets/image/mainPage/thumb_up.png" class="like_btn" style="cursor: pointer;"'
+    							           	+'<img src="<%=contextPath%>/assets/image/mainPage/thumb_up.png" class="like_btn" style="cursor: pointer; margin-right: 7px;"'
     							           	+ 'onclick="likeReview(' + <%=userNo%> + ',' + res[i].reviewNo + ')">'
     							           	+'<P class="likeCount' + res[i].reviewNo + '">' + res[i].likeCount + '</P>'
     							           +'</div>'
     				                 + '<div class="right_line" style="width: 100%; margin: 10px 0px "></div>'
     				                 + '<div style="display: flex; flex-direction: row;">'
 	   		                     + '<p style="color: #ffffff; font-size: 18px; margin-right: 289px;">좋아요</p>'
-	   		                     + '<i class="fa-solid fa-ellipsis" style="color: #ffffff; width: 18px; height: 4px; margin-top: 5px;"></i>'
 	   		                     +'</div></div></div>';
     							}
     						}else{
