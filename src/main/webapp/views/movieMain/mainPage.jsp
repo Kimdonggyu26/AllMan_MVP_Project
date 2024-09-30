@@ -161,7 +161,9 @@
 						    '                    <td>감독 : '+ r[i].director +'</td>' +
 						    '                </tr>' +
 						    '            </table>' +
-						    '            <i class="fa-regular fa-heart" id="heart" style=""></i>' +  // heart 아이콘
+						    '            <svg id="movieLike_' + r[i].movieNo + '" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" onclick="likeMovie(<%= userNo %>, ' + r[i].movieNo + ');" style="cursor: pointer; width: 25px; height: 25px;">' +
+						    '                <path id="heartIcon_' + r[i].movieNo + '" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z" style="fill: #ffffff;"/>' +
+						    '            </svg>' +
 						    '        </div>' +  // a 닫기
 						    '        <div style="display: flex;">' +  // b 시작
 						    '            <button type="button" class="btn btn-secondary" id="info' + r[i].movieNo + '">영화정보</button>' +
@@ -305,7 +307,9 @@
 	                              +  '<td>감독 : '+ r[i].director +'</td>'
 	                              +  '</tr>'
 	                              +  '</table>'
-	                              +  '<i class="fa-regular fa-heart" id="heart"></i>'
+	                              +  '<svg id="movieLike_' + r[i].movieNo + '" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" onclick="likeMovie(<%= userNo %>, ' + r[i].movieNo + ');" style="cursor: pointer; width: 25px; height: 25px;">' 
+	                              +	 '<path id="heartIcon_' + r[i].movieNo + '" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z" style="fill: #ffffff;"/>'
+	                              +	 '</svg>'
 	                              +  '</div>'
 	                              +  '<div style="display: flex;">'
 	                              +  '<button type="button" class="btn btn-secondary" id="info' + r[i].movieNo + '">영화정보</button>'
@@ -409,8 +413,38 @@
 	    basketMovie.appendChild(movieItem); // movieItem을 basketMovie에 추가
 
 	    updateMovieCount(); // 영화 개수 업데이트
+	    
+	      // 영화 좋아요를 눌렀을 때
 	}
-	
+	      function likeMovie(userNo, movieNo){
+	    	
+	    	console.log(userNo, movieNo);
+	    	
+	        var btn = document.getElementById("movieLike_" + movieNo);
+	        var heartIcon = document.getElementById("heartIcon_" + movieNo);
+	        
+	    	$.ajax({
+	    					url: '<%=contextPath%>/likeMovie.lm',
+	    					data: {
+	    								userNo: userNo,
+	    								movieNo: movieNo
+	    								},
+	    			 success: function(res){
+	    		            btn.classList.toggle('active'); // 좋아요 추가 시 색상 변경
+	    		            if (btn.classList.contains('active')) {
+	    		                heartIcon.style.fill = 'red'; // 좋아요 활성화 시 색상 변경
+	    		            } else {
+	    		                heartIcon.style.fill = '#ffffff'; // 좋아요 비활성화 시 색상 복원
+	    		            }
+	    			 },
+	    			 error: function(){
+	    				 console.log("실패");
+	    			 }
+	    	})
+	    	
+	    	
+	    	
+	    	}
 	
 
 </script>

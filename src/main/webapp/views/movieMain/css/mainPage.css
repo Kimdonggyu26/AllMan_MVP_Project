@@ -12,6 +12,16 @@
   margin: auto;
   margin-top: 28px;
 }
+svg{
+	cursor: pointer;
+}
+#movieLike {
+  width: 28px;
+  fill: #ffffff;
+}
+#movieLike {
+  fill: #f33f3f;
+}
 p{
   width: 220px;
   height: 66px;
