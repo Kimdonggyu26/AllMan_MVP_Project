@@ -65,4 +65,17 @@ public class NoticeService {
 		return result;
 	}
 
+	public int insertNotice(Notice n) {
+		Connection conn = getConnection();
+		int result = nDao.insertNotice(conn, n);
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+
+		return result;
+	}
+
 }
