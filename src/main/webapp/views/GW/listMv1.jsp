@@ -13,7 +13,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
+
 <body>
 
 	<!-- Header, Nav start -->
@@ -30,7 +30,7 @@
 			</div>
 			<!-- sidebar div 끝 -->
 		</div>
-	</div><!-- main div 끝-->		 
+
 
    <div style="width: 1561px; float: right; margin-top: 34px;">
     <div id="text">
@@ -90,6 +90,7 @@
         %>
     </div>
 </div>
+</div><!-- main div 끝-->		 
 
 <script>
 	function fnComparisonAdd(movieNo, titlePath) {
@@ -131,7 +132,7 @@
 
 <!-- body부 종료 -->
 </body>
-
+</head>
 	<!-- Footer start -->
 	<%@ include file="/views/common/footer.jsp"%>
 	<!-- Footer end -->
