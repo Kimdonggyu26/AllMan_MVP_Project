@@ -161,34 +161,46 @@ a:active {
 }
 
 </style>
+<%--  <%
+
+        String msg = (String) request.getAttribute("msg"); // 성공 메시지
+    %>
+
+    <!-- 수정 성공 메시지 표시 -->
+    <div style="color: green;">
+        <%= msg %>
+    </div> --%>
 
 
- <form action="modifyuser.us" method="post">
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
+<form action="modifyuser.us" method="post" enctype="multipart/form-data">
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="justify-content: center;">
+                        <div class="modal-title">프로필 편집</div>
+                    </div>
+                    <div class="modal-body" style="text-align: center;">
+                        <!-- 이미지 미리보기 -->
+                        <img id="imagePreview" src="<%=contextPath + loginUser.getFilePath() %>" alt="프로필 이미지" style="cursor: pointer; width: 200px; height: 200px; border: 1px solid #ccc;">
+                        
+                        <!-- 파일 선택 필드 (숨김 처리) -->
+                        <input type="file" id="profileImage" name="profileImage" accept="image/*" style="display: none;">
+                        
+                        <!-- 닉네임 수정 필드 -->
+                        <div>
+                            <input type="text" value="<%= loginUser.getUserNick() %>" id="changenick" name="userNick" placeholder="닉네임">
+                        </div>
+                        <h6>*2자 이상 10자 이내의 한글 영문,숫자 입력 가능합니다.</h6>
+                    </div>
 
-      
-      <div class="modal-header" style="justify-content: center;">
-        <div class="modal-title">프로필 편집</div>
-      </div>
-
-
-      <div class="modal-body">
-        <a href=""><img id="imagePreview" src="<%=contextPath + loginUser.getFilePath() %>" alt="Click to upload" style="cursor: pointer; width: 200px; height: 200px; border: 1px solid #ccc;"></a>
-        <div><input type="text" value="<%= loginUser.getUserNick() %>" id="changenick" name="userNick"></div>
-        <h6>*2자 이상 10자 이내의 한글 영문,숫자 입력 가능합니다.</h6>
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer" style="justify-content: center;">
-        <button type="button" class="btn1" data-dismiss="modal"><a href="" style="color: black;">확인</a></button>
-        <button type="button" class="btn2" data-dismiss="modal"><a href="">취소</a></button>
-      </div>
-
-    </div>
-  </div>
-</div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer" style="justify-content: center;">
+                        <button type="submit" class="btn1" style="background-color: gray;">저장</button>
+                        <button type="button" class="btn2" data-dismiss="modal">취소</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 <div class="container">
   <div class="profile">
@@ -219,8 +231,7 @@ a:active {
 		</div>
 </div>
   <div  id="btns">
-      <button ><a href="" style="color: black;">확인</a></button>
-      <button style="background-color: #131313 ;color : white; border: 1px solid gray;" ><a href="">취소</a></button>
+       <button type="submit" style="background-color: #131313; color: white; background-color: gray; border: 1px solid gray;">수정</button>
   </div>
 </div>
   <div> <hr style="background-color: gray;"> </div>
@@ -231,6 +242,19 @@ a:active {
    	<!-- Header, Nav start -->
 	<%@ include file="/views/common/footer.jsp"%>
 	<!-- Header, Nav end -->
-
+ <script>
+        // 파일 선택 시 이미지 미리보기
+        document.getElementById("profileImage").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById("imagePreview");
+                    img.src = e.target.result;  // 이미지 미리보기
+                };
+                reader.readAsDataURL(file);  // 파일을 읽어 데이터 URL로 변환
+            }
+        });
+    </script>
 </body>
 </html>

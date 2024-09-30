@@ -12,10 +12,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
 </head>
 
 
@@ -200,8 +204,8 @@ a:active {
     }
 
     // tBoards 리스트 가져오기
-    List<Board> 
-    tBoards = (List<Board>) request.getAttribute("tBoards");
+    
+    List<Board> board = (List<Board>) request.getAttribute("board");
     List<Inquiry> inquiries = (List<Inquiry>)request.getAttribute("inquiries");
     PageInfo pi = (PageInfo) request.getAttribute("pi");
 		PageInfo po = (PageInfo) request.getAttribute("po");
@@ -212,7 +216,7 @@ a:active {
 		<form action="<%= contextPath %>/mypage.us" method="post">
     <div class="container">
         <div class="title">마이페이지</div> 
-        <button type="submit" id="logout"><a href="<%=contextPath%>/logout.us">로그아웃</a></button>
+        <button type="button" id="logout"><a href="<%=contextPath%>/logout.us">로그아웃</a></button>
         <hr>
         <div class="mypage">
             <img src="<%=contextPath + loginUser.getFilePath() %>" > 
@@ -259,8 +263,8 @@ a:active {
          <div class="post-section">
             <h3>나의 게시글</h3>
             <hr>
-   		        <% if (tBoards != null && tBoards.size() > 0) { %>
-    			<% for (Board b : tBoards) { %>
+   		        <% if (board != null && board.size() > 0) { %>
+    			<% for (Board b : board) { %>
         <div class="list-item" style="overflow: hidden;"> 
             <a href="<%= contextPath %>/detail.tbo?no=<%= b.getBoardNo() %>">
                 <span style="float: left;"><%= b.getBoardTitle() %></span> 

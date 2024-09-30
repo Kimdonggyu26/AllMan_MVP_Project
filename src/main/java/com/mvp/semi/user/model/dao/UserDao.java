@@ -324,16 +324,18 @@ public class UserDao {
 		}
 		return result;
 	}
-	public int updateUser(Connection conn, String userId, String email, String phone) {
+	public int updateUser(Connection conn,User user) {
         PreparedStatement pstmt = null;
         int result = 0;
-        String sql = "UPDATE USER SET EMAIL = ?, PHONE = ? WHERE USER_ID = ?";
+        String sql = prop.getProperty("modifyuser");
 
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, email);
-            pstmt.setString(2, phone);
-            pstmt.setString(3, userId);
+            pstmt.setString(1, user.getUserNick());  // 수정할 닉네임
+            pstmt.setString(2, user.getFilePath());
+            pstmt.setString(3, user.getEmail());   // 수정할 이메일
+            pstmt.setString(4, user.getPhone());   // 수정할 전화번호
+            pstmt.setString(5, user.getUserId());
 
             result = pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -385,6 +387,22 @@ public class UserDao {
 
 			if (rset.next()) {
 				listCount = rset.getInt("COUNT");
+
+
+	public int emailCheck(Connection conn, String checkEmail) {
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("emailCheck");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, checkEmail);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				count = rset.getInt("count");
 			}
 
 		} catch (SQLException e) {
@@ -436,6 +454,26 @@ public class UserDao {
 
 			if (rset.next()) {
 				listCount = rset.getInt("COUNT");
+
+		return count;
+	}
+
+
+
+	public int phoneCheck(Connection conn, String checkPhone) {
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("phoneCheck");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, checkPhone);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				count = rset.getInt("count");
 			}
 
 		} catch (SQLException e) {
@@ -569,6 +607,8 @@ public class UserDao {
 		}
 
 		return list;
+
+		return count;
 	}
 	
 

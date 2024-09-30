@@ -45,7 +45,8 @@ public class UserLoginController extends HttpServlet {
 
 
 		if (loginUser == null) {
-			request.setAttribute("alerMsg", "로그인실패");
+			System.out.println("비밀번호가 틀렸습니다."); 
+			request.setAttribute("errorMsg", "로그인실패");
 			request.getRequestDispatcher("views/account/login.jsp").forward(request, response);
 			
 			// 만약 로그인 페이지로 작동 x

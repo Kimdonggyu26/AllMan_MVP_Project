@@ -146,6 +146,9 @@ public User(String userId, String userPwd, String phone, String email) {
 
 
 
+
+
+
 public User(String userId, String userNick, String filePath) {
 	super();
 	this.userId = userId;

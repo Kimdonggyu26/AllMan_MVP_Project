@@ -130,9 +130,10 @@ SELECT
    				USERS
      SET 
      			USER_NICKNAME = ?,
+     			PROFILE_PATH = ?,
      		 EMAIL = ?, 
      		 PHONE = ? 
-    WHERE USER_ID = ?;
+    WHERE USER_ID = ?
     </entry>
     <entry key="updateuserprofile">
     UPDATE 
@@ -230,5 +231,22 @@ SELECT
 		  						STATUS = 'A'
 		</entry>  
 	
+	
+		<entry key="emailCheck">
+		SELECT
+				   COUNT(*) as COUNT
+		  FROM
+		  		 USERS
+		 WHERE
+		 			 EMAIL = ?
+	</entry>
+	<entry key="phoneCheck">
+		SELECT
+				   COUNT(*) as COUNT
+		  FROM
+		  		 USERS
+		 WHERE
+		 			 PHONE = ?
+	</entry>
 	
 </properties>

@@ -155,17 +155,36 @@ public class UserService {
 
 	}
 
-	public int updateUser(String userId, String email, String phone) {
+	
+	public int emailCheck(String checkEmail) {
 		Connection conn = getConnection();
-		int result = new UserDao().updateUser(conn, userId, email, phone);
-
-		if (result > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
+		int count = uDao.emailCheck(conn, checkEmail);
 		close(conn);
-		return result;
+		return count;
+	}
+
+	public int phoneCheck(String checkPhone) {
+		Connection conn = getConnection();
+		int count = uDao.phoneCheck(conn, checkPhone);
+		close(conn);
+		return count;
+	}
+
+	public int updateUser(User user) {
+		Connection conn = getConnection();
+
+        // DAO를 통해 사용자 정보 업데이트 요청
+        int result = new UserDao().updateUser(conn, user);
+
+        // 결과에 따른 트랜잭션 처리
+        if (result > 0) {
+            commit(conn);  // 성공 시 커밋
+        } else {
+            rollback(conn);  // 실패 시 롤백
+        }
+
+        close(conn);  // 연결 종료
+        return result;
 	}
 
 	public int selectAllUserList(Map<String, String> searchData) {

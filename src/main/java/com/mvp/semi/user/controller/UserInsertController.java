@@ -35,8 +35,8 @@ public class UserInsertController extends HttpServlet {
 		String userId = request.getParameter("userId"); // "user03"
 		String userPwd = request.getParameter("userPwd"); // "pass03"
 		String confirmPwd = request.getParameter("confirmPwd"); // "pass03"
-		String phone = request.getParameter("phone"); // "010-1111-2222" | ""
-		String email = request.getParameter("email"); // "ssss@sss.com" | ""
+		String phone = request.getParameter("checkPhone"); // "010-1111-2222" | ""
+		String email = request.getParameter("checkEmail"); // "ssss@sss.com" | ""
 		String userNick = "user";
 		
         if (userPwd.equals(confirmPwd)) {

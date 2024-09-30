@@ -7,17 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mvp.semi.user.model.service.UserService;
+
 /**
- * Servlet implementation class UserLogOutController
+ * Servlet implementation class CheckUserEmailController
  */
-@WebServlet("/logout.us")
-public class UserLogoutController extends HttpServlet {
+@WebServlet("/emailcheck.us")
+public class CheckUserEmailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserLogoutController() {
+    public CheckUserEmailController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,14 +28,19 @@ public class UserLogoutController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    // 세션 무효화
-        request.getSession().invalidate();
-        // 메인 페이지로 리디렉션
-        response.sendRedirect(request.getContextPath());
-    }
-		
-		
-		
+		String checkEmail = request.getParameter("checkEmail");
+
+        // 이메일 중복 확인
+        int count = new UserService().emailCheck(checkEmail);
+        
+        response.setContentType("text/html; charset=UTF-8");
+        if(count > 0) {
+        	response.getWriter().print("NNNNN");
+        }else {
+        	response.getWriter().print("NNNNY");
+        }
+        
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
