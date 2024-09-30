@@ -275,4 +275,13 @@ public class MovieService {
 		return list;
 	}
 
+	public List<Movie> MovieList2() {
+		Connection conn = getConnection();
+		
+		List<Movie> list = mvDao.MovieList2(conn);
+		close(conn);
+		
+		return list;
+	}
+
 }

@@ -34,7 +34,7 @@
 
 <div style="width: 1561px; float: right; margin-top: 34px;">
   <div id="text">
-    <p>상영 영화</p>
+    <p>OTT영화</p>
   </div>
 
   <div id="movie1">

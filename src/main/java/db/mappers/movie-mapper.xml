@@ -549,6 +549,32 @@
 		 WHERE
 		 			 STATUS = '10'
  </entry>
+ 
+  <entry key="MovieList2">
+	 	SELECT
+ 						MOVIE_NO
+					,	MOVIE_TITLE
+					,	MOVIE_CONTENT
+					,	GENRE
+					,	PLAYTIME
+					,	COUNTRY
+					,	AGE_LV
+					,	OPEN_DATE
+					,	DIRECTOR
+					,	AUDIENCE_COUNT
+					,	ACTOR
+					,	PREVIEW
+					,	STATUS
+					,	GRADE
+					,	TITLE_PATH
+					,	CONTENT_PATH
+					,	TASTE_NO
+					, ROW_NUMBER() OVER(ORDER BY MOVIE_NO DESC) as RNUM
+			FROM 
+					 MOVIE
+		 WHERE
+		 			 STATUS = '20'
+ </entry>
 
 
 

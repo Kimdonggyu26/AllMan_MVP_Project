@@ -37,9 +37,9 @@ td{
 	margin-top: 40px;
  	display: flex;
   flex-wrap: wrap; /* 한 줄에 5개씩 표시하고 넘치면 새 줄로 이동 */
-  gap: 30px; /* 아이템 사이 간격 */
-  justify-content: space-between; /* 간격을 고르게 분배 */
-  width: 1200px;
+  gap: 70px; /* 아이템 사이 간격 */
+  justify-content: flex-start;
+  width: 1400px;
 }
 #movie1 img{
   width: 183px;
