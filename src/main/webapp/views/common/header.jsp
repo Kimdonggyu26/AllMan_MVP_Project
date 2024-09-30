@@ -100,7 +100,7 @@
 <!-- 테스트용 -->
 
 <div class="d-flex justify-content-center">
-    <header>
+    <header> 
 	      <div class="col-2">
 	        <a href="<%=contextPath%>"><img src="<%=contextPath%>/assets/image/header/MOVIE_PICK.png"></a>
 	      </div>
