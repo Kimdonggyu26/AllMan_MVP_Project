@@ -77,7 +77,7 @@
 	        result = this.value;
 	        console.log(result);  // 클릭한 버튼의 value 값 출력
 	        const url = "https://example.com"; // 열고자 하는 링크
-	        window.location.href = "http://localhost:9999/mvp/searchPage.mv?search=" + result;
+	        window.location.href = "<%=contextPath%>/searchPage.mv?search=" + result;
 	      });
 	  });
 	  
@@ -312,6 +312,33 @@
 	            // 결과를 페이지에 반영
 	            $('#OTTNoSearch').html(h1El);
 	            $('#printOTTMovieList').html(divEl);
+	            
+	            for (let i = 0; i < r.length; i++) {
+	                $('#info' + r[i].movieNo).on('click', function() {
+	                	
+                    var movieNo = r[i].movieNo; // 현재 영화 번호
+                    console.log('영화정보 버튼이 클릭되었습니다. 영화번호:', movieNo);
+
+			                    $.ajax({
+			                        url: "<%=contextPath%>/showDetail.sd", // 서블릿 URL
+			                        data: { movieNo: movieNo }, // 영화 번호를 데이터로 전송
+			                        success: function(res) {
+			                            // 성공적으로 요청이 처리된 후, 페이지 이동
+			                            console.log(res);
+			                            if(res){
+			                                window.location.href = "<%=contextPath%>/searchPage.mv?search=" + movieNo;
+			                            }else{
+			                            	alert('영화 정보를 불러오는데 실패했습니다.');
+			                            }
+			                        		
+			                        }		
+                        
+                        
+                    });
+                    
+        				});
+	            }
+	            
 	        },
 	        error: function() {
 	            console.log('영화 검색 ajax 통신 실패');

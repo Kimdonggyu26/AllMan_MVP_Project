@@ -5,15 +5,16 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
+<%
+		String contextPath = request.getContextPath();
+    List<Movie> list = (List<Movie>)request.getAttribute("list");
+%>
+
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/comparePage.css">
-
-<%
-    
-    List<Movie> list = (List<Movie>)request.getAttribute("list");
-%>
+<link rel="stylesheet" href="<%=contextPath%>/views/movieMain/css/comparePage.css">
 
 </head>
 <body>

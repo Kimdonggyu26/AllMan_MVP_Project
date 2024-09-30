@@ -76,7 +76,7 @@ public class TasteResultController extends HttpServlet {
 		// ETRF50 CCFE60 CAES70 HHAL80
 
 		int tasteResult = 0;
-		User u = (User) session.getAttribute("userID");
+		User u = (User) session.getAttribute("loginUser");
 		switch (result) {// result
 		case "0000":
 		case "1111":
@@ -103,7 +103,6 @@ public class TasteResultController extends HttpServlet {
 		case "1110":
 			System.out.println("VDSE");
 			// 관련된 홈페이지 포워딩
-			request.getRequestDispatcher("/views/taste/tasteVDSE.jsp").forward(request, response);
 			System.out.println("아이디 : " + u);
 			System.out.println("취향 update 진행");
 
@@ -111,16 +110,18 @@ public class TasteResultController extends HttpServlet {
 
 			if (tasteResult > 0) {
 				System.out.println("취향 등록 성공");
+				session.setAttribute("loginUser", u);
+				request.getRequestDispatcher("/views/taste/tasteVDSE.jsp").forward(request, response);
 			} else {
-				System.out.println("취향 등록 실패");
+				System.out.println("취향 등록 실패, 임시 값 20으로 다시 취향 분석 1번으로 재진행");
+				request.setAttribute("alerMsg", "분석실패, 다시 진행해주세요.");
+				request.getRequestDispatcher("/taste.t0").forward(request, response);
 			}
-
 			break;
 		case "0010":
 		case "1101":
 			System.out.println("SPTF");
 			// 관련된 홈페이지 포워딩
-			request.getRequestDispatcher("/views/taste/tasteSPTF.jsp").forward(request, response);
 			System.out.println("아이디 : " + u);
 			System.out.println("취향 update 진행");
 
@@ -128,16 +129,18 @@ public class TasteResultController extends HttpServlet {
 
 			if (tasteResult > 0) {
 				System.out.println("취향 등록 성공");
+				session.setAttribute("loginUser", u);
+				request.getRequestDispatcher("/views/taste/tasteSPTF.jsp").forward(request, response);
 			} else {
-				System.out.println("취향 등록 실패");
+				System.out.println("취향 등록 실패, 임시 값 20으로 다시 취향 분석 1번으로 재진행");
+				request.setAttribute("alerMsg", "분석실패, 다시 진행해주세요.");
+				request.getRequestDispatcher("/taste.t0").forward(request, response);
 			}
-
 			break;
 		case "0011":
 		case "1100":
 			System.out.println("BOFA");
 			// 관련된 홈페이지 포워딩
-			request.getRequestDispatcher("/views/taste/tasteBOFA.jsp").forward(request, response);
 			System.out.println("아이디 : " + u);
 			System.out.println("취향 update 진행");
 
@@ -145,16 +148,18 @@ public class TasteResultController extends HttpServlet {
 
 			if (tasteResult > 0) {
 				System.out.println("취향 등록 성공");
+				session.setAttribute("loginUser", u);
+				request.getRequestDispatcher("/views/taste/tasteBOFA.jsp").forward(request, response);
 			} else {
-				System.out.println("취향 등록 실패");
+				System.out.println("취향 등록 실패, 임시 값 20으로 다시 취향 분석 1번으로 재진행");
+				request.setAttribute("alerMsg", "분석실패, 다시 진행해주세요.");
+				request.getRequestDispatcher("/taste.t0").forward(request, response);
 			}
-
 			break;
 		case "0100":
 		case "1011":
 			System.out.println("ETRF");
 			// 관련된 홈페이지 포워딩
-			request.getRequestDispatcher("/views/taste/tasteETRF.jsp").forward(request, response);
 			System.out.println("아이디 : " + u);
 			System.out.println("취향 update 진행");
 
@@ -162,16 +167,18 @@ public class TasteResultController extends HttpServlet {
 
 			if (tasteResult > 0) {
 				System.out.println("취향 등록 성공");
+				session.setAttribute("loginUser", u);
+				request.getRequestDispatcher("/views/taste/tasteETRF.jsp").forward(request, response);
 			} else {
-				System.out.println("취향 등록 실패");
+				System.out.println("취향 등록 실패, 임시 값 20으로 다시 취향 분석 1번으로 재진행");
+				request.setAttribute("alerMsg", "분석실패, 다시 진행해주세요.");
+				request.getRequestDispatcher("/taste.t0").forward(request, response);
 			}
-
 			break;
 		case "0101":
 		case "1010":
 			System.out.println("CCFE");
 			// 관련된 홈페이지 포워딩
-			request.getRequestDispatcher("/views/taste/tasteCCFE.jsp").forward(request, response);
 			System.out.println("아이디 : " + u);
 			System.out.println("취향 update 진행");
 
@@ -181,15 +188,18 @@ public class TasteResultController extends HttpServlet {
 
 			if (tasteResult > 0) {
 				System.out.println("취향 등록 성공");
+				session.setAttribute("loginUser", u);
+				request.getRequestDispatcher("/views/taste/tasteCCFE.jsp").forward(request, response);
 			} else {
-				System.out.println("취향 등록 실패");
+				System.out.println("취향 등록 실패, 임시 값 20으로 다시 취향 분석 1번으로 재진행");
+				request.setAttribute("alerMsg", "분석실패, 다시 진행해주세요.");
+				request.getRequestDispatcher("/taste.t0").forward(request, response);
 			}
 			break;
 		case "0110":
 		case "1001":
 			System.out.println("CAES");
 			// 관련된 홈페이지 포워딩
-			request.getRequestDispatcher("/views/taste/tasteCAES.jsp").forward(request, response);
 			System.out.println("아이디 : " + u);
 			System.out.println("취향 update 진행");
 
@@ -197,15 +207,18 @@ public class TasteResultController extends HttpServlet {
 
 			if (tasteResult > 0) {
 				System.out.println("취향 등록 성공");
+				session.setAttribute("loginUser", u);
+				request.getRequestDispatcher("/views/taste/tasteCAES.jsp").forward(request, response);
 			} else {
-				System.out.println("취향 등록 실패");
+				System.out.println("취향 등록 실패, 임시 값 20으로 다시 취향 분석 1번으로 재진행");
+				request.setAttribute("alerMsg", "분석실패, 다시 진행해주세요.");
+				request.getRequestDispatcher("/taste.t0").forward(request, response);
 			}
 			break;
 		case "0111":
 		case "1000":
 			System.out.println("HHAL");
 			// 관련된 홈페이지 포워딩
-			request.getRequestDispatcher("/views/taste/tasteHHAL.jsp").forward(request, response);
 			System.out.println("아이디 : " + u);
 			System.out.println("취향 update 진행");
 
@@ -213,8 +226,12 @@ public class TasteResultController extends HttpServlet {
 
 			if (tasteResult > 0) {
 				System.out.println("취향 등록 성공");
+				session.setAttribute("loginUser", u);
+				request.getRequestDispatcher("/views/taste/tasteHHAL.jsp").forward(request, response);
 			} else {
-				System.out.println("취향 등록 실패");
+				System.out.println("취향 등록 실패, 임시 값 20으로 다시 취향 분석 1번으로 재진행");
+				request.setAttribute("alerMsg", "분석실패, 다시 진행해주세요.");
+				request.getRequestDispatcher("/taste.t0").forward(request, response);
 			}
 			break;
 		default:

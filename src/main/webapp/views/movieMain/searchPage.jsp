@@ -77,8 +77,7 @@
 	      button.addEventListener('click', function() {
 	        result = this.value;
 	        console.log(result);  // 클릭한 버튼의 value 값 출력
-	        const url = "https://example.com"; // 열고자 하는 링크
-	        window.location.href = "http://localhost:9999/mvp/searchPage.mv?search=" + result;
+	        window.location.href = "<%=contextPath%>/searchPage.mv?search=" + result;
 	      });
 	  });
 	  
@@ -365,7 +364,7 @@
 				                            // 성공적으로 요청이 처리된 후, 페이지 이동
 				                            console.log(res);
 				                            if(res){
-				                                window.location.href = "<%=contextPath%>/views/movieMain/detailPage.jsp?movieNo=" + movieNo;
+				                                window.location.href = "<%=contextPath%>/searchPage.mv?search=" + movieNo;
 				                            }else{
 				                            	alert('영화 정보를 불러오는데 실패했습니다.');
 				                            }
