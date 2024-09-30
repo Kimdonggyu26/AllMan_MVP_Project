@@ -12,6 +12,7 @@ public class Review {
 	private Date reviewDate;
 	private String userNickname;
 	private int likeCount;
+	private String userFilePath;
 	
 	public Review() {}
 
@@ -37,7 +38,20 @@ public class Review {
 		this.likeCount = likeCount;
 	}
 	
-	
+
+	public Review(int reviewNo, String reviewContent, int grade, int userNo, int movieNo, Date reviewDate,
+			String userNickname, String userFilePath, int likeCount) {
+		super();
+		this.reviewNo = reviewNo;
+		this.reviewContent = reviewContent;
+		this.grade = grade;
+		this.userNo = userNo;
+		this.movieNo = movieNo;
+		this.reviewDate = reviewDate;
+		this.userNickname = userNickname;
+		this.userFilePath = userFilePath;
+		this.likeCount = likeCount;
+	}
 
 	public Review(int reviewNo, String reviewContent, int movieNo) {
 		super();
@@ -88,6 +102,14 @@ public class Review {
 
 	public Date getReviewDate() {
 		return reviewDate;
+	}
+
+	public String getUserFilePath() {
+		return userFilePath;
+	}
+
+	public void setUserFilePath(String userFilePath) {
+		this.userFilePath = userFilePath;
 	}
 
 	public void setReviewDate(Date reviewDate) {

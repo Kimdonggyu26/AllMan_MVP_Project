@@ -22,7 +22,7 @@
 		  	   LIKES
 		 WHERE 
 		 			 USER_NO = ?
-  		 AND MOVIE_NO = ?
+  		 AND REVIEW_NO = ?
 	</entry>
 	
 	<entry key="likeCount">

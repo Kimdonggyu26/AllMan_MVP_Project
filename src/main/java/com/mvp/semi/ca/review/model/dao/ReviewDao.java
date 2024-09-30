@@ -46,7 +46,7 @@ public class ReviewDao {
 				list.add(new Review(rset.getInt("REVIEW_NO"), rset.getString("REVIEW_CONTENT")
 								  , rset.getInt("GRADE"), rset.getInt("USER_NO")
 								  , rset.getInt("MOVIE_NO"), rset.getDate("REVIEW_DATE")
-								  , rset.getString("USER_NICKNAME"),rset.getInt("LIKE_COUNT")));
+								  , rset.getString("USER_NICKNAME"),rset.getString("PROFILE_PATH"),rset.getInt("LIKE_COUNT")));
 			}
 			
 		} catch (SQLException e) {
@@ -76,7 +76,7 @@ public class ReviewDao {
 				list.add(new Review(rset.getInt("REVIEW_NO"), rset.getString("REVIEW_CONTENT")
 								  , rset.getInt("GRADE"), rset.getInt("USER_NO")
 								  , rset.getInt("MOVIE_NO"), rset.getDate("REVIEW_DATE")
-								  , rset.getString("USER_NICKNAME"), rset.getInt("LIKE_COUNT")));
+								  , rset.getString("USER_NICKNAME"),rset.getString("PROFILE_PATH"), rset.getInt("LIKE_COUNT")));
 			}
 			
 		} catch (SQLException e) {

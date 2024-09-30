@@ -210,6 +210,7 @@
 					$('#ShwoNoSearch').html(h1El);
 					$('#printShowMovieList').html(divEl);
 					
+		            // 영화정보 클릭시 해당 영화의 상세 페이지로 이동
 		            for (let i = 0; i < r.length; i++) {
 		                $('#info' + r[i].movieNo).on('click', function() {
 		                    var movieNo = r[i].movieNo; // 현재 영화 번호
@@ -350,12 +351,12 @@
 		            // 결과를 페이지에 반영
 		            $('#OTTNoSearch').html(h1El);
 		            $('#printOTTMovieList').html(divEl);
-					
+		            
+		            // 영화정보 클릭시 해당 영화의 상세 페이지로 이동
 		            for (let i = 0; i < r.length; i++) {
 		                $('#info' + r[i].movieNo).on('click', function() {
 		                	
 	                    var movieNo = r[i].movieNo; // 현재 영화 번호
-	                    console.log('영화정보 버튼이 클릭되었습니다. 영화번호:', movieNo);
 
 				                    $.ajax({
 				                        url: "<%=contextPath%>/showDetail.sd", // 서블릿 URL

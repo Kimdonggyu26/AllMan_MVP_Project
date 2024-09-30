@@ -1,3 +1,4 @@
+<%@ page import="com.mvp.semi.user.model.vo.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% String contextPath = request.getContextPath(); %>
@@ -23,6 +24,11 @@
 </head>
 <body>
 
+	<% 
+		// Movie
+		User loginUser = (User)session.getAttribute("loginUser");
+	 %>
+
 	<!-- alertMsg -->
 	<%String alertMsg = (String)session.getAttribute("alertMsg"); %>
 	<% if(alertMsg !=null) { %>
@@ -40,9 +46,9 @@
 	         </div>
 	         <div style="display: flex; align-items: center;">
 		       	 <img src="<%=contextPath%>/assets/image/adminPage/home_logo.png" style="margin-right: 15px;">
-		         <a href="<%=contextPath%>/mainPage.jsp"><img src="<%=contextPath%>/assets/image/adminPage/moviepick_logo.png" style="margin-right: 50px; width: 80px;"></a>
+		         <a href="<%=contextPath%>"><img src="<%=contextPath%>/assets/image/adminPage/moviepick_logo.png" style="margin-right: 50px; width: 80px;"></a>
 		         <img src="<%=contextPath%>/assets/image/adminPage/logout_logo.png" style="margin-right: 15px;">
-		         <span>로그아웃</span>
+		         <span onclick="fnlogout()">로그아웃</span>
 	         </div> 
 	      </div> <!-- head div 끝 -->  
 	      
@@ -62,7 +68,7 @@
               <span>계정관리</span>
               <div style="width: 280px; height: 32px;">
                 <img src="<%=contextPath%>/assets/image/adminPage/user_logo.png">
-                <span>000관리자님 환영합니다.</span>
+                <span><%=loginUser.getUserNick() %>님 환영합니다.</span>
               </div>
             </div><!-- body-right-title div 끝 -->
             
@@ -594,6 +600,10 @@
 			        	window.addEventListener('load', function(){
 			        		showingUserList(1);
 									});
+			        		
+				        	function fnlogout() {
+				        	    window.location.href = '<%=contextPath%>/logout.us';
+				        	}
 			        	
 			        </script>
 			        <!-- Modal footer -->
