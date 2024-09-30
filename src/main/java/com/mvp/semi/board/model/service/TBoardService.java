@@ -12,6 +12,8 @@ import com.mvp.semi.board.model.dao.TBoardDao;
 import com.mvp.semi.board.model.vo.Board;
 import com.mvp.semi.board.model.vo.Reply;
 import com.mvp.semi.common.model.vo.PageInfo;
+import com.mvp.semi.cs.inquiry.model.dao.InquiryDao;
+import com.mvp.semi.cs.inquiry.model.vo.Inquiry;
 import com.mvp.semi.movie.model.vo.Movie;
 
 
@@ -374,6 +376,13 @@ public class TBoardService {
 			rollback(conn);
 		}
 		return result;
+	}
+
+	public List<Board> getUserTboard(String userId, PageInfo po) {
+		  Connection conn = getConnection();  // DB 연결 객체 가져오기
+	        List<Board> board = new TBoardDao().selectTboardByUser(conn, userId ,po);  // DAO 호출
+	        close(conn);  // DB 연결 닫기
+	        return board;  // 조회 결과 반환
 	}
 
 	

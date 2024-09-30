@@ -114,9 +114,9 @@ public class InquiryService {
 		
 		return result;
 	}
-	 public List<Inquiry> getUserInquiries(String userId) {
+	 public List<Inquiry> getUserInquiries(String userId,PageInfo pi) {
 	        Connection conn = getConnection();  // DB 연결 객체 가져오기
-	        List<Inquiry> inquiries = new InquiryDao().selectInquiriesByUser(conn, userId);  // DAO 호출
+	        List<Inquiry> inquiries = new InquiryDao().selectInquiriesByUser(conn, userId ,pi);  // DAO 호출
 	        close(conn);  // DB 연결 닫기
 	        return inquiries;  // 조회 결과 반환
 	    }

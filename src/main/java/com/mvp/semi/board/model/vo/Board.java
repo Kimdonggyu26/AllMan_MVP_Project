@@ -23,6 +23,7 @@ public class Board {
 	
 	public Board() {}
 
+	
 	public Board(int boardNo, String boardTitle, String boardContent, String registDate) {
 		super();
 		this.boardNo = boardNo;
@@ -30,6 +31,16 @@ public class Board {
 		this.boardContent = boardContent;
 		this.registDate = registDate;
 	}
+
+	
+	
+	public Board(int boardNo, String boardTitle, String registDate) {
+		super();
+		this.boardNo = boardNo;
+		this.boardTitle = boardTitle;
+		this.registDate = registDate;
+	}
+
 
 	public Board(int boardNo, int boardType, String boardTitle, String boardContent, String boardCount, String registDate,
 			String status, String userId, String profilePath, String movieTitle, String movieContent,
