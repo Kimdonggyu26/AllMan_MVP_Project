@@ -382,7 +382,7 @@ public class UserDao {
 			close(rset);
 			close(pstmt);
 		}
-		return listCount;
+		return count;
 	}
 
 	public int selectAllAdminList(Connection conn, Map<String, String> searchData) { // map 넘겨받기
@@ -483,7 +483,7 @@ public class UserDao {
 			close(rset);
 			close(pstmt);
 		}
-		return listCount;
+		return count;
 	}
 
 	public List<User> selectPagingShowUserList(Connection conn, PageInfo pi, Map<String, String> searchData) { // map
@@ -608,7 +608,6 @@ public class UserDao {
 
 		return list;
 
-		return count;
 	}
 
 }
