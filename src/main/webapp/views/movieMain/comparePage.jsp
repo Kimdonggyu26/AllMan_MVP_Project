@@ -1,3 +1,6 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.mvp.semi.movie.model.vo.Movie" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,8 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/비교페이지.css">
+<link rel="stylesheet" href="css/comparePage.css">
 
+<%
+    
+    List<Movie> list = (List<Movie>)request.getAttribute("list");
+%>
 
 </head>
 <body>

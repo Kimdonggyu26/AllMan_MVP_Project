@@ -250,4 +250,11 @@ public class MovieService {
 	        return ottMovies;
 	    }
 
+	public Movie compareList(int parseInt) {
+		Connection conn = getConnection();
+		Movie movie = mvDao.compareList(conn, parseInt);
+		close(conn);
+		return movie;
+	}
+
 }

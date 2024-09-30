@@ -64,6 +64,8 @@
       // 영화 수가 3개 이하일 경우 추가 가능하도록 로직 추가 가능
       // 예: 추가할 수 있는 버튼이 있는 경우 이 곳에서 관리
   }
+  
+  
 
 	  // "비교하기" 버튼 클릭 시 선택된 영화들을 서버로 전송
 	  function compareMovies() {
@@ -85,7 +87,7 @@
 	    // Form을 사용해 선택된 영화 번호 전송
 	    const form = document.createElement('form');
 	    form.method = 'POST';
-	    form.action = '<%= basketContextPath %>/compare.mv'; // 서버의 비교 페이지로 POST 요청
+	    form.action = '<%= basketContextPath %>/compare.li'; // 서버의 비교 페이지로 POST 요청
 
 	    selectedMovies.forEach(movieNo => {
 	      const input = document.createElement('input');

@@ -15,6 +15,7 @@ import java.util.Properties;
 
 import com.mvp.semi.common.model.vo.PageInfo;
 import com.mvp.semi.movie.model.vo.Movie;
+import com.mvp.semi.user.model.vo.User;
 
 public class MovieDao {
 
@@ -862,5 +863,45 @@ public class MovieDao {
 	        }
 	        return list;
 	    }
+
+	public Movie compareList(Connection conn, int parseInt) {
+		
+		Movie movie = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("compareList");
+
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성된 sql문
+			pstmt.setInt(1, parseInt);
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				movie = new Movie(rset.getInt("MOVIE_NO"),
+						rset.getString("MOVIE_TITLE"), 
+						rset.getString("MOVIE_CONTENT"),
+						rset.getString("GENRE"),
+						rset.getInt("PLAYTIME"),
+						rset.getString("COUNTRY"),
+						rset.getString("AGE_LV"),
+						rset.getString("OPEN_DATE"),
+						rset.getString("DIRECTOR"),
+						rset.getInt("AUDIENCE_COUNT"),
+						rset.getString("ACTOR"),
+						rset.getString("PREVIEW"),
+						rset.getDouble("GRADE"),
+						rset.getString("TITLE_PATH"),
+						rset.getInt("TASTE_NO"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();	
+		} finally {
+			close(rset);
+			close(pstmt);
+			          
+		}
+		return movie;
+	}
 
 }

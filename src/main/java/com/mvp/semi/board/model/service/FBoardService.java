@@ -31,8 +31,6 @@ public class FBoardService {
 		List<Board> list = fbDao.selectFBoardList(conn, pi);
 		close(conn);
 		
-
-		
 		return list;
 	}
 

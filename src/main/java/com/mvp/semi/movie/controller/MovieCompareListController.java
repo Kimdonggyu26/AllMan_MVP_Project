@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +16,7 @@ import com.mvp.semi.movie.model.vo.Movie;
 /**
  * Servlet implementation class MovieCompareListController
  */
-@WebServlet("/MovieCompareListController")
+@WebServlet("/compare.li")
 public class MovieCompareListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -37,18 +36,19 @@ public class MovieCompareListController extends HttpServlet {
         String[] movieNos = request.getParameterValues("movieNo");
         
         // 영화 번호로 영화 정보를 조회하는 로직 (DB에서 조회)
-        List<Movie> selectedMovies = new ArrayList<>();
+        List<Movie> list = new ArrayList<>();
         for (String movieNo : movieNos) {
-            Movie movie = MovieService.CompareMvNo(movieNo); // 영화 서비스에서 영화 정보 조회
-            selectedMovies.add(movie);
+            Movie movie = new MovieService().compareList(Integer.parseInt(movieNo)); // 영화 서비스에서 영화 정보 조회
+            list.add(movie);
         }
 
         // 영화 리스트를 request에 저장
-        request.setAttribute("selectedMovies", selectedMovies);
+        request.setAttribute("list", list);
+        
+        System.out.println(list);
 
         // 비교 페이지로 이동
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/movieCompare.jsp");
-        dispatcher.forward(request, response);
+        request.getRequestDispatcher("/views/movieMain/comparePage.jsp").forward(request, response);
     }
 
 
