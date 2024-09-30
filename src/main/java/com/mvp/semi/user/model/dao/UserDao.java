@@ -382,7 +382,7 @@ public class UserDao {
 			close(rset);
 			close(pstmt);
 		}
-		return count;
+		return listCount;
 	}
 
 	public int selectAllAdminList(Connection conn, Map<String, String> searchData) { // map 넘겨받기
@@ -458,7 +458,7 @@ public class UserDao {
 			close(rset);
 			close(pstmt);
 		}
-		return listCount;
+		return count;
 	}
 
 	public int phoneCheck(Connection conn, String checkPhone) {
