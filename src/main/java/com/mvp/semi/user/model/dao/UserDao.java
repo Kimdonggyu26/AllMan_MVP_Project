@@ -387,6 +387,13 @@ public class UserDao {
 
 			if (rset.next()) {
 				listCount = rset.getInt("COUNT");
+			}
+		}
+		
+			
+	return listCount;
+
+	}
 
 
 	public int emailCheck(Connection conn, String checkEmail) {
