@@ -47,7 +47,7 @@ public class SMTPController extends HttpServlet {
 		System.out.println("SMTP 수신 데이터 : "+ reSetPassword + " | " + userEmail);
 		
 		final String eMailName= "yechan9981@gmail.com";
-		final String password = "chun9981998!";
+		final String password = "csadas!";
 		
 		
 		// Property 객체에 SMTP 서버 정보 설정
