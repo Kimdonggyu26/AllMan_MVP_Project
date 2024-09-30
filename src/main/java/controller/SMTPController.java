@@ -4,18 +4,16 @@ import java.io.IOException;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.mvp.semi.user.model.vo.User;
 
 /**
  * Servlet implementation class SMTPMailSendTest
@@ -41,8 +39,13 @@ public class SMTPController extends HttpServlet {
 			throws ServletException, IOException {
 
 		// activation-1.1.jar , mail-1.4.7.jar 라이브러리 필요
-		String userEmail = request.getParameter("email");
-
+		HttpSession serSession = request.getSession();
+		User u = (User)serSession.getAttribute("userId");
+		String reSetPassword = (String)serSession.getAttribute("reSetPwd");
+		String userEmail = u.getEmail();
+		
+		System.out.println("SMTP 수신 데이터 : "+ reSetPassword + " | " + userEmail);
+		
 		// Property 객체에 SMTP 서버 정보 설정
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.naver.com");
@@ -55,37 +58,40 @@ public class SMTPController extends HttpServlet {
 		// SMTP 서버 정보와 사용자 정보를 기반으로 Session 클래스의 인스턴스를 생성
 		Session session = Session.getDefaultInstance(props, new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("allofyaeji@naver.com", "mvpmvp123");
+				return new PasswordAuthentication("semi_mvp@naver.com", "mvpmvp123!");
 			}
 		});
-
-		// Message 객체에 수신자와 내용, 제목의 메시지를 작성
-		try {
-
-			Message message = new MimeMessage(session);
-
-			// 발신자 설정
-			message.setFrom(new InternetAddress("발신자계정@naver.com"));
-
-			// 수신자 메일주소 설정
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress("회원가입페이지에서 사용자가 입력한 이메일"));
-
-			// 메일 제목 설정
-			message.setSubject("제목");
-			// 메일 내용 설정
-			message.setText("인증번호는 [ aaaa ] 입니다.");
-
-			// Send the message
-			Transport.send(message);
-
-			System.out.println(" NaverMailSend : Email sent successfully.");
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		}
-
-		System.out.println(" NaverMailSend : sendEmail() 종료");
-
-		response.getWriter().print("aaaa");
+//
+//		// Message 객체에 수신자와 내용, 제목의 메시지를 작성
+//		try {
+//
+//			Message message = new MimeMessage(session);
+//
+//			// 발신자 설정
+//			message.setFrom(new InternetAddress("semi_mvp@naver.com"));
+//
+//			// 수신자 메일주소 설정
+//			message.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
+//
+//			// 메일 제목 설정
+//			message.setSubject("MVP 영화 비교 사이트");
+//			// 메일 내용 설정
+//			message.setText("변경된 비밀번호는 [ ㅅㄷㄴㄱㄷㄴ ] 입니다.");
+//
+//			// Send the message
+//			Transport.send(message);
+//
+//			System.out.println(" NaverMailSend : Email sent successfully.");
+//		} catch (MessagingException e) {
+//			System.out.println("안됨~~~~");
+//			e.printStackTrace();
+//		}
+//
+//		System.out.println(" NaverMailSend : sendEmail() 종료");
+//
+//		response.getWriter().print("aaaa");
+//		
+//		request.getRequestDispatcher("/views/account/findPwdSuc.jsp").forward(request, response);
 
 	}
 

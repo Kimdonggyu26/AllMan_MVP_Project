@@ -40,7 +40,7 @@ public class MovieCompareListController extends HttpServlet {
         List<Movie> mvlist = new ArrayList<>();
         List<Review> rlist = new ArrayList<>();
         for (String movieNo : movieNos) {
-            Movie movie = new MovieService().compareList(Integer.parseInt(movieNo)); // 영화 서비스에서 영화 정보 조회
+        	Movie movie = new MovieService().compareList(Integer.parseInt(movieNo)); // 영화 서비스에서 영화 정보 조회
             mvlist.add(movie);
         }
         

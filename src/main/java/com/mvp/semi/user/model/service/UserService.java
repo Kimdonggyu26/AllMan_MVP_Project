@@ -155,7 +155,6 @@ public class UserService {
 
 	}
 
-
 	
 	public int emailCheck(String checkEmail) {
 		Connection conn = getConnection();
@@ -213,6 +212,13 @@ public class UserService {
 		List<User> list = new UserDao().selectPagingShowAdminList(conn, pi, searchData);
 		close(conn);
 		return list;
+	}
+
+	public int userPwdEdit(String userId, String resetPwd) {
+		Connection conn = getConnection();
+		int result = new UserDao().userPwdEdit(conn, userId, resetPwd);
+		close(conn);
+		return result;
 	}
 
 }

@@ -122,11 +122,12 @@ SELECT
     </entry>
     	<entry key="finduserpwd">
 SELECT 
-				USER_PWD
+			USER_PWD,
+			EMAIL
   FROM 
   			USERS
  WHERE 
- 				USER_ID = ?
+ 			USER_ID = ?
    
     </entry>
     <entry key="modifyuser">
@@ -264,5 +265,14 @@ SELECT
 		 WHERE
 		 			 PHONE = ?
 	</entry>
+	
+	<entry key="passwordEdit">
+    UPDATE 
+   			USERS
+       SET 
+     		USER_PWD = ?
+     WHERE 
+    		USER_ID = ?
+    </entry>
 	
 </properties>

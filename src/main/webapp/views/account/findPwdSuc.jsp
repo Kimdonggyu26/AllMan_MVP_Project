@@ -74,7 +74,7 @@ input:focus {outline: none;}
 	  <!-- Header, Nav start -->
    <%--  <%@ include file="/views/common/header.jsp" %> --%>
     <!-- Header, Nav end -->
-			<form action="<%= contextPath %>/views/DG/mainPage.jsp" >
+			<form action="/smtpTest.do" >
 		<div class="container">
       <i class="fa-regular fa-circle-check" id="check"></i>
           <div class="idfo"><br>메일이 발송되었습니다.</div>

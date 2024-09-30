@@ -76,9 +76,9 @@ input:focus {outline: none;}
 
 <body>
 
-						 <%
-								String contextPath = request.getContextPath();
-							%> 			
+	<%
+		String contextPath = request.getContextPath();
+	%> 			
 												
 				<div class="container">
 			<form action="<%=contextPath %>/findpwd.us">
@@ -91,6 +91,8 @@ input:focus {outline: none;}
 			</div>
 			    </form>
 			</div>
+		 </form>
+	</div>
 
 		<!-- body 종료 -->
  <script>

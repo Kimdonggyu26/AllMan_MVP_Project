@@ -207,7 +207,7 @@ public class UserDao {
 
 			if (rset.next()) {
 				u.setUserPwd(rset.getString("user_pwd"));
-
+				u.setEmail(rset.getString("EMAIL"));
 			}
 
 		} catch (SQLException e) {
@@ -461,8 +461,6 @@ public class UserDao {
 		return count;
 	}
 
-	
-
 
 	public int phoneCheck(Connection conn, String checkPhone) {
 		int count = 0;
@@ -612,5 +610,29 @@ public class UserDao {
 		return list;
 
 	}
+
+	public int userPwdEdit(Connection conn, String userId, String resetPwd) {
+		// insert => 처리된 행 수
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("passwordEdit");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, resetPwd);
+			pstmt.setString(2, userId);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+
+	}
+
 
 }
