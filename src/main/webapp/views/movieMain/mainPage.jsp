@@ -164,7 +164,7 @@
 						    '            <i class="fa-regular fa-heart" id="heart" style=""></i>' +  // heart 아이콘
 						    '        </div>' +  // a 닫기
 						    '        <div style="display: flex;">' +  // b 시작
-						    '            <button type="button" class="btn btn-secondary" id="info">영화정보</button>' +
+						    '            <button type="button" class="btn btn-secondary" id="info' + r[i].movieNo + '">영화정보</button>' +
 						    '            <button type="button" class="btn btn-danger" id="compare" onclick="fnComparisonAdd(\'' + r[i].movieNo + '\', \'' + r[i].titlePath + '\');">' +  // c 시작
 						    '                <img src="assets/image/mainPage/download_logo.png" style="width: 14px; height: 14px; margin-right: 5px; margin-bottom: 4px;">비교하기' +
 						    '            </button>' +  // c 닫기
@@ -196,6 +196,33 @@
 	            }
 	            $('#ShwoNoSearch').html(h1El);
 	            $('#printShowMovieList').html(divEl);
+	            
+	            
+	            // 영화정보 클릭시 해당 영화의 상세 페이지로 이동
+	            for (let i = 0; i < r.length; i++) {
+	                $('#info' + r[i].movieNo).on('click', function() {
+	                	
+                    var movieNo = r[i].movieNo; // 현재 영화 번호
+
+			                    $.ajax({
+			                        url: "<%=contextPath%>/showDetail.sd", // 서블릿 URL
+			                        data: { movieNo: movieNo }, // 영화 번호를 데이터로 전송
+			                        success: function(res) {
+			                            // 성공적으로 요청이 처리된 후, 페이지 이동
+			                            console.log(res);
+			                            if(res){
+			                                window.location.href = "<%=contextPath%>/showDetail.sd?movieNo=" + movieNo;
+			                            }else{
+			                            	alert('영화 정보를 불러오는데 실패했습니다.');
+			                            }
+			                        		
+			                        }		
+                        
+                        
+                    });
+                    
+        				});
+	            }
 	        },
 	        error: function() {
 	            console.log('영화 검색 ajax 통신 실패');
@@ -281,7 +308,7 @@
 	                              +  '<i class="fa-regular fa-heart" id="heart"></i>'
 	                              +  '</div>'
 	                              +  '<div style="display: flex;">'
-	                              +  '<button type="button" class="btn btn-secondary" id="info">영화정보</button>'
+	                              +  '<button type="button" class="btn btn-secondary" id="info' + r[i].movieNo + '">영화정보</button>'
 	                              +  '<button type="button" class="btn btn-danger" id="compare" onclick="fnComparisonAdd(\'' + r[i].movieNo + '\', \'' + r[i].titlePath + '\');">'
 	                              +  '<img src="assets/image/mainPage/download_logo.png" style="width: 14px; height: 14px; margin-right: 5px; margin-bottom: 4px;">비교하기'
 	                              +  '</button>'
@@ -313,6 +340,7 @@
 	            $('#OTTNoSearch').html(h1El);
 	            $('#printOTTMovieList').html(divEl);
 	            
+	            // 영화정보 클릭시 해당 영화의 상세 페이지로 이동
 	            for (let i = 0; i < r.length; i++) {
 	                $('#info' + r[i].movieNo).on('click', function() {
 	                	
@@ -326,7 +354,7 @@
 			                            // 성공적으로 요청이 처리된 후, 페이지 이동
 			                            console.log(res);
 			                            if(res){
-			                                window.location.href = "<%=contextPath%>/searchPage.mv?search=" + movieNo;
+			                                window.location.href = "<%=contextPath%>/showDetail.sd?movieNo=" + movieNo;
 			                            }else{
 			                            	alert('영화 정보를 불러오는데 실패했습니다.');
 			                            }

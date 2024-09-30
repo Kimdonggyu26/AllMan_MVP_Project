@@ -52,7 +52,7 @@
       <!-- 텍스트와 버튼을 이미지 위에 배치 -->
       <div id="img_text" style="text-align: center;">
         <h1><%= mv.getMovieTitle() %></h1>
-        <p id="head_P_Tag">진짜 나를 만날 시간</p>
+        <p id="head_P_Tag"></p>
         <div id="img_btn_style">
           <button style=" width: 110px; margin-right: 20px;" type="button" onclick="window.open('<%=mv.getPreview()%>', '_blank');"><i class="fa-solid fa-play">&nbsp;&nbsp;</i>예고편</button>
           <button style="background: #131313; width: 56px;">
@@ -466,9 +466,15 @@
     		 var starRating = $('input[class="star"]:checked').val();
     		 
     	        // 입력 값이 비어 있는지 확인 (리뷰내용)
-    	        if (!reviewText) {
-    	            alert('리뷰를 입력해주세요.'); 
+    	        if(!reviewText && !starRating){
+    	        	alert('별점과 리뷰내용을 입력해주세요.');
+    	        	return;
+    	        } else if (!reviewText) {
+    	            alert('리뷰내용을 입력해주세요.'); 
     	            return;
+    	        } else if (!starRating){
+    	        	alert('최소 1개의 별점을 입력해주세요.');
+    	        	return;
     	        }
     	        
     	        $.ajax({
