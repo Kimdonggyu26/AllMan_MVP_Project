@@ -82,8 +82,8 @@ input:focus {
 
 <body>
 			 <%
-								String contextPath = request.getContextPath();
-							%> 			
+				String contextPath = request.getContextPath();
+			%> 			
 	  <!-- Header, Nav start -->
    	<%--  <%@ include file="/views/common/header.jsp" %> --%>
     <!-- Header, Nav end -->

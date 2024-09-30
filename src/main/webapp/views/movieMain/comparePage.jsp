@@ -9,7 +9,7 @@
 <head>
 
 <%	
-		String contextPath = request.getContextPath();
+	String contextPath = request.getContextPath();
     List<Movie> list = (List<Movie>)request.getAttribute("list");
     List<Review> review = (List<Review>)request.getAttribute("review");
 %>
@@ -32,8 +32,8 @@
 		<div id="main">
 	
 	    <div id="result-text"> <!-- result-text div 시작 -->
-	      <p>
-	       비교어쩌고 저쩌고 아무나 잘써주세요^^🥳
+	      <p style="    display: flex; justify-content: center;">
+	      선택하신 영화 리스트를 보여드릴게요🥳
 	      </p>
 	    </div> <!-- result-text div 끝 -->
 			

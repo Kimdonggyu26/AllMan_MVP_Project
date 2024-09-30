@@ -44,6 +44,7 @@ String alertMsg = (String)session.getAttribute("alertMsg");
 		height: 70px;
 		font-size: 20px;
 		border-radius: 5px;
+		padding-left: 20px;
 		border: 0px;
 		background-color: rgba(252, 252, 252, 0.116);
 		color: white;
@@ -119,7 +120,7 @@ String alertMsg = (String)session.getAttribute("alertMsg");
             <tr>
                 <td class="p-3"><a href="<%= contextPath %>/views/account/findId.jsp">아이디 찾기 &nbsp|&nbsp  </a></td>
                 <td class="p-3"><a href="<%= contextPath %>/views/account/findPwd.jsp">비밀번호 찾기 &nbsp | &nbsp </a></td>
-                <td class="p-3"><a href="<%= contextPath%>/views/account/signUp.jsp ">회원가입</a></td>
+                <td class="p-3"><a href="<%= contextPath%>/signup.us">회원가입</a></td>
             </tr>
         </table>
     </div>

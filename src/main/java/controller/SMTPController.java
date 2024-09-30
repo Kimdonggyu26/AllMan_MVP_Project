@@ -46,10 +46,14 @@ public class SMTPController extends HttpServlet {
 		
 		System.out.println("SMTP 수신 데이터 : "+ reSetPassword + " | " + userEmail);
 		
+		final String eMailName= "yechan9981@gmail.com";
+		final String password = "chun9981998!";
+		
+		
 		// Property 객체에 SMTP 서버 정보 설정
 		Properties props = new Properties();
-		props.put("mail.smtp.host", "smtp.naver.com");
-		props.put("mail.smtp.port", "465"); // SMTP 포트
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587"); // SMTP 포트
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.ssl.enable", "true");
 		props.put("mail.smtp.ssl.trust", "smtp.naver.com");
@@ -58,7 +62,7 @@ public class SMTPController extends HttpServlet {
 		// SMTP 서버 정보와 사용자 정보를 기반으로 Session 클래스의 인스턴스를 생성
 		Session session = Session.getDefaultInstance(props, new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("semi_mvp@naver.com", "mvpmvp123!");
+				return new PasswordAuthentication(eMailName, password);
 			}
 		});
 //

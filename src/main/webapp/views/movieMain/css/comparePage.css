@@ -5,6 +5,9 @@ body{
   color: white;
   font-weight: bold;
 }
+html{
+	background-color: #131313;
+}
 #result-text{
   color: white;
   font-size: 40px;
@@ -13,7 +16,7 @@ body{
   background-color: #131313;
   width: 1920px;
   height: 2667px;
-  position: absolute;
+  margin: auto;
 }
 #result-text{
   width: 830px;
@@ -32,7 +35,7 @@ body{
 #compare-list-movie{
   background-color: #323232;
   width: 327px;
-  height: 2226px;
+  height: 1900px;
   border-radius: 30px;
 }
 #movie-mainimage{
@@ -43,6 +46,8 @@ body{
   font-size: 32px;
   margin-left: 16px;
   margin-right: 16px;
+  justify-content: center;
+  display: flex;
 }
 #movie-content{
   width: 209px;
