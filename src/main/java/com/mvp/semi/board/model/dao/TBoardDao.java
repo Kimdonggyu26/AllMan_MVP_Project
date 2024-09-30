@@ -15,6 +15,7 @@ import java.util.Properties;
 import com.mvp.semi.board.model.vo.Board;
 import com.mvp.semi.board.model.vo.Reply;
 import com.mvp.semi.common.model.vo.PageInfo;
+import com.mvp.semi.cs.inquiry.model.vo.Inquiry;
 import com.mvp.semi.movie.model.vo.Movie;
 
 
@@ -1929,6 +1930,42 @@ public class TBoardDao {
 		}
 		
 		return result;
+	}
+
+	public List<Board> selectTboardByUser(Connection conn, String userId, PageInfo po) {
+	    PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        List<Board> board = new ArrayList<>();
+        
+        // properties 파일에서 쿼리 불러오기
+        String sql = prop.getProperty("selectUser2");
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            
+            int startRow = (po.getCurrentPage() - 1) * po.getBoardLimit() + 1;
+			int endRow = startRow + po.getBoardLimit() - 1;
+			
+            pstmt.setString(1, userId);
+            pstmt.setInt(2, startRow);
+            pstmt.setInt(3, endRow);
+            rset = pstmt.executeQuery();
+
+            // 결과 처리: Inquiry 객체 리스트에 저장
+            while (rset.next()) {
+            	board.add(new Board(rset.getInt("BOARD_NO"),
+                                     rset.getString("BOARD_TITLE"),
+                                     rset.getString("REGIST_DATE")));    // date로 수정해야함
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(rset);
+            close(pstmt);
+        }
+        
+        return board;
+    
 	}
 
 

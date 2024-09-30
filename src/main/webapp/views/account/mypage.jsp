@@ -200,10 +200,11 @@ a:active {
     }
 
     // tBoards 리스트 가져오기
-    List<Board> tBoards = (List<Board>) request.getAttribute("tBoards");
+    List<Board> 
+    tBoards = (List<Board>) request.getAttribute("tBoards");
     List<Inquiry> inquiries = (List<Inquiry>)request.getAttribute("inquiries");
     PageInfo pi = (PageInfo) request.getAttribute("pi");
-
+		PageInfo po = (PageInfo) request.getAttribute("po");
 %>
 
 <!-- body 시작부 -->
@@ -255,59 +256,60 @@ a:active {
     <div class="grid-item" style="width: 50px; height: 150px;" id="next-page-btn" onclick="loadNextPage()">  </div>
 </div> --%>
     
-<%--         <div class="post-section">
+         <div class="post-section">
             <h3>나의 게시글</h3>
             <hr>
    		        <% if (tBoards != null && tBoards.size() > 0) { %>
     			<% for (Board b : tBoards) { %>
-        <div class="list-item">
+        <div class="list-item" style="overflow: hidden;"> 
             <a href="<%= contextPath %>/detail.tbo?no=<%= b.getBoardNo() %>">
-                <%= b.getBoardTitle() %>
+                <span style="float: left;"><%= b.getBoardTitle() %></span> 
+                <span style="float: right;"><%= b.getRegistDate() %></span>
             </a>
-            <p><%= b.getRegistDate() %></p>
+        
 					        </div>
 					    <% } %>
 					<% } else { %>
 					    <p>게시글이 없습니다.</p>
 					<% } %>
- --%>
+
  
  
-  <%--           <% if (pi != null) { %>
+       <% if (po != null) { %>
         <ul class="pagination">
-            <li class="page-item <%= pi.getCurrentPage() == 1 ? "disabled" : "" %>">
-                <a class="page-link" href="<%= contextPath %>/mypage.us?page=<%= pi.getCurrentPage()-1 %>"> < </a>
+            <li class="page-item <%= po.getCurrentPage() == 1 ? "disabled" : "" %>">
+                <a class="page-link" href="<%= contextPath %>/mypage.us?page2=<%= po.getCurrentPage()-1 %>"> < </a>
             </li>
-            <% for (int p = pi.getStartPage(); p <= pi.getEndPage(); p++) { %>
-                <li class="page-item <%= p == pi.getCurrentPage() ? "active" : "" %>">
-                    <a class="page-link" href="<%= contextPath %>/mypage.us?page=<%= p %>"><%= p %></a>
+            <% for (int p = po.getStartPage(); p <= po.getEndPage(); p++) { %>
+                <li class="page-item <%= p == po.getCurrentPage() ? "active" : "" %>">
+                    <a class="page-link" href="<%= contextPath %>/mypage.us?page2=<%= p %>"><%= p %></a>
                 </li>
             <% } %>
-          		  <li class="page-item <%= pi.getCurrentPage() == pi.getMaxPage() ? "disabled" : "" %>">
-                <a class="page-link" href="<%= contextPath %>/mypage.us?page=<%= pi.getCurrentPage()+1 %>"> > </a>
+          		  <li class="page-item <%= po.getCurrentPage() == po.getMaxPage() ? "disabled" : "" %>">
+                <a class="page-link" href="<%= contextPath %>/mypage.us?page2=<%= po.getCurrentPage()+1 %>"> > </a>
            		 </li>
       		  </ul>
 		    <% } else { %>
 		        
 		    <% } %>
-				</div> --%>
+				</div>
 						    
 				        
 				<div class="inquiry-section">
 				    <h3>문의내역</h3>
 				    <hr>
-				   <%--  <% if (inquiries != null && inquiries.size() > 0) { %> --%>
-				        <% for (Inquiry i : inquiries) { %>
-				            <div class="list-item">
-				                <a href="<%= contextPath %>/detail.iq?no=<%= i.getInquiryNo() %>">
-				                    <%= i.getInquiryTitle() %>
-				                </a>
-				                <p><%= i.getRegistDate() %></p>
-				            </div>
-				        <% } %>
-				 <%--    <% } else { %>
+				     <% if (inquiries != null && inquiries.size() > 0) { %>
+				      <% for (Inquiry i : inquiries) { %>
+				    <div class="list-item" style="overflow: hidden;"> <!-- overflow 속성 추가 -->
+				        <a href="<%= contextPath %>/detail.iq?no=<%= i.getInquiryNo() %>" style="display: block;">
+				            <span style="float: left;"><%= i.getInquiryTitle() %></span>
+				            <span style="float: right;"><%= i.getRegistDate() %></span>
+				        </a>
+				    </div>
+							<% } %>
+				    <% } else { %>
 				        <p>문의내용이 없습니다.</p>
-				    <% } %> --%>
+				    <% } %> 
 				</div>
 
                 <% if (pi != null) { %>

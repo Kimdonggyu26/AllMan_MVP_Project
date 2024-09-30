@@ -275,6 +275,24 @@
 		WHERE 
 					BOARD_NO = ?
 	</entry>
-	
+	<entry key="selectUser2">
+    SELECT *
+      FROM (
+            SELECT
+                   b.BOARD_NO,
+                   b.BOARD_TITLE,
+                   b.REGIST_DATE,
+                   u.USER_ID,
+                   ROW_NUMBER() OVER(ORDER BY b.REGIST_DATE DESC) as RNUM
+              FROM 
+                   BOARD b
+              JOIN 
+                   USERS 
+                   u ON b.USER_NO = u.USER_NO
+             WHERE 
+                   u.USER_ID = ?
+           )
+     WHERE RNUM BETWEEN ? AND ?
+</entry>
 
 </properties>

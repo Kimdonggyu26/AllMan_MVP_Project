@@ -284,7 +284,7 @@ public class InquiryDao {
 		return result;
 	}
 
-    public List<Inquiry> selectInquiriesByUser(Connection conn, String userId) {
+    public List<Inquiry> selectInquiriesByUser(Connection conn, String userId,PageInfo pi) {
         PreparedStatement pstmt = null;
         ResultSet rset = null;
         List<Inquiry> inquiries = new ArrayList<>();
@@ -294,7 +294,13 @@ public class InquiryDao {
         
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, userId);  // 사용자 ID로 필터링
+            
+            int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
+			
+            pstmt.setString(1, userId);
+            pstmt.setInt(2, startRow);
+            pstmt.setInt(3, endRow);
             rset = pstmt.executeQuery();
 
             // 결과 처리: Inquiry 객체 리스트에 저장
