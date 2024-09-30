@@ -283,7 +283,7 @@
     						let divEl = '';
    					    		divEl += '<div class="review_title"><p>최신순</p></div>'
    					    	if (res && res.length > 0) {	
-    							for(let i = 0; i < 5; i++){  // 임의로 5개로 설정 숫자만 바꾸면 돼서 회의 후 결정
+    							for(let i = 0; i < res.length; i++){  // 임의로 5개로 설정 숫자만 바꾸면 돼서 회의 후 결정
     								 
     								divEl +=	'<div class="top_review">'
     			                    + '<div class="user_header">'
@@ -458,10 +458,8 @@
     	
     
     	
-    // 리뷰 작성
+    // 리뷰 등록 
     	function insertReview(movieNo){
-    		
-    		 
     		
     		 var reviewText = $('#form-control').val();
     		 var starRating = $('input[class="star"]:checked').val();
@@ -490,8 +488,8 @@
     	        				success: function(res) {
     	        		            // 성공 시 리뷰 목록 갱신
     	        		            
-    	        		            
-    	        		            reviewListByDate(movieNo); // movieNo를 넘겨서 리뷰 목록 갱신
+    	        		            reviewListByLike(movieNo); // movieNo를 넘겨서 리뷰 목록 갱신(인기순)
+    	        		            reviewListByDate(movieNo); // movieNo를 넘겨서 리뷰 목록 갱신(최신순)
     	        		            
     	        		            $('#form-control').val(''); // 입력 필드 초기화
     	        		            $('.star').prop('checked', false); // 별점 초기화

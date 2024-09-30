@@ -34,7 +34,8 @@ public class MovieDeleteController extends HttpServlet {
 		HttpSession session = request.getSession();	
 		
 		String[] deleteNumArr = request.getParameterValues("movieNo");
-		String allNum = String.join(",", deleteNumArr);
+		
+		String allNum = String.join(",", deleteNumArr);  // 삭제 요청을 보낸 영화들의 번호 목록
 		System.out.println(allNum);
 		int result = new MovieService().deleteMovie(allNum);
 		
@@ -46,7 +47,7 @@ public class MovieDeleteController extends HttpServlet {
 		}else if(result > 0 && deleteNumArr.length > result) {
 			
 			session.setAttribute("alertMsg", "선택하신 영화 중" + result + "개의 영화가 삭제되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/views/adminPage/adminMainPage.jsp");
+			response.sendRedirect(request.getContextPath() + "/views/adminPage/`.jsp");
 			
 		}else {
 			session.setAttribute("alertMsg", "삭제에 실패하였습니다. 다시 시도해주세요.");
