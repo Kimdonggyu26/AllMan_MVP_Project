@@ -19,7 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- 커스텀 CSS 로드 -->
-    <link rel="stylesheet" href="css/계정관리페이지.css">
+    <link rel="stylesheet" href="css/accountManage.css">
 </head>
 <body>
 
@@ -69,33 +69,35 @@
 	          <hr style="border: 2px solid #959595; width: 1074px; margin: 0%;">
 	          
           <div id="body-main">
-	          <table class="table table-bordered">
+	          <table class="table table-bordered" id="search-area">
 	            <tbody>
 	              <tr>
 	                <td class="table-title">등록날짜</td>
-	                <td style="display: flex; gap: 20px; width: 902px; height: 57px;"><input type="date" class="form-control"> <hr> <input type="date" class="form-control"></td>
+	                <td style="display: flex; gap: 20px; width: 902px; height: 57px;">
+	                <input type="date" class="form-control" id="startDate"> <hr>
+	                <input type="date" class="form-control" id="endDate"></td>
 	              </tr> 
 	              <tr>
-	                <td class="table-title">장르</td>
+	                <td class="table-title">팀명</td>
 	                <td style="padding: 0%;">
 	                  <div class="checkbox-list" style="display: flex; justify-content: center; align-items: center;">
 	                    <label style="display: flex; align-items: center;">
-	                      <input type="checkbox" class="form-check-input">영화 관리팀
+	                      <input type="checkbox" class="form-check-input" value="1">영화 관리팀
 	                    </label>
-	                    <label style="display: flex; align-items: center;">
-	                      <input type="checkbox" class="form-check-input">계정 관리팀
+	                    <label style="display: flex; align-items: center">
+	                      <input type="checkbox" class="form-check-input" value="2">계정 관리팀
 	                    </label>
-	                    <label style="display: flex; align-items: center;">
-	                      <input type="checkbox" class="form-check-input">게시판 관리팀
+	                    <label style="display: flex; align-items: center">
+	                      <input type="checkbox" class="form-check-input" value="3">게시판 관리팀
 	                    </label>
-	                    <label style="display: flex; align-items: center;">
-	                      <input type="checkbox" class="form-check-input">리뷰 관리팀
+	                    <label style="display: flex; align-items: center">
+	                      <input type="checkbox" class="form-check-input" value="4">리뷰 관리팀
 	                    </label>
-	                    <label style="display: flex; align-items: center;">
-	                      <input type="checkbox" class="form-check-input">고객 관리팀
+	                    <label style="display: flex; align-items: center">
+	                      <input type="checkbox" class="form-check-input" value="5">고객 관리팀
 	                    </label>
-	                    <label style="display: flex; align-items: center;">
-	                      <input type="checkbox" class="form-check-input">홈페이지 관리팀
+	                    <label style="display: flex; align-items: center">
+	                      <input type="checkbox" class="form-check-input" value="6">홈페이지 관리팀
 	                    </label>
 	                  </div>
 	                </td>
@@ -103,176 +105,266 @@
 	              <tr>
 	                <td class="table-title">검색</td> 
 	                <td style="display: flex;">
-	                  <input type="text" class="form-control" placeholder="검색어를 입력하세요." style="width: 311px; height: 31px; font-size: 14px;">
+	                  <input type="text" id="keyword" class="form-control" placeholder="검색어를 입력하세요." style="width: 311px; height: 31px; font-size: 14px;">
 	                  <button id="search">검색</button>
 	                  <button id="reset">초기화</button>
 	                </td>
 	              </tr>
 	            	</tbody>
 	            </table>
-	            
+	           <form action="<%=contextPath%>/userDelete.ud" method="post">
               <div id="body-main-list">
+              
                 <div id="list-category">
-                  <div class="show-movie">사용자 정보</div>
-                  <div class="ott-movie">관리자 정보</div>
+                  <div class="show-user tabActive" id="showUserTab">사용자 정보</div>
+                  <div class="show-admin" id="showAdminTab">관리자 정보</div>
                   <button type="button" style="background-color: #2F80ED; margin-left: 525px;"  data-toggle="modal" data-target="#insert-movie" >+ 등록</button>
                   <button type="button" style="background-color: #F25858; margin-left: 15px;">- 삭제</button>
                 </div>
-                <div id="list">
-                  <table>
-                    <tr>
-                      <td class="list-head">
-                        <input type="checkbox" style="width: 18px; height: 18px; margin-left: 45px;"></input>
-                        <div style="margin-left: 58px;">NO</div>
-                        <div style="margin-left: 85px;">제목</div>
-                        <div style="margin-left: 526px;">담당자</div>
-                        <div style="margin-left: 167px;">등록일</div>
-                      </td>
-                    <tr>
-                      <td class="list-content">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content" style="background-color: #F0F0F0a1;">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content" style="background-color: #F0F0F0a1;">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content" style="background-color: #F0F0F0a1;">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content" style="background-color: #F0F0F0a1;">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content" style="background-color: #F0F0F0a1;">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="list-content" style="background-color: #f0f0f0a1;">
-                        <div>
-                          <input type="checkbox" style="width: 18px; height: 18px; margin-left: 46px;"></input>
-                        </div>
-                        <div class="list-num">영화번호</div>
-                        <div class="list-title">영화제목or게시글제목등등</div>
-                        <div class="list-admin">담당자명</div>
-                        <div class="list-date">등록날짜</div>
-                      </td>
-                    </tr>
-                  </table>
+                
+    		          <div id="list-head">
+		                <div style="width: 64px; height: 18px;"><input type="checkbox" id="checkAll" style="width: 18px; height: 18px; margin-left: 46px;"></div>
+		                <div style="margin-left: 58px;">NO</div>
+		                <div style="margin-left: 85px;">아이디</div>
+		                <div style="margin-left: 490px;">이메일</div>
+		                <div style="margin-left: 130px;">가입일</div>
+		              </div>   
+		              
+		              <table id="user-list">
+		              </table>
+                   
+                   </div> <!-- body-main-list div 끝 -->
+		            <ul id="paging-bar" class="pagination d-flex justify-content-center" style="margin-top: 20px; cursor: pointer;"  >
+		            	
+		            </ul>
+                </form>
                 </div> <!-- list div 끝 -->
               </div> <!-- body-main-list 끝 -->
             </div> <!--body-main div 끝 -->
-           </div> <!-- body-right div 끝 -->
+          </div> <!-- body-right div 끝 -->
 	            
 	            <!-- 사용자가 현재보고있는 페이지에 따라서 다르게 보여질 페이징바 추가하기 -->
 	
 	        </div> <!-- body div 끝 -->
 	    </div> <!-- main div 끝 -->
+	<script>
 	
+	$(function(){
+		
+		
+		$("#search").on("click", function(){ // 검색버튼 클릭시
+			// 현재활성화 되어있는 탭의 function을 호출 
+			if($('#showUserTab').hasClass("tabActive")){
+				showingUserList(1);
+			}else{
+				showingAdminList(1);
+			}
+		})
+
+		$("#showUserTab").on("click", function(){
+			$(this).addClass("tabActive");
+			$(this).next().removeClass("tabActive");
+			
+			resetSearchData(); // 검색 데이터 초기화
+
+			showingUserList(1);
+		})
+		
+		$("#showAdminTab").on("click", function(){
+			$(this).addClass("tabActive");
+			$(this).prev().removeClass("tabActive");
+			
+			
+			resetSearchData(); // 검색 데이터 초기화
 	
+			
+			showingAdminList(1);
+		})
+})
+		
 	
+		// 클릭시 유저 목록 조회
+	function showingUserList(page) {
+										
+			var teamNo = null;
+			$("#search-area :checkbox").each(function(){
+						if($(this).prop("checked")){
+							teamNo = $(this).val()
+						}
+					})
+										$.ajax({
+														url : '<%=contextPath%>/userList.ul',
+														data: {
+															// 페이지정보
+															page: page,
+															// 검색데이터
+															startDate: $("#startDate").val(),
+														  endDate: $("#endDate").val(),
+														  teamNo: teamNo,
+														  keyword: $("#keyword").val()
+														},
+														success: function(res){
+															console.log(res);
+															// res :  {pi: {}, list: [{}, {}]}
+														  // res.pi : PageInfo 객체 즉, {listCount:xx, currentPage:xx, ...}
+															// res.list : List<Movie> 객체 즉, [{movieNo:xx, movieTitle:xx}, {movieNo:xx, movieTitle:xx}]
+																		
+																		let divEl = '';
+																		
+																			for(let i = 0; i < res.list.length; i++){
+																				divEl += '<tr onclick="checkUser(event);">'
+																									+ '<td class="list-content">'
+																										 + '<div><input type="checkbox" class="list-checkbox" style="width: 18px; height: 18px; margin-left: 46px;" name="movieNo" value="' + res.list[i].movieNo + '"></div>'
+																										 + '<div class="list-num">' + res.list[i].userNo + '</div>'
+																										 + '<div class="list-title" data-toggle="modal" data-target="#modify-movie">' + res.list[i].userId + '</div>'
+																										 + '<div class="list-email">' + res.list[i].Email + '</div>'
+																										 + '<div class="list-date">' + res.list[i].enrollDt + '</div>'
+																									+ '</td>'	 	 
+																							 + '</tr>';
+																	}
+																			/*
+																						 for(i = 0; i < 12-res.length; i++){
+																			divEl += '<tr>'
+																								+ '<td class="list-content">'
+																									 + '<div class="list-num"></div>'
+																									 + '<div class="list-title"></div>'
+																									 + '<div class="list-ageLv"></div>'
+																									 + '<div class="list-date"></div>'
+																								+ '</td>'	 	 
+																					 + '</tr>';
+																						 }
+																		*/
+																		let liEl = '';
+																    
+																		liEl += '<li class="page-item ' + (res.pi.currentPage === 1 ? "disabled" : "") + '">'
+																	       + '<a class="page-link" onclick="showingUserList(' + (res.pi.currentPage - 1) + ')">&laquo;</a>'
+																	       + '</li>';
+
+																	// 페이지 번호
+																	for (let i = res.pi.startPage; i <= res.pi.endPage; i++) {
+																	    liEl += '<li class="page-item ' + (i === res.pi.currentPage ? "active" : "") + '">'
+																	         + '<a class="page-link" onclick="showingUserList(' + i + ')">' + i + '</a>'
+																	         + '</li>';
+																	}
+
+																	// 다음 페이지로 가는 버튼
+																	liEl += '<li class="page-item ' + (res.pi.currentPage === res.pi.maxPage ? "disabled" : "") + '">'
+																	       + '<a class="page-link" onclick="showingUserList(' + (res.pi.currentPage < res.pi.maxPage ? (res.pi.currentPage + 1) : res.pi.maxPage) + ')">&raquo;</a>'
+																	       + '</li>';
+
+																         
+																         $('#paging-bar').html(liEl);
+																    			
+																		// 페이징바도 제작
+																		// 페이징바 제작시 해당 페이지 클릭시 다시 showingMovieList(클릭한페이지번호);
+																		
+																						 
+															$('#user-list').html(divEl);
+															$('#user-list tr:odd').css('background-color', '#f0f0f0');
+														},
+														error: function(){
+															console.log("실패");
+														}
+										});
+		}
+	
+										
+							// 클릭 시 관리자 목록 조회			
+		function showingAdminList(page) {
+									
+		var teamNo = null;
+		$("#search-area :checkbox").each(function(){
+					if($(this).prop("checked")){
+						teamNo = $(this).val()
+					}
+				})
+									$.ajax({
+													url : '<%=contextPath%>/adminList.al',
+													data: {
+														// 페이지정보
+														page: page,
+														// 검색데이터
+														startDate: $("#startDate").val(),
+													  endDate: $("#endDate").val(),
+													  teamNo: teamNo,
+													  keyword: $("#keyword").val()
+													},
+													success: function(res){
+														console.log(res);
+														// res :  {pi: {}, list: [{}, {}]}
+													  // res.pi : PageInfo 객체 즉, {listCount:xx, currentPage:xx, ...}
+														// res.list : List<Movie> 객체 즉, [{movieNo:xx, movieTitle:xx}, {movieNo:xx, movieTitle:xx}]
+																	
+																	let divEl = '';
+																	
+																		for(let i = 0; i < res.list.length; i++){
+																			divEl += '<tr onclick="checkUser(event);">'
+																								+ '<td class="list-content">'
+																									 + '<div><input type="checkbox" class="list-checkbox" style="width: 18px; height: 18px; margin-left: 46px;" name="movieNo" value="' + res.list[i].movieNo + '"></div>'
+																									 + '<div class="list-num">' + res.list[i].userNo + '</div>'
+																									 + '<div class="list-title" data-toggle="modal" data-target="#modify-movie">' + res.list[i].userId + '</div>'
+																									 + '<div class="list-email">' + res.list[i].Email + '</div>'
+																									 + '<div class="list-date">' + res.list[i].enrollDt + '</div>'
+																								+ '</td>'	 	 
+																						 + '</tr>';
+																}
+																		/*
+																					 for(i = 0; i < 12-res.length; i++){
+																		divEl += '<tr>'
+																							+ '<td class="list-content">'
+																								 + '<div class="list-num"></div>'
+																								 + '<div class="list-title"></div>'
+																								 + '<div class="list-ageLv"></div>'
+																								 + '<div class="list-date"></div>'
+																							+ '</td>'	 	 
+																				 + '</tr>';
+																					 }
+																	*/
+																	let liEl = '';
+															    
+																	liEl += '<li class="page-item ' + (res.pi.currentPage === 1 ? "disabled" : "") + '">'
+																       + '<a class="page-link" onclick="showingAdminList(' + (res.pi.currentPage - 1) + ')">&laquo;</a>'
+																       + '</li>';
+
+																// 페이지 번호
+																for (let i = res.pi.startPage; i <= res.pi.endPage; i++) {
+																    liEl += '<li class="page-item ' + (i === res.pi.currentPage ? "active" : "") + '">'
+																         + '<a class="page-link" onclick="showingAdminList(' + i + ')">' + i + '</a>'
+																         + '</li>';
+																}
+
+																// 다음 페이지로 가는 버튼
+																liEl += '<li class="page-item ' + (res.pi.currentPage === res.pi.maxPage ? "disabled" : "") + '">'
+																       + '<a class="page-link" onclick="showingAdminList(' + (res.pi.currentPage < res.pi.maxPage ? (res.pi.currentPage + 1) : res.pi.maxPage) + ')">&raquo;</a>'
+																       + '</li>';
+
+															         
+															         $('#paging-bar').html(liEl);
+															    			
+																	// 페이징바도 제작
+																	// 페이징바 제작시 해당 페이지 클릭시 다시 showingMovieList(클릭한페이지번호);
+																	
+																					 
+														$('#user-list').html(divEl);
+														$('#user-list tr:odd').css('background-color', '#f0f0f0');
+													},
+													error: function(){
+														console.log("실패");
+													}
+									});
+								}
+	
+
+		
+					function resetSearchData(){
+			$("#startDate").val("");
+			$("#endDate").val("");
+			$("#search-area :checkbox").each(function(){
+				$(this).prop("checked", false);
+			})
+			$("#keyword").val("");
+		}
+			</script>
 		
 			
 			
@@ -499,7 +591,9 @@
 			        				window.location.href = "<%=contextPath%>/views/DG/" + chooseSidebar + ".jsp";
 			        			})
 			        		})
-			        	
+			        	window.addEventListener('load', function(){
+			        		showingUserList(1);
+									});
 			        	
 			        </script>
 			        <!-- Modal footer -->

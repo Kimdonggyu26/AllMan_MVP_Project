@@ -5,7 +5,6 @@
 <%
 		String contextPath = request.getContextPath(); // "/web"
     User loginUser = (User) session.getAttribute("loginUser");
-    String userNickname = (String) session.getAttribute("userNickname");
 		String alertMsg = (String)session.getAttribute("alertMsg");
     Integer movieNo = (Integer) session.getAttribute("movieNo");
 	int userNo = -1;
@@ -55,7 +54,7 @@
         <h1><%= mv.getMovieTitle() %></h1>
         <p id="head_P_Tag">진짜 나를 만날 시간</p>
         <div id="img_btn_style">
-          <button style=" width: 110px; margin-right: 20px;" type="button" onclick="location.href='<%=mv.getPreview()%>'"><i class="fa-solid fa-play">&nbsp;&nbsp;</i>예고편</button>
+          <button style=" width: 110px; margin-right: 20px;" type="button" onclick="window.open('<%=mv.getPreview()%>', '_blank');"><i class="fa-solid fa-play">&nbsp;&nbsp;</i>예고편</button>
           <button style="background: #131313; width: 56px;">
             <svg id="like" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" onclick="likeMovie(<%=userNo%>, <%=mv.getMovieNo()%>);">
             <path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>
@@ -265,7 +264,7 @@
     			                    + '<div class="user_header">'
     			        //             + '<img src="" alt="">'
     												 	 + '<div>'
-    												 	  + '<div>' + res[i].userNickname + '</div>'
+    												 	  + '<div>' + '<%=loginUser.getUserNick()%>' + '</div>'
     												 	  + '<p>' + res[i].reviewDate + '</p>'
     												   + '</div>' 
     													+ '<div class="review_str">'
@@ -329,7 +328,7 @@
     			                    + '<div class="user_header">'
     			                     + '<img src="./assets/image/icon/웨이브.png" alt="">'
     												 	 + '<div>'
-    												 + '<div>' + res[i].userNickname + '</div>'
+    												 + '<div>' + '<%=loginUser.getUserNick()%>' + '</div>'
     												 + '<p>' + res[i].reviewDate + '</p>'
     												 + '</div>' 
     												+ '<div class="review_str">'
@@ -435,7 +434,7 @@
     	function insertReview(movieNo){
     		
     		 
-    		 var userNo = <%= session.getAttribute("userNo") %>;
+    		
     		 var reviewText = $('#form-control').val();
     		 var starRating = $('input[class="star"]:checked').val();
     		 
@@ -449,14 +448,17 @@
     	        				url: '<%=contextPath%>/insertReview.ir',
     	        				method: 'post',
     	        				data: {
-    	        					userNo: userNo,
+    	        					userNo: <%=userNo%>,
     	        				  movieNo: movieNo,
     	        					review: reviewText,
     	        					rate: starRating
     	        				},
     	        				success: function(res) {
     	        		            // 성공 시 리뷰 목록 갱신
+    	        		            
+    	        		            
     	        		            reviewListByDate(movieNo); // movieNo를 넘겨서 리뷰 목록 갱신
+    	        		            
     	        		            $('#form-control').val(''); // 입력 필드 초기화
     	        		            $('.star').prop('checked', false); // 별점 초기화
     	        		        },

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="insertMovieLike">
+		INSERT
+		  INTO FAVORITES
+		     (
+		     	 USER_NO
+		     , MOVIE_NO
+		      )
+		 VALUES
+		 		  (
+		 		  	?
+		 		  , ?
+		 		   )
+	</entry>
+	
+	<entry key="deleteMovieLike">
+		DELETE
+		  FROM 
+		  	   FAVORITES
+		 WHERE 
+		 			 USER_NO = ?
+  		 AND MOVIE_NO = ?
+	</entry>
+
+	<entry key="checkMovieLiked">
+		SELECT
+					 COUNT(*) AS COUNT
+		  FROM 
+		  		 FAVORITES 
+		 WHERE 
+		 			 USER_NO = ? AND MOVIE_NO = ?
+	</entry>
+	
+</properties>

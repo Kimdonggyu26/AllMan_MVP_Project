@@ -168,7 +168,40 @@
 					)
 	
 	</entry>
+	<entry key="selectUser">
+    SELECT *
+      FROM (
+            SELECT
+                   i.INQUIRY_NO,
+                   i.INQUIRY_TITLE,
+                   i.REGIST_DATE,
+                   u.USER_ID,
+                   ROW_NUMBER() OVER(ORDER BY i.REGIST_DATE DESC) as RNUM
+              FROM 
+                   INQUIRY_BOARD i
+              JOIN 
+                   USERS 
+                   u ON i.USER_NO = u.USER_NO
+             WHERE 
+                   u.USER_ID = ?
+           )
+     WHERE RNUM BETWEEN ? AND ?
+</entry>
 	
-	
+	<!-- <entry key="selectUser">
+	SELECT *
+			i.INQUIRY_NO,
+			 i.INQUIRY_TITLE,
+			  i.REGIST_DATE,
+			   u.USER_ID
+		FROM 
+				INQUIRY_BOARD i
+		JOIN 
+				USERS u ON i.USER_NO = u.USER_NO
+		WHERE 
+				u.USER_ID = ? 
+		ORDER 
+			BY i.REGIST_DATE DESC
+		</entry>	 -->
 
 </properties>

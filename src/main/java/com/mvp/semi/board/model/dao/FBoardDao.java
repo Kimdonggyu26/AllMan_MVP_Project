@@ -10,11 +10,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import com.mvp.semi.board.model.vo.Board;
 import com.mvp.semi.common.model.vo.PageInfo;
 import com.mvp.semi.movie.model.vo.Movie;
+import com.mvp.semi.user.model.vo.User;
 
 public class FBoardDao {
 	

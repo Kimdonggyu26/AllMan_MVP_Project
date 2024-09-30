@@ -3,47 +3,178 @@
 <properties>
 
 	<entry key="searchShowMovieList">
-	
-		<!-- searchData활용해서 영화 조회 -->
-	
+		<!-- 검색페이지 상영 영화 조회 -->
 	    SELECT *
   		  FROM (
-		        SELECT
-			    	   MOVIE_NO
-		    	 	 , MOVIE_TITLE
-		    		 , GENRE
-			    	 , DIRECTOR
-			    	 , TITLE_PATH
-			    	 , ROW_NUMBER() OVER(ORDER BY MOVIE_TITLE) AS RNUM
+	  		   SELECT
+					  MOVIE_NO
+					, MOVIE_TITLE
+					, MOVIE_CONTENT
+					, GENRE
+					, PLAYTIME
+					, COUNTRY
+					, AGE_LV
+					, OPEN_DATE
+					, DIRECTOR
+					, AUDIENCE_COUNT
+					, ACTOR
+					, PREVIEW
+					, STATUS
+					, GRADE
+					, TITLE_PATH
+					, CONTENT_PATH
+					, TASTE_NO
+				    , ROW_NUMBER() OVER(ORDER BY MOVIE_TITLE) AS RNUM
 			      FROM 
 			      	   MOVIE
 			     WHERE 
+			     	   STATUS = 10
+			       AND (
 			      	   MOVIE_TITLE LIKE '%' || ? || '%' 
 			       	OR GENRE LIKE '%' || ? || '%'
 			       	OR DIRECTOR LIKE '%' || ? || '%'
 			       	OR ACTOR LIKE '%' || ? || '%'
-			       AND STATUS IN ('10')
-        		)
-		  WHERE RNUM BETWEEN ? 
-		  	AND ?
+	       			) 
+       			)
+		 	  WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<entry key="searchOttMovieList">
 	
-		<!-- searchData활용해서 영화 조회 -->
+		<!-- 검색페이지 OTT 영화 조회 -->
+	    SELECT *
+  		  FROM (
+			    SELECT
+					  MOVIE_NO
+					, MOVIE_TITLE
+					, MOVIE_CONTENT
+					, GENRE
+					, PLAYTIME
+					, COUNTRY
+					, AGE_LV
+					, OPEN_DATE
+					, DIRECTOR
+					, AUDIENCE_COUNT
+					, ACTOR
+					, PREVIEW
+					, STATUS
+					, GRADE
+					, TITLE_PATH
+					, CONTENT_PATH
+					, TASTE_NO
+				    , ROW_NUMBER() OVER(ORDER BY MOVIE_TITLE) AS RNUM
+			      FROM 
+			      	   MOVIE
+				 WHERE 
+					   STATUS = 20
+				   AND (
+			    	    MOVIE_TITLE LIKE '%' || ? || '%' 
+					    OR GENRE LIKE '%' || ? || '%'
+					    OR DIRECTOR LIKE '%' || ? || '%'
+					    OR ACTOR LIKE '%' || ? || '%'
+			       	   ) 
+        		)
+		 	    WHERE RNUM BETWEEN ? AND ?
+	</entry>
 	
-	    SELECT MOVIE_NO, MOVIE_TITLE, GENRE, DIRECTOR, TITLE_PATH
-		  FROM MOVIE
-		 WHERE STATUS = 20
-		   AND (
-		         MOVIE_TITLE LIKE '%' || ? || '%' 
-		         OR GENRE LIKE '%' || ? || '%'
-		         OR DIRECTOR LIKE '%' || ? || '%'
-		         OR ACTOR LIKE '%' || ? || '%'
-		       )
+	<entry key="searchShow_MainMovieList">
+		<!-- 메인페이지 상영 영화 조회 -->
+	    SELECT *
+  		  FROM (
+	  		   SELECT
+					  MOVIE_NO
+					, MOVIE_TITLE
+					, MOVIE_CONTENT
+					, GENRE
+					, PLAYTIME
+					, COUNTRY
+					, AGE_LV
+					, OPEN_DATE
+					, DIRECTOR
+					, AUDIENCE_COUNT
+					, ACTOR
+					, PREVIEW
+					, STATUS
+					, GRADE
+					, TITLE_PATH
+					, CONTENT_PATH
+					, TASTE_NO
+				    , ROW_NUMBER() OVER(ORDER BY MOVIE_TITLE) AS RNUM
+			      FROM 
+			      	   MOVIE
+			     WHERE 
+			     	   STATUS = 10
+       			)
+		 	  WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="searchOtt_MainMovieList">
+	
+		<!-- 메인페이지 OTT 영화 조회 -->
+	    SELECT *
+  		  FROM (
+			    SELECT
+					  MOVIE_NO
+					, MOVIE_TITLE
+					, MOVIE_CONTENT
+					, GENRE
+					, PLAYTIME
+					, COUNTRY
+					, AGE_LV
+					, OPEN_DATE
+					, DIRECTOR
+					, AUDIENCE_COUNT
+					, ACTOR
+					, PREVIEW
+					, STATUS
+					, GRADE
+					, TITLE_PATH
+					, CONTENT_PATH
+					, TASTE_NO
+				    , ROW_NUMBER() OVER(ORDER BY MOVIE_TITLE) AS RNUM
+			      FROM 
+			      	   MOVIE
+				 WHERE 
+					   STATUS = 20
+        		)
+		 	    WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<entry key="selectShowMovieListCount">
+	
+		<!-- 검색페이지 상영 페이징 처리 위한 쿼리문 -->
+	
+		SELECT
+        	   COUNT(*) as COUNT
+ 		  FROM
+       		   MOVIE
+		 WHERE (
+			 	MOVIE_TITLE LIKE '%' || ? || '%' 
+		        OR GENRE LIKE '%' || ? || '%'
+		        OR DIRECTOR LIKE '%' || ? || '%'
+		      	OR ACTOR LIKE '%' || ? || '%'
+	      	   )
+	       AND STATUS IN ('10')
+	</entry>	
+	
+	<entry key="selectOTTMovieListCount">
+	
+		<!-- 검색페이지 OTT 페이징 처리 위한 쿼리문 -->
+	
+		SELECT
+        	   COUNT(*) as COUNT
+ 		  FROM
+       		   MOVIE
+		 WHERE (
+		 	   MOVIE_TITLE LIKE '%' || ? || '%' 
+		       OR GENRE LIKE '%' || ? || '%'
+		       OR DIRECTOR LIKE '%' || ? || '%'
+		       OR ACTOR LIKE '%' || ? || '%'
+	       	   )
+	       AND STATUS IN ('20')
+	</entry>
+	
+	<entry key="selectShowMain_MovieListCount">
 	
 		<!-- 메인페이지 상영 페이징 처리 위한 쿼리문 -->
 	
@@ -51,15 +182,11 @@
         	   COUNT(*) as COUNT
  		  FROM
        		   MOVIE
-		 WHERE
-		 	   MOVIE_TITLE LIKE '%' || ? || '%' 
-	        OR GENRE LIKE '%' || ? || '%'
-	        OR DIRECTOR LIKE '%' || ? || '%'
-	      	OR ACTOR LIKE '%' || ? || '%'
-	       AND STATUS IN ('10')
+		 WHERE 
+		 	   STATUS IN ('10')
 	</entry>	
 	
-	<entry key="selectOTTMovieListCount">
+	<entry key="selectOttMain_MovieListCount">
 	
 		<!-- 메인페이지 OTT 페이징 처리 위한 쿼리문 -->
 	
@@ -67,12 +194,8 @@
         	   COUNT(*) as COUNT
  		  FROM
        		   MOVIE
-		 WHERE
-		 	   MOVIE_TITLE LIKE '%' || ? || '%' 
-	       	OR GENRE LIKE '%' || ? || '%'
-	       	OR DIRECTOR LIKE '%' || ? || '%'
-	       	OR ACTOR LIKE '%' || ? || '%'
-	       AND STATUS IN ('20')
+		 WHERE 
+		 	   STATUS IN ('20')
 	</entry>	
 
 	<entry key="insertMovie">
@@ -349,12 +472,47 @@
 								 MOVIE
 					 WHERE
 					 			 STATUS = '20'
-		  		)
-		 WHERE RNUM BETWEEN ? AND ?	
 	</entry>
 
 
+	<entry key="favoriteOtt">
+		SELECT 
+							* 
+		FROM (
+	        SELECT MOVIE_NO, 
+	        MOVIE_TITLE, 
+	        TITLE_PATH, 
+	        ROW_NUMBER() OVER(ORDER BY MOVIE_NO DESC) AS RNUM 
+	                    FROM MOVIE WHERE STATUS = '20')
+	       WHERE RNUM BETWEEN ? AND ?
+		
+	</entry>
+	
+	<entry key="compareList">
+		SELECT 
+					  MOVIE_NO
+					, MOVIE_TITLE
+					, MOVIE_CONTENT
+					, GENRE
+					, PLAYTIME
+					, COUNTRY
+					, AGE_LV
+					, OPEN_DATE
+					, DIRECTOR
+					, AUDIENCE_COUNT
+					, ACTOR
+					, PREVIEW
+					, GRADE
+					, TITLE_PATH
+					, TASTE_NO
+		 	 
+		FROM 
+	 		   	MOVIE
+	 	WHERE
+			    MOVIE_NO = ?
 
+ </entry>
+	
 
 
 

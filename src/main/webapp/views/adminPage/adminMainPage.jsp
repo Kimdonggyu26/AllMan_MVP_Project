@@ -21,7 +21,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- 커스텀 CSS 로드 -->
-    <link rel="stylesheet" href="css/관리자메인페이지.css">
+    <link rel="stylesheet" href="css/adminMainPage.css">
     
   <!-- 모달 css -->
 	<style> 
@@ -141,7 +141,7 @@
               <span>영화관리</span>
               <div style="width: 280px; height: 32px;">
                 <img src="<%=contextPath%>/assets/image/adminPage/user_logo.png">
-                <span><%=loginUser.getUserNick()%> 관리자님 환영합니다.</span>
+                <span>관리자님 환영합니다.</span>
               </div>
             </div><!-- body-right-title div 끝 -->
             
@@ -320,7 +320,7 @@
 																			for(let i = 0; i < res.list.length; i++){
 																				divEl += '<tr onclick="checkMovie(event);">'
 																									+ '<td class="list-content">'
-																										 + '<div><input type="checkbox" class="list-checkbox" style="width: 18px; height: 18px; margin-left: 46px;" name="movieNo" value="' + res.list[i].movieNo + '"></div>'
+																										 + '<div><input type="checkbox" class="list-checkbox" style="width: 18px; height: 18px; margin-left: 46px;" name="userNo" value="' + res.list[i].movieNo + '"></div>'
 																										 + '<div class="list-num">' + res.list[i].movieNo + '</div>'
 																										 + '<div class="list-title" data-toggle="modal" data-target="#modify-movie">' + res.list[i].movieTitle + '</div>'
 																										 + '<div class="list-ageLv">' + res.list[i].ageLv + '</div>'

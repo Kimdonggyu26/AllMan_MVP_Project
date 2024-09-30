@@ -27,6 +27,7 @@
   font-weight: 600;
 }
 #body-right-title{
+	font-size: 20px;
   width: 1059px;
   height: 38px;
   display: flex;
@@ -107,6 +108,11 @@
   justify-content: center;
   align-items: center;
 }
+#user-list td{
+	width: 1078px;
+	height: 40px;
+	align-items: center;
+}
 #body-main-list{
   width: 1078px;
   height: 567px;
@@ -140,13 +146,16 @@
   width: 1078px;
   height: 522px;
 }
-.list-head{
+#list-head{
+	width: 1078px;
+  height: 40px;
   font-size: 14px;
   background-color: #F0F0F0;
   border: 1px solid #131313;
   border-left: 0px;
   border-right: 0px;
   display: flex;
+  align-items: center;
 }
 #list td{
   width: 1078px;
@@ -165,25 +174,37 @@
   height: 21px;
 }
 .list-title{
-  width: 551px;
+  width: 500px;
   height: 21px;
+  cursor: pointer;
 }
 .list-admin{
   width: 204px;
   height: 21px;
 }
-.list-date{
-  width: 97px;
+.list-email{
+	width: 170px;
   height: 21px;
 }
-.show-movie{
-  background-color: #569EFF;
+.list-date{
+  width: 130px;
+  height: 21px;
+}
+.tabActive {
+  background-color: #569EFF !important;
+}
+.show-user{
+	background-color: #EBEBEB;
   cursor: pointer;
 }
-.ott-movie{
+.show-admin{
   background-color: #EBEBEB;
   cursor: pointer;
 }
 .checkbox-list label{
   width: 120px;
+}
+.container{
+	margin: 0%;
+	padding: 0%;
 }

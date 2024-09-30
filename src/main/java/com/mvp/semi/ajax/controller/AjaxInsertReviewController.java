@@ -36,9 +36,14 @@ public class AjaxInsertReviewController extends HttpServlet {
         //int userNo =Integer.parseInt(request.getParameter("userNo"));
         
         int movieNo = Integer.parseInt(request.getParameter("movieNo"));
-        int userNo = 1; // 임의로 부여
+        int userNo = Integer.parseInt(request.getParameter("userNo"));
+        System.out.println(userNo);
         String reviewContent = request.getParameter("review");
         int rate = Integer.parseInt(request.getParameter("rate"));
+        
+        
+        
+        
 	
         ReviewService rvService = new ReviewService();
         

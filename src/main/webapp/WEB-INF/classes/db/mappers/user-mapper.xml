@@ -26,18 +26,18 @@
 
 <entry key="loginUser">
 	SELECT 
-		   USER_NO
-		 , USER_ID
-		 , USER_PWD
-	 	 , PHONE
-	 	 , EMAIL
-	 	 , USER_NICKNAME
-	 	 , ENROLL_DATE
-	 	 , MODIFY_DATE
-	 	 , STATUS
+		   U.USER_NO
+		 , U.USER_ID
+		 , U.USER_PWD
+	 	 , U.PHONE
+	 	 , U.EMAIL
+	 	 , U.USER_NICKNAME
+	 	 , U.ENROLL_DATE
+	 	 , U.MODIFY_DATE
+	 	 , U.STATUS
 	 	 , U.TASTE_NO
-	 	 , PROFILE_PATH
-	 	 , TASTE_CODE
+	 	 , U.PROFILE_PATH
+	 	 , T.TASTE_CODE
 	 	 
 	FROM 
  		   USERS U
@@ -90,7 +90,7 @@
 	</entry>
 	
 
-			 	<entry key="confirmnick">
+	<entry key="confirmnick">
 			 	SELECT 
 			 				COUNT(*) 
 			 FROM 	
@@ -143,7 +143,7 @@ SELECT
      WHERE USER_ID = ?
     
     </entry>
-		<entry key="usernick">
+	<entry key="usernick">
 		UPDATE 
 					 USERS
 			 SET 
@@ -151,5 +151,84 @@ SELECT
 			
 		 WHERE
 					 USER_ID = ?
-					 		</entry>
+	</entry>
+	
+	<entry key="userTaste">
+		UPDATE 
+					 USERS
+			 SET 
+					 TASTE_NO = ?
+			
+		 WHERE
+					 USER_ID = ?
+	</entry>
+	
+	<entry key="selectAllUserList">
+		SELECT
+					 COUNT(*) as COUNT
+		  FROM 
+		  		 USERS
+		 WHERE 
+		 			 STATUS = 'U'
+	</entry>
+	
+	<entry key="selectAllAdminList">
+		SELECT
+					 COUNT(*) as COUNT
+		  FROM 
+		  		 USERS
+		 WHERE 
+		 			 STATUS = 'A'
+	</entry>
+	
+	<entry key="selectPagingShowUserList">
+		SELECT *
+		  FROM (
+		  			SELECT
+		  						 USER_NO
+								 , USER_ID
+								 , USER_PWD
+							   , PHONE
+								 , EMAIL
+								 , USER_NICKNAME
+								 , ENROLL_DATE
+								 , MODIFY_DATE
+								 , STATUS
+								 , TASTE_NO
+								 , PROFILE_PATH
+								 , TEAM_NO
+								 , TASTE_CODE
+		  					 , ROW_NUMBER() OVER(ORDER BY USER_NO DESC) as RNUM
+		  			 FROM
+		  			 			USERS
+		  			WHERE
+		  						STATUS = 'U'
+		  
+	</entry>
+	
+	<entry key="selectPagingShowAdminList">
+		SELECT *
+		  FROM (
+		  			SELECT
+		  						 USER_NO
+								 , USER_ID
+								 , USER_PWD
+							   , PHONE
+								 , EMAIL
+								 , USER_NICKNAME
+								 , ENROLL_DATE
+								 , MODIFY_DATE
+								 , STATUS
+								 , TASTE_NO
+								 , PROFILE_PATH
+								 , TEAM_NO
+								 , TASTE_CODE
+		  					 , ROW_NUMBER() OVER(ORDER BY USER_NO DESC) as RNUM
+		  			 FROM
+		  			 			USERS
+		  			WHERE
+		  						STATUS = 'A'
+		</entry>  
+	
+	
 </properties>
