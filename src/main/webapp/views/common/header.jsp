@@ -135,10 +135,10 @@
 <nav id="navBar">
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="#">상영영화</a>
+      <a class="nav-link" href="list.mv1">상영영화</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="">OTT영화</a>
+      <a class="nav-link" href="list.mv2">OTT영화</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="list.fbo">자유게시판</a>

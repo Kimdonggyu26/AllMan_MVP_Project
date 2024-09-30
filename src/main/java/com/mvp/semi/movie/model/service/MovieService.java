@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.mvp.semi.board.model.vo.Board;
 import com.mvp.semi.ca.review.model.vo.Review;
 import com.mvp.semi.common.model.vo.PageInfo;
 import com.mvp.semi.movie.model.dao.MovieDao;
@@ -263,6 +264,15 @@ public class MovieService {
 		Review review = mvDao.compareReviewList(conn, movieNo);
 		close(conn);
 		return review;
+	}
+
+	public List<Movie> MovieList1() {
+		Connection conn = getConnection();
+		
+		List<Movie> list = mvDao.MovieList1(conn);
+		close(conn);
+		
+		return list;
 	}
 
 }

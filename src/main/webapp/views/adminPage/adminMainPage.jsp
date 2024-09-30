@@ -1002,6 +1002,7 @@
 			        	function fnlogout() {
 			        	    window.location.href = '<%=contextPath%>/logout.us';
 			        	}
+			        	
 		        	</script>
 			        <!-- Modal footer -->
 			        <div class="modal-footer">
