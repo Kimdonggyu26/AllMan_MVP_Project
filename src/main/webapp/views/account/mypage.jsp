@@ -223,7 +223,7 @@ a:active {
             <div class="mypage-info">
                 <h2 id="like"><%= user.getUserNick() %></h2>
                 <div class="button"><a href="<%= contextPath %>/taste.t0">취향다시분석하기</a></div>
-                <div><a href="<%= contextPath %>/views/account/modifyUser.jsp" id="rechange">회원정보 수정</a></div>
+                <div><a href="<%= contextPath %>/modifyuser.us" id="rechange">회원정보 수정</a></div>
             </div>
         </div>
   <%--   

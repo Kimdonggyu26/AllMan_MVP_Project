@@ -170,22 +170,7 @@ public class UserService {
 		return count;
 	}
 
-	public int updateUser(User user) {
-		   Connection conn = getConnection();
-	        
-	        // DAO 호출하여 사용자 정보 업데이트 처리
-	        int result = new UserDao().updateUser(conn, user);
-	        
-	        // 트랜잭션 처리
-	        if (result > 0) {
-	            commit(conn);
-	        } else {
-	            rollback(conn);
-	        }
-	        
-	        close(conn);
-	        return result;
-	}
+
 
 	public int selectAllUserList(Map<String, String> searchData) {
 		Connection conn = getConnection();
@@ -213,6 +198,13 @@ public class UserService {
 		close(conn);
 		return list;
 	}
+	 public User selectUser(String userId) {
+	        Connection conn = getConnection();  // DB 연결 객체 생성
+	        User user = new UserDao().selectUser(conn, userId);  // DAO에 DB 작업 요청
+	        close(conn);  // 연결 해제
+	        System.out.println("user: service" +user);
+	        return user;
+	    }
 
 	public int userPwdEdit(String userId, String resetPwd) {
 		Connection conn = getConnection();
@@ -221,4 +213,18 @@ public class UserService {
 		return result;
 	}
 
+	    // 사용자 정보를 업데이트하는 메서드 (updateUser)
+	    public int updateUser(User user) {
+	        Connection conn = getConnection();
+	        int result = new UserDao().updateUser(conn, user);  // DAO에 업데이트 작업 요청
+	        
+	        if (result > 0) {
+	            commit(conn);  // 성공 시 commit
+	        } else {
+	            rollback(conn);  // 실패 시 rollback
+	        }
+	        close(conn);
+	        System.out.println("result : service" + result);
+	        return result;
+	    }
 }

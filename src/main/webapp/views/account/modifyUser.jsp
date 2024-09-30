@@ -183,8 +183,7 @@ a:active {
                         <!-- 이미지 미리보기 -->
                         <img id="imagePreview" src="<%=contextPath + loginUser.getFilePath() %>" alt="프로필 이미지" style="cursor: pointer; width: 200px; height: 200px; border: 1px solid #ccc;">
                         
-                        <!-- 파일 선택 필드 (숨김 처리) -->
-                        <input type="file" id="profileImage" name="profileImage" accept="image/*" style="display: none;">
+                   
                         
                         <!-- 닉네임 수정 필드 -->
                         <div>
@@ -243,47 +242,6 @@ a:active {
    	<!-- Header, Nav start -->
 	<%@ include file="/views/common/footer.jsp"%>
 	<!-- Header, Nav end -->
- <script>
-  // 프로필 이미지 클릭 시 파일 선택 창 열기
-  document.getElementById("imagePreview").addEventListener("click", function() {
-    document.getElementById("profileImage").click();
-  });
-
-  // 파일 선택 시 이미지 미리보기
-  document.getElementById("profileImage").addEventListener("change", function(event) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        document.getElementById("imagePreview").src = e.target.result; // 이미지 미리보기
-      };
-      reader.readAsDataURL(file); // 파일을 데이터 URL로 읽음
-    }
-  });
-
-  // AJAX를 사용하여 폼 제출
-  document.getElementById("userUpdateForm").addEventListener("submit", function(e) {
-    e.preventDefault();  // 폼 기본 제출 방지
-
-    // 폼 데이터를 가져옴
-    var formData = new FormData(this);
-
-    // AJAX 요청
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "modifyuser.us", true);
-
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        // 서버에서 성공적으로 응답 받으면 페이지 리로드 또는 데이터 업데이트
-        alert('회원정보가 수정되었습니다.');
-        window.location.reload(); // 페이지 리로드
-      } else {
-        alert('수정에 실패하였습니다.');
-      }
-    };
-
-    xhr.send(formData);  // 폼 데이터 전송
-  });
-</script>
+ 
 </body>
 </html>

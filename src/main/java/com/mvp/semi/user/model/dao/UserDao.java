@@ -311,28 +311,7 @@ public class UserDao {
 		return result;
 	}
 
-	public int updateUser(Connection conn, User user) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-		String sql = prop.getProperty("modifyuser");
-
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, user.getUserNick()); // 수정할 닉네임
-			pstmt.setString(2, user.getEmail()); // 수정할 이메일
-			pstmt.setString(3, user.getPhone()); // 수정할 전화번호
-			pstmt.setString(4, user.getFilePath());
-			pstmt.setString(5, user.getUserId());
-
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-
-		return result;
-	}
+	
 
 	public int selectAllUserList(Connection conn, Map<String, String> searchData) { // map 넘겨받기
 
@@ -610,6 +589,7 @@ public class UserDao {
 		return list;
 
 	}
+	 
 
 	public int userPwdEdit(Connection conn, String userId, String resetPwd) {
 		// insert => 처리된 행 수
@@ -633,6 +613,56 @@ public class UserDao {
 		return result;
 
 	}
+	public User selectUser(Connection conn, String userId) {
+	        User user = null;
+	        PreparedStatement pstmt = null;
+	        ResultSet rset = null;
 
+	        String query = "SELECT * FROM USERS WHERE USER_ID = ?";
+	        System.out.println("User: Dao" +user);
+	        try {
+	            pstmt = conn.prepareStatement(query);
+	            pstmt.setString(1, userId);
+	            rset = pstmt.executeQuery();
 
+	            if (rset.next()) {
+	                user = new User();
+	                user.setUserId(rset.getString("USER_ID"));
+	                user.setUserNick(rset.getString("USER_NICKNAME"));
+	                user.setEmail(rset.getString("EMAIL"));
+	                user.setPhone(rset.getString("PHONE"));
+	                user.setFilePath(rset.getString("PROFILE_PATH"));  // 프로필 이미지 경로
+	            }
+
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {
+	            close(rset);
+	            close(pstmt);
+	        }
+
+	        return user;
+	    }
+	 public int updateUser(Connection conn, User user) {
+			PreparedStatement pstmt = null;
+			int result = 0;
+			String sql = prop.getProperty("modifyuser");
+			System.out.println("result :  Dao"  + result );
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, user.getUserNick()); // 수정할 닉네임
+				pstmt.setString(2, user.getEmail()); // 수정할 이메일
+				pstmt.setString(3, user.getPhone()); // 수정할 전화번호
+				pstmt.setString(4, user.getFilePath());
+				pstmt.setString(5, user.getUserId());
+
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+
+			return result;
+		}
 }

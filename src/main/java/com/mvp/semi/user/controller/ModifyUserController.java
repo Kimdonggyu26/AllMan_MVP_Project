@@ -18,11 +18,7 @@ import com.mvp.semi.user.model.vo.User;
  * Servlet implementation class ModifyUserController
  */
 @WebServlet("/modifyuser.us")
-@MultipartConfig(
-	    fileSizeThreshold = 1024 * 1024 * 1,  // 1 MB
-	    maxFileSize = 1024 * 1024 * 10,      // 10 MB
-	    maxRequestSize = 1024 * 1024 * 50    // 50 MB
-	)
+
 public class ModifyUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -38,47 +34,38 @@ public class ModifyUserController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		 request.setCharacterEncoding("UTF-8");
+		   request.setCharacterEncoding("UTF-8");
 
-	        HttpSession session = request.getSession();
-	        User loginUser = (User) session.getAttribute("loginUser");
-
-	        if (loginUser == null) {
-	            response.sendRedirect("login.jsp");
-	            return;
-	        }
-
+	        // 1. 폼에서 넘어온 값 받기
 	        String userId = request.getParameter("userid");
 	        String userNick = request.getParameter("userNick");
 	        String email = request.getParameter("email");
 	        String phone = request.getParameter("phone");
-
-	        Part filePart = request.getPart("profileImage");
-	        String filePath = loginUser.getFilePath();  // 기존 프로필 이미지 경로
-
-	        if (filePart != null && filePart.getSize() > 0) {
-	            String fileName = filePart.getSubmittedFileName();
-	            String uploadPath = getServletContext().getRealPath("/") + "resources/profileImages/" + fileName;
-	            filePart.write(uploadPath);
-	            filePath = "resources/profileImages/" + fileName;
-	        }
-
-	        User updatedUser = new User();
-	        updatedUser.setUserId(userId);
-	        updatedUser.setUserNick(userNick);
-	        updatedUser.setEmail(email);
-	        updatedUser.setPhone(phone);
-	        updatedUser.setFilePath(filePath);
-
+	        String filePath = request.getParameter("filePath");  // 파일 경로가 있으면 받아오기
+	       
+	        // 2. User 객체 생성 및 수정할 값 설정
+	        User user = new User();
+	        user.setUserId(userId);
+	        user.setUserNick(userNick);
+	        user.setEmail(email);
+	        user.setPhone(phone);
+	        user.setFilePath(filePath);  // 프로필 이미지 경로 업데이트
+	        System.out.println(user);
+	        // 3. Service 호출
 	        UserService userService = new UserService();
-	        int result = userService.updateUser(updatedUser);
-
+	        int result = userService.updateUser(user);
+	        System.out.println(result);
+	        // 4. 결과에 따라 페이지 이동 처리
+	        HttpSession session = request.getSession();
 	        if (result > 0) {
-	            session.setAttribute("loginUser", updatedUser);  // 세션에 수정된 정보 반영
-	            response.setStatus(HttpServletResponse.SC_OK);   // 성공 응답
+	            // 수정 성공 시 사용자 정보를 세션에 업데이트
+	            session.setAttribute("loginUser", user);
+	            session.setAttribute("msg", "회원 정보가 성공적으로 수정되었습니다.");
+	            response.sendRedirect(request.getContextPath() + "/mypage.us");  // 마이페이지로 리다이렉트
 	        } else {
-	            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);  // 실패 응답
+	            // 수정 실패 시 에러 페이지로 포워딩
+	            request.setAttribute("msg", "회원 정보 수정에 실패했습니다.");
+	            request.getRequestDispatcher("views/account/modifyUser.jsp").forward(request, response);
 	        }
     }
 
