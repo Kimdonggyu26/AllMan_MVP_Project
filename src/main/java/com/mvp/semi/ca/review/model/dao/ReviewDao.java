@@ -142,6 +142,33 @@ public class ReviewDao {
 		return mvpGrade;
 		
 	}
+	
+	public int checkReviewLiked(Connection conn, int userNo, int movieNo) {
+		int alreadyLiked = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("checkReviewLiked");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, movieNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				alreadyLiked = rset.getInt("COUNT");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		return alreadyLiked;
+		
+	}
 
 
 }

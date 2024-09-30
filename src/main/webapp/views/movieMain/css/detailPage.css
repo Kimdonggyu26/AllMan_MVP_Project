@@ -69,11 +69,11 @@ button {
   color: #ffffff;
   font-size: 17px;
 }
-#like {
+#movieLike {
   width: 28px;
   fill: #ffffff;
 }
-#like.active {
+#movieLike.active {
   fill: #f33f3f;
 }
 

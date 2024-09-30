@@ -52,5 +52,16 @@ public class ReviewService {
 		
 		return mvpGrade;
 	}
+	
+	public int checkReviewLiked(int userNo, int movieNo) {
+		Connection conn = getConnection();
+		
+		int alreadyLiked = rvDao.checkReviewLiked(conn, userNo, movieNo);
+		
+		close(conn);
+		
+		return alreadyLiked;
+		
+	}
 		
 }

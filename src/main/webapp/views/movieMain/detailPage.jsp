@@ -56,7 +56,7 @@
         <div id="img_btn_style">
           <button style=" width: 110px; margin-right: 20px;" type="button" onclick="window.open('<%=mv.getPreview()%>', '_blank');"><i class="fa-solid fa-play">&nbsp;&nbsp;</i>예고편</button>
           <button style="background: #131313; width: 56px;">
-            <svg id="like" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" onclick="likeMovie(<%=userNo%>, <%=mv.getMovieNo()%>);">
+            <svg id="movieLike" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" onclick="likeMovie(<%=userNo%>, <%=mv.getMovieNo()%>);">
             <path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>
           </button>
         </div>
@@ -205,7 +205,7 @@
       // 영화 좋아요를 눌렀을 때
       function likeMovie(userNo, movieNo){
     	
-    	  var btn = document.getElementById("like")
+    	  var btn = document.getElementById("movieLike")
     	$.ajax({
     					url: '<%=contextPath%>/likeMovie.lm',
     					data: {
@@ -218,6 +218,31 @@
 				    				 }else{
 				    					 btn.classList.toggle('active');
 				    				 }
+    			 },
+    			 error: function(){
+    				 console.log("실패");
+    			 }
+    	})
+    	
+    	}
+      
+      // 리뷰 좋아요을 눌렀을때
+      function likeReview(userNo, reviewNo){
+      	
+    	  var btn = document.getElementById("reviewLike")
+    	$.ajax({
+    					url: '<%=contextPath%>/likeReview.lr',
+    					data: {
+    								userNo: userNo,
+    								reviewNo: reviewNo
+    								},
+    			 success: function(res){
+    				 
+    				 		console.log(res);
+    				 		$('.likeCount' + reviewNo).html(res);
+        				    
+        				reviewListByLike(<%=mv.getMovieNo()%>) // 인기순 정렬 (좋아요 수가 역전될경우 바로 반영)
+    				 		
     			 },
     			 error: function(){
     				 console.log("실패");
@@ -381,13 +406,14 @@
     	  reviewListByLike(<%=mv.getMovieNo()%>) // 인기순
       	checkedMovieLike(<%=userNo%>, <%=mv.getMovieNo()%>) // 좋아요 상태 조회
       	mvpGrade(<%=mv.getMovieNo()%>)
+      	checkedReviewLike(<%=userNo%>, <%=mv.getMovieNo()%>)
     	  																						 
     	  
       })
       // 페이지 로드시 해당 영화 좋아요 등록 되어있으면 하트 빨간색 처리
       function checkedMovieLike(userNo, movieNo){
     	
-    	  var btn = document.getElementById("like")
+    	  var btn = document.getElementById("movieLike")
 
     	$.ajax({
     					url: '<%=contextPath%>/checkLike.cl',
@@ -408,24 +434,27 @@
     					
     	})	
     }
-      
-      // 리뷰 좋아요를 눌렀을 때
-      function likeReview(userNo, reviewNo){
-    	
+    // 리뷰 좋아요 되어있으면 빨간색 처리 (페이지 로드할때 사용)
+      function checkedReviewLike(userNo, movieNo){
+      	
+    	var btn = document.getElementById("reviewLike")
+    	  
     	$.ajax({
-    					url: '<%=contextPath%>/likeReview.lr',
+    					url: '<%=contextPath%>/checkReviewLike.cr',
     					data: {
     							userNo: userNo,
-    							reviewNo: reviewNo
+    							movieNo: movieNo
     					},
-    					success: function(res){
-    						$('.likeCount' + reviewNo).html(res);
-    				    
-    				    reviewListByLike(<%=mv.getMovieNo()%>) // 인기순 정렬 (좋아요 수가 역전될경우 바로 반영)
-    					}
+    					success: function(res) {
+    										console.log(res);
+    										
+    									},
+    						 error: function(){
+    							 console.log("체크실패");
+    						 }
+    										
     					
-    	})
-    	
+    	})	
     }
     	
     

@@ -77,16 +77,27 @@
 	  		)
 	</entry>
 	
+	
+	
 	<entry key="getMvpGrade">
 		SELECT
 				   ROUND(AVG(GRADE), 1) AS AVG_GRADE
 			FROM
-					 REVIEW
+					 LIKES
 		 WHERE 
 		 			 MOVIE_NO = ?
 		 GROUP
 		 	  BY
 		 	  	 MOVIE_NO
+	</entry>
+	
+	<entry key="checkReviewLiked">
+		SELECT
+					 COUNT(*) AS COUNT
+		  FROM 
+		  		 REVIEW 
+		 WHERE 
+		 			 USER_NO = ? AND REVIEW_NO = ?
 	</entry>
 
 </properties>

@@ -16,6 +16,15 @@
 				 )
 	</entry>
 	
+	<entry key="deleteLike">
+		DELETE
+		  FROM 
+		  	   LIKES
+		 WHERE 
+		 			 USER_NO = ?
+  		 AND MOVIE_NO = ?
+	</entry>
+	
 	<entry key="likeCount">
 		SELECT 
 					 COUNT(*) as COUNT

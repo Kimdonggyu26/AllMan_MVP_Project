@@ -8,10 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.mvp.semi.ca.likes.model.service.LikesService;
+import com.mvp.semi.ca.review.model.service.ReviewService;
 
 /**
  * Servlet implementation class AjaxReviewLikeController
@@ -34,15 +34,28 @@ public class AjaxReviewLikeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
         request.setCharacterEncoding("UTF-8");
-        
+        response.setContentType("application/json; charset=utf-8");    
+
        
         int userNo = Integer.parseInt(request.getParameter("userNo"));
         int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-        
 
         LikesService lService = new LikesService();
+        ReviewService rvService = new ReviewService();
         
-        int result = lService.insertLike(userNo, reviewNo);
+        int alreadyLiked = rvService.checkReviewLiked(userNo, reviewNo);
+        
+        int result;
+        System.out.println(alreadyLiked);
+        if(alreadyLiked == 0) {
+        	
+        	result = lService.insertLike(userNo, reviewNo);
+        	
+        }else {
+        	
+        	result = lService.deleteLike(userNo, reviewNo);
+        	
+        }
         
         int likeCount = lService.likeCount(reviewNo);
         

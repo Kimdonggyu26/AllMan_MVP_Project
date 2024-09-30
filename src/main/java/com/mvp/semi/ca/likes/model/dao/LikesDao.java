@@ -71,4 +71,29 @@ public class LikesDao {
 		return likeCount;
 		
 	}
+	
+	public int deleteLike(Connection conn, int userNo, int movieNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteLike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, movieNo);
+			
+			result = pstmt.executeUpdate();
+			
+			//System.out.println("삭제되었는지 : " + result);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+		
+	}
 }

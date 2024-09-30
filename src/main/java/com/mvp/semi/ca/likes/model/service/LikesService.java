@@ -28,4 +28,15 @@ public class LikesService {
 		return likeCount;
 	}
 	
+	public int deleteLike(int userNo, int movieNo) {
+		Connection conn = getConnection();
+		
+		int alreadyLiked = lDao.deleteLike(conn, userNo, movieNo);
+		
+		close(conn);
+		
+		return alreadyLiked;
+		
+	}
+	
 }
