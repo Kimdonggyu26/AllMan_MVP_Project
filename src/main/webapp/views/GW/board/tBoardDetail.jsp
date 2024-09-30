@@ -41,7 +41,7 @@
 		
 		 <div class="d-flex justify-content-end mt-5" id="sl">
       <!-- 현재 로그인되어있는 회원이 해당 게시글의 작성자 본인일 경우 보여지는 요소 -->
-      <% if(loginUser != null && loginUser.getUserId().equals(b.getUserId())) { %>
+      <% if (loginUser != null && (loginUser.getUserId().equals(b.getUserId()) || loginUser.getStatus().equals("A"))) { %>
       <a href="<%= contextPath %>/delete.tbo?no=<%= b.getBoardNo() %>" type="button" class="btn btn-danger btn-sm">삭제</a> &nbsp;
       <% } %>
       <!-- ------------------------------------------------------------------------- -->

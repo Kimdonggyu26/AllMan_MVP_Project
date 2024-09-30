@@ -61,7 +61,7 @@ body{
 #movie-content-top{
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 30px;
   margin-bottom: 55px;
 }
 #rating{
@@ -80,9 +80,11 @@ body{
 }
 #mvp-review{
   margin-top: 52px;
+  
 }
 #introduce{
   margin-top: 52px;
+  
 }
 #compare-list-empty{
   background-color: #323232;

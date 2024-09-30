@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import com.mvp.semi.ca.review.model.vo.Review;
 import com.mvp.semi.common.model.vo.PageInfo;
 import com.mvp.semi.movie.model.vo.Movie;
 import com.mvp.semi.user.model.vo.User;
@@ -864,7 +865,7 @@ public class MovieDao {
 	        return list;
 	    }
 
-	public Movie compareList(Connection conn, int parseInt) {
+	public Movie compareList(Connection conn, int movieNo) {
 		
 		Movie movie = null;
 		PreparedStatement pstmt = null;
@@ -873,7 +874,7 @@ public class MovieDao {
 
 		try {
 			pstmt = conn.prepareStatement(sql); // 미완성된 sql문
-			pstmt.setInt(1, parseInt);
+			pstmt.setInt(1, movieNo);
 			rset = pstmt.executeQuery();
 
 			if (rset.next()) {
@@ -902,6 +903,33 @@ public class MovieDao {
 			          
 		}
 		return movie;
+	}
+
+	public Review compareReviewList(Connection conn, int movieNo) {
+		
+		Review review = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("compareReviewList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, movieNo);
+			rset = pstmt.executeQuery();
+			
+			if (rset.next()) {
+				review = new Review(rset.getInt("REVIEW_NO"),
+									rset.getString("REVIEW_CONTENT"),
+									rset.getInt("movie_No"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return review;
 	}
 
 }

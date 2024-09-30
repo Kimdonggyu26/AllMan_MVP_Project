@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.mvp.semi.ca.review.model.vo.Review;
 import com.mvp.semi.common.model.vo.PageInfo;
 import com.mvp.semi.movie.model.dao.MovieDao;
 import com.mvp.semi.movie.model.vo.Movie;
@@ -250,11 +251,18 @@ public class MovieService {
 	        return ottMovies;
 	    }
 
-	public Movie compareList(int parseInt) {
+	public Movie compareList(int movieNo) {
 		Connection conn = getConnection();
-		Movie movie = mvDao.compareList(conn, parseInt);
+		Movie movie = mvDao.compareList(conn, movieNo);
 		close(conn);
 		return movie;
+	}
+
+	public Review mvReview(int movieNo) {
+		Connection conn = getConnection();
+		Review review = mvDao.compareReviewList(conn, movieNo);
+		close(conn);
+		return review;
 	}
 
 }

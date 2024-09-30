@@ -55,7 +55,11 @@ public class UserLoginController extends HttpServlet {
 			session.setAttribute("loginUser", loginUser);
 
 			/* response.sendRedirect(request.getContextPath()); */
-			request.getRequestDispatcher("views/movieMain/mainPage.jsp").forward(request, response);
+			if(loginUser.getStatus().equals("A")) {
+				request.getRequestDispatcher("views/adminPage/adminMainPage.jsp").forward(request, response);
+			}else {
+				request.getRequestDispatcher("views/movieMain/mainPage.jsp").forward(request, response);
+			}
 		}
 	}
 

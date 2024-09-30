@@ -62,6 +62,7 @@ public class UserDao {
 						rset.getString("taste_code"));
 			}
 
+			System.out.println(result);
 		} catch (SQLException e) {
 			e.printStackTrace();	
 		} finally {

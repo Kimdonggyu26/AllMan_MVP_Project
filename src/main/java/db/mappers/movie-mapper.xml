@@ -512,17 +512,18 @@
 			    MOVIE_NO = ?
 
  </entry>
+ 
+ <entry key="compareReviewList">
+ 	SELECT
+ 					REVIEW_NO
+ 				, REVIEW_CONTENT
+ 				, MOVIE_NO
+ 	FROM
+ 					REVIEW
+ 	WHERE	
+ 					MOVIE_NO = ?
+ </entry>
 	
-
-
-
-
-
-
-
-
-
-
 
 
 

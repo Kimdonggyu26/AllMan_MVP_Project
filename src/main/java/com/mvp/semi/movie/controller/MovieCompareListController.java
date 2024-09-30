@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mvp.semi.ca.review.model.vo.Review;
 import com.mvp.semi.movie.model.service.MovieService;
 import com.mvp.semi.movie.model.vo.Movie;
 
@@ -36,16 +37,26 @@ public class MovieCompareListController extends HttpServlet {
         String[] movieNos = request.getParameterValues("movieNo");
         
         // 영화 번호로 영화 정보를 조회하는 로직 (DB에서 조회)
-        List<Movie> list = new ArrayList<>();
+        List<Movie> mvlist = new ArrayList<>();
+        List<Review> rlist = new ArrayList<>();
         for (String movieNo : movieNos) {
             Movie movie = new MovieService().compareList(Integer.parseInt(movieNo)); // 영화 서비스에서 영화 정보 조회
-            list.add(movie);
+            mvlist.add(movie);
         }
+        
+        for(String movieNo : movieNos) {
+            Review review = new MovieService().mvReview(Integer.parseInt(movieNo));
+            rlist.add(review);
+        }
+        
+        
 
         // 영화 리스트를 request에 저장
-        request.setAttribute("list", list);
+        request.setAttribute("list", mvlist);
+        request.setAttribute("review", rlist);
         
-        System.out.println(list);
+        System.out.println(rlist);
+  
 
         // 비교 페이지로 이동
         request.getRequestDispatcher("/views/movieMain/comparePage.jsp").forward(request, response);

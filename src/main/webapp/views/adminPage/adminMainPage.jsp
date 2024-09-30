@@ -21,7 +21,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- 커스텀 CSS 로드 -->
-    <link rel="stylesheet" href="css/adminMainPage.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/views/adminPage/css/adminMainPage.css">
     
   <!-- 모달 css -->
 	<style> 
