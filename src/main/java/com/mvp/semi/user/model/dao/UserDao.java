@@ -31,8 +31,6 @@ public class UserDao {
 		}
 
 	}
-	
-	
 
 	public User loginUser(Connection conn, String userId, String userPwd) {
 		// select문 => ResultSet (한 행, 한 회원) => Member객체
@@ -48,27 +46,19 @@ public class UserDao {
 			rset = pstmt.executeQuery();
 
 			if (rset.next()) {
-				result = new User(rset.getInt("USER_NO"),
-						rset.getString("USER_ID"), 
-						rset.getString("USER_PWD"),
-						rset.getString("PHONE"),
-						rset.getString("EMAIL"),
-						rset.getString("USER_NICKNAME"),
-						rset.getDate("ENROLL_DATE"),
-						rset.getDate("MODIFY_DATE"),
-						rset.getString("STATUS"),
-						rset.getInt("taste_No"),
-						rset.getString("PROFILE_PATH"),
-						rset.getString("taste_code"));
+				result = new User(rset.getInt("USER_NO"), rset.getString("USER_ID"), rset.getString("USER_PWD"),
+						rset.getString("PHONE"), rset.getString("EMAIL"), rset.getString("USER_NICKNAME"),
+						rset.getDate("ENROLL_DATE"), rset.getDate("MODIFY_DATE"), rset.getString("STATUS"),
+						rset.getInt("taste_No"), rset.getString("PROFILE_PATH"), rset.getString("taste_code"));
 			}
 
 			System.out.println(result);
 		} catch (SQLException e) {
-			e.printStackTrace();	
+			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
-			          
+
 		}
 		return result;
 	}
@@ -123,7 +113,6 @@ public class UserDao {
 
 		return count;
 	}
-
 
 	public int selectUserByNick(Connection conn, String userNick) {
 		int result = 0;
@@ -189,7 +178,7 @@ public class UserDao {
 
 			if (rset.next()) {
 				u.setUserId(rset.getString("user_id"));
-			
+
 			}
 
 		} catch (SQLException e) {
@@ -215,10 +204,10 @@ public class UserDao {
 			pstmt.setString(1, userId);
 
 			rset = pstmt.executeQuery();
- 
+
 			if (rset.next()) {
 				u.setUserPwd(rset.getString("user_pwd"));
-			
+
 			}
 
 		} catch (SQLException e) {
@@ -231,91 +220,88 @@ public class UserDao {
 		return u;
 	}
 
-	public int modifyUser(Connection conn,String userId, String userNick, String email, String phone) {
+	public int modifyUser(Connection conn, String userId, String userNick, String email, String phone) {
 		int result = 0;
-        PreparedStatement pstmt = null;
-        String sql =prop.getProperty("modifyuser");
-       
-        
-        try {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("modifyuser");
+
+		try {
 			pstmt = conn.prepareStatement(sql);
-						pstmt.setString(1, userNick);
-	        			pstmt.setString(2, email);
-	        			pstmt.setString(3, phone);
-	        			pstmt.setString(4, userId);
-	        			
-	        			result = pstmt.executeUpdate();
+			pstmt.setString(1, userNick);
+			pstmt.setString(2, email);
+			pstmt.setString(3, phone);
+			pstmt.setString(4, userId);
+
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(pstmt);
 		}
-        
-        return result;
-        
-        
+
+		return result;
+
 	}
 
 	public int updateUserProfile(Connection conn, User u) {
-	    PreparedStatement pstmt = null;
-	    int result = 0;
+		PreparedStatement pstmt = null;
+		int result = 0;
 
-	    // SQL 쿼리 가져오기 (닉네임과 프로필 이미지 모두 업데이트)
-	    String sql = prop.getProperty("updateuserprofile");
+		// SQL 쿼리 가져오기 (닉네임과 프로필 이미지 모두 업데이트)
+		String sql = prop.getProperty("updateuserprofile");
 
-	    try {
-	        pstmt = conn.prepareStatement(sql);
+		try {
+			pstmt = conn.prepareStatement(sql);
 
-	        // 닉네임, 프로필 이미지 경로, 사용자 ID 설정
-	        pstmt.setString(1, u.getUserNick());
-	        pstmt.setString(2, u.getFilePath());
-	        pstmt.setString(3, u.getUserId());
+			// 닉네임, 프로필 이미지 경로, 사용자 ID 설정
+			pstmt.setString(1, u.getUserNick());
+			pstmt.setString(2, u.getFilePath());
+			pstmt.setString(3, u.getUserId());
 
-	        // SQL 실행
-	        result = pstmt.executeUpdate();
+			// SQL 실행
+			result = pstmt.executeUpdate();
 
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } finally {
-	        close(pstmt);
-	    }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
 
-	    return result;
+		return result;
 	}
+
 	public int updatenick(Connection conn, User u) {
 		int result = 0;
-		
+
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("usernick");
-		
+
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, u.getUserNick());
 			pstmt.setString(2, u.getUserId());
-			
+
 			result = pstmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
 		return result;
-		
+
 	}
-
-
 
 	public int updateUserTaste(Connection conn, int i, String u) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("userTaste");
-		
+
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, i);
 			pstmt.setString(2, u);
-			
+
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -324,28 +310,29 @@ public class UserDao {
 		}
 		return result;
 	}
-	public int updateUser(Connection conn,User user) {
-        PreparedStatement pstmt = null;
-        int result = 0;
-        String sql = prop.getProperty("modifyuser");
 
-        try {
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, user.getUserNick());  // 수정할 닉네임
-            pstmt.setString(2, user.getFilePath());
-            pstmt.setString(3, user.getEmail());   // 수정할 이메일
-            pstmt.setString(4, user.getPhone());   // 수정할 전화번호
-            pstmt.setString(5, user.getUserId());
+	public int updateUser(Connection conn, User user) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("modifyuser");
 
-            result = pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            close(pstmt);
-        }
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user.getUserNick()); // 수정할 닉네임
+			pstmt.setString(2, user.getFilePath());
+			pstmt.setString(3, user.getEmail()); // 수정할 이메일
+			pstmt.setString(4, user.getPhone()); // 수정할 전화번호
+			pstmt.setString(5, user.getUserId());
 
-        return result;
-    }
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
 
 	public int selectAllUserList(Connection conn, Map<String, String> searchData) { // map 넘겨받기
 
@@ -364,7 +351,7 @@ public class UserDao {
 		}
 
 		if (!teamNo.equals("")) {
-			sql += " AND (TEAM_NO = '" + teamNo +"'";
+			sql += " AND (TEAM_NO = '" + teamNo + "'";
 		}
 
 		if (!keyword.equals("")) {
@@ -387,29 +374,6 @@ public class UserDao {
 
 			if (rset.next()) {
 				listCount = rset.getInt("COUNT");
-			}
-		}
-		
-			
-	return listCount;
-
-	}
-
-
-	public int emailCheck(Connection conn, String checkEmail) {
-		int count = 0;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("emailCheck");
-
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, checkEmail);
-
-			rset = pstmt.executeQuery();
-
-			if (rset.next()) {
-				count = rset.getInt("count");
 			}
 
 		} catch (SQLException e) {
@@ -438,7 +402,7 @@ public class UserDao {
 		}
 
 		if (!teamNo.equals("")) {
-			sql += " AND (TEAM_NO = '" + teamNo +"'";
+			sql += " AND (TEAM_NO = '" + teamNo + "'";
 		}
 
 		if (!keyword.equals("")) {
@@ -461,11 +425,41 @@ public class UserDao {
 
 			if (rset.next()) {
 				listCount = rset.getInt("COUNT");
+			}
 
-		return count;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return listCount;
 	}
 
+	public int emailCheck(Connection conn, String checkEmail) {
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("emailCheck");
 
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, checkEmail);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				count = rset.getInt("count");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return listCount;
+	}
 
 	public int phoneCheck(Connection conn, String checkPhone) {
 		int count = 0;
@@ -493,7 +487,7 @@ public class UserDao {
 	}
 
 	public List<User> selectPagingShowUserList(Connection conn, PageInfo pi, Map<String, String> searchData) { // map
-																													// 넘겨받기
+																												// 넘겨받기
 
 		List<User> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -510,7 +504,7 @@ public class UserDao {
 		}
 
 		if (!teamNo.equals("")) {
-			sql += " AND TEAM_NO = '" + teamNo +"'";
+			sql += " AND TEAM_NO = '" + teamNo + "'";
 		}
 
 		if (!keyword.equals("")) {
@@ -542,11 +536,11 @@ public class UserDao {
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				list.add(new User(rset.getInt("USER_NO"), rset.getString("USER_ID"),
-						rset.getString("USER_PWD"), rset.getString("PHONE"), rset.getString("EMAIL"),
-						rset.getString("USER_NICKNAME"), rset.getDate("ENROLL_DATE"), rset.getDate("MODIFY_DATE"),
-						rset.getString("STATUS"), rset.getInt("TASTE_NO"), rset.getString("PROFILE_PATH"),
-						rset.getInt("TEAM_NO"), rset.getString("TASTE_CODE")));
+				list.add(new User(rset.getInt("USER_NO"), rset.getString("USER_ID"), rset.getString("USER_PWD"),
+						rset.getString("PHONE"), rset.getString("EMAIL"), rset.getString("USER_NICKNAME"),
+						rset.getDate("ENROLL_DATE"), rset.getDate("MODIFY_DATE"), rset.getString("STATUS"),
+						rset.getInt("TASTE_NO"), rset.getString("PROFILE_PATH"), rset.getInt("TEAM_NO"),
+						rset.getString("TASTE_CODE")));
 			}
 			System.out.println(sql);
 
@@ -561,7 +555,7 @@ public class UserDao {
 	}
 
 	public List<User> selectPagingShowAdminList(Connection conn, PageInfo pi, Map<String, String> searchData) { // map
-																													// 넘겨받기
+																												// 넘겨받기
 
 		List<User> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -578,7 +572,7 @@ public class UserDao {
 		}
 
 		if (!teamNo.equals("")) {
-			sql += " AND (TEAM_NO = '" + teamNo +"'";
+			sql += " AND (TEAM_NO = '" + teamNo + "'";
 		}
 
 		if (!keyword.equals("")) {
@@ -586,7 +580,6 @@ public class UserDao {
 		}
 
 		sql += ") WHERE RNUM BETWEEN ? AND ?";
-
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -600,11 +593,11 @@ public class UserDao {
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				list.add(new User(rset.getInt("USER_NO"), rset.getString("USER_ID"),
-						rset.getString("USER_PWD"), rset.getString("PHONE"), rset.getString("EMAIL"),
-						rset.getString("USER_NICKNAME"), rset.getDate("ENROLL_DATE"), rset.getDate("MODIFY_DATE"),
-						rset.getString("STATUS"), rset.getInt("TASTE_NO"), rset.getString("PROFILE_PATH"),
-						rset.getInt("TEAM_NO"), rset.getString("TASTE_CODE")));
+				list.add(new User(rset.getInt("USER_NO"), rset.getString("USER_ID"), rset.getString("USER_PWD"),
+						rset.getString("PHONE"), rset.getString("EMAIL"), rset.getString("USER_NICKNAME"),
+						rset.getDate("ENROLL_DATE"), rset.getDate("MODIFY_DATE"), rset.getString("STATUS"),
+						rset.getInt("TASTE_NO"), rset.getString("PROFILE_PATH"), rset.getInt("TEAM_NO"),
+						rset.getString("TASTE_CODE")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -617,6 +610,5 @@ public class UserDao {
 
 		return count;
 	}
-	
 
 }
