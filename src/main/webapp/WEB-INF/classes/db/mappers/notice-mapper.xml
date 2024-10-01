@@ -60,5 +60,23 @@
 		WHERE 
 					NOTICE_NO = ?
 	</entry>
+	
+	<entry key="insertNotice">
+		INSERT
+			INTO NOTICE
+			(
+				NOTICE_NO
+			, NOTICE_TITLE
+			, NOTICE_CONTENT
+			, USER_NO
+			)
+			VALUES
+			(
+				SEQ_NOTICENO.NEXTVAL
+			, ?
+			, ?
+			, ?
+			)
+	</entry>
 
 </properties>

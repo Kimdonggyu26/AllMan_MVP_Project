@@ -127,13 +127,7 @@
 	      
         <div id="body">
           <div id="body-left">  
-            <div id="sidebar">
-              <div name="adminMainPage" style="background-color: #D2E5FF;"><img src="<%=contextPath%>/assets/image/adminPage/tv_logo.png">&nbsp;영화 관리</div> <!-- 기본 페이지이기 때문에 색 입혀놓음 -->
-              <div name="accountManage"><img src="<%=contextPath%>/assets/image/adminPage/people_logo.png">&nbsp;계정 관리</div>
-              <div name="boardManage"><img src="<%=contextPath%>/assets/image/adminPage/board_logo.png">&nbsp;게시판 관리</div>
-              <div name="reviewManage"><img src="<%=contextPath%>/assets/image/adminPage/reply_logo.png">&nbsp;리뷰 관리</div>
-              <div name="customerManage"><img src="<%=contextPath%>/assets/image/adminPage/question_logo.png">&nbsp;고객 지원</div>
-            </div>
+   
           </div> <!-- body-left div 끝 -->
 	
          	<div id="body-right">
@@ -320,13 +314,13 @@
 																			for(let i = 0; i < res.list.length; i++){
 																				divEl += '<tr onclick="checkMovie(event);">'
 																									+ '<td class="list-content">'
-																										 + '<div><input type="checkbox" class="list-checkbox" style="width: 18px; height: 18px; margin-left: 46px;" name="userNo" value="' + res.list[i].movieNo + '"></div>'
+																										 + '<div><input type="checkbox" class="list-checkbox" style="width: 18px; height: 18px; margin-left: 46px;" name="movieNo" value="' + res.list[i].movieNo + '"></div>'
 																										 + '<div class="list-num">' + res.list[i].movieNo + '</div>'
 																										 + '<div class="list-title" data-toggle="modal" data-target="#modify-movie">' + res.list[i].movieTitle + '</div>'
 																										 + '<div class="list-ageLv">' + res.list[i].ageLv + '</div>'
 																										 + '<div class="list-date">' + res.list[i].openDate + '</div>'
 																									+ '</td>'	 	 
-																							 + '</tr>';
+																							 + '</tr>'; 
 																	}
 																			/*
 																						 for(i = 0; i < 12-res.length; i++){
@@ -763,7 +757,7 @@
 	          		}
 	        	}
 	        	
-	        	
+	        	/*
 	        		// sidebar에서 각 탭 선택시 해당 페이지로 이동하는 function
 	        		const sidebarDivs = document.querySelectorAll('#sidebar div');
 	        		
@@ -777,7 +771,7 @@
 	        				this.style.backgroundColor ="#D2E5FF";
 	        			})
 	        		})
-	        	
+	        		*/
 	        	
 	        </script>
 	        <!-- Modal footer -->

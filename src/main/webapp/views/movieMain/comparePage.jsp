@@ -26,7 +26,7 @@
     <%--  <%@ include file="/views/common/header.jsp" %> --%>
     <!-- Header, Nav end -->
 		
-		
+		<i id="back" class="fa-solid fa-arrow-left"></i>
 		<!-- body부 시작 -->
 		
 		<div id="main">
@@ -156,6 +156,13 @@
  			 <!-- Footer start -->
   		 <%--  <%@ include file="/views/common/footer.jsp" %> --%>
  			 <!-- Footer end -->
+ 			 <script>
+ 			 
+ 					// 이전 페이지로 돌아가기
+		 			document.getElementById("back").addEventListener("click", function() {
+					    window.history.back(); 
+					});
+ 			 </script>
   	
 </body>
 </html>

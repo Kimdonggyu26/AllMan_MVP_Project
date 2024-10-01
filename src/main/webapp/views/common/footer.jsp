@@ -15,6 +15,7 @@ footer {
     display: flex;
 	flex-direction: column;
     justify-content: center;
+    margin: auto;
 }
 #ul_controller{
 	display: flex;

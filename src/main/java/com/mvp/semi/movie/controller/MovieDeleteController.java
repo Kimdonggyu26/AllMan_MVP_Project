@@ -36,8 +36,11 @@ public class MovieDeleteController extends HttpServlet {
 		String[] deleteNumArr = request.getParameterValues("movieNo");
 		
 		String allNum = String.join(",", deleteNumArr);  // 삭제 요청을 보낸 영화들의 번호 목록
-		System.out.println(allNum);
+		
+		System.out.println("allNum잘되나" + allNum);	
+		
 		int result = new MovieService().deleteMovie(allNum);
+		
 		
 		if(result == deleteNumArr.length) {
 			
