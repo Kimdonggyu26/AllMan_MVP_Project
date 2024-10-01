@@ -1,6 +1,6 @@
 <%@page import="com.mvp.semi.user.model.vo.User"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +30,7 @@ body {
 
 .highlight {
     font-size: 40px;
-    color: #83FF64; /* °­Á¶µÈ »¡°£»ö ÅØ½ºÆ® */
+    color: #83FF64; /* ê°•ì¡°ëœ ë¹¨ê°„ìƒ‰ í…ìŠ¤íŠ¸ */
     margin-bottom: 20px;
 }
 
@@ -66,13 +66,13 @@ body {
 %>
 <body>
     <div class="container">
-        <h1 class="username"><%= u.getUserNick() %>´ÔÀÇ ºÐ¼® °á°ú´Â</h1>
+        <h1 class="username"><%= u.getUserNick() %>ë‹˜ì˜ ë¶„ì„ ê²°ê³¼ëŠ”</h1>
         <h2 class="highlight">BOFA</h2>
        		
-            <div class="sub">ÃëÇâ ºÐ¼®Àº ¸¶ÀÌÆäÀÌÁö¿¡¼­ ´Ù½Ã ÇÒ ¼ö ÀÖ¾î¿ä!</div>
+            <div class="sub">ì·¨í–¥ ë¶„ì„ì€ ë§ˆì´íŽ˜ì´ì§€ì—ì„œ ë‹¤ì‹œ í•  ìˆ˜ ìžˆì–´ìš”!</div>
 
-        <p class="content">ÃëÇâ¿¡ ¸Â´Â »ç¶÷µé°ú ÇÔ²² ¼ÒÅëÇØº¸¼¼¿ä!</p>
-        <a type="submit"  href="<%=ContextPath %>/logout.us"><button class="main-button" >½ÃÀÛÇÏ±â</button></a>
+        <p class="content">ì·¨í–¥ì— ë§žëŠ” ì‚¬ëžŒë“¤ê³¼ í•¨ê»˜ ì†Œí†µí•´ë³´ì„¸ìš”!</p>
+        <a type="submit"  href="<%=ContextPath%>/logout.us"><button class="main-button" >ì‹œìž‘í•˜ê¸°</button></a>
     </div>
 
 </body>
