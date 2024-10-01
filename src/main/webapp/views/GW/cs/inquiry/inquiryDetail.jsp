@@ -91,8 +91,8 @@
 			<% } else {%>
 			 <table id="reply-area" class="table">
 	     	<tr>
-	     		<th id="nc"><%= i.getUserNickname() %></th>
-	     		<td id="nc"><p style="min-height:200px; white-space:pre-wrap;"><%= i.getReplyContent() %></p></td>
+	     		<th id="nc" width="100px"><%= i.getUserNickname() %></th>
+	     		<td id="nc" width="700px"><p style="min-height:200px; white-space:pre-wrap;"><%= i.getReplyContent() %></p></td>
 	     		<td id="nc"><%= i.getReplyDate() %></td>
 	     	</tr>
 	     </table>
