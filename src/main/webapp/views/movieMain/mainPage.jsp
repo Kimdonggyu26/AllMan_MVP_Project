@@ -28,21 +28,21 @@
 				<div id="genre">
 					<div class="genre-top">
 						<button type="button" class="btn btn-secondary main-hashtag"value="액션">액션</button>
-						<button type="button" class="btn btn-secondary main-hashtag"value="crime">범죄</button>
-						<button type="button" class="btn btn-secondary main-hashtag"value="sf">SF</button>
-						<button type="button" class="btn btn-secondary main-hashtag"value="comedy">코미디</button>
-						<button type="button" class="btn btn-secondary main-hashtag"value="slapstick">슬랩스틱</button>
-						<button type="button" class="btn btn-secondary main-hashtag"value="romance">로맨스</button>
-						<button type="button" class="btn btn-secondary main-hashtag"value="musical">뮤지컬</button>
+						<button type="button" class="btn btn-secondary main-hashtag"value="범죄">범죄</button>
+						<button type="button" class="btn btn-secondary main-hashtag"value="SF">SF</button>
+						<button type="button" class="btn btn-secondary main-hashtag"value="코미디">코미디</button>
+						<button type="button" class="btn btn-secondary main-hashtag"value="슬랩스틱">슬랩스틱</button>
+						<button type="button" class="btn btn-secondary main-hashtag"value="로맨스">로맨스</button>
+						<button type="button" class="btn btn-secondary main-hashtag"value="뮤지컬">뮤지컬</button>
 					</div>
 					<div class="genre-bottom">
-						<button type="button" class="btn btn-secondary main-hashtag"value="thriller">스릴러</button>
-						<button type="button" class="btn btn-secondary main-hashtag"value="horror">공포</button>
-						<button type="button" class="btn btn-secondary main-hashtag"value="war">전쟁</button>
-						<button type="button" class="btn btn-secondary main-hashtag"value="sports">스포츠</button>
-						<button type="button" class="btn btn-secondary main-hashtag"value="fantasy">판타지</button>
-						<button type="button" class="btn btn-secondary main-hashtag"value="music">음악</button>
-						<button type="button" class="btn btn-secondary main-hashtag"value="melo">멜로</button>
+						<button type="button" class="btn btn-secondary main-hashtag"value="스릴러">스릴러</button>
+						<button type="button" class="btn btn-secondary main-hashtag"value="공포">공포</button>
+						<button type="button" class="btn btn-secondary main-hashtag"value="전쟁">전쟁</button>
+						<button type="button" class="btn btn-secondary main-hashtag"value="스포츠">스포츠</button>
+						<button type="button" class="btn btn-secondary main-hashtag"value="판타지">판타지</button>
+						<button type="button" class="btn btn-secondary main-hashtag"value="음악">음악</button>
+						<button type="button" class="btn btn-secondary main-hashtag"value="멜로">멜로</button>
 					</div>
 				</div>
 				<!-- genre div 끝 -->
