@@ -290,11 +290,6 @@
     flex-direction: column;
   }
 
-  img{
-    width: 274px; 
-    height: 369px;
-  }
-
   #button-red{
     margin-top: 35px;
     margin-left: 96.5px;
