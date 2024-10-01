@@ -51,7 +51,7 @@
         
         <% if(list.isEmpty()) { %>
         <div>
-          <div style="text-align:center">존재하는 게시글이 없습니다.</div>
+          <div style="text-align:center; margin-top:40px; color:white;">존재하는 게시글이 없습니다.</div>
         </div>
         <% }else { %>
         
