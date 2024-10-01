@@ -33,6 +33,9 @@ public class InquiryAnswerConroller extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		request.setCharacterEncoding("utf-8");
+		
 		String inquiryContent = request.getParameter("replyContent");
 		int inquiryNo = Integer.parseInt(request.getParameter("inquiryNo"));
 		

@@ -130,6 +130,4 @@
 
 
 </style>
-
-</body>
 </html>
