@@ -130,17 +130,17 @@
 
       <ul class="pagination d-flex justify-content-center text-dark" id="page">
          <li class='page-item <%= pi.getCurrentPage() == 1 ? "disabled" : "" %>'>
-            <a class="page-link" href="<%= contextPath%>/list.fbo?page=<%= pi.getCurrentPage() -1 %>">&lt;</a>
+            <a class="page-link" href="<%= contextPath%>/list.SPTF?page=<%= pi.getCurrentPage() -1 %>">&lt;</a>
          </li>
          
          <% for(int p=pi.getStartPage(); p<=pi.getEndPage(); p++) { %>
          <li class='page-item <%= p == pi.getCurrentPage() ? "active" : "" %>'>
-            <a class="page-link" style="color: #ffffff;" href="<%= contextPath%>/list.fbo?page=<%= p %>"><%= p %></a>
+            <a class="page-link" style="color: #ffffff;" href="<%= contextPath%>/list.SPTF?page=<%= p %>"><%= p %></a>
          </li>
          <% } %>
          
          <li class='page-item <%= pi.getCurrentPage() == pi.getMaxPage() ? "disabled" : "" %>'>
-            <a class="page-link" href="<%= contextPath%>/list.fbo?page=<%= pi.getCurrentPage() + 1 %>">&gt;</a>
+            <a class="page-link" href="<%= contextPath%>/list.SPTF?page=<%= pi.getCurrentPage() + 1 %>">&gt;</a>
          </li>
       </ul>
 
@@ -385,7 +385,7 @@
 	}
 	
 	.card {
-	  width: 100%; /* 필요시 텍스트 영역의 너비 조절 */
+	  width: 90%; /* 필요시 텍스트 영역의 너비 조절 */
 	}
 	
 	#mv-content{

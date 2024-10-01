@@ -395,7 +395,7 @@
 																		for(let i = 0; i < res.list.length; i++){
 																			divEl += '<tr onclick="checkMovie(event);">'
 																									+ '<td class="list-content">'
-																										 + '<div><input type="checkbox" class="list-checkbox" style="width: 18px; height: 18px; margin-left: 46px; name="movieNo" value="' + res.list[i].movieNo + '"></div>'
+																										 + '<div><input type="checkbox" class="list-checkbox" style="width: 18px; height: 18px; margin-left: 46px;" name="movieNo" value="' + res.list[i].movieNo + '"></div>'
 																										 + '<div class="list-num">' + res.list[i].movieNo + '</div>'
 																										 + '<div class="list-title" data-toggle="modal" data-target="#modify-movie">' + res.list[i].movieTitle + '</div>'
 																										 + '<div class="list-ageLv">' + res.list[i].ageLv + '</div>'
