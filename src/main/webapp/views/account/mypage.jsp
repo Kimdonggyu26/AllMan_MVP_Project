@@ -177,7 +177,6 @@ a:link {
   text-decoration: none;
 }
 a:visited {
-  color : white;
   text-decoration: none;
 }
 a:hover {
