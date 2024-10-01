@@ -217,5 +217,15 @@
 			, ?
 			)
 	</entry>
+	
+		<entry key="answerInquiry">
+		UPDATE
+					INQUIRY
+			SET
+					REPLY_CONTENT = ?
+				, NOTICE_CONTENT = ?
+		WHERE
+					NOTICE_NO = ?				
+	</entry>
 
 </properties>
