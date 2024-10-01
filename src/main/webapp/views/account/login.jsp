@@ -106,12 +106,7 @@ String alertMsg = (String)session.getAttribute("alertMsg");
             <button type="submit" id="login-out" style="background-color: gray;">로그인하기</button>
         </div>
            <div id="password-error" class="error-message" style="display: none;">비밀번호 입력이 완료되었습니다.</div>
-         <%
-            String errorMsg = (String) request.getAttribute("errorMsg");
-            if (errorMsg != null) {
-        %>
-            <div class="error-message"><%= errorMsg %></div>
-        <% } %>
+        
     </form>
     
     <!-- 추가적인 링크 부분 -->
