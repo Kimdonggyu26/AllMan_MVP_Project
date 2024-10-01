@@ -56,7 +56,7 @@
                      
             <!--  case2_1 본인 문의글일 경우-->
 					  <% for(Inquiry i : list){ %>
-					  	<% if(loginUser != null && loginUser.getUserId().equals(i.getUserNo())) { %>
+					  	<% if (loginUser != null && (loginUser.getUserId().equals(i.getUserNo()) || loginUser.getStatus().equals("A")))  { %>
 					  <tr class="board-title1" data-no="<%=i.getInquiryNo()%>">
               <td><%= i.getInquiryTitle() %></td>
               <td><%= i.getUserNo() %></td>
