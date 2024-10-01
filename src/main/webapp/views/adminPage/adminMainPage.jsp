@@ -216,7 +216,7 @@
             		<div id="body-main-list">
             		
 			            <div id="list-category">
-			              <div class="show-movie tabActive" id="showMovieTab">상영중인 영화</div>
+			              <div class="show-movie tabActive" id="showMovieTab">상영 영화</div>
 			              <div class="ott-movie" id="ottMovieTab">OTT 영화</div>
 			              <button type="button" style="background-color: #2F80ED; margin-left: 525px;"  data-toggle="modal" data-target="#insert-movie" >+ 등록</button>
 			              <button type="submit" style="background-color: #F25858; margin-left: 15px;">- 삭제</button>
