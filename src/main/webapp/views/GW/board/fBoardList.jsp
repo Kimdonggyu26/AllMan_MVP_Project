@@ -67,10 +67,12 @@
       </div>
 
       <!-- 검색 결과를 출력할 영역 -->
+      <div class="container" id="bt1">
       <div class="row justify-content-center" id="search-results"></div>
-
-      <div id="board-b" class="row justify-content-center">
-      
+		 	</div>	
+		 
+		 
+      <div id="board-b" class="row justify-content-center">     
          <form id="searchForm" method="post" name="search">
             <table class="">
                <tr>
@@ -156,7 +158,7 @@
                   let resultHtml = '';
 
                   if (result.length === 0) {
-                     resultHtml += '<div>검색 결과가 없습니다.</div>';
+                     resultHtml += '<div style="color:white; margin-top:40px;">검색 결과가 없습니다.</div>';
                   } else {
                      // 결과를 반복문으로 HTML 생성
 									for (let i = 0; i < result.length; i++) {
