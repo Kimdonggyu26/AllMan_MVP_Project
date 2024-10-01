@@ -72,7 +72,7 @@ body {
             <div class="sub">취향 분석은 마이페이지에서 다시 할 수 있어요!</div>
 
         <p class="content">취향에 맞는 사람들과 함께 소통해보세요!</p>
-        <a type="submit" href="<%=ContextPath%>"><button class="main-button" >메인페이지로</button></a>
+        <a type="submit"  href="<%=ContextPath %>/logout.us"><button class="main-button" >시작하기</button></a>
     </div>
 
 </body>
