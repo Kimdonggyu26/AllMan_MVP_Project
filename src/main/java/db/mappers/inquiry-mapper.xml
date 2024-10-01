@@ -203,5 +203,19 @@
 		ORDER 
 			BY i.REGIST_DATE DESC
 		</entry>	 -->
+		
+	<entry key="answerInquiry">
+		UPDATE
+				INTO INQUIRY
+			(
+			  INQUIRYE_REPLY_CONTENT
+			, USER_NO
+			)
+			VALUES
+			(
+			  ?
+			, ?
+			)
+	</entry>
 
 </properties>

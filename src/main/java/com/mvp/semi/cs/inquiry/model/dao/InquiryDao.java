@@ -318,4 +318,26 @@ public class InquiryDao {
         
         return inquiries;
     }
+
+	public int answerInquiry(Connection conn, Inquiry i) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("answerInquiry");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, i.getReplyContent());
+			pstmt.setString(2, i.getUserNo());
+			pstmt.setInt(3, i.getInquiryNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }

@@ -70,10 +70,27 @@
     <hr style="background-color: #ffffff;">
     <br><br> <br><br>
     
-		<h2>답변</h2>
+		<div style="display: flex;"><h2>답변</h2> 
+		<% if(loginUser.getStatus().equals("A")) { %>
+		     <a href="<%= contextPath %>/inquiry.as?inquiryNo=<%= i.getInquiryNo() %>" 
+           type="button" 
+           class="btn btn-primary btn-sm" 
+           style="margin-left: 850px; height: 31px;">
+           답변등록
+        </a>
+		<% } %>
+		</div>
 			<br>
-			<% if(i.getReplyContent() == null) { %>
-			답변등록이 안되어있습니다.
+			
+			<% if(i.getReplyContent() == null && loginUser.getStatus().equals("U")){ %>
+			<div style="width: 900px;">답변등록이 안되어있습니다.</div>
+			<% }else if (i.getReplyContent() == null && loginUser.getStatus().equals("A")){ %>
+			<table class="table">
+	     <tr>
+	       <th id="nc1">내용</th>
+	       <td><textarea rows="10" class="form-control" id="nc2" style="resize:none;" required name="content"></textarea></td>
+     		</tr>
+      </table>
 			<% } else {%>
 		 <table id="reply-area" class="table">
      	<tr>
@@ -101,6 +118,16 @@
 	#nc{
 		color: white; 
 }
+	#nc1{
+		color: white; 
+}
+
+	#nc2{
+		background-color: #2b2b2b; 
+		color: white; 
+		border: none;
+}
+
 
 
 </style>

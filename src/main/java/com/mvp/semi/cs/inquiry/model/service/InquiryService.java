@@ -121,4 +121,17 @@ public class InquiryService {
 	        return inquiries;  // 조회 결과 반환
 	    }
 
+	public int answerInquiry(Inquiry i) {
+		Connection conn = getConnection();
+		int result = iDao.answerInquiry(conn, i);
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+
+		return result;
+	}
+
 }
