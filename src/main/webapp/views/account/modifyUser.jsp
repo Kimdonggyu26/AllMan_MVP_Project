@@ -172,41 +172,12 @@ a:active {
     </div> --%>
 
 
-<form action="modifyuser.us" method="post" enctype="multipart/form-data">
-        <div class="modal" id="myModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header" style="justify-content: center;">
-                        <div class="modal-title">프로필 편집</div>
-                    </div>
-                    <div class="modal-body" style="text-align: center;">
-                        <!-- 이미지 미리보기 -->
-                        <img id="imagePreview" src="<%=contextPath + loginUser.getFilePath() %>" alt="프로필 이미지" style="cursor: pointer; width: 200px; height: 200px; border: 1px solid #ccc;">
-                        
-                   
-                        
-                        <!-- 닉네임 수정 필드 -->
-                        <div>
-                          <input type="text" name="userNick" value="<%= loginUser.getUserNick() %>">
-                        </div>
-                        <h6>*2자 이상 10자 이내의 한글 영문,숫자 입력 가능합니다.</h6>
-                    </div>
-      <!-- Modal footer -->
-      <div class="modal-footer" style="justify-content: center;">
-        <button type="submit" class="btn1" data-dismiss="modal"><a href="" style="color: black;">확인</a></button>
-        <button type="button" class="btn2" data-dismiss="modal"><a href="">취소</a></button>
-      </div>
-
-    </div>
-  </div>
-</div>
-                  
 
 <div class="container">
   <div class="profile">
       <img  class="card-img-top" src="<%=contextPath + loginUser.getFilePath() %>" alt="" style="width: 50px; height: 50px;">
       <span class="username" ><%= loginUser.getUserId() %></span>
-      <button class="edit-button" data-toggle="modal" data-target="#myModal" type="button">프로필 수정</button>
+      <button class="edit-button" type="button" ><a href="<%=contextPath %>/modifyProfile.us"> 프로필 수정 </a></button>
   </div>
 
   <h2>회원정보 수정</h2>
@@ -242,6 +213,18 @@ a:active {
    	<!-- Header, Nav start -->
 	<%@ include file="/views/common/footer.jsp"%>
 	<!-- Header, Nav end -->
- 
+ <script>
+				document.getElementById("profileImage").onchange = function(event) {
+		        const file = event.target.files[0];
+		        if (file) {
+		            const reader = new FileReader();
+		            reader.onload = function(e) {
+		                const img = document.getElementById("imagePreview");
+		                img.src = e.target.result; // 이미지 미리보기
+		            };
+		            reader.readAsDataURL(file); // 파일을 데이터 URL로 읽음
+		        }
+		    };
+</script>
 </body>
 </html>

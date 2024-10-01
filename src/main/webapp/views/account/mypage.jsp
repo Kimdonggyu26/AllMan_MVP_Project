@@ -223,42 +223,9 @@ a:active {
             <div class="mypage-info">
                 <h2 id="like"><%= user.getUserNick() %></h2>
                 <div class="button"><a href="<%= contextPath %>/taste.t0">취향다시분석하기</a></div>
-                <div><a href="<%= contextPath %>/modifyuser.us" id="rechange">회원정보 수정</a></div>
+                <div><a href="<%=contextPath%>/modifyuser.us" id="rechange">회원정보 수정</a></div>
             </div>
         </div>
-  <%--   
-        <div class="favorite-section">
-            <h4>즐겨찾기</h4>
-            <hr>
-            <h4>상영 영화</h4>
-          <div class="grid-container">
-    <% if (favoriteMovies != null && favoriteMovies.size() > 0) { %>
-        <% for (Movie movie : favoriteMovies) { %>
-            <div class="grid-item">
-                <img src="<%= movie.getContentPath() %>" alt="<%= movie.getMovieTitle() %>" style="width: 100%; height: 100%;">
-                <p><%= movie.getMovieTitle() %></p>
-            </div>
-        <% } %>
-    <% } else { %>
-        <p>등록된 영화가 없습니다.</p>
-    <% } %>
-                <div class="grid-item" style="width: 50px;">  </div>
-            </div>
-    
-            <h4>OTT</h4>
-          <div class="grid-container" style="display: flex; align-items: center;">
-    <!-- 왼쪽 화살표 버튼 (이전 페이지) -->
-    <div class="grid-item" style="width: 50px; height: 150px;" id="prev-page-btn" onclick="loadPreviousPage()"> < </div>
-    
-    <!-- 영화 리스트 (이미지와 제목) -->
-    <div class="grid-item" id="ott-item-1" style="flex-grow: 1;"></div>
-    <div class="grid-item" id="ott-item-2" style="flex-grow: 1;"></div>
-    <div class="grid-item" id="ott-item-3" style="flex-grow: 1;"></div>
-    <div class="grid-item" id="ott-item-4" style="flex-grow: 1;"></div>
-
-    <!-- 오른쪽 화살표 버튼 (다음 페이지) -->
-    <div class="grid-item" style="width: 50px; height: 150px;" id="next-page-btn" onclick="loadNextPage()">  </div>
-</div> --%>
     
          <div class="post-section">
             <h3>나의 게시글</h3>

@@ -134,8 +134,7 @@ SELECT
     UPDATE 
    				USERS
      SET 
-     			USER_NICKNAME = ?,
-     			PROFILE_PATH = ?,
+     		USER_NICKNAME = ?,
      		 EMAIL = ?, 
      		 PHONE = ?,
      		PROFILE_PATH = ?
