@@ -327,7 +327,7 @@ public class InquiryDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, i.getReplyContent());
-			pstmt.setString(2, i.getUserNo());
+			pstmt.setString(2, i.getUserNickname());
 			pstmt.setInt(3, i.getInquiryNo());
 			
 			result = pstmt.executeUpdate();

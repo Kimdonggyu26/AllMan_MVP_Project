@@ -1,6 +1,7 @@
 package com.mvp.semi.cs.inquiry.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,16 +33,16 @@ public class InquiryAnswerConroller extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String inquiryContent = request.getParameter("content");
+		String inquiryContent = request.getParameter("replyContent");
 		int inquiryNo = Integer.parseInt(request.getParameter("inquiryNo"));
 		
 		HttpSession session = request.getSession();
-		int noticeWriter = ((User)session.getAttribute("loginUser")).getUserNo();
+		String inquiryWriter = ((User)session.getAttribute("loginUser")).getUserNick();
 		
-		Inquiry i = new Inquiry();
+		Inquiry i = new Inquiry();	
 		i.setInquiryNo(inquiryNo);
 		i.setReplyContent(inquiryContent);
-		i.setUserNo(String.valueOf(noticeWriter));	// 1 => "1"
+		i.setUserNickname(inquiryWriter);
 		
 		int result = new InquiryService().answerInquiry(i);
 		
@@ -49,8 +50,8 @@ public class InquiryAnswerConroller extends HttpServlet {
 		if(result > 0) {	// 성공
 			// 응답페이지 : 다시 목록페이지
 			// 응답데이터 : "성공적으로 추가" alert 메세지
-			session.setAttribute("alertMsg", "성공적으로 공지사항이 등록되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/list.no");
+			session.setAttribute("alertMsg", "성공적으로 답변이 등록되었습니다.");
+			response.sendRedirect(request.getContextPath() + "/detail.iq?no=" + inquiryNo);
 			
 		}else {	// 실패
 			// 응답페이지 : 에러페이지

@@ -30,7 +30,7 @@
         <br>
 
           <div align="center">
-            <button type="submit" class="btn btn-primary btn-sm">수정하기</button>
+            <button type="submit" class="btn btn-primary btn-sm">글쓰기</button>
             <button type="reset" class="btn btn-danger btn-sm">초기화</button>
           </div>
 

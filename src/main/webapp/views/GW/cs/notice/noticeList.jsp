@@ -31,9 +31,9 @@
           <h3 >공지사항</h3><hr color="white">
         </div>
         
-        <% if(loginUser != null && loginUser.getStatus().equals("A")) { %>
-        	<a href="<%= contextPath %>/write.no" type="button" class="btn btn-secondary btn-sm" id="regist" >글쓰기</a>
-				<% } %>
+			<% if(loginUser != null && loginUser.getStatus() != null && loginUser.getStatus().equals("A")) { %>
+		    <a href="<%= contextPath %>/write.no" type="button" class="btn btn-secondary btn-sm" id="regist">글쓰기</a>
+			<% } %>
 
         <div id="qna-h">
         <table id="qna-list" class="table">
@@ -46,35 +46,33 @@
           </thead>
           <tbody>
           	
-          	<% if(list.isEmpty()) { %>
-            <!-- case1. 조회된 공지글가 없을 경우 -->
-            <tr>
-              <td colspan="3" style="text-align:center">존재하는 QnA글이 없습니다.</td>
-            </tr>
+ 			<% if(list.isEmpty()) { %>
+	    <tr>
+	        <td colspan="3" style="text-align:center">존재하는 QnA글이 없습니다.</td>
+	    </tr>
 			<% } else { %>
-			<!-- case2. 조회된 공지글이 있을 경우 -->
-				<% for (Notice n : list) { %>
-            <tr class="board-title1" data-toggle="collapse" data-target="#notice<%= n.getNoticeNo() %>">
-              <td><%= n.getNoticeTitle() %></td>
-              <td><%= n.getUserNo() %></td>
-              <td><%= n.getRegistDate() %></td>
-            </tr>
-            <tr class="board-title collapse" id="notice<%= n.getNoticeNo() %>">
-              <td colspan="3">
-                <p class="border rounded p-3 w-75 mx-auto" style="min-height: 150px;"><%= n.getNoticeContent() %></p>
-                
-              <% if(loginUser != null && loginUser.getStatus().equals("A")) { %>
-	              <!-- 로그인한 회원이 관리자 권한일 경우 보여지는 요소 -->
-	              <div align="center">
-	                <a href="<%= contextPath %>/modify.no?no=<%= n.getNoticeNo() %>" type="button" class="btn btn-secondary btn-sm">수정하기</a>
-	                <a href="<%= contextPath %>/delete.no?no=<%= n.getNoticeNo() %>" type="button" class="btn btn-danger btn-sm">삭제하기</a>
-	              </div>
-	              <% } %>
+			    <% for (Notice n : list) { %>
+		        <tr class="board-title1" data-toggle="collapse" data-target="#notice<%= n.getNoticeNo() %>">
+		            <td><%= n.getNoticeTitle() %></td>
+		            <td><%= n.getUserNo() %></td>
+		            <td><%= n.getRegistDate() %></td>
+		        </tr>
+		        <tr class="board-title collapse" id="notice<%= n.getNoticeNo() %>">
+		            <td colspan="3">
+		                <p class="border rounded p-3 w-75 mx-auto" style="min-height: 150px;"><%= n.getNoticeContent() %></p>
+			                
+						<% if(loginUser != null && loginUser.getStatus() != null && loginUser.getStatus().equals("A")) { %>
+						    <!-- 관리자 권한을 가진 사용자만 볼 수 있는 수정/삭제 버튼 -->
+						    <div align="center">
+						        <a href="<%= contextPath %>/modify.no?no=<%= n.getNoticeNo() %>" type="button" class="btn btn-secondary btn-sm">수정하기</a>
+						        <a href="<%= contextPath %>/delete.no?no=<%= n.getNoticeNo() %>" type="button" class="btn btn-danger btn-sm">삭제하기</a>
+						    </div>
+						<% } %>
                 
             </td>
-          </tr>
-          	<% } %>
-          <% } %>
+          	</tr>
+    			<% } %>
+       <% } %>
           
           </tbody>
         </table>

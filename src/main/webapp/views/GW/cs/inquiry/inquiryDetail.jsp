@@ -70,36 +70,35 @@
     <hr style="background-color: #ffffff;">
     <br><br> <br><br>
     
-		<div style="display: flex;"><h2>답변</h2> 
-		<% if(loginUser.getStatus().equals("A")) { %>
-		     <a href="<%= contextPath %>/inquiry.as?inquiryNo=<%= i.getInquiryNo() %>" 
-           type="button" 
-           class="btn btn-primary btn-sm" 
-           style="margin-left: 850px; height: 31px;">
-           답변등록
-        </a>
-		<% } %>
-		</div>
+		<h2>답변</h2> 
 			<br>
 			
 			<% if(i.getReplyContent() == null && loginUser.getStatus().equals("U")){ %>
 			<div style="width: 900px;">답변등록이 안되어있습니다.</div>
 			<% }else if (i.getReplyContent() == null && loginUser.getStatus().equals("A")){ %>
-			<table class="table">
-	     <tr>
-	       <th id="nc1">내용</th>
-	       <td><textarea rows="10" class="form-control" id="nc2" style="resize:none;" required name="content"></textarea></td>
-     		</tr>
-      </table>
+			  <form action="<%= contextPath %>/inquiry.as" method="POST">
+			    <input type="hidden" name="inquiryNo" value="<%= i.getInquiryNo() %>">
+			    <table class="table">
+			      <tr>
+			        <th id="nc1" width="100px">내용</th>
+			        <td><textarea rows="10" class="form-control" id="nc2" style="resize:none;" required name="replyContent"></textarea></td>
+			      </tr>
+			    </table>
+			    <div class="d-flex justify-content-end">
+			    <button type="submit" class="btn btn-primary" >답변등록</button>
+			    </div>
+			  </form>
 			<% } else {%>
-		 <table id="reply-area" class="table">
-     	<tr>
-     		<th id="nc"><%= i.getUserNickname() %></th>
-     		<td id="nc"><p style="min-height:200px; white-space:pre-wrap;"><%= i.getReplyContent() %></p></td>
-     		<td id="nc"><%= i.getReplyDate() %></td>
-     	</tr>
-     </table>
+			 <table id="reply-area" class="table">
+	     	<tr>
+	     		<th id="nc"><%= i.getUserNickname() %></th>
+	     		<td id="nc"><p style="min-height:200px; white-space:pre-wrap;"><%= i.getReplyContent() %></p></td>
+	     		<td id="nc"><%= i.getReplyDate() %></td>
+	     	</tr>
+	     </table>
      <% } %>
+     
+     
   
 
         
