@@ -125,7 +125,7 @@
 		        	<%} else{%>
 		        		<div style="display: flex; flex-direction: row;">
 
-				        	<a href="mypage.us" style="color: f2f2f2f2;  text-decoration: none; color: inherit;"><B><%=loginUser.getUserNick() %></B>님 &nbsp&nbsp&nbsp&nbsp</a>
+				        	<a href="mypage.us" style="color: f2f2f2f2;  text-decoration: none; color: white;"><B><%=loginUser.getUserNick() %></B>님 &nbsp&nbsp&nbsp&nbsp</a>
 			        		<!-- 클릭 시 마이페이지 이동 -->
 			        		<a href="mypage.us"><img src="<%= contextPath + loginUser.getFilePath()%>" id="myImg"></a>
 		        		</div>
