@@ -993,6 +993,7 @@
 			          		}
 			        	}
 			        	
+			        	// 로그아웃
 			        	function fnlogout() {
 			        	    window.location.href = '<%=contextPath%>/logout.us';
 			        	}
