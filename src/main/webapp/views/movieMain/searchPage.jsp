@@ -122,7 +122,7 @@
 						    +       	'<p>상영 영화</p>'
 						    +   		'</div>'
 							
-								+				'<div style="display: flex; height: 500px; align-items: center; width: 1260px; justify-content: center;">'
+								+				'<div style="display: flex; height: 100px; align-items: center; width: 1260px; justify-content: center;">'
 							  +					'<h1>일치하는 검색결과가 없어요.</h1>'
 							  +  			'</div>'
 							  +		'</div>';

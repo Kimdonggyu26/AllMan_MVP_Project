@@ -126,7 +126,7 @@
           <% } %>
                    
           <li class='page-item <%= pi.getCurrentPage() == pi.getMaxPage() ? "disabled" : "" %>'>
-          	<a class="page-link" href="<%=contextPath%>/list.in?page=<%= pi.getCurrentPage()+1 %>">&gt;
+          	<a class="page-link" href="<%=contextPath%>/list.iq?page=<%= pi.getCurrentPage()+1 %>">&gt;
           	</a>
           </li>
           

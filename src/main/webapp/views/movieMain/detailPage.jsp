@@ -353,7 +353,7 @@
     			                    + '<div class="user_header">'
     			                    + '<img src="' + '<%=contextPath%>' + res[i].userFilePath + '" alt="">'
     												 	 + '<div>'
-    												 + '<div>' + res[i].userNick + '</div>'
+    												 + '<div>' + res[i].userNickname + '</div>'
     												 + '<p>' + res[i].reviewDate + '</p>'
     												 + '</div>' 
     												+ '<div class="review_str">'

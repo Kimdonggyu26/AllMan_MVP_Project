@@ -8,6 +8,7 @@
 <%
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	List<Board> list = (List<Board>)request.getAttribute("list");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -76,7 +77,7 @@
               <div class="card-footer">
                 <table>
                   <tr>
-                    <td><img src="<%=b.getProfilePath()%>" style="width: 25px; height: 25px;"></td>
+                    <td><img src="<%=contextPath + b.getProfilePath()%>" style="width: 25px; height: 25px;"></td>
                     <td><%=b.getUserId()%></td>
                   </tr>
                 </table>

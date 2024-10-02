@@ -41,7 +41,6 @@
 	      <div id="compare-list">
 	      <% for(Movie b : list){ %>
 	      <div id="compare-list-movie">
-	        <img src="../DG/assets/image/logo/delete_logo.png" style="margin-top: 10px; float: right; margin-right: 10px;">
 	        <img src="<%= contextPath + b.getTitlePath() %>" id="movie-mainimage" style="width:200px; height:284px;" 
     								 onclick="window.location.href='<%= contextPath %>/showDetail.sd?movieNo=<%= b.getMovieNo() %>';">
 	        <hr style="border: 1px solid #ffffff30; width: 270px;">
@@ -94,7 +93,7 @@
 	                  <div style="width: 92px; height: 49px; background-color: #131313; border-radius: 10px;">
 	                    <div style="height: 24px; text-align: center;"><span>무비픽 평점</span></div>
 	                      <div>
-	                        <img src="assets/image/logo/star_logo.png" style="margin-left: 13px;">
+	                        <img src="assets/image/comparePage/star_logo.png" style="margin-left: 13px;">
 	                        <span><%=b.getGrade() %></span>
 	                      </div>
 	                  </div>
@@ -103,8 +102,8 @@
 	                  <div style="width: 92px; height: 49px; background-color: #131313; border-radius: 10px;">
 	                    <div style="text-align: center;"><span style="color: #33F833;">네이버</span>&nbsp;<span>평점</span></div>
 	                    <div>
-	                      <img src="assets/image/logo/star_logo.png" style="margin-left: 13px;">
-	                      <span>0.00</span>
+	                      <img src="assets/image/comparePage/star_logo.png" style="margin-left: 13px;">
+	                      <span><%=b.getGrade()%></span>
 	                    </div>
 	                  </div>
 	                </div>
