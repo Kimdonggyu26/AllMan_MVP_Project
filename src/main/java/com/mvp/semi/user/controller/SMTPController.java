@@ -7,7 +7,7 @@ import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
-import javax.mail.*;
+import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -42,6 +42,7 @@ public class SMTPController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		
 		HttpSession serSession = request.getSession();
 		User u = (User)serSession.getAttribute("userId");
@@ -131,7 +132,7 @@ public class SMTPController extends HttpServlet {
 			// 메일 제목 설정
 			message.setSubject("MVP 사이트");
 			// 메일 내용 설정
-			message.setText("변경된 비밀번호는 [ 테스트 ] 입니다.");
+			message.setText("변경된 비밀번호는 ["+ reSetPassword +" ] 입니다.");
 
 			// Send the message
 			Transport.send(message);
@@ -144,7 +145,6 @@ public class SMTPController extends HttpServlet {
 
 		System.out.println(" NaverMailSend : sendEmail() 종료");
 
-		response.getWriter().print("aaaa");
 		
 		request.getRequestDispatcher("/views/account/findPwdSuc.jsp").forward(request, response);
 

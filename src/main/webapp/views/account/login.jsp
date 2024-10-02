@@ -113,8 +113,8 @@ String alertMsg = (String)session.getAttribute("alertMsg");
     <div>
         <table class="found">
             <tr>
-                <td class="p-3"><a href="<%= contextPath %>/views/account/findId.jsp">아이디 찾기 &nbsp|&nbsp  </a></td>
-                <td class="p-3"><a href="<%= contextPath %>/views/account/findPwd.jsp">비밀번호 찾기 &nbsp | &nbsp </a></td>
+                <td class="p-3"><a href="<%= contextPath %>/idfinder1.us">아이디 찾기 &nbsp|&nbsp  </a></td>
+                <td class="p-3"><a href="<%= contextPath %>/findPwd1.us">비밀번호 찾기 &nbsp | &nbsp </a></td>
                 <td class="p-3"><a href="<%= contextPath%>/signup.us">회원가입</a></td>
             </tr>
         </table>

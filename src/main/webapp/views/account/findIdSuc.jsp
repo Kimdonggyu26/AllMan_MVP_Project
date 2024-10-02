@@ -1,6 +1,6 @@
-<%@ page import="com.mvp.semi.user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.mvp.semi.user.model.vo.User"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,17 +75,21 @@ input:focus {outline: none;}
 </style>
 	<body>
 	
-					<%
+<%
 	String contextPath = request.getContextPath(); // "/web"
-		User loginUser = (User)session.getAttribute("loginUser");
+	User loginUser = (User)session.getAttribute("loginUser");
 	String alertMsg = (String)session.getAttribute("alertMsg");
+  String maskedUserId = (String) session.getAttribute("maskedUserId");
+	
 %>
 	<form action="<%= contextPath %>/login.us" >
 	<div class="container">
-	            <i class="fa-regular fa-circle-check" id="check"></i>
+           <i class="fa-regular fa-circle-check" id="check"></i>
 	          <div class="idfo">입력하신 정보와 일치하는 결과입니다.</div>
-	           <div class="font">이메일을 확인하여 비밀번호 재설정을 완료해주세요.</div>
-	          
+           <div class="font">이메일을 확인하여 비밀번호 재설정을 완료해주세요.</div>
+	         <div id="userId">
+	         	 	<p style="color:white; text-align:center; font-size:20px;">아이디: <%= maskedUserId %></p>
+	         </div>
 	        <div class="button-group">
 	  <button type="submit"  id="buttons">로그인하러 가기</button>
 	</div>

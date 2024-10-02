@@ -83,7 +83,7 @@
 						          <div class="idfo">아이디 찾기</div>
 						          <div class="font">가입 시 등록한 이메일을 입력해주세요.</div>
 						        <div class="button-group">
-						  <input type="text" class="ifound"   id="emailInput" name="email" placeholder="이메일"  >
+						  <input type="text" class="ifound" id="emailInput" name="email" placeholder="이메일"  >
 						  <button type="submit"  id="buttons" >확인</button>
 						</div>
 					</div>

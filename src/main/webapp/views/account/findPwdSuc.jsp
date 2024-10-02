@@ -74,7 +74,7 @@ input:focus {outline: none;}
 	  <!-- Header, Nav start -->
    <%--  <%@ include file="/views/common/header.jsp" %> --%>
     <!-- Header, Nav end -->
-			<form action="/smtpTest.do" >
+	<form action="<%= contextPath %>/login.us" >
 		<div class="container">
       <i class="fa-regular fa-circle-check" id="check"></i>
           <div class="idfo"><br>메일이 발송되었습니다.</div>
@@ -83,10 +83,9 @@ input:focus {outline: none;}
   				<button type="submit"  id="buttons">확인</button>
 			</div>
 		</div>
-		</form>
+	</form>
 		<!-- Header, Nav start -->
    	<%--  <%@ include file="/views/common/footer.jsp" %> --%>
     <!-- Header, Nav end -->
-
 </body>
 </html>

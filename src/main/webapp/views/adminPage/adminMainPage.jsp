@@ -933,10 +933,7 @@
 			                <div style="width: 42px; height: 17px;"><p>예고편</p></div>
 			                <input type="text" id="preview" class="form-control" name="preview">
 			              </div>
-			              <div style="width: 270px; height: 169px; display: flex; gap: 20px;">
-			                <div style="width: 62px; height: 20px;"><p>메인이미지</p></div>
-			                <img class="img-preview title-img" onclick="chooseFile(0);">
-			              </div>
+
 			            </div> <!-- modal-body-bottom-left div 끝 -->
 			            
 			            <div class="modal-body-bottom-right">
@@ -963,10 +960,7 @@
 			              	<p style="margin: 0%">평점</p>
 			              	<input type="text" id="grade" class="form-control" name="grade" style="width: 200px; height: 20px;">
 			              </div>
-			              <div style="margin-bottom: 20px;">
-			                <p style="margin-bottom: 5px">상세이미지</p>
-			                <img class="img-preview content-img" onclick="chooseFile(1);">
-			              </div>
+
 			            </div>  <!-- modal-body-bottom-right div 끝 -->
 			          </div> <!-- modal-body-bottom div 끝 -->
 			        </div> <!-- modal-body div 끝 -->

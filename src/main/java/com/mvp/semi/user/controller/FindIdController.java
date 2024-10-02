@@ -45,10 +45,29 @@ public class FindIdController extends HttpServlet {
 		} else {
 			System.out.println("성공");
 			session.setAttribute("email", result);
+			
+			
+			// ID의 마지막 3자리를 별로 처리
+            String userId = result.getUserId();
+            String maskedId = maskLastThreeCharacters(userId);
+            
+            // 세션에 마스킹된 ID 저장
+            session.setAttribute("maskedUserId", maskedId);
+            session.setAttribute("email", result);
+			
+			
 			request.getRequestDispatcher("/views/account/findIdSuc.jsp").forward(request, response);
 		}
 
 	}
+	
+	private String maskLastThreeCharacters(String userId) {
+        if (userId.length() <= 3) {
+            return "***"; // ID가 3자리 이하인 경우 모든 문자를 별로 처리
+        }
+        // 마지막 3자리를 별로 대체
+        return userId.substring(0, userId.length() - 3) + "***";
+    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
